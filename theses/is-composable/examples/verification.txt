@@ -1,0 +1,7 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+([0, 1, 2, 3, 4], [0, 1, 2], true, false)
+'ReleasePartition.least_checkout_block' depends on axioms: [propext, Quot.sound]
+'ReleasePartition.preserves_linked_check' depends on axioms: [propext, Quot.sound]
+'ReleasePartition.before_after' does not depend on any axioms
+
+Rejected control: split invoice from its tax dependency (Lean exit 1).
