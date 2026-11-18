@@ -1,6 +1,6 @@
 # software-is-incrementally-certifiable
 
-Lean 4.19.0, core only. `software-is-composable` is required at `033c12c01299a9b28983bee410c230641adc7d1e`. `certClose` is `Qualification.Derives`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI. Quantifiable's `Pareto.lean` and `Coverage.lean` are not imported.
+Lean 4.19.0, core only. `software-is-quantifiable` is required at `430340295c52a015772022b2b663d01120a3a747`. `software-is-composable` is required at `033c12c01299a9b28983bee410c230641adc7d1e`. The manifest lists one revision of each. `Release` is `SoftwareIsQuantifiable.Interface.Release`. `certClose` is `Qualification.Derives`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI. `Coverage.lean` is not imported.
 
 ```sh
 ./check.sh
@@ -14,14 +14,14 @@ The recorded run is `CHECK.log`. Headline dependencies are `propext`, `Classical
 
 | Name | Role |
 |---|---|
-| `RequiredNonempty` | `requiredOf` is spec `required` when that list is non-empty, otherwise the previous release's `qualified` list. `accepted` is false when that list is empty. |
+| `RequiredNonempty` | `requiredOf` is `PriorQualification.qualified` from the previous release. `accepted` is false when that list is empty. |
 | `IndependencePremise` | The `k` observations in `evidence_cuts` are distinct indices in range. |
 | `CoveragePremise` | Every symbol index occurs. Used only by `consistent_singleton_of_coverage`. |
 | `FixedSelectedAxes` | Each release in the chain has symbol id 0 and two cost axes. |
 | `ValidMeasurements` | Every cost bound on the chain satisfies `lo ≤ hi`. |
 | `BaselineEligible` | The first release has a symbol, and its bounds satisfy `lo ≤ hi`. |
 
-`requiredOf` and `allowedOf` do not read `Delta.submittedRequired`, `Delta.submittedAllowed`, `Delta.deps`, `Delta.obsHigh`, `Delta.symHigh`, `Delta.boundTime`, or `Delta.boundCompute`.
+`requiredOf` is the previous release's `qualified` list. `allowedOf` is `spec.allowed`. Neither reads `Delta.submittedRequired`, `Delta.submittedAllowed`, `Delta.deps`, `Delta.obsHigh`, `Delta.symHigh`, `Delta.boundTime`, `Delta.boundCompute`, or `Spec.required`.
 
 ## Claims
 
@@ -36,10 +36,15 @@ The recorded run is `CHECK.log`. Headline dependencies are `propext`, `Classical
 | Repeating an observation cuts by `2^k` for `k` copies | `duplicate_does_not_cut` | DISPROVEN |
 | Observing every symbol leaves one release | `consistent_singleton_of_coverage` | PREMISE `CoveragePremise` |
 | A proper subset of observations leaves one release | `partial_not_singleton` | DISPROVEN |
+| `requiredOf` is the previous `PriorQualification.qualified` | `required_is_prior` | PROVEN |
+| `allowedOf` is `spec.allowed` | `allowed_is_spec` | PROVEN |
+| Changing `Spec.required` changes `check` | `check_ignores_spec_required` | DISPROVEN |
+| The empty behavior list is accepted when the previous qualified list is `["need"]` | `empty_behaviors_refused` | DISPROVEN |
+| `Spec.required = []` and `submittedRequired = []` accept a dropped `need` | `spec_required_empty_still_refused` | The verdict is `refuse "app"` |
 | `check` depends on the submitted behavior list only | `check_submitter_invariant` | PROVEN |
 | `check = accept` implies `ReleasePred` | `check_sound` | PROVEN |
 | Two disjoint behavior writes match one concatenated write | `incremental_eq_scratch` | PROVEN |
-| On a chain `a, b, c` admitted by `ReleaseAdmitted`, the earlier cost vector does not strictly dominate the later one | `pareto_monotone_chain` | PROVEN under `FixedSelectedAxes`, `ValidMeasurements`, `BaselineEligible` |
+| On a chain `c, b, a` with each step `releaseLe`, an earlier release does not `releaseDominates` a later one | `pareto_monotone_chain` | PROVEN under `FixedSelectedAxes`, `ValidMeasurements`, `BaselineEligible` |
 | Keeping both axes, the step from highs `(10, 1)` to `(9, 100)` is admitted | `axes_change_hides_regression` | DISPROVEN. The one-axis check `axesOf [0]` accepts that step |
 | Upper bounds `[2, 3]` against `[1, 100]` dominate every in-bound pair | `not_per_execution` | DISPROVEN |
 | `combinedAdmission` is `releaseLE` and `acceptsRelease` | `combined_iff` | PROVEN |
@@ -54,9 +59,9 @@ The recorded run is `CHECK.log`. Headline dependencies are `propext`, `Classical
 | Allowed traces distinguish order | `unordered_traces` | The predicate is `List.Perm`-invariant |
 | A profile determines `Reaches` | `profile_cannot_see_flow` | DISPROVEN. The same `flowBeh` reaches `"secret"` under `flowDeps` and not under `noDeps` |
 
-`pareto_monotone_chain` uses `SoftwareIsComposable.symbolAdmitted_trans`. It does not use `extensive`.
+`pareto_monotone_chain` uses `SoftwareIsQuantifiable.Interface.releaseLe_trans`. It does not use `extensive`.
 
-`Audit/Counterexamples.lean` is the red baseline, commit `d094a2e32fd89e55fcdd879941e9feb1011bf50c`. Its theorems `c1_omitted_edge_accepts`, `c2_label_hides_leak`, `c3_raised_budget_accepts`, `c4_nothing_safe`, `c4_nothing_ni`, and `c4_releaseLE_nothing` are proved for the checker in that file, which reads `deps`, `obsHigh`, and the budget from the delta. That file is not a Lake root. `Audit/Refusals.lean` is.
+`Audit/Counterexamples.lean` is the red baseline, checked at `d094a2e32fd89e55fcdd879941e9feb1011bf50c`. Its theorems `c1_omitted_edge_accepts`, `c2_label_hides_leak`, `c3_raised_budget_accepts`, `c4_nothing_safe`, `c4_nothing_ni`, and `c4_releaseLE_nothing` are proved for the checker in that file, which reads `deps`, `obsHigh`, and the budget from the delta. Lake target `Evidence` roots that file. It is not a default target. `Audit/Refusals.lean` is the `Audit` root.
 
 ## Implications
 

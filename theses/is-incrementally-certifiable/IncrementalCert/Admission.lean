@@ -1,33 +1,46 @@
-import SoftwareIsComposable
+import SoftwareIsQuantifiable.Pareto
 
 namespace IncrementalCert
 
-def releaseLE (allowed behaviors : List Nat) : Bool :=
+open SoftwareIsQuantifiable.Pareto
+
+def releaseLE {B : Type} [DecidableEq B] (allowed behaviors : List B) : Bool :=
   behaviors.all (fun b => allowed.contains b)
 
-abbrev acceptsRelease (required behaviors : List Nat) : Bool :=
-  SoftwareIsComposable.accepts required behaviors
+def combinedAdmission {B : Type} [DecidableEq B]
+    (allowed : List B) (prior : PriorQualification B) (behaviors : List B) : Bool :=
+  !prior.qualified.isEmpty &&
+    noQualifiedBehaviorLost prior { offered := behaviors } &&
+    releaseLE allowed behaviors
 
-def combinedAdmission (allowed required behaviors : List Nat) : Bool :=
-  releaseLE allowed behaviors && acceptsRelease required behaviors
-
-theorem combined_iff (allowed required behaviors : List Nat) :
-    combinedAdmission allowed required behaviors = true ↔
-      releaseLE allowed behaviors = true ∧
-        acceptsRelease required behaviors = true := by
-  simp [combinedAdmission, Bool.and_eq_true]
+theorem combined_iff {B : Type} [DecidableEq B]
+    (allowed : List B) (prior : PriorQualification B) (behaviors : List B) :
+    combinedAdmission allowed prior behaviors = true ↔
+      prior.qualified ≠ [] ∧
+        noQualifiedBehaviorLost prior { offered := behaviors } = true ∧
+          releaseLE allowed behaviors = true := by
+  cases h : prior.qualified with
+  | nil =>
+    simp [combinedAdmission, h, List.isEmpty, noQualifiedBehaviorLost, releaseLE]
+  | cons b bs =>
+    simp [combinedAdmission, h, List.isEmpty, Bool.and_eq_true]
 
 theorem feature_add_fails_releaseLE :
-    releaseLE [1] [1, 2] = false ∧ acceptsRelease [1] [1, 2] = true := by
+    releaseLE [1] [1, 2] = false ∧
+      noQualifiedBehaviorLost ({ qualified := [1] } : PriorQualification Nat)
+        ({ offered := [1, 2] } : BehaviorSubmission Nat) = true := by
   decide
 
 theorem removal_fails_acceptsRelease :
-    releaseLE [1, 2] [] = true ∧ acceptsRelease [1] [] = false := by
+    releaseLE [1, 2] [] = true ∧
+      noQualifiedBehaviorLost ({ qualified := [1] } : PriorQualification Nat)
+        ({ offered := [] } : BehaviorSubmission Nat) = false := by
   decide
 
 theorem empty_required_passes_c4 :
-    (([] : List Nat).all (fun b => ([] : List Nat).contains b)) = true ∧
-      acceptsRelease [] [] = true := by
+    noQualifiedBehaviorLost ({ qualified := [] } : PriorQualification Nat)
+        ({ offered := [] } : BehaviorSubmission Nat) = true ∧
+      releaseLE ([] : List Nat) [] = true := by
   decide
 
 end IncrementalCert

@@ -39,6 +39,11 @@ elab "implications_report" : command => do
     `IncrementalCert.leak_unlabeled_refused,
     `IncrementalCert.budget_raised_refused,
     `IncrementalCert.nothing_refused,
+    `IncrementalCert.required_is_prior,
+    `IncrementalCert.allowed_is_spec,
+    `IncrementalCert.check_ignores_spec_required,
+    `IncrementalCert.empty_behaviors_refused,
+    `IncrementalCert.spec_required_empty_still_refused,
     `IncrementalCert.submitted_required_still_refused,
     `IncrementalCert.unordered_traces,
     `IncrementalCert.profile_cannot_see_flow

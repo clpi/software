@@ -1,126 +1,133 @@
-import SoftwareIsComposable
+import SoftwareIsQuantifiable.Interface
+import SoftwareIsQuantifiable.Pareto
 
 namespace IncrementalCert
 
-open SoftwareIsComposable
+open SoftwareIsQuantifiable.Interface
 
-def paretoDominates (a b : Nat × Nat) : Prop :=
-  a.1 ≤ b.1 ∧ a.2 ≤ b.2 ∧ (a.1 < b.1 ∨ a.2 < b.2)
+def selectedSpace : MeasureSpace Nat :=
+  [{ measure := 0, polarity := .minimize }, { measure := 1, polarity := .minimize }]
 
-def pairOf (p : SymbolProfile) : Nat × Nat :=
-  match p.costs with
-  | a :: b :: _ => (a.hi, b.hi)
-  | _ => (0, 0)
+def FixedSelectedAxes (chain : List (Release Nat Nat)) : Prop :=
+  ∀ r ∈ chain, profilesAligned selectedSpace r ∧ ∀ p ∈ r, p.symbol = 0
 
-def FixedSelectedAxes (chain : List Release) : Prop :=
-  ∀ r, r ∈ chain → ∀ p, p ∈ r.symbols → p.id = 0 ∧ p.costs.length = 2
+def ValidMeasurements (chain : List (Release Nat Nat)) : Prop :=
+  ∀ r ∈ chain, uniqueSymbols r
 
-def ValidMeasurements (chain : List Release) : Prop :=
-  ∀ r, r ∈ chain → ∀ p, p ∈ r.symbols → ∀ b, b ∈ p.costs → b.lo ≤ b.hi
+def BaselineEligible (base : Release Nat Nat) : Prop :=
+  base ≠ [] ∧ profilesAligned selectedSpace base
 
-def BaselineEligible (base : Release) : Prop :=
-  base.symbols ≠ [] ∧ ∀ p, p ∈ base.symbols → ∀ b, b ∈ p.costs → b.lo ≤ b.hi
-
-inductive StepAdmitted : List Release → Prop where
-  | single (r : Release) : StepAdmitted [r]
-  | cons {r s : Release} {rest : List Release}
-      (h : ReleaseAdmitted r s) (t : StepAdmitted (s :: rest)) :
+inductive StepAdmitted : List (Release Nat Nat) → Prop where
+  | single (r : Release Nat Nat) : StepAdmitted [r]
+  | cons {r s : Release Nat Nat} {rest : List (Release Nat Nat)}
+      (h : releaseLe selectedSpace r s) (t : StepAdmitted (s :: rest)) :
       StepAdmitted (r :: s :: rest)
 
-def costOf (r : Release) : Nat × Nat :=
-  match r.symbols with
-  | p :: _ => pairOf p
-  | [] => (0, 0)
+theorem eq_of_pairwise {a b : Profile Nat Nat} :
+    ∀ {R : List (Profile Nat Nat)},
+      R.Pairwise (fun x y => x.symbol ≠ y.symbol) →
+      a ∈ R → b ∈ R → a.symbol = b.symbol → a = b
+  | [], _, ha, _, _ => nomatch ha
+  | _ :: _, hp, ha, hb, hs => by
+    rw [List.pairwise_cons] at hp
+    cases List.mem_cons.mp ha with
+    | inl hxa =>
+      cases hxa
+      cases List.mem_cons.mp hb with
+      | inl hxb => exact hxb.symm
+      | inr hxb => exact absurd hs (hp.1 b hxb)
+    | inr hxa =>
+      cases List.mem_cons.mp hb with
+      | inl hxb =>
+        cases hxb
+        exact absurd hs.symm (hp.1 a hxa)
+      | inr hxb =>
+        exact eq_of_pairwise hp.2 hxa hxb hs
 
-theorem both_hi_le {a b : SymbolProfile} {x y u v : Bounds}
-    (h : SymbolAdmitted a b) (ha : a.costs = [x, y]) (hb : b.costs = [u, v]) :
-    u.hi ≤ x.hi ∧ v.hi ≤ y.hi := by
-  have h0 : (x, u) ∈ a.costs.zip b.costs := by simp [ha, hb]
-  have h1 : (y, v) ∈ a.costs.zip b.costs := by simp [ha, hb]
-  exact ⟨h.costHi (x, u) h0, h.costHi (y, v) h1⟩
+theorem eq_of_uniqueSymbols {a b : Profile Nat Nat} {R : Release Nat Nat}
+    (hu : uniqueSymbols R) (ha : a ∈ R) (hb : b ∈ R) (hs : a.symbol = b.symbol) : a = b :=
+  eq_of_pairwise ((List.pairwise_map (R := (· ≠ ·)) (f := Profile.symbol)).1 hu) ha hb hs
 
-theorem release_hi_le {a b : Release} {pa pb : SymbolProfile}
-    {x y u v : Bounds}
-    (h : ReleaseAdmitted a b)
-    (ha : a.symbols = [pa]) (hb : b.symbols = [pb])
-    (hca : pa.costs = [x, y]) (hcb : pb.costs = [u, v])
-    (hid : pa.id = pb.id) :
-    u.hi ≤ x.hi ∧ v.hi ≤ y.hi := by
-  have hmem : pa ∈ a.symbols := by simp [ha]
-  have had := h pa hmem
-  have hfind : b.symbols.find? (fun q => q.id == pa.id) = some pb := by
-    simp [hb, hid, beq_iff_eq]
-  simp [hfind] at had
-  exact both_hi_le had hca hcb
+theorem not_earlier_dominates {later earlier : Release Nat Nat}
+    (h : releaseLe selectedSpace later earlier) :
+    ¬ releaseDominates selectedSpace earlier later := by
+  intro hd
+  obtain ⟨q, hq, p, hp, hdom⟩ := hd.2
+  obtain ⟨p', hp', hnw⟩ := h.2.2.2.2 p hp
+  have hs : p'.symbol = q.symbol := hnw.1.1.trans hdom.1.1.1
+  have hpq : p' = q := eq_of_uniqueSymbols h.1 hp' hq hs
+  have hqp : noWorse selectedSpace q p := by simpa [hpq] using hnw
+  have heq : p = q := noWorse_antisymm hdom.1 hqp
+  have hstrict : strictlyBetter selectedSpace p q := hdom.2
+  rw [heq] at hstrict
+  exact not_strictlyBetter_self selectedSpace q hstrict
 
-theorem not_dominates_of_le {earlier later : Nat × Nat}
-    (ht : later.1 ≤ earlier.1) (hc : later.2 ≤ earlier.2) :
-    ¬ paretoDominates earlier later := by
-  intro h
-  rcases h with ⟨h1, h2, hstrict⟩
-  have he1 : earlier.1 = later.1 := Nat.le_antisymm h1 ht
-  have he2 : earlier.2 = later.2 := Nat.le_antisymm h2 hc
-  rcases hstrict with hs | hs
-  · omega
-  · omega
+theorem pareto_monotone_chain {a b c : Release Nat Nat}
+    (h : StepAdmitted [c, b, a])
+    (hA : FixedSelectedAxes [c, b, a])
+    (hV : ValidMeasurements [c, b, a])
+    (hB : BaselineEligible a) :
+    ¬ releaseDominates selectedSpace a b ∧
+      ¬ releaseDominates selectedSpace b c ∧
+      ¬ releaseDominates selectedSpace a c ∧
+      (∀ p ∈ a, aligned selectedSpace p ∧ p.symbol = 0) ∧
+      a ≠ [] ∧ uniqueSymbols b := by
+  cases h with
+  | cons hcb rest =>
+    cases rest with
+    | cons hab tail =>
+      cases tail
+      have hca := releaseLe_trans hcb hab
+      have hAa := hA a (by simp)
+      have hshape : ∀ p ∈ a, aligned selectedSpace p ∧ p.symbol = 0 := by
+        intro p hp
+        exact ⟨hAa.1 p hp, hAa.2 p hp⟩
+      exact ⟨not_earlier_dominates hab, not_earlier_dominates hcb,
+        not_earlier_dominates hca, hshape, hB.1, hV b (by simp)⟩
 
-theorem chain_nonempty {chain : List Release} (h : StepAdmitted chain) : chain ≠ [] := by
-  cases h <;> simp
-
-theorem pareto_monotone_chain {a b c : Release} {pa pb pc : SymbolProfile}
-    {ax ay bx byy cx cy : Bounds}
-    (hAB : ReleaseAdmitted a b) (hBC : ReleaseAdmitted b c)
-    (hA : FixedSelectedAxes [a, b, c]) (hV : ValidMeasurements [a, b, c])
-    (hB : BaselineEligible a)
-    (ha : a.symbols = [pa]) (hb : b.symbols = [pb]) (hc : c.symbols = [pc])
-    (hca : pa.costs = [ax, ay]) (hcb : pb.costs = [bx, byy]) (hcc : pc.costs = [cx, cy])
-    (hid : pa.id = pb.id ∧ pb.id = pc.id) :
-    ¬ paretoDominates (ax.hi, ay.hi) (bx.hi, byy.hi) ∧
-      ¬ paretoDominates (bx.hi, byy.hi) (cx.hi, cy.hi) ∧
-      ¬ paretoDominates (ax.hi, ay.hi) (cx.hi, cy.hi) ∧
-      pa.id = 0 ∧ ax.lo ≤ ax.hi ∧ a.symbols ≠ [] := by
-  have hshape := hA a (by simp) pa (by simp [ha])
-  have hmeas := hV a (by simp) pa (by simp [ha]) ax (by simp [hca])
-  have hleAB := release_hi_le hAB ha hb hca hcb hid.1
-  have hleBC := release_hi_le hBC hb hc hcb hcc hid.2
-  have hmem : pa ∈ a.symbols := by simp [ha]
-  have hab := hAB pa hmem
-  have hfindb : b.symbols.find? (fun q => q.id == pa.id) = some pb := by
-    simp [hb, hid.1, beq_iff_eq]
-  simp [hfindb] at hab
-  have hmemB : pb ∈ b.symbols := by simp [hb]
-  have hbc := hBC pb hmemB
-  have hfindc : c.symbols.find? (fun q => q.id == pb.id) = some pc := by
-    simp [hc, hid.2, beq_iff_eq]
-  simp [hfindc] at hbc
-  have hac := symbolAdmitted_trans hab hbc
-  have hleAC := both_hi_le hac hca hcc
-  exact ⟨not_dominates_of_le hleAB.1 hleAB.2,
-    not_dominates_of_le hleBC.1 hleBC.2,
-    not_dominates_of_le hleAC.1 hleAC.2,
-    hshape.1, hmeas, hB.1⟩
-
-def axesOf : List Nat → List Bounds → List Bounds → Bool
-  | [], _, _ => true
-  | i :: is, old, new =>
-    match old[i]?, new[i]? with
-    | some a, some b => decide (b.hi ≤ a.hi) && axesOf is old new
-    | _, _ => false
+def oneAxis : MeasureSpace Nat :=
+  [{ measure := 0, polarity := .minimize }]
 
 theorem axes_change_hides_regression :
-    symbolAdmitted
-      { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 10 }, { lo := 0, hi := 1 }] }
-      { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 9 }, { lo := 0, hi := 100 }] } = false ∧
-    axesOf [0]
-      [{ lo := 0, hi := 10 }, { lo := 0, hi := 1 }]
-      [{ lo := 0, hi := 9 }, { lo := 0, hi := 100 }] = true ∧
-    axesOf [0, 1]
-      [{ lo := 0, hi := 10 }, { lo := 0, hi := 1 }]
-      [{ lo := 0, hi := 9 }, { lo := 0, hi := 100 }] = false := by
-  decide
+    let later : Release Nat Nat := [{ symbol := 0, readings := [9, 100], observed := true }]
+    let earlier : Release Nat Nat := [{ symbol := 0, readings := [10, 1], observed := true }]
+    let later1 : Release Nat Nat := [{ symbol := 0, readings := [9], observed := true }]
+    let earlier1 : Release Nat Nat := [{ symbol := 0, readings := [10], observed := true }]
+    ¬ releaseLe selectedSpace later earlier ∧ releaseLe oneAxis later1 earlier1 := by
+  refine ⟨?_, ?_⟩
+  · intro h
+    obtain ⟨p, hp, hnw⟩ :=
+      h.2.2.2.2 { symbol := 0, readings := [10, 1], observed := true } (by simp)
+    simp at hp
+    subst hp
+    obtain ⟨_, hrest⟩ := hnw.1.2
+    simp [axesLe, axisLe] at hrest
+  · refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · unfold uniqueSymbols
+      simp
+    · unfold uniqueSymbols
+      simp
+    · intro p hp
+      simp at hp
+      subst hp
+      rfl
+    · intro p hp
+      simp at hp
+      subst hp
+      rfl
+    · intro q hq
+      simp at hq
+      subst hq
+      refine ⟨{ symbol := 0, readings := [9], observed := true }, by simp, ?_⟩
+      refine ⟨⟨rfl, by decide⟩, ?_⟩
+      intro hobs
+      rfl
 
 theorem not_per_execution :
-    ¬ ∀ x y : Nat, (1 ≤ x ∧ x ≤ 100) → (2 ≤ y ∧ y ≤ 3) → y ≤ x :=
-  SoftwareIsComposable.not_per_execution
+    ¬ ∀ x y : Nat × Nat,
+      (1 ≤ x.1 ∧ x.1 ≤ 100 ∧ x.2 = 0) →
+      (2 ≤ y.1 ∧ y.1 ≤ 3 ∧ y.2 = 0) →
+      y.1 < x.1 :=
+  SoftwareIsQuantifiable.Pareto.not_per_execution_dominance
 
 end IncrementalCert

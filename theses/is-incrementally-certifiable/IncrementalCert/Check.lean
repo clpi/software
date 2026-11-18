@@ -1,3 +1,5 @@
+import SoftwareIsQuantifiable.Pareto
+
 namespace IncrementalCert
 
 inductive Verdict where
@@ -36,21 +38,23 @@ structure Certificate where
   spec : Spec
   prev : Prev
 
-def requiredOf (spec : Spec) (prev : Option Prev) : List String :=
-  if spec.required.isEmpty then
-    match prev with
-    | some p => p.qualified
-    | none => []
-  else
-    spec.required
+def priorOf (prev : Prev) : SoftwareIsQuantifiable.Pareto.PriorQualification String where
+  qualified := prev.qualified
 
-def allowedOf (spec : Spec) (prev : Option Prev) : List String :=
-  match prev with
-  | some p => spec.allowed ++ p.qualified
-  | none => spec.allowed
+def requiredOf (prev : Prev) : List String :=
+  (priorOf prev).qualified
 
-structure RequiredNonempty (spec : Spec) (prev : Option Prev) : Prop where
-  nonempty : requiredOf spec prev ≠ []
+def allowedOf (spec : Spec) : List String :=
+  spec.allowed
+
+structure RequiredNonempty (prev : Prev) : Prop where
+  nonempty : requiredOf prev ≠ []
+
+theorem required_is_prior (prev : Prev) :
+    requiredOf prev = (priorOf prev).qualified := rfl
+
+theorem allowed_is_spec (spec : Spec) :
+    allowedOf spec = spec.allowed := rfl
 
 def behaviorAfter (base : String → List String)
     (changed : List (String × List String)) (s : String) : List String :=
@@ -101,8 +105,8 @@ def collected (spec : Spec) (base : String → List String)
 
 def accepted (spec : Spec) (prev : Prev)
     (changed : List (String × List String)) : Bool :=
-  let req := requiredOf spec (some prev)
-  let allw := allowedOf spec (some prev)
+  let req := requiredOf prev
+  let allw := allowedOf spec
   let beh := behaviorAfter prev.base changed
   let got := collected spec prev.base changed
   let cost := changedCost changed
@@ -136,6 +140,10 @@ def cert (c : Certificate) (d : Delta) : Option Certificate :=
   else
     none
 
+theorem check_ignores_spec_required (spec : Spec) (prev : Prev) (d : Delta)
+    (req : List String) :
+    check { spec with required := req } prev d = check spec prev d := rfl
+
 theorem check_submitter_invariant (spec : Spec) (prev : Prev) (d1 d2 : Delta)
     (h : d1.changed = d2.changed) :
     check spec prev d1 = check spec prev d2 := by
@@ -143,8 +151,8 @@ theorem check_submitter_invariant (spec : Spec) (prev : Prev) (d1 d2 : Delta)
 
 def ReleasePred (spec : Spec) (prev : Prev)
     (changed : List (String × List String)) : Prop :=
-  let req := requiredOf spec (some prev)
-  let allw := allowedOf spec (some prev)
+  let req := requiredOf prev
+  let allw := allowedOf spec
   let got := collected spec prev.base changed
   let beh := behaviorAfter prev.base changed
   req ≠ [] ∧
@@ -263,6 +271,16 @@ def budgetDelta : Delta where
 def behaviorMap (base : String → List String)
     (changed : List (String × List String)) : String → List String :=
   behaviorAfter base changed
+
+theorem empty_behaviors_refused :
+    accepted specBudget prevNeed [("app", [])] = false := by
+  decide
+
+theorem spec_required_empty_still_refused :
+    check { specBudget with required := [] } prevNeed
+      { budgetDelta with changed := [("app", [])], submittedRequired := [] } =
+        Verdict.refuse "app" := by
+  decide
 
 theorem incremental_eq_scratch :
     behaviorAfter (behaviorMap baseNeed [("lib", ["x"])]) [("app", ["need"])] "app" =
