@@ -26,6 +26,16 @@ import SoftwareIsComposable.Bridge
 #print axioms SoftwareIsComposable.incrementalRecheck_iff
 #print axioms SoftwareIsComposable.not_recheck_seed_only
 #print axioms SoftwareIsComposable.worse_refused
-#print axioms SoftwareIsComposable.releaseAdmitted_iff_acceptsRelease
+#print axioms SoftwareIsComposable.oneSymbol
 #print axioms SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease
+#print axioms SoftwareIsComposable.not_context
+#print axioms SoftwareIsComposable.not_upper
+#print axioms SoftwareIsComposable.not_point
+#print axioms SoftwareIsComposable.not_id
+#print axioms SoftwareIsComposable.not_old_bounds
+#print axioms SoftwareIsComposable.not_new_bounds
+#print axioms SoftwareIsComposable.not_length
+#print axioms SoftwareIsComposable.not_old_list
+#print axioms SoftwareIsComposable.not_new_list
+#print axioms SoftwareIsComposable.refused
 #print axioms SoftwareIsComposable.nothing_below
