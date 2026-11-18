@@ -14,7 +14,8 @@ theorem bnot_eq {a : Bool} : (!a) = true ↔ a = false := by
 theorem behaviorsKept_iff {β : Type} [DecidableEq β] (inc cand : List β) :
     behaviorsKept inc cand = true ↔ ∀ b ∈ inc, b ∈ cand := by
   simpa [behaviorsKept] using
-    (SoftwareIsQuantifiable.Pareto.accepts_iff (qualified := inc) (candidate := cand))
+    (SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost_iff
+      (prior := { qualified := inc }) (submission := { offered := cand }))
 
 theorem behaviorsKept_trans {β : Type} [DecidableEq β] {a b c : List β}
     (hab : behaviorsKept a b = true) (hbc : behaviorsKept b c = true) :

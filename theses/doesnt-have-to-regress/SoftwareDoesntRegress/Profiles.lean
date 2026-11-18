@@ -28,7 +28,8 @@ structure Profile (β : Type) where
 abbrev Release (β : Type) := List (Profile β)
 
 def behaviorsKept {β : Type} [DecidableEq β] (inc cand : List β) : Bool :=
-  SoftwareIsQuantifiable.Pareto.accepts inc cand
+  SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost
+    { qualified := inc } { offered := cand }
 
 def newBehavior {β : Type} [DecidableEq β] (inc cand : List β) : Bool :=
   match cand with

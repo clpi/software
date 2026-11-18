@@ -31,13 +31,17 @@ theorem not_unobserved_nonregression :
 
 theorem nonregression_if_coverage {β : Type} [DecidableEq β]
     {trueBs inc cand : List β}
-    (hcov : SoftwareIsQuantifiable.Pareto.accepts trueBs inc = true)
+    (hcov : SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost
+        { qualified := trueBs } { offered := inc } = true)
     (hkeep : behaviorsKept inc cand = true) :
-    SoftwareIsQuantifiable.Pareto.accepts trueBs cand = true := by
+    SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost
+      { qualified := trueBs } { offered := cand } = true := by
   have hcov' :=
-    (SoftwareIsQuantifiable.Pareto.accepts_iff (qualified := trueBs) (candidate := inc)).mp hcov
+    (SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost_iff
+      (prior := { qualified := trueBs }) (submission := { offered := inc })).mp hcov
   have hkeep' := (behaviorsKept_iff inc cand).mp hkeep
-  apply (SoftwareIsQuantifiable.Pareto.accepts_iff (qualified := trueBs) (candidate := cand)).mpr
+  apply (SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost_iff
+      (prior := { qualified := trueBs }) (submission := { offered := cand })).mpr
   intro b hb
   exact hkeep' b (hcov' b hb)
 

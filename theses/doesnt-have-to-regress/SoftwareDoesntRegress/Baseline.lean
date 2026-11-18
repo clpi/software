@@ -32,8 +32,8 @@ theorem behaviorsKept_eq_composable (a b : List Nat) :
   induction a with
   | nil => rfl
   | cons x xs ih =>
-    simp [behaviorsKept, SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsComposable.accepts,
-      List.all_cons, ih]
+    simp [behaviorsKept, SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost,
+      SoftwareIsComposable.accepts, List.all_cons, ih]
 
 theorem composable_hi_of_boundsNoWorse {inc cand : List Bound}
     (h : boundsNoWorse inc cand = true) {a b : Bound} (hx : (a, b) ∈ inc.zip cand) :

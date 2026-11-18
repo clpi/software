@@ -4,7 +4,7 @@ Lean 4.19.0, core only. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `nat
 
 Pinned inputs:
 
-- `software-is-quantifiable` `9f5ca06c0d5d92904f8509af676ab09ea5e0d79c`, module `SoftwareIsQuantifiable.Pareto`
+- `software-is-quantifiable` `a21c7c56fa028f32014dd795b35b14f688e8fdf1`, module `SoftwareIsQuantifiable.Pareto`. `noQualifiedBehaviorLost` reads `PriorQualification.qualified`. `Coverage.coverage` is `PlatformPremise.mediated`, a premise.
 - `software-is-composable` `033c12c01299a9b28983bee410c230641adc7d1e` (`033c12c0`), `require`d from git. Admission is `SoftwareIsComposable.Admission`.
 
 `behaviorsKept_eq_composable` is `behaviorsKept = SoftwareIsComposable.accepts`. `composable_hi_of_boundsNoWorse` sends a both-endpoint `boundsNoWorse` step to that repository's upper-bound inequality. `accepts` here also requires a strict gain, so it is not `symbolAdmitted`.
@@ -27,7 +27,7 @@ Pinned inputs:
 | `accepts` holds only for a strict gain that drops no qualified behavior and worsens no bound endpoint, and the step otherwise keeps the incumbent | `accepted_strict`, `step_witness`, `accepts_complete` | PROVEN for that definition |
 | On a stream, shipped releases stay `noRegress` related. If the finite universe contains a strict improvement, `ascend` ships one and is undominated by that universe after `length` steps | `shipped_chain`, `ascend_ships_of_exists`, `ascend_frontier` | PROVEN |
 | Keeping every release is non-regressing and still refuses a strict improvement. A boolean gate that matches a relation decides that relation | `not_every_gate_complete`, `complete_gate_decides` | DISPROVEN for "every gate is complete without a decider" |
-| Qualified behavior that was never in the qualified list can disappear while `accepts` is true. If `Pareto.accepts trueBs inc`, the kept list still contains `trueBs` | `not_unobserved_nonregression`, `nonregression_if_coverage` | DISPROVEN without the coverage hypothesis. The implication is proved. Coverage itself is not proved |
+| Qualified behavior that was never in the prior qualified set can disappear while `accepts` is true. If `noQualifiedBehaviorLost` holds for prior set `trueBs` against the incumbent's offered behaviors, that set is still offered by the candidate | `not_unobserved_nonregression`, `nonregression_if_coverage` | DISPROVEN without the prior-qualification hypothesis. The implication is proved. Upstream `Coverage.coverage` is a premise, not a theorem |
 | Per-symbol strict acceptance implies the summed axis bounds and tagged behavior sets of a block do not regress, and stay strict when symbol ids are unique | `finer_bounds`, `finer_behaviors`, `finer_strict` | PROVEN |
 | One merged block can accept a step that the per-symbol gate refuses | `coarse_admits_symbol_regression` | DISPROVEN for "a coarse gate refuses every per-symbol regression" |
 
