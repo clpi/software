@@ -1,0 +1,138 @@
+RED admit
+/tmp/tmp.viMJWXXeEi/Admitted.lean:1:8: error: declaration uses 'sorry'
+RED sorry
+/tmp/tmp.viMJWXXeEi/Sorry.lean:1:8: error: declaration uses 'sorry'
+RED regressed symbol and false acceptance
+RED refuse symbol (some emit)
+RED pure false
+RED equal false
+RED trade false
+/tmp/tmp.viMJWXXeEi/Red.lean:9:65: error: tactic 'decide' proved that the proposition
+  accepts exInc exPure = true
+is false
+GREEN
+ℹ [3/22] Replayed SoftwareIsQuantifiable.Pareto
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:241:0: false
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:315:0: 'SoftwareIsQuantifiable.Pareto.frontier_can_regress' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:316:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:317:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_sound' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:318:0: 'SoftwareIsQuantifiable.Pareto.acceptsRelease_iff' depends on axioms: [propext, Quot.sound]
+ℹ [14/22] Replayed SoftwareDoesntRegress.Implications
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.step_witness
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.step_noRegress
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.shipped_chain
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.Bound.noWorse_trans, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.behaviorsKept_trans, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.boundsNoWorse_trans, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.noRegress_trans, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.profileNoRegress_trans, SoftwareDoesntRegress.shipped_add, SoftwareDoesntRegress.shipped_step, SoftwareDoesntRegress.step_noRegress
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.policy_exists
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.shipped_step, SoftwareDoesntRegress.step_noRegress, SoftwareDoesntRegress.step_witness
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.accepted_strict
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.strict_iff, SoftwareDoesntRegress.Bound.strict_irrefl, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.boundsStrict_irrefl, SoftwareDoesntRegress.newBehavior_iff, SoftwareDoesntRegress.newBehavior_of_kept, SoftwareDoesntRegress.profileStrict_iff, SoftwareDoesntRegress.profileStrict_irrefl, SoftwareDoesntRegress.strictGain_irrefl
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.accepts_complete
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.ascend_ships_of_exists
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.Bound.noWorse_trans, SoftwareDoesntRegress.Bound.strict_iff, SoftwareDoesntRegress.Bound.strict_lift, SoftwareDoesntRegress.accepts_complete, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.accepts_lift, SoftwareDoesntRegress.accepts_noRegress_of, SoftwareDoesntRegress.accepts_ok_inc, SoftwareDoesntRegress.ascend_cons, SoftwareDoesntRegress.ascend_ships, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.behaviorsKept_trans, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.boundsNoWorse_trans, SoftwareDoesntRegress.boundsStrict_lift, SoftwareDoesntRegress.newBehavior_iff, SoftwareDoesntRegress.newBehavior_lift, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.noRegress_trans, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.profileNoRegress_trans, SoftwareDoesntRegress.profileStrict_iff, SoftwareDoesntRegress.profileStrict_lift, SoftwareDoesntRegress.step_accepts, SoftwareDoesntRegress.step_refuses, SoftwareDoesntRegress.strictGain_lift
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.ascend_frontier
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.mk.injEq, SoftwareDoesntRegress.Bound.noWorse_antisym, SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.Bound.noWorse_trans, SoftwareDoesntRegress.Bound.strict_iff, SoftwareDoesntRegress.Bound.strict_irrefl, SoftwareDoesntRegress.Bound.strict_lift, SoftwareDoesntRegress.accepts_complete, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.accepts_lift, SoftwareDoesntRegress.accepts_noRegress_of, SoftwareDoesntRegress.accepts_ok_inc, SoftwareDoesntRegress.ascendFuel.eq_1, SoftwareDoesntRegress.ascendFuel_succ_cons, SoftwareDoesntRegress.ascend_cons, SoftwareDoesntRegress.ascend_fuel, SoftwareDoesntRegress.ascend_maximal, SoftwareDoesntRegress.ascend_noRegress, SoftwareDoesntRegress.ascend_stuck, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.behaviorsKept_trans, SoftwareDoesntRegress.boundsNoWorse_antisym, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.boundsNoWorse_trans, SoftwareDoesntRegress.boundsStrict_irrefl, SoftwareDoesntRegress.boundsStrict_lift, SoftwareDoesntRegress.newBehavior_iff, SoftwareDoesntRegress.newBehavior_lift, SoftwareDoesntRegress.newBehavior_of_kept, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.noRegress_trans, SoftwareDoesntRegress.profileNoRegress_antisym, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.profileNoRegress_trans, SoftwareDoesntRegress.profileStrict_iff, SoftwareDoesntRegress.profileStrict_lift, SoftwareDoesntRegress.step_accepts, SoftwareDoesntRegress.step_noRegress, SoftwareDoesntRegress.step_refuses, SoftwareDoesntRegress.strictGain_lift, SoftwareDoesntRegress.strictGain_of_antisym
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.not_per_execution_dominance
+FROM SoftwareIsQuantifiable.Pareto.Point, SoftwareIsQuantifiable.Pareto.not_per_execution_dominance
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.accepted_not_per_execution
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS SoftwareDoesntRegress.accepted_not_per_execution._proof_1, SoftwareDoesntRegress.accepted_not_per_execution._proof_2, SoftwareDoesntRegress.accepted_not_per_execution._proof_3, SoftwareDoesntRegress.accepted_not_per_execution._proof_4, SoftwareDoesntRegress.accepted_not_per_execution._proof_5
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.not_unobserved_nonregression
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.nonregression_if_coverage
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.behaviorsKept_iff
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.not_every_gate_complete
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.alwaysKeep_noRegress, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.better_is_improvement, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.complete_gate_decides
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.finer_bounds
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.axis_mono, SoftwareDoesntRegress.axis_mono._proof_2, SoftwareDoesntRegress.band_eq, SoftwareDoesntRegress.fine_pairs_ok, SoftwareDoesntRegress.foldl_add, SoftwareDoesntRegress.pairs_all_ok, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.sumHi.eq_1, SoftwareDoesntRegress.sumHi_cons, SoftwareDoesntRegress.sumHi_le, SoftwareDoesntRegress.sumLo.eq_1, SoftwareDoesntRegress.sumLo_cons, SoftwareDoesntRegress.sumLo_le
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.finer_behaviors
+FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
+PLUS SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.fine_pairs_ok, SoftwareDoesntRegress.pairs_all_ok, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.seen_kept
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.finer_strict
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.strict_iff, SoftwareDoesntRegress.axis_mono, SoftwareDoesntRegress.axis_mono._proof_2, SoftwareDoesntRegress.band_eq, SoftwareDoesntRegress.exists_axis_strict, SoftwareDoesntRegress.exists_axis_strict._proof_3, SoftwareDoesntRegress.fine_has_strict, SoftwareDoesntRegress.fine_pairs_ok, SoftwareDoesntRegress.foldl_add, SoftwareDoesntRegress.newBehavior_iff, SoftwareDoesntRegress.nodup_cons, SoftwareDoesntRegress.notElem_iff, SoftwareDoesntRegress.pairs_all_ok, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileStrict_iff, SoftwareDoesntRegress.seen_new, SoftwareDoesntRegress.sumHi.eq_1, SoftwareDoesntRegress.sumHi_cons, SoftwareDoesntRegress.sumHi_le, SoftwareDoesntRegress.sumHi_lt, SoftwareDoesntRegress.sumLo.eq_1, SoftwareDoesntRegress.sumLo_cons, SoftwareDoesntRegress.sumLo_le, SoftwareDoesntRegress.sumLo_lt, SoftwareDoesntRegress.sym_unique
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.coarse_admits_symbol_regression
+FROM SoftwareIsQuantifiable.Pareto.accepts
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.baseline_is_witness
+FROM (none)
+PLUS SoftwareDoesntRegress.AxesRight.intoSelected, SoftwareDoesntRegress.BaselineStaysEligible.holds, SoftwareDoesntRegress.MeasurementsValid.consistent, SoftwareDoesntRegress.axes_baseline_ok, SoftwareDoesntRegress.band_eq, SoftwareDoesntRegress.baseline_guard
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.select_never_regresses
+FROM (none)
+PLUS SoftwareDoesntRegress.AxesRight.intoSelected, SoftwareDoesntRegress.BaselineStaysEligible.holds, SoftwareDoesntRegress.MeasurementsValid.consistent, SoftwareDoesntRegress.filter_head_guard, SoftwareDoesntRegress.select.eq_1
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.behaviorsKept_eq_composable
+FROM SoftwareIsComposable.accepts, SoftwareIsQuantifiable.Pareto.accepts
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.unchanged_symbol_context_recheck
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.ariane_symbol_only_misses
+FROM (none)
+PLUS SoftwareDoesntRegress.Kind.ofNat_toCtorIdx, SoftwareDoesntRegress.ariane_symbol_deps, SoftwareDoesntRegress.ariane_symbol_seeds, SoftwareDoesntRegress.cone_empty, SoftwareDoesntRegress.instDecidableEqKind._proof_1, SoftwareDoesntRegress.instDecidableEqKind._proof_2
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.ariane_context_cone_catches
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.crowdstrike_symbol_only_misses
+FROM (none)
+PLUS SoftwareDoesntRegress.Kind.ofNat_toCtorIdx, SoftwareDoesntRegress.cone_empty, SoftwareDoesntRegress.crowd_symbol_deps, SoftwareDoesntRegress.crowd_symbol_seeds, SoftwareDoesntRegress.instDecidableEqKind._proof_1, SoftwareDoesntRegress.instDecidableEqKind._proof_2
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.crowdstrike_data_cone_catches
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.knight_symbol_only_misses
+FROM (none)
+PLUS SoftwareDoesntRegress.Kind.ofNat_toCtorIdx, SoftwareDoesntRegress.cone_empty, SoftwareDoesntRegress.instDecidableEqKind._proof_1, SoftwareDoesntRegress.instDecidableEqKind._proof_2, SoftwareDoesntRegress.knight_symbol_deps, SoftwareDoesntRegress.knight_symbol_seeds
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.knight_config_cone_catches
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.knight_deployment_cone_catches
+FROM (none)
+PLUS (none)
+info: ././././SoftwareDoesntRegress/Implications.lean:113:0: 'SoftwareDoesntRegress.step_witness' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:114:0: 'SoftwareDoesntRegress.shipped_chain' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:115:0: 'SoftwareDoesntRegress.policy_exists' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:116:0: 'SoftwareDoesntRegress.accepted_strict' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:117:0: 'SoftwareDoesntRegress.accepts_complete' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:118:0: 'SoftwareDoesntRegress.ascend_ships_of_exists' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:119:0: 'SoftwareDoesntRegress.ascend_frontier' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:120:0: 'SoftwareDoesntRegress.not_per_execution_dominance' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:121:0: 'SoftwareDoesntRegress.accepted_not_per_execution' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:122:0: 'SoftwareDoesntRegress.not_unobserved_nonregression' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:123:0: 'SoftwareDoesntRegress.nonregression_if_coverage' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:124:0: 'SoftwareDoesntRegress.not_every_gate_complete' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:125:0: 'SoftwareDoesntRegress.complete_gate_decides' does not depend on any axioms
+info: ././././SoftwareDoesntRegress/Implications.lean:126:0: 'SoftwareDoesntRegress.finer_bounds' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:127:0: 'SoftwareDoesntRegress.finer_behaviors' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:128:0: 'SoftwareDoesntRegress.finer_strict' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:129:0: 'SoftwareDoesntRegress.coarse_admits_symbol_regression' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:130:0: 'SoftwareDoesntRegress.baseline_is_witness' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:131:0: 'SoftwareDoesntRegress.select_never_regresses' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:132:0: 'SoftwareDoesntRegress.behaviorsKept_eq_composable' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntRegress/Implications.lean:133:0: 'SoftwareDoesntRegress.unchanged_symbol_context_recheck' does not depend on any axioms
+info: ././././SoftwareDoesntRegress/Implications.lean:134:0: 'SoftwareDoesntRegress.ariane_symbol_only_misses' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:135:0: 'SoftwareDoesntRegress.ariane_context_cone_catches' does not depend on any axioms
+info: ././././SoftwareDoesntRegress/Implications.lean:136:0: 'SoftwareDoesntRegress.crowdstrike_symbol_only_misses' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:137:0: 'SoftwareDoesntRegress.crowdstrike_data_cone_catches' does not depend on any axioms
+info: ././././SoftwareDoesntRegress/Implications.lean:138:0: 'SoftwareDoesntRegress.knight_symbol_only_misses' depends on axioms: [propext]
+info: ././././SoftwareDoesntRegress/Implications.lean:139:0: 'SoftwareDoesntRegress.knight_config_cone_catches' does not depend on any axioms
+info: ././././SoftwareDoesntRegress/Implications.lean:140:0: 'SoftwareDoesntRegress.knight_deployment_cone_catches' does not depend on any axioms
+Build completed successfully.
+GATE
+r0 ship r0
+r1 accept ship r1
+r2 refuse emit ship r1
+r3 refuse-equal ship r1

@@ -1,0 +1,4 @@
+r0 ship r0
+r1 accept ship r1
+r2 refuse emit ship r1
+r3 refuse-equal ship r1
