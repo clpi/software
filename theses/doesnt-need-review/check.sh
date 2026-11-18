@@ -86,11 +86,21 @@ required = {
         "SoftwareDoesntNeedReview.Chain.Quantifiable.coverage",
         "SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise"],
     "SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified": [
-        "SoftwareDoesntNeedReview.Chain.Composable.qualified"],
+        "SoftwareIsComposable.symbolAdmitted"],
+    "SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv": [
+        "SoftwareIsComposable.symbolAdmitted"],
+    "SoftwareDoesntNeedReview.Chain.Regress.regress_equiv": [
+        "SoftwareIsComposable.symbolAdmitted"],
+    "SoftwareDoesntNeedReview.Chain.Safe.safe_equiv": [
+        "SoftwareIsComposable.accepts"],
     "SoftwareDoesntNeedReview.Controls.control_human_regression_refused": [
         "SoftwareDoesntNeedReview.Chain.Regress.verdict"],
+    "SoftwareDoesntNeedReview.Controls.control_human_regression_equiv": [
+        "SoftwareIsComposable.symbolVerdict"],
     "SoftwareDoesntNeedReview.Controls.safety_refused_by_name": [
         "SoftwareDoesntNeedReview.Chain.Safe.verdict"],
+    "SoftwareDoesntNeedReview.Controls.safety_equiv": [
+        "SoftwareIsComposable.symbolVerdict"],
 }
 for thm, deps in required.items():
     if thm not in blocks:
@@ -102,8 +112,10 @@ for thm, deps in required.items():
         if dep not in have:
             sys.exit("refused: " + thm + " missing " + dep)
     for dep in have:
-        if dep != "none" and not dep.startswith("SoftwareDoesntNeedReview.Chain."):
-            sys.exit("refused: non-chain dependency " + dep)
+        if dep != "none" and not (
+            dep.startswith("SoftwareDoesntNeedReview.Chain.") or
+            dep.startswith("SoftwareIsComposable.")):
+            sys.exit("refused: unexpected dependency " + dep)
 print("dependency check clean")
 PY
 

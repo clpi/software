@@ -1,6 +1,7 @@
 import SoftwareDoesntNeedReview.Boundary
 import SoftwareDoesntNeedReview.Mechanize
 import SoftwareDoesntNeedReview.Chain
+import SoftwareIsComposable.Admission
 
 namespace SoftwareDoesntNeedReview
 
@@ -52,6 +53,20 @@ theorem control_human_regression_refused :
       CertVerdict.refuse Sym.serialize Ax.bytes := by
   decide
 
+def bytesOld : SoftwareIsComposable.SymbolProfile :=
+  { id := 1, behaviors := [2], costs := [{ lo := 0, hi := 0 }] }
+
+def bytesNew : SoftwareIsComposable.SymbolProfile :=
+  { id := 1, behaviors := [], costs := [{ lo := 0, hi := 0 }] }
+
+theorem control_human_regression_equiv :
+    (Chain.Regress.verdict byteWatch baseBytes candBytes =
+        CertVerdict.refuse Sym.serialize Ax.bytes) ↔
+      (SoftwareIsComposable.symbolVerdict bytesOld bytesNew =
+        SoftwareIsComposable.Verdict.refused
+          (SoftwareIsComposable.Reason.behaviorDropped 1 2)) := by
+  decide
+
 def intendedParse : List (Sym × Ax) :=
   [(Sym.parse, Ax.roundtrip), (Sym.parse, Ax.unicode)]
 
@@ -67,6 +82,21 @@ theorem safety_refused_by_name :
     Chain.Safe.verdict [(Sym.parse, Ax.roundtrip)]
       { cells := [{ symbol := Sym.parse, axis := Ax.roundtrip, status := Status.bad }] } =
       CertVerdict.refuse Sym.parse Ax.roundtrip := by
+  decide
+
+def safeOld : SoftwareIsComposable.SymbolProfile :=
+  { id := 0, behaviors := [0], costs := [{ lo := 0, hi := 0 }] }
+
+def safeNew : SoftwareIsComposable.SymbolProfile :=
+  { id := 0, behaviors := [], costs := [{ lo := 0, hi := 0 }] }
+
+theorem safety_equiv :
+    (Chain.Safe.verdict [(Sym.parse, Ax.roundtrip)]
+        { cells := [{ symbol := Sym.parse, axis := Ax.roundtrip, status := Status.bad }] } =
+      CertVerdict.refuse Sym.parse Ax.roundtrip) ↔
+      (SoftwareIsComposable.symbolVerdict safeOld safeNew =
+        SoftwareIsComposable.Verdict.refused
+          (SoftwareIsComposable.Reason.behaviorDropped 0 0)) := by
   decide
 
 end Controls

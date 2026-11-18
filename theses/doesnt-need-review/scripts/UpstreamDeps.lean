@@ -12,7 +12,9 @@ def followName (n : Name) : Bool :=
     s.startsWith "_private.SoftwareDoesntNeedReview"
 
 def chainName (n : Name) : Bool :=
-  n.toString.startsWith "SoftwareDoesntNeedReview.Chain."
+  let s := n.toString
+  s.startsWith "SoftwareDoesntNeedReview.Chain." ||
+    s.startsWith "SoftwareIsComposable."
 
 partial def chase (env : Environment) (fuel : Nat) (stack : List Name)
     (seen : NameSet) (hits : Array Name) : Array Name :=
@@ -63,6 +65,9 @@ def headlines : Array Name := #[
   `SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap,
   `SoftwareDoesntNeedReview.Mechanize.approx_gap_named,
   `SoftwareDoesntNeedReview.Chain.Certifiable.extensive,
+  `SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv,
+  `SoftwareDoesntNeedReview.Chain.Regress.regress_equiv,
+  `SoftwareDoesntNeedReview.Chain.Safe.safe_equiv,
   `SoftwareDoesntNeedReview.Replacement.process_monotone,
   `SoftwareDoesntNeedReview.Replacement.process_terminates,
   `SoftwareDoesntNeedReview.Replacement.criterion_never_lost,
@@ -80,12 +85,13 @@ def headlines : Array Name := #[
   `SoftwareDoesntNeedReview.Controls.control_predicate_is_finite_table,
   `SoftwareDoesntNeedReview.Controls.control_human_approves,
   `SoftwareDoesntNeedReview.Controls.control_human_regression_refused,
+  `SoftwareDoesntNeedReview.Controls.control_human_regression_equiv,
   `SoftwareDoesntNeedReview.Controls.control_incomplete_passes,
   `SoftwareDoesntNeedReview.Controls.safety_refused_by_name,
+  `SoftwareDoesntNeedReview.Controls.safety_equiv,
   `SoftwareDoesntNeedReview.Chain.Quantifiable.coverage,
   `SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness,
   `SoftwareDoesntNeedReview.Chain.Quantifiable.missing_empty,
-  `SoftwareDoesntNeedReview.Chain.Composable.qualified_implies_accept,
   `SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded_iff
 ]
 

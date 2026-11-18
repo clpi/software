@@ -16,6 +16,9 @@ import SoftwareDoesntNeedReview.Controls
 #print axioms SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap
 #print axioms SoftwareDoesntNeedReview.Mechanize.approx_gap_named
 #print axioms SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+#print axioms SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv
+#print axioms SoftwareDoesntNeedReview.Chain.Regress.regress_equiv
+#print axioms SoftwareDoesntNeedReview.Chain.Safe.safe_equiv
 #print axioms SoftwareDoesntNeedReview.Replacement.process_monotone
 #print axioms SoftwareDoesntNeedReview.Replacement.process_terminates
 #print axioms SoftwareDoesntNeedReview.Replacement.criterion_never_lost
@@ -29,7 +32,8 @@ import SoftwareDoesntNeedReview.Controls
 #print axioms SoftwareDoesntNeedReview.Controls.control_predicate_catches
 #print axioms SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name
 #print axioms SoftwareDoesntNeedReview.Controls.control_human_regression_refused
+#print axioms SoftwareDoesntNeedReview.Controls.control_human_regression_equiv
+#print axioms SoftwareDoesntNeedReview.Controls.safety_equiv
 #print axioms SoftwareDoesntNeedReview.Controls.control_incomplete_passes
 #print axioms SoftwareDoesntNeedReview.Controls.safety_refused_by_name
 #print axioms SoftwareDoesntNeedReview.Chain.Quantifiable.coverage
-#print axioms SoftwareDoesntNeedReview.Chain.Composable.qualified_implies_accept

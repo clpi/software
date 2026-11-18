@@ -1,4 +1,5 @@
 import SoftwareDoesntNeedReview.Certifier
+import SoftwareIsComposable.Admission
 
 namespace SoftwareDoesntNeedReview
 
@@ -64,46 +65,6 @@ theorem acceptsGuarded_iff (sameContext droppedBehavior : Bool) (cand inc : Nat 
 
 end Chain.Optimality
 
-namespace Chain.Composable
-
-def qualified (w : List (Sym × Ax)) (R : Release) : Bool :=
-  w.all fun (s, a) => behaviorAt R s a == some Status.ok
-
-theorem qualified_append (w1 w2 : List (Sym × Ax)) (R : Release) :
-    qualified (w1 ++ w2) R = (qualified w1 R && qualified w2 R) := by
-  induction w1 with
-  | nil => simp [qualified]
-  | cons p ps ih =>
-    cases p with
-    | mk s a =>
-      simp [qualified, List.all, ih, Bool.and_assoc]
-
-theorem qualified_implies_accept :
-    ∀ (w : List (Sym × Ax)) (R : Release),
-      qualified w R = true → firstRefusal w R = CertVerdict.accept
-  | [], _, _ => rfl
-  | (s, a) :: ps, R, h => by
-    have hpair :
-        ((behaviorAt R s a == some Status.ok) && qualified ps R) = true := by
-      simpa [qualified] using h
-    cases hok : (behaviorAt R s a == some Status.ok) <;>
-      cases hrest : qualified ps R <;> simp [hok, hrest] at hpair
-    have hbad : (behaviorAt R s a == some Status.bad) = false := by
-      cases hbeh : behaviorAt R s a with
-      | none => rfl
-      | some st =>
-        cases st with
-        | ok => rfl
-        | bad =>
-          have htrue : (Status.bad == Status.ok) = true := by simpa [hbeh] using hok
-          have hfalse : (Status.bad == Status.ok) = false := rfl
-          rw [hfalse] at htrue
-          cases htrue
-    simp [firstRefusal, hbad]
-    exact qualified_implies_accept ps R hrest
-
-end Chain.Composable
-
 namespace Chain.Certifiable
 
 theorem extensive (w w' : List (Sym × Ax)) (R : Release) (s : Sym) (a : Ax)
@@ -112,6 +73,30 @@ theorem extensive (w w' : List (Sym × Ax)) (R : Release) (s : Sym) (a : Ax)
     (hb : (behaviorAt R s a == some Status.bad) = true) :
     refusesCell w' R s a = true :=
   refuses_of_mem w' R s a (hsub s a hw) hb
+
+def growBehaviors (p : SoftwareIsComposable.SymbolProfile) (extra : List Nat) :
+    SoftwareIsComposable.SymbolProfile :=
+  { p with behaviors := p.behaviors ++ extra }
+
+theorem extensive_equiv (old new : SoftwareIsComposable.SymbolProfile) (extra : List Nat)
+    (hsub : ∀ b ∈ extra, b ∈ new.behaviors) :
+    SoftwareIsComposable.symbolAdmitted old (growBehaviors new extra) = true ↔
+      SoftwareIsComposable.symbolAdmitted old new = true := by
+  constructor
+  · intro h
+    have hadm := SoftwareIsComposable.symbolAdmitted_iff.mp h
+    apply SoftwareIsComposable.symbolAdmitted_iff.mpr
+    refine ⟨hadm.sameId, hadm.validOld, hadm.validNew, ?_, hadm.costLen, hadm.costHi⟩
+    intro b hb
+    rcases List.mem_append.mp (hadm.keeps b hb) with h1 | h2
+    · exact h1
+    · exact hsub b h2
+  · intro h
+    have hadm := SoftwareIsComposable.symbolAdmitted_iff.mp h
+    apply SoftwareIsComposable.symbolAdmitted_iff.mpr
+    refine ⟨hadm.sameId, hadm.validOld, hadm.validNew, ?_, hadm.costLen, hadm.costHi⟩
+    intro b hb
+    exact List.mem_append.mpr (Or.inl (hadm.keeps b hb))
 
 end Chain.Certifiable
 
@@ -126,12 +111,61 @@ def verdict (w : List (Sym × Ax)) (base cand : Release) : CertVerdict :=
   | [] => CertVerdict.accept
   | (s, a) :: _ => CertVerdict.refuse s a
 
+def preserved (old new : SoftwareIsComposable.SymbolProfile) : Bool :=
+  old.behaviors.all fun b => new.behaviors.contains b
+
+def costHeld (old new : SoftwareIsComposable.SymbolProfile) : Bool :=
+  (old.costs.zip new.costs).all fun x => decide (x.2.hi ≤ x.1.hi)
+
+def behaviorRegressed (old new : SoftwareIsComposable.SymbolProfile) : Bool :=
+  !preserved old new
+
+def costRegressed (old new : SoftwareIsComposable.SymbolProfile) : Bool :=
+  !costHeld old new
+
+theorem regress_equiv (old new : SoftwareIsComposable.SymbolProfile)
+    (hid : old.id = new.id)
+    (hvO : ∀ b ∈ old.costs, b.lo ≤ b.hi)
+    (hvN : ∀ b ∈ new.costs, b.lo ≤ b.hi)
+    (hlen : old.costs.length = new.costs.length) :
+    (behaviorRegressed old new || costRegressed old new) = true ↔
+      SoftwareIsComposable.symbolAdmitted old new = false := by
+  have hvo : old.costs.all (fun b => decide (b.lo ≤ b.hi)) = true :=
+    List.all_eq_true.mpr fun b hb => decide_eq_true (hvO b hb)
+  have hvn : new.costs.all (fun b => decide (b.lo ≤ b.hi)) = true :=
+    List.all_eq_true.mpr fun b hb => decide_eq_true (hvN b hb)
+  have hidb : decide (old.id = new.id) = true := decide_eq_true hid
+  have hlenb : decide (old.costs.length = new.costs.length) = true := decide_eq_true hlen
+  have hsplit :
+      SoftwareIsComposable.symbolAdmitted old new =
+        (preserved old new && costHeld old new) := by
+    simp [SoftwareIsComposable.symbolAdmitted, preserved, costHeld, hidb, hvo, hvn, hlenb,
+      Bool.and_true, Bool.true_and]
+  have hbeh : behaviorRegressed old new = !preserved old new := rfl
+  have hcost : costRegressed old new = !costHeld old new := rfl
+  rw [hsplit, hbeh, hcost]
+  cases preserved old new <;> cases costHeld old new <;> simp
+
 end Chain.Regress
 
 namespace Chain.Safe
 
 def verdict (w : List (Sym × Ax)) (R : Release) : CertVerdict :=
   firstRefusal w R
+
+def preserved (old new : SoftwareIsComposable.SymbolProfile) : Bool :=
+  Chain.Regress.preserved old new
+
+theorem safe_equiv (old new : SoftwareIsComposable.SymbolProfile) :
+    preserved old new = true ↔
+      SoftwareIsComposable.accepts old.behaviors new.behaviors = true := by
+  simp [preserved, Chain.Regress.preserved, SoftwareIsComposable.accepts,
+    List.all_eq_true, List.contains_iff, decide_eq_true_iff]
+
+theorem safe_of_admitted {old new : SoftwareIsComposable.SymbolProfile}
+    (h : SoftwareIsComposable.SymbolAdmitted old new) :
+    preserved old new = true :=
+  (safe_equiv old new).mpr ((SoftwareIsComposable.accepts_iff).mpr h.keeps)
 
 end Chain.Safe
 

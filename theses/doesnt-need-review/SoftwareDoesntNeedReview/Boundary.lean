@@ -1,5 +1,6 @@
 import SoftwareDoesntNeedReview.Reviewer
 import SoftwareDoesntNeedReview.Chain
+import SoftwareIsComposable.Admission
 
 namespace SoftwareDoesntNeedReview
 
@@ -96,53 +97,13 @@ theorem outside_not_through_facts :
   rw [hleft, hright] at hbits
   cases hbits
 
-theorem beq_sym (s' s : Sym) (h : (s' == s) = true) : s' = s := by
-  cases s' <;> cases s <;> first | rfl | cases h
-
-theorem beq_ax (a' a : Ax) (h : (a' == a) = true) : a' = a := by
-  cases a' <;> cases a <;> first | rfl | cases h
-
-theorem bad_cell_not_qualified :
-    ∀ (w : List (Sym × Ax)) (R : Release) (s : Sym) (a : Ax),
-      watchedHas w s a = true → (behaviorAt R s a == some Status.bad) = true →
-        Chain.Composable.qualified w R = false
-  | [], _, _, _, hw, _ => by simp [watchedHas] at hw
-  | (s', a') :: ps, R, s, a, hw, hb => by
-    have hdef :
-        Chain.Composable.qualified ((s', a') :: ps) R =
-          ((behaviorAt R s' a' == some Status.ok) &&
-            Chain.Composable.qualified ps R) := by
-      rfl
-    have hOr : (s' == s && a' == a) = true ∨ watchedHas ps s a = true := by
-      simpa [watchedHas, Bool.or_eq_true] using hw
-    cases hOr with
-    | inl hhead =>
-      have hss : (s' == s) = true := by
-        cases hs : (s' == s) <;> cases ha : (a' == a) <;>
-          rw [hs, ha] at hhead <;> (try cases hhead) <;> rw [hs] <;> rfl
-      have haa : (a' == a) = true := by
-        cases hs : (s' == s) <;> cases ha : (a' == a) <;>
-          rw [hs, ha] at hhead <;> (try cases hhead) <;> rw [ha] <;> rfl
-      have hsEq : s' = s := beq_sym s' s hss
-      have haEq : a' = a := beq_ax a' a haa
-      rw [hdef, hsEq, haEq]
-      have hnot : (behaviorAt R s a == some Status.ok) = false := by
-        cases hbeh : behaviorAt R s a with
-        | none => rfl
-        | some st =>
-          cases st with
-          | ok =>
-            have htrue : (Status.ok == Status.bad) = true := by simpa [hbeh] using hb
-            have hfalse : (Status.ok == Status.bad) = false := rfl
-            rw [hfalse] at htrue
-            cases htrue
-          | bad => rfl
-      rw [hnot]
-      rfl
-    | inr htail =>
-      have ih := bad_cell_not_qualified ps R s a htail hb
-      rw [hdef, ih]
-      cases behaviorAt R s' a' == some Status.ok <;> rfl
+theorem bad_cell_not_qualified (old new : SoftwareIsComposable.SymbolProfile) (b : Nat)
+    (hb : b ∈ old.behaviors) (hmiss : ¬ b ∈ new.behaviors) :
+    SoftwareIsComposable.symbolAdmitted old new = false := by
+  cases h : SoftwareIsComposable.symbolAdmitted old new with
+  | false => rfl
+  | true =>
+    exact False.elim (hmiss ((SoftwareIsComposable.symbolAdmitted_iff.mp h).keeps b hb))
 
 structure SpecRight where
   intended : List (Sym × Ax)
