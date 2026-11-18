@@ -1,0 +1,27 @@
+import SoftwareIsComposable.Finiteness
+import SoftwareIsComposable.Admission
+import SoftwareIsComposable.Monotonicity
+import SoftwareIsComposable.Composition
+import SoftwareIsComposable.Evidence
+import SoftwareIsComposable.Incremental
+import SoftwareIsComposable.Examples
+
+#print axioms SoftwareIsComposable.scheduleSpace_finite
+#print axioms SoftwareIsComposable.releaseAdmitted_iff
+#print axioms SoftwareIsComposable.releaseAdmitted_trans
+#print axioms SoftwareIsComposable.symbolVerdict_admitted_iff
+#print axioms SoftwareIsComposable.qualifiedMono
+#print axioms SoftwareIsComposable.qualifiedTrans
+#print axioms SoftwareIsComposable.costNoRegression
+#print axioms SoftwareIsComposable.costTrans
+#print axioms SoftwareIsComposable.not_per_execution
+#print axioms SoftwareIsComposable.moduleAdmission_compose
+#print axioms SoftwareIsComposable.moduleAdmission_counterexample
+#print axioms SoftwareIsComposable.evidence_remaining
+#print axioms SoftwareIsComposable.not_repeated_observation_shrinks
+#print axioms SoftwareIsComposable.not_disqualification_empties
+#print axioms SoftwareIsComposable.determined_of_coverage
+#print axioms SoftwareIsComposable.inClosure_iff_affected
+#print axioms SoftwareIsComposable.incrementalRecheck_iff
+#print axioms SoftwareIsComposable.not_recheck_seed_only
+#print axioms SoftwareIsComposable.worse_refused

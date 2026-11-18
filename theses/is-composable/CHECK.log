@@ -1,0 +1,113 @@
+== control: admitted proof ==
+rejected by source guard
+== control: worse release ==
+rejected
+build/WorseControl.lean:4:2: error: tactic 'decide' proved that the proposition
+  SoftwareIsComposable.releaseAdmitted SoftwareIsComposable.worseOld SoftwareIsComposable.worseNew = true
+is false
+== release tree ==
+ℹ [7/19] Replayed FiniteFrontier
+info: ././././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+ℹ [10/19] Replayed FiniteQualification
+info: ././././FiniteQualification.lean:33:0: 'FiniteQualification.candidates_length' depends on axioms: [propext]
+info: ././././FiniteQualification.lean:34:0: 'FiniteQualification.candidates_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././FiniteQualification.lean:35:0: 'FiniteQualification.qualify_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././FiniteQualification.lean:36:0: [[true, false, true]]
+ℹ [12/19] Replayed Qualification
+info: ././././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [13/19] Replayed ExecutableClosure
+info: ././././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [14/19] Replayed HypergraphIncremental
+info: ././././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [17/19] Replayed SoftwareIsComposable.Axioms
+info: ././././SoftwareIsComposable/Axioms.lean:9:0: 'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:10:0: 'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:11:0: 'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:12:0: 'SoftwareIsComposable.symbolVerdict_admitted_iff' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:13:0: 'SoftwareIsComposable.qualifiedMono' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:14:0: 'SoftwareIsComposable.qualifiedTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:15:0: 'SoftwareIsComposable.costNoRegression' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:16:0: 'SoftwareIsComposable.costTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:17:0: 'SoftwareIsComposable.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:18:0: 'SoftwareIsComposable.moduleAdmission_compose' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:19:0: 'SoftwareIsComposable.moduleAdmission_counterexample' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:20:0: 'SoftwareIsComposable.evidence_remaining' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:21:0: 'SoftwareIsComposable.not_repeated_observation_shrinks' does not depend on any axioms
+info: ././././SoftwareIsComposable/Axioms.lean:22:0: 'SoftwareIsComposable.not_disqualification_empties' does not depend on any axioms
+info: ././././SoftwareIsComposable/Axioms.lean:23:0: 'SoftwareIsComposable.determined_of_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:24:0: 'SoftwareIsComposable.inClosure_iff_affected' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:25:0: 'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:26:0: 'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:27:0: 'SoftwareIsComposable.worse_refused' does not depend on any axioms
+Build completed successfully.
+== axioms ==
+'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.symbolVerdict_admitted_iff' depends on axioms: [propext]
+'SoftwareIsComposable.qualifiedMono' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.qualifiedTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.costNoRegression' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.costTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.moduleAdmission_compose' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.moduleAdmission_counterexample' depends on axioms: [propext]
+'SoftwareIsComposable.evidence_remaining' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_repeated_observation_shrinks' does not depend on any axioms
+'SoftwareIsComposable.not_disqualification_empties' does not depend on any axioms
+'SoftwareIsComposable.determined_of_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.inClosure_iff_affected' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
+'SoftwareIsComposable.worse_refused' does not depend on any axioms
+== harness ==
+1 ADMITTED
+7 REFUSED cost_regressed 0
+== implications ==
+SoftwareIsComposable.scheduleSpace_finite from SoftwareIsQuantifiable.Finiteness.Qualification, SoftwareIsQuantifiable.Finiteness.Schedule, SoftwareIsQuantifiable.Finiteness.Valid, SoftwareIsQuantifiable.Finiteness.valid_orderings_finite + none
+SoftwareIsComposable.releaseAdmitted_iff from none + SoftwareIsComposable.symbolAdmitted_iff
+SoftwareIsComposable.releaseAdmitted_trans from none + SoftwareIsComposable.find?_pred, SoftwareIsComposable.mem_find?, SoftwareIsComposable.symbolAdmitted_trans
+SoftwareIsComposable.symbolVerdict_admitted_iff from none + none
+SoftwareIsComposable.qualifiedMono from none + SoftwareIsComposable.SymbolAdmitted.keeps, SoftwareIsComposable.accepts_iff
+SoftwareIsComposable.qualifiedTrans from none + SoftwareIsComposable.accepts_iff, SoftwareIsComposable.qualifiedMono, SoftwareIsComposable.releaseAdmitted_trans
+SoftwareIsComposable.costNoRegression from FiniteFrontier.pareto_exact, FiniteFrontier.strictPareto + SoftwareIsComposable.SymbolAdmitted.costHi, SoftwareIsComposable.SymbolAdmitted.costLen, SoftwareIsComposable.zip_get
+SoftwareIsComposable.costTrans from none + SoftwareIsComposable.SymbolAdmitted.costHi, SoftwareIsComposable.SymbolAdmitted.costLen, SoftwareIsComposable.symbolAdmitted_trans, SoftwareIsComposable.zip_get
+SoftwareIsComposable.not_per_execution from none + none
+SoftwareIsComposable.moduleAdmission_compose from none + SoftwareIsComposable.compose_stub, SoftwareIsComposable.module_compose_comm, SoftwareIsComposable.pairwise_map_id, SoftwareIsComposable.partition_admits
+SoftwareIsComposable.moduleAdmission_counterexample from none + none
+SoftwareIsComposable.evidence_remaining from FiniteQualification.candidates, FiniteQualification.candidates_length + SoftwareIsComposable.filter_cons_drop, SoftwareIsComposable.filter_cons_keep, SoftwareIsComposable.filter_prefix_nil
+SoftwareIsComposable.not_repeated_observation_shrinks from FiniteQualification.candidates + none
+SoftwareIsComposable.not_disqualification_empties from FiniteQualification.candidates + none
+SoftwareIsComposable.determined_of_coverage from FiniteQualification.candidates, FiniteQualification.candidates_exact + SoftwareIsComposable.candidates_nodup, SoftwareIsComposable.filter_eq_singleton
+SoftwareIsComposable.inClosure_iff_affected from HypergraphIncremental.Affected, HypergraphIncremental.Hypergraph, HypergraphIncremental.Hypergraph.edges, HypergraphIncremental.Hypergraph.roots, HypergraphIncremental.dependency + none
+SoftwareIsComposable.incrementalRecheck_iff from HypergraphIncremental.Affected, HypergraphIncremental.Hypergraph + SoftwareIsComposable.SymbolAdmitted.refl
+SoftwareIsComposable.not_recheck_seed_only from none + none
+SoftwareIsComposable.worse_refused from none + none
