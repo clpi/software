@@ -5,3 +5,4 @@ lean_bin=${LEAN:-lean}
 "$lean_bin" --version
 "$lean_bin" -DwarningAsError=true examples/MerkleRepair.lean
 python3 examples/replay.py
+sh examples/range-ledger/check.sh

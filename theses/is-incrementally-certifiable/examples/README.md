@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The count covers hash calls for a single edit using an existing, valid cache. Cache acquisition, disk access, and multi-edit scheduling have separate costs. The equality proof requires no assumption about collision resistance.
+
+## Additional worked example
+
+[Canceling corrections and exact certificate reuse](range-ledger/README.md)
