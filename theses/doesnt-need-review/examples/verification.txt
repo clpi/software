@@ -1,0 +1,8 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(6, 2, [some true, some false, none, some false, some true, none])
+'MigrationReview.triage_sound' depends on axioms: [propext]
+'MigrationReview.minimal_escalation' does not depend on any axioms
+'MigrationReview.before_after' does not depend on any axioms
+SQLite 3.53.1 | 6 -> 2 owner decisions | 12 database executions
+
+Rejected control: approve an unresolved column drop (Lean exit 1).
