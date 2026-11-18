@@ -1,4 +1,5 @@
 import CanonicalDominance
+import IncrementalCert.Check
 
 namespace IncrementalCert
 
@@ -7,20 +8,44 @@ open SoftwareIsQuantifiable.Interface
 def selectedSpace : MeasureSpace Nat :=
   [{ measure := 0, polarity := .minimize }, { measure := 1, polarity := .minimize }]
 
-def FixedSelectedAxes (chain : List (Release Nat Nat)) : Prop :=
-  ∀ r ∈ chain, profilesAligned selectedSpace r ∧ ∀ p ∈ r, p.symbol = 0
-
-def ValidMeasurements (chain : List (Release Nat Nat)) : Prop :=
-  ∀ r ∈ chain, uniqueSymbols r
-
-def BaselineEligible (base : Release Nat Nat) : Prop :=
-  base ≠ [] ∧ profilesAligned selectedSpace base
-
-inductive StepAdmitted : List (Release Nat Nat) → Prop where
-  | single (r : Release Nat Nat) : StepAdmitted [r]
-  | cons {r s : Release Nat Nat} {rest : List (Release Nat Nat)}
-      (h : releaseLe selectedSpace r s) (t : StepAdmitted (s :: rest)) :
+inductive StepAdmitted : List Optimality.Point → Prop where
+  | single (p : Optimality.Point) : StepAdmitted [p]
+  | cons {r s : Optimality.Point} {rest : List Optimality.Point}
+      (h : releaseLe SoftwareIsQuantifiable.Pareto.costSpace
+        [SoftwareIsQuantifiable.Pareto.profileOf r]
+        [SoftwareIsQuantifiable.Pareto.profileOf s])
+      (t : StepAdmitted (s :: rest)) :
       StepAdmitted (r :: s :: rest)
+
+def NothingOutside (catalogue ps : List Optimality.Point) : Prop :=
+  (∀ p, p ∈ ps → p ∈ catalogue) ∧ (∀ p, p ∈ catalogue → p ∈ ps)
+
+abbrev NoCoverageGaps {α : Type} (candidates : List α) (intended : α → Prop) : Prop :=
+  Optimality.GeneratorCoverage candidates intended
+
+theorem not_optimality_dominates_self (p : Optimality.Point) :
+    ¬ Optimality.dominates p p := by
+  intro h
+  rcases h.2.2 with hlt | hlt
+  · exact Nat.lt_irrefl _ hlt
+  · exact Nat.lt_irrefl _ hlt
+
+theorem not_point_dominates {later earlier : Optimality.Point}
+    (h : releaseLe SoftwareIsQuantifiable.Pareto.costSpace
+      [SoftwareIsQuantifiable.Pareto.profileOf later]
+      [SoftwareIsQuantifiable.Pareto.profileOf earlier]) :
+    ¬ Optimality.dominates earlier later := by
+  intro hd
+  have hcan :=
+    (CanonicalDominance.Optimality.local_dominates_iff_canonical earlier later).mp hd
+  obtain ⟨p, hp, hnw⟩ :=
+    h.2.2.2.2 (SoftwareIsQuantifiable.Pareto.profileOf earlier) (by simp)
+  simp only [List.mem_singleton] at hp
+  subst p
+  have heq := noWorse_antisymm hcan.1 hnw
+  have hstrict := hcan.2
+  rw [heq] at hstrict
+  exact not_strictlyBetter_self _ _ hstrict
 
 theorem eq_of_pairwise {a b : Profile Nat Nat} :
     ∀ {R : List (Profile Nat Nat)},
@@ -61,28 +86,70 @@ theorem not_earlier_dominates {later earlier : Release Nat Nat}
   rw [heq] at hstrict
   exact not_strictlyBetter_self selectedSpace q hstrict
 
-theorem pareto_monotone_chain {a b c : Release Nat Nat}
+theorem pareto_monotone_chain
+    {catalogue : List Optimality.Point} {intended : Optimality.Point → Prop}
+    {a b c : Optimality.Point} {prev : Prev}
     (h : StepAdmitted [c, b, a])
-    (hA : FixedSelectedAxes [c, b, a])
-    (hV : ValidMeasurements [c, b, a])
-    (hB : BaselineEligible a) :
-    ¬ releaseDominates selectedSpace a b ∧
-      ¬ releaseDominates selectedSpace b c ∧
-      ¬ releaseDominates selectedSpace a c ∧
-      (∀ p ∈ a, aligned selectedSpace p ∧ p.symbol = 0) ∧
-      a ≠ [] ∧ uniqueSymbols b := by
+    (hReq : RequiredNonempty prev)
+    (hSrc : requiredOf prev = (priorOf prev).qualified)
+    (h05 : NothingOutside catalogue [c, b, a])
+    (h06 : NoCoverageGaps catalogue intended) :
+    ¬ Optimality.dominates a c ∧
+      ¬ Optimality.dominates b c ∧
+      ¬ Optimality.dominates a b ∧
+      (Optimality.dominates a c ↔
+        SoftwareIsQuantifiable.Interface.dominates
+          SoftwareIsQuantifiable.Pareto.costSpace
+          (SoftwareIsQuantifiable.Pareto.profileOf a)
+          (SoftwareIsQuantifiable.Pareto.profileOf c)) ∧
+      c ∈ Optimality.paretoMaximal catalogue ∧
+      (∀ y, intended y → ¬ Optimality.dominates y c) ∧
+      requiredOf prev ≠ [] ∧
+      requiredOf prev = (priorOf prev).qualified := by
   cases h with
   | cons hcb rest =>
     cases rest with
     | cons hab tail =>
       cases tail
       have hca := releaseLe_trans hcb hab
-      have hAa := hA a (by simp)
-      have hshape : ∀ p ∈ a, aligned selectedSpace p ∧ p.symbol = 0 := by
-        intro p hp
-        exact ⟨hAa.1 p hp, hAa.2 p hp⟩
-      exact ⟨not_earlier_dominates hab, not_earlier_dominates hcb,
-        not_earlier_dominates hca, hshape, hB.1, hV b (by simp)⟩
+      have hnac := not_point_dominates hca
+      have hnbc := not_point_dominates hcb
+      have hnab := not_point_dominates hab
+      have hiff := CanonicalDominance.Optimality.local_dominates_iff_canonical a c
+      have hfront : c ∈ Optimality.paretoMaximal catalogue := by
+        rw [Optimality.paretoMaximal_exact]
+        refine ⟨h05.1 c (by simp), ?_⟩
+        intro y hy hd
+        have hyps : y ∈ [c, b, a] := h05.2 y hy
+        cases List.mem_cons.mp hyps with
+        | inl hyc =>
+          cases hyc
+          exact not_optimality_dominates_self c hd
+        | inr hrest =>
+          cases List.mem_cons.mp hrest with
+          | inl hyb =>
+            cases hyb
+            exact hnbc hd
+          | inr hlast =>
+            cases List.mem_singleton.mp hlast
+            exact hnac hd
+      have hcov : ∀ y, intended y → ¬ Optimality.dominates y c := by
+        intro y hy hd
+        have hym : y ∈ catalogue := h06.complete y hy
+        have hyps : y ∈ [c, b, a] := h05.2 y hym
+        cases List.mem_cons.mp hyps with
+        | inl hyc =>
+          cases hyc
+          exact not_optimality_dominates_self c hd
+        | inr hrest =>
+          cases List.mem_cons.mp hrest with
+          | inl hyb =>
+            cases hyb
+            exact hnbc hd
+          | inr hlast =>
+            cases List.mem_singleton.mp hlast
+            exact hnac hd
+      exact ⟨hnac, hnbc, hnab, hiff, hfront, hcov, hReq.nonempty, hSrc⟩
 
 def oneAxis : MeasureSpace Nat :=
   [{ measure := 0, polarity := .minimize }]
@@ -128,12 +195,6 @@ theorem not_per_execution :
       (2 ≤ y.1 ∧ y.1 ≤ 3 ∧ y.2 = 0) →
       y.1 < x.1 :=
   SoftwareIsQuantifiable.Pareto.not_per_execution_dominance
-
-def NothingOutside (catalogue ps : List Optimality.Point) : Prop :=
-  (∀ p, p ∈ ps → p ∈ catalogue) ∧ (∀ p, p ∈ catalogue → p ∈ ps)
-
-abbrev NoCoverageGaps {α : Type} (candidates : List α) (intended : α → Prop) : Prop :=
-  Optimality.GeneratorCoverage candidates intended
 
 theorem outside_dominates :
     let catalogue : List Optimality.Point := [(2, 2)]

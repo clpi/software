@@ -16,7 +16,8 @@ def isUpstream (n : Name) : Bool :=
   (`SoftwareIsComposable).isPrefixOf n || (`Qualification).isPrefixOf n ||
     (`FiniteQualification).isPrefixOf n || (`FiniteFrontier).isPrefixOf n ||
     (`ExecutableClosure).isPrefixOf n || (`HypergraphIncremental).isPrefixOf n ||
-    (`SoftwareIsQuantifiable).isPrefixOf n
+    (`SoftwareIsQuantifiable).isPrefixOf n || (`Optimality).isPrefixOf n ||
+    (`CanonicalDominance).isPrefixOf n || (`FiniteFrontier).isPrefixOf n
 
 elab "implications_report" : command => do
   let headlines : Array Name := #[
@@ -29,6 +30,8 @@ elab "implications_report" : command => do
     `IncrementalCert.check_submitter_invariant,
     `IncrementalCert.incremental_eq_scratch,
     `IncrementalCert.pareto_monotone_chain,
+    `IncrementalCert.outside_dominates,
+    `IncrementalCert.coverage_gap_dominates,
     `IncrementalCert.axes_change_hides_regression,
     `IncrementalCert.not_per_execution,
     `IncrementalCert.combined_iff,
