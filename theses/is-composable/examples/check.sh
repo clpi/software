@@ -11,3 +11,4 @@ mkdir -p "$build/SoftwareIsComposable"
 "$lean_bin" -DwarningAsError=true -o "$build/SoftwareIsComposable/Composition.olean" "SoftwareIsComposable/Composition.lean" >/dev/null
 "$lean_bin" --version
 "$lean_bin" -DwarningAsError=true examples/ReleasePartition.lean
+sh examples/range-ledger/check.sh

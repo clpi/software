@@ -27,3 +27,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 The objective counts services in the checkout block. The complete call list, stable IDs, and the repository’s export/behavior model define the scope. This example measures no build time.
 
 The existing [old](old.csv) and [new](new.csv) CSV fixtures exercise per-symbol verdicts through the repository harness.
+
+## Additional worked example
+
+[Compose three interval certificates with a reversed seam](range-ledger/README.md)
