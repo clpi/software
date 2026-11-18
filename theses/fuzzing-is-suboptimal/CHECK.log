@@ -1,0 +1,11 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Fuzzing.campaign_lift' does not depend on any axioms
+'Fuzzing.redundant_replay' does not depend on any axioms
+'Fuzzing.strict_cost_replacement' does not depend on any axioms
+'Fuzzing.certify_exact' depends on axioms: [propext]
+'Fuzzing.certified_strict' depends on axioms: [propext]
+'Fuzzing.Tests.adaptive_all_worlds' depends on axioms: [propext]
+'Fuzzing.Tests.fixed_two_misses' depends on axioms: [propext]
+'Fuzzing.Tests.known_target_dominates' depends on axioms: [propext, Quot.sound]
+'Fuzzing.Tests.fresh_sample_not_redundant' does not depend on any axioms
+PASS: proof hole, false derivation, and four actual-gate forbidden-token controls rejected

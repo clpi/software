@@ -1,0 +1,9 @@
+name = "software-fuzzing-is-suboptimal"
+version = "0.1.0"
+defaultTargets = ["Fuzzing", "Certificate", "Tests"]
+[[lean_lib]]
+name = "Fuzzing"
+[[lean_lib]]
+name = "Certificate"
+[[lean_lib]]
+name = "Tests"
