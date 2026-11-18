@@ -1,4 +1,4 @@
-import SoftwareIsQuantifiable.Pareto
+import CanonicalDominance
 
 namespace IncrementalCert
 

@@ -5,10 +5,10 @@ package «software-is-incrementally-certifiable» where
   moreLeanArgs := #["-DwarningAsError=true"]
 
 require «software-is-composable» from git
-  "https://github.com/clpi/software-is-composable" @ "033c12c01299a9b28983bee410c230641adc7d1e"
+  "https://github.com/clpi/software-is-composable" @ "476059c25b93679919238ae4293c6b0b4befe486"
 
-require «software-is-quantifiable» from git
-  "https://github.com/clpi/software-is-quantifiable" @ "430340295c52a015772022b2b663d01120a3a747"
+require «software-optimality» from git
+  "https://github.com/clpi/software-optimality" @ "b52c3170a6e108345bd5ada44ca7355dae55b395"
 
 lean_lib Audit where
   roots := #[`Audit.Refusals]

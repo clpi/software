@@ -1,6 +1,6 @@
 # software-is-incrementally-certifiable
 
-Lean 4.19.0, core only. `software-is-quantifiable` is required at `430340295c52a015772022b2b663d01120a3a747`. `software-is-composable` is required at `033c12c01299a9b28983bee410c230641adc7d1e`. The manifest lists one revision of each. `Release` is `SoftwareIsQuantifiable.Interface.Release`. `certClose` is `Qualification.Derives`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI. `Coverage.lean` is not imported.
+Lean 4.19.0, core only. `software-is-composable` is required at `476059c25b93679919238ae4293c6b0b4befe486`. `software-optimality` is required at `b52c3170a6e108345bd5ada44ca7355dae55b395`. `software-is-quantifiable` is the revision those requires share, `430340295c52a015772022b2b663d01120a3a747`. The manifest lists one revision of each. `releaseLe` is `SoftwareIsQuantifiable.Interface.releaseLe`. `certClose` is `Qualification.Derives`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI.
 
 ```sh
 ./check.sh

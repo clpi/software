@@ -1,5 +1,4 @@
-import SoftwareIsQuantifiable.Interface
-import SoftwareIsQuantifiable.Pareto
+import CanonicalDominance
 
 namespace IncrementalCert
 
@@ -129,5 +128,37 @@ theorem not_per_execution :
       (2 ≤ y.1 ∧ y.1 ≤ 3 ∧ y.2 = 0) →
       y.1 < x.1 :=
   SoftwareIsQuantifiable.Pareto.not_per_execution_dominance
+
+def NothingOutside (catalogue ps : List Optimality.Point) : Prop :=
+  (∀ p, p ∈ ps → p ∈ catalogue) ∧ (∀ p, p ∈ catalogue → p ∈ ps)
+
+abbrev NoCoverageGaps {α : Type} (candidates : List α) (intended : α → Prop) : Prop :=
+  Optimality.GeneratorCoverage candidates intended
+
+theorem outside_dominates :
+    let catalogue : List Optimality.Point := [(2, 2)]
+    let outside : Optimality.Point := (0, 0)
+    ¬ NothingOutside catalogue [outside, (2, 2)] ∧
+      (2, 2) ∈ Optimality.paretoMaximal catalogue ∧
+      Optimality.dominates outside (2, 2) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro h
+    have hmem := h.1 (0, 0) (by simp)
+    simp at hmem
+  · decide
+  · decide
+
+theorem coverage_gap_dominates :
+    let catalogue : List Optimality.Point := [(1, 1)]
+    let intended : Optimality.Point → Prop := fun p => p = (1, 1) ∨ p = (0, 0)
+    ¬ NoCoverageGaps catalogue intended ∧
+      (1, 1) ∈ Optimality.paretoMaximal catalogue ∧
+      Optimality.dominates (0, 0) (1, 1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro h
+    have hmem := h.complete (0, 0) (Or.inr rfl)
+    simp at hmem
+  · decide
+  · decide
 
 end IncrementalCert
