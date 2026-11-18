@@ -10,3 +10,7 @@ lean_lib SoftwareIsIncrementallyCertifiable where
 
 @[default_target]
 lean_lib «SoftwareIsIncrementallySafe» where
+
+@[default_target]
+lean_lib Counterexamples where
+  srcDir := "audit"
