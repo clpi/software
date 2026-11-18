@@ -61,15 +61,30 @@ def behaviorAfter (base : String → List String)
 def directDeps (deps : List (String × String)) (s : String) : List String :=
   (deps.filter (fun e => e.fst == s)).map Prod.snd
 
-def reachable (deps : List (String × String)) (beh : String → List String)
-    (s : String) : Nat → List String
-  | 0 => []
-  | n + 1 =>
-    beh s ++ List.flatMap (fun t => reachable deps beh t n) (directDeps deps s)
+def pushNew (seen queue : List String) (t : String) : List String × List String :=
+  if seen.contains t then (seen, queue) else (t :: seen, queue ++ [t])
+
+def pushAll (seen queue : List String) : List String → List String × List String
+  | [] => (seen, queue)
+  | t :: ts =>
+    let step := pushNew seen queue t
+    pushAll step.1 step.2 ts
+
+def visit (deps : List (String × String)) (beh : String → List String) :
+    Nat → List String → List String → List String → List String
+  | 0, _, _, acc => acc
+  | _, _, [], acc => acc
+  | n + 1, seen, s :: rest, acc =>
+    let step := pushAll (s :: seen) rest (directDeps deps s)
+    visit deps beh n step.1 step.2 (acc ++ beh s)
 
 def reachedObs (deps : List (String × String)) (beh : String → List String)
     (s : String) : List String :=
-  reachable deps beh s (deps.length + 1)
+  visit deps beh (2 * deps.length + 2) [s] [s] []
+
+theorem cycle_obs_once :
+    (reachedObs [("a", "b"), ("b", "a")] (fun _ => ["x"]) "a").length = 2 := by
+  decide
 
 def isUnsafe (spec : Spec) (beh : String → List String) (s : String) : Bool :=
   let got := reachedObs spec.deps beh s
