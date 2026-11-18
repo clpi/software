@@ -42,7 +42,7 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 | Rechecking only the edited symbol matches a full recheck | `not_recheck_seed_only` | DISPROVEN |
 | The worked example's regressed symbol is refused | `worse_refused` | PROVEN |
 
-software-is-quantifiable is required at `430340295c52a015772022b2b663d01120a3a747`. software-optimality is required from git at `b52c3170a6e108345bd5ada44ca7355dae55b395`; its default branch is `master`, and that commit requires the same quantifiable revision. `Qualification`, `ExecutableClosure`, `FiniteFrontier`, `FiniteQualification`, and `HypergraphIncremental` are that package's modules. The copy of `FiniteFrontier` previously kept in this repository was a prefix of the upstream file and declared nothing the upstream file does not declare.
+software-is-quantifiable is required at `f370992611d8c722e4897e67dbb8eaecf3d872ed`. software-optimality is required from git at `16a6c690cf4ec4dedda34328e165da995d7592ae`; its default branch is `master`, and that commit requires the same quantifiable revision. `Qualification`, `ExecutableClosure`, `FiniteFrontier`, `FiniteQualification`, and `HypergraphIncremental` are that package's modules. The copy of `FiniteFrontier` previously kept in this repository was a prefix of the upstream file and declared nothing the upstream file does not declare.
 
 `priorOf` and `submissionOf` send one composable symbol's behavior list to `PriorQualification` and `BehaviorSubmission`. `oneSymbol` is that one-symbol agreement with `acceptsRelease`. `nothing_below` records that `Interface.releaseLe` holds for the empty release, and that `admittedBySpec` refuses an empty submission.
 
