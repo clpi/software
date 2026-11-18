@@ -1,0 +1,35 @@
+import SoftwareDoesntNeedReview.RubberStamp
+import SoftwareDoesntNeedReview.Mechanize
+import SoftwareDoesntNeedReview.Replacement
+import SoftwareDoesntNeedReview.Boundary
+import SoftwareDoesntNeedReview.Controls
+
+#print axioms SoftwareDoesntNeedReview.RubberStamp.zero_information
+#print axioms SoftwareDoesntNeedReview.RubberStamp.veto_empties
+#print axioms SoftwareDoesntNeedReview.RubberStamp.agrees_or_pure_veto
+#print axioms SoftwareDoesntNeedReview.RubberStamp.constant_reject_is_veto
+#print axioms SoftwareDoesntNeedReview.RubberStamp.guarded_independent_of_approval
+#print axioms SoftwareDoesntNeedReview.profile_space_finite
+#print axioms SoftwareDoesntNeedReview.decided_on_finite_space
+#print axioms SoftwareDoesntNeedReview.profile_criterion_mechanizable
+#print axioms SoftwareDoesntNeedReview.Mechanize.semantic_not_total_axis
+#print axioms SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap
+#print axioms SoftwareDoesntNeedReview.Mechanize.approx_gap_named
+#print axioms SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+#print axioms SoftwareDoesntNeedReview.Replacement.process_monotone
+#print axioms SoftwareDoesntNeedReview.Replacement.process_terminates
+#print axioms SoftwareDoesntNeedReview.Replacement.criterion_never_lost
+#print axioms SoftwareDoesntNeedReview.Boundary.boundary_missed_by_certifier
+#print axioms SoftwareDoesntNeedReview.Boundary.boundary_legacy_witness_insufficient
+#print axioms SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise
+#print axioms SoftwareDoesntNeedReview.Boundary.outside_not_through_facts
+#print axioms SoftwareDoesntNeedReview.Boundary.redundant_under_premises
+#print axioms SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified
+#print axioms SoftwareDoesntNeedReview.Controls.control_before_misses
+#print axioms SoftwareDoesntNeedReview.Controls.control_predicate_catches
+#print axioms SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name
+#print axioms SoftwareDoesntNeedReview.Controls.control_human_regression_refused
+#print axioms SoftwareDoesntNeedReview.Controls.control_incomplete_passes
+#print axioms SoftwareDoesntNeedReview.Controls.safety_refused_by_name
+#print axioms SoftwareDoesntNeedReview.Chain.Quantifiable.coverage
+#print axioms SoftwareDoesntNeedReview.Chain.Composable.qualified_implies_accept
