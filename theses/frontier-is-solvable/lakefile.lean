@@ -12,4 +12,13 @@ require «software-optimality» from git
 
 @[default_target]
 lean_lib SoftwareFrontier where
-  roots := #[`Red]
+  roots := #[
+    `Red,
+    `Hyper,
+    `Fuzz,
+    `Solve,
+    `Instances,
+    `Frontier,
+    `Tests,
+    `examples.ReplicaPlacement
+  ]
