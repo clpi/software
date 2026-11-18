@@ -1,5 +1,3 @@
-import IncrementalCert.Upstream
-
 namespace IncrementalCert
 
 inductive Verdict where

@@ -13,7 +13,10 @@ def isLocal (n : Name) : Bool :=
     (`SoftwareIsComposable).isPrefixOf n
 
 def isUpstream (n : Name) : Bool :=
-  (`SoftwareIsComposable).isPrefixOf n || (`IncrementalCert.Upstream).isPrefixOf n
+  (`SoftwareIsComposable).isPrefixOf n || (`Qualification).isPrefixOf n ||
+    (`FiniteQualification).isPrefixOf n || (`FiniteFrontier).isPrefixOf n ||
+    (`ExecutableClosure).isPrefixOf n || (`HypergraphIncremental).isPrefixOf n ||
+    (`SoftwareIsQuantifiable).isPrefixOf n
 
 elab "implications_report" : command => do
   let headlines : Array Name := #[

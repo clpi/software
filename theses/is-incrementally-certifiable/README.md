@@ -1,6 +1,6 @@
 # software-is-incrementally-certifiable
 
-Lean 4.19.0, core only. `software-is-composable` is required at `033c12c01299a9b28983bee410c230641adc7d1e`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI.
+Lean 4.19.0, core only. `software-is-composable` is required at `033c12c01299a9b28983bee410c230641adc7d1e`. `certClose` is `Qualification.Derives`. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI. Quantifiable's `Pareto.lean` and `Coverage.lean` are not imported.
 
 ```sh
 ./check.sh
@@ -30,7 +30,7 @@ The recorded run is `CHECK.log`. Headline dependencies are `propext`, `Classical
 | `X ⊆ certClose X` | `extensive` | PROVEN |
 | `X ⊆ Y` implies `certClose X ⊆ certClose Y` | `monotone` | PROVEN |
 | `certClose (certClose X) = certClose X` | `idempotent` | PROVEN |
-| `certClose (B ∪ D) = certClose (certClose B ∪ certClose D)` | `compounding` | PROVEN |
+| `certClose (B ∪ D) = certClose (certClose B ∪ certClose D)`, from `Qualification.compounding` | `compounding` | PROVEN |
 | That identity is pointwise union | `compounding_not_pointwise_union` | DISPROVEN |
 | `k` distinct binary observations cut the release space by `2^k` | `evidence_cuts` | PROVEN under `IndependencePremise` |
 | Repeating an observation cuts by `2^k` for `k` copies | `duplicate_does_not_cut` | DISPROVEN |

@@ -5,7 +5,7 @@ namespace IncrementalCert
 def releaseLE (allowed behaviors : List Nat) : Bool :=
   behaviors.all (fun b => allowed.contains b)
 
-def acceptsRelease (required behaviors : List Nat) : Bool :=
+abbrev acceptsRelease (required behaviors : List Nat) : Bool :=
   SoftwareIsComposable.accepts required behaviors
 
 def combinedAdmission (allowed required behaviors : List Nat) : Bool :=

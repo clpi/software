@@ -8,7 +8,7 @@
    "rev": "033c12c01299a9b28983bee410c230641adc7d1e",
    "name": "«software-is-composable»",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "033c12c0",
+   "inputRev": "033c12c01299a9b28983bee410c230641adc7d1e",
    "inherited": false,
    "configFile": "lakefile.lean"},
   {"url": "https://github.com/clpi/software-is-quantifiable",
