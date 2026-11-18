@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The measured venue completed every requested write in full. The contract compares final byte sequences on a single-writer file. Per-record acknowledgment, crash visibility, competing writers, and partial-write recovery would change the contract.
+
+## Additional worked example
+
+[Tight flush bound for a 16-bit telemetry accumulator](range-ledger/README.md)
