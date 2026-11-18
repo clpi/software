@@ -1,6 +1,3 @@
-import SoftwareIsIncrementallySafe.Safety
-import SoftwareIsIncrementallySafe.Increment
-import SoftwareIsIncrementallySafe.Security
-import SoftwareIsIncrementallySafe.Checker
-import SoftwareIsIncrementallySafe.Example
-import SoftwareIsIncrementallySafe.AuditFix
+import SoftwareIsIncrementallySafe.Cone
+import SoftwareIsIncrementallySafe.Model
+import SoftwareIsIncrementallySafe.Check
