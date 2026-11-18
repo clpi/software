@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 Distances are line units and every replica has the same unit cost. Equal-cost layouts retain separate identities. Actual network latency, capacity, and availability need different inputs.
+
+## Additional worked example
+
+[Choose a tile size that minimizes worst-case read work](range-ledger/README.md)
