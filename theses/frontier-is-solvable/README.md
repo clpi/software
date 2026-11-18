@@ -1,43 +1,37 @@
 # software-frontier-is-solvable
 
-A standalone Lean 4.19 companion for exact finite qualification frontiers, derived from one authoritative behavioral hypergraph. This library introduces no second graph or evidence store. A caller supplies candidate identities, graph-derived eligibility, and selected cost axes.
+Lean 4.19.0 statements for a directed hypergraph of program states, the behaviors an environment dial leaves visible, a four-color qualification of those states, and the Pareto frontier of finite test schedules. Dominance and the frontier are the ones proved in `clpi/software-optimality` at `16a6c690cf4ec4dedda34328e165da995d7592ae`. That package pins `clpi/software-is-quantifiable` at `f370992611d8c722e4897e67dbb8eaecf3d872ed`. This repository pins both, and `lake-manifest.json` resolves each package to that single commit.
 
-## Machine-checked results
+`ThreeValuedGate.frontier_no_dominator`, `unknown_blocks_dominance`, `unknown_blocks_dominance_canonical`, and `known_agrees_canonical` are imported and applied. They are not re-proved here. Schedule dominance is `Interface.dominates` on the gate's measure space, which `CanonicalDominance` identifies with the one-axis profile order and which `known_agrees_canonical` identifies with the three-valued gate on fully known natural readings.
 
-`Frontier.lean` contains 14 named theorems:
+## What is proved
 
-- Strict Pareto dominance is irreflexive and transitive; equal objective vectors do not strictly dominate each other.
-- **Insertion:** the new frontier consists exactly of old frontier members not dominated by the inserted identity, plus that identity when no old eligible identity dominates it.
-- **Retraction:** an eligible survivor becomes nondominated exactly when every former eligible dominator has been removed. Multiple independent dominators are retained correctly.
-- Old nondominated survivors remain nondominated under removal; any live dominator blocks resurrection.
-- Extensionally equal qualification and comparison views produce the same frontier, independently of graph storage/index layout.
-- A no-worse-than-baseline guard enforces every selected objective, not merely absence of domination by the baseline. Its frontier is also nondominated among all eligible candidates.
-- The baseline-guarded frontier is nonempty whenever the baseline remains among eligible candidates.
-- The executable list evaluator matches the eligibility/nondominance specification exactly.
-- The executable finite-axis comparison matches componentwise no-worse plus strict improvement on at least one selected axis.
-- Every nonempty finite candidate list has a nondominated member under any strict partial order.
+A directed hypergraph has states as vertices and hyperedges as transitions from a set of states to a set of states, labeled by an e-class and a knowledge threshold. Its incidence matrix is a function of vertex and edge. `Hyper.roundtrip` shows that decoding that function recovers a bounded hypergraph exactly.
 
-`Tests.lean` contains 15 kernel-reduced examples, including an incomparable tradeoff, equal-valued identities, duplicate identity occurrences, empty axes, rejected candidates, dominated insertions, improving insertions, retraction/resurrection and multiple dominators. Two explicit counterexamples show:
+`Hyper.Observed.mask` keeps an edge when the dial is at least the edge's threshold. `subset` says the masked graph's incidences are incidences of the complete graph. `monotone` says raising the dial never drops an incidence that was already visible.
 
-1. Pareto membership alone does not guarantee no regression against a baseline.
-2. Storing only the current frontier discards information required for exact later retraction: two candidate populations with the same current frontier can have different frontiers after removing its winner.
+`Hyper.Paint.color` is a total function into `intended`, `stray` (observed, not intended), `gap` (intended, not observed), and `unknown`. `meant` is true only for `intended`. A state colored `unknown` is not a member of `qualified`. `Solve.Sched.gapblocks` sends that missing reading through `unknown_blocks_dominance` and `unknown_blocks_dominance_canonical`, so it is not a dominating improvement. `Red.shifts` is the concrete counterexample: scoring the unknown job as intended changes the frontier. `Red.agrees` is that filled scoring, through `known_agrees_canonical` and `CanonicalDominance.one_iff`. `Red.rejects` is a dominated schedule reported as the frontier; `FiniteFrontier.certificate` is false. `Red.guarded` is `frontier_no_dominator` on the filled space.
+
+A schedule is a `FiniteSchedules.Schedule`: one venue and start for each test. Feasibility, including precedence and no overlap on a venue, is `FiniteSchedules.Feasible`. `Solve.Sched.acyclic` adds that a forward precedence list is a DAG. The carrier of a `ThreeValuedGate.FiniteSpace` is `Fin` of the feasible list, so `nothingOutside` and `noCoverageGaps` hold for that finite set. Readings are three fully known naturals: behaviors clarified (maximize), makespan (minimize), and the number of venues used (minimize).
+
+`Solve.main` is the exhaustive solver on any such space. Its output is `FiniteFrontier.frontier` under `dominatesB`. Every output point is free of `ComparisonContract` dominance by `frontier_no_dominator`, and free of `Interface.dominates` by `known_agrees_canonical`. Every point free of `Interface.dominates` is emitted, and so is its reading vector. `Solve.checked` is the certificate checker accepting that frontier. `Solve.named` returns, for a dominated point, one feasible point that dominates it. `Solve.cardsound` says every frontier card carries that acceptance and names no dominator.
+
+`Solve.Bench.corollary` is the same theorem when the first axis is variance reduction from the venue of each placement. `Fuzz.expect` is the weighted sum of a stated finite distribution. There is no fuzzing optimality corollary.
+
+`Frontier.lean` remains the earlier qualification-frontier development. It is not the dominance used for schedules.
+
+## Limits
+
+Multi-objective scheduling with precedence on parallel machines is NP-hard in general, so this exact solver enumerates the finite feasible set and is exponential in that set. A faster heuristic is admitted only when its output is checked against this frontier on the instance, by `Solve.accept` or an equivalent certificate. "Optimal for arbitrary software" means exact for every finite instance extracted from it. Nothing is claimed about programs that have not been cut down to a finite `FiniteSpace`, about costs that are not the supplied readings, or about candidates outside that space.
+
+No regret bound is proved for fuzzing. An expectation computed from a stated finite distribution can be placed in a reading and then falls under `Solve.main` only as that deterministic vector. That is not a bound on the regret of an adaptive fuzzer, and it is not stated as a corollary.
+
+The exhaustive listing is the reference. It does not claim a polynomial algorithm, a universal optimum outside the enumerated feasible list, or that a physical measurement equals the integer reading supplied to the gate.
 
 ## Reproduce
 
-Install the pinned toolchain from `lean-toolchain`, then:
-
 ```sh
-./check.sh
+lake build -R -KwarningAsError=true
 ```
 
-Or supply `LEAN=/absolute/path/to/lean ./check.sh`. The script fails on compilation errors, warnings, or prohibited proof escapes; every named theorem has its axiom dependencies printed. No custom axioms or admitted proofs are used. Some results use Lean's standard `propext`, `Classical.choice`, and `Quot.sound`; others are axiom-free. The included `CHECK.log` records the actual successful compiler run.
-
-## Engineering interpretation
-
-Qualify candidates from the authoritative graph at a named snapshot. Evaluate the frontier over those candidates and the selected metric view. Use the insertion/retraction equations to maintain that view, retaining dominated candidates or equivalent reconstructible source data. The equations justify incremental membership updates; the provided executable evaluator is deliberately a full-scan reference oracle, not a claimed optimized incremental runtime.
-
-An observation appends evidence; it need not improve candidate cost or preserve eligibility. Qualification retraction can resurrect previously dominated candidates. Ties retain separate identities. List duplicates do not change membership but remain duplicate output entries; normalize identities upstream when set cardinality is required. Deterministic input order yields deterministic output order; canonical serialization/sorting is not supplied here.
-
-A raw incidence matrix is not a proof of semantic equivalence. The graph-to-qualification adapter and authorized transfer certificates remain responsible for valid eligibility. The companion proves frontier calculations from these supplied views, not physical runtime measurements, semantic lowering, or completeness of the candidate generator. Axis costs are integer-valued and minimization-oriented; a caller must use consistent units, scope, and orientation. Empty axes intentionally make every eligible candidate a tie.
-
-The finite exact reference calculation examines all eligible candidate pairs and selected axes; its straightforward comparison work is O(m²a) for m candidates and a axes. No empirical performance claim, universal speedup, global optimum beyond the supplied candidate population, or automatic strict growth per witness follows from these theorems.
+`./check.sh` runs that command after rejecting `sorry`, `admit`, `axiom`, and `native_decide`. The build prints `#print axioms` for `Solve.main`. The five `#eval` lines in `Instances.lean` are a precedence chain, three venues, a variance-reduction bench, a fuzz expectation used only as a numeric axis, and a dial-0 coloring of the demo hypergraph together with a two-test precedence schedule.
