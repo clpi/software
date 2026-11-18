@@ -1,0 +1,31 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Qualification.least' does not depend on any axioms
+'Qualification.monotone' does not depend on any axioms
+'Qualification.idempotent' does not depend on any axioms
+'Qualification.compounding' does not depend on any axioms
+'Qualification.order_independent' does not depend on any axioms
+'Qualification.soundness' does not depend on any axioms
+'Qualification.withdrawal_no_new_support' does not depend on any axioms
+'Qualification.surviving_subsystem' does not depend on any axioms
+'Qualification.no_bootstrap' does not depend on any axioms
+'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+'ExecutableClosure.subsets_count' depends on axioms: [propext]
+'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+[0, 1, 2, 3]
+'Hyperlattice.compounding' does not depend on any axioms
+'Hyperlattice.expansion_vector' depends on axioms: [propext, Quot.sound]
+'Hyperlattice.strict_expansion' depends on axioms: [propext, Quot.sound]
+'Hyperlattice.redundant' does not depend on any axioms
+'WitnessExecutable.append_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WitnessExecutable.classifier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WitnessExecutable.configuration_count' depends on axioms: [propext]
+'WitnessExecutable.catalogue_compounding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WitnessExecutable.qualification_exact' depends on axioms: [propext]
+'WitnessExecutable.projection_supported' depends on axioms: [propext]
+PASS: five Lean modules, all kernel checks and executable guards.
