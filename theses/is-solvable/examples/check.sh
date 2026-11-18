@@ -11,3 +11,4 @@ export LEAN_PATH="$build"
 "$lean_bin" -DwarningAsError=true -o "$build/WitnessExecutable.olean" "WitnessExecutable.lean" >/dev/null
 "$lean_bin" --version
 "$lean_bin" -DwarningAsError=true examples/RestoreEvidence.lean
+sh examples/range-ledger/check.sh

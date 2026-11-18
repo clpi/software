@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The three prices and the transfer rules are declared fixture inputs. Applying the conclusion to a backup system requires justified rules, scoped receipts, and the actual available test menu.
+
+## Additional worked example
+
+[Solve a total from overlapping snapshots](range-ledger/README.md)
