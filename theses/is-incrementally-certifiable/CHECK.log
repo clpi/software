@@ -1,0 +1,152 @@
+=== red: admitted proof ===
+controls/Admitted.lean:1:8: error: declaration uses 'sorry'
+=== red: C1-C4 accept under the submitted-field checker ===
+=== pass: default target ===
+ℹ [11/29] Replayed FiniteFrontier
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+ℹ [14/29] Replayed FiniteQualification
+info: ././.lake/packages/software-is-composable/././FiniteQualification.lean:33:0: 'FiniteQualification.candidates_length' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././FiniteQualification.lean:34:0: 'FiniteQualification.candidates_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteQualification.lean:35:0: 'FiniteQualification.qualify_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteQualification.lean:36:0: [[true, false, true]]
+ℹ [16/29] Replayed Qualification
+info: ././.lake/packages/software-is-composable/././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [17/29] Replayed ExecutableClosure
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [18/29] Replayed HypergraphIncremental
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [21/29] Replayed SoftwareIsComposable.Axioms
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:9:0: 'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:10:0: 'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:11:0: 'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:12:0: 'SoftwareIsComposable.symbolVerdict_admitted_iff' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:13:0: 'SoftwareIsComposable.qualifiedMono' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:14:0: 'SoftwareIsComposable.qualifiedTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:15:0: 'SoftwareIsComposable.costNoRegression' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:16:0: 'SoftwareIsComposable.costTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:17:0: 'SoftwareIsComposable.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:18:0: 'SoftwareIsComposable.moduleAdmission_compose' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:19:0: 'SoftwareIsComposable.moduleAdmission_counterexample' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:20:0: 'SoftwareIsComposable.evidence_remaining' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:21:0: 'SoftwareIsComposable.not_repeated_observation_shrinks' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:22:0: 'SoftwareIsComposable.not_disqualification_empties' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:23:0: 'SoftwareIsComposable.determined_of_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:24:0: 'SoftwareIsComposable.inClosure_iff_affected' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:25:0: 'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:26:0: 'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././SoftwareIsComposable/Axioms.lean:27:0: 'SoftwareIsComposable.worse_refused' does not depend on any axioms
+Build completed successfully.
+=== red: empty required passes the subset reading of C4 ===
+empty_required_passes_c4
+THEOREM IncrementalCert.extensive
+  upstream: IncrementalCert.Upstream.extensive
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.monotone
+  upstream: IncrementalCert.Upstream.monotone
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.idempotent
+  upstream: IncrementalCert.Upstream.idempotent
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.compounding
+  upstream: IncrementalCert.Upstream.compounding
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.evidence_cuts
+  upstream: 
+  local: IncrementalCert.consistentLength IncrementalCert.pow2_add IncrementalCert.indices_bounded IncrementalCert.IndependencePremise IncrementalCert.consistent_pow IncrementalCert.pow2
+THEOREM IncrementalCert.check_sound
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.changed IncrementalCert.check IncrementalCert.ReleasePred IncrementalCert.check_accept_iff IncrementalCert.accepted_sound IncrementalCert.Spec IncrementalCert.Prev IncrementalCert.accepted IncrementalCert.Verdict.accept IncrementalCert.Verdict
+THEOREM IncrementalCert.check_submitter_invariant
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.changed IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.Spec IncrementalCert.Prev IncrementalCert.blame IncrementalCert.accepted IncrementalCert.Verdict.accept IncrementalCert.Verdict
+THEOREM IncrementalCert.incremental_eq_scratch
+  upstream: 
+  local: IncrementalCert.behaviorAfter IncrementalCert.baseNeed IncrementalCert.behaviorMap
+THEOREM IncrementalCert.pareto_monotone_chain
+  upstream: SoftwareIsComposable.SymbolAdmitted SoftwareIsComposable.SymbolProfile.costs SoftwareIsComposable.Bounds.hi SoftwareIsComposable.symbolAdmitted_trans SoftwareIsComposable.Release SoftwareIsComposable.Release.symbols SoftwareIsComposable.Bounds SoftwareIsComposable.ReleaseAdmitted.match_1 SoftwareIsComposable.ReleaseAdmitted SoftwareIsComposable.SymbolProfile.id SoftwareIsComposable.Bounds.lo SoftwareIsComposable.SymbolProfile
+  local: IncrementalCert.BaselineEligible IncrementalCert.not_dominates_of_le IncrementalCert.both_hi_le IncrementalCert.paretoDominates IncrementalCert.ValidMeasurements IncrementalCert.release_hi_le IncrementalCert.FixedSelectedAxes
+THEOREM IncrementalCert.axes_change_hides_regression
+  upstream: SoftwareIsComposable.symbolAdmitted SoftwareIsComposable.Bounds SoftwareIsComposable.Bounds.mk SoftwareIsComposable.SymbolProfile.mk
+  local: IncrementalCert.axesOf
+THEOREM IncrementalCert.not_per_execution
+  upstream: SoftwareIsComposable.not_per_execution
+  local: 
+THEOREM IncrementalCert.combined_iff
+  upstream: 
+  local: IncrementalCert.releaseLE IncrementalCert.acceptsRelease IncrementalCert.combinedAdmission
+THEOREM IncrementalCert.feature_add_fails_releaseLE
+  upstream: 
+  local: IncrementalCert.releaseLE IncrementalCert.acceptsRelease
+THEOREM IncrementalCert.removal_fails_acceptsRelease
+  upstream: 
+  local: IncrementalCert.releaseLE IncrementalCert.acceptsRelease
+THEOREM IncrementalCert.empty_required_passes_c4
+  upstream: 
+  local: IncrementalCert.acceptsRelease
+THEOREM IncrementalCert.omitted_refused
+  upstream: 
+  local: IncrementalCert.specLeak IncrementalCert.omitDelta IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.prevLib IncrementalCert.instDecidableEqVerdict IncrementalCert.Verdict
+THEOREM IncrementalCert.leak_unlabeled_refused
+  upstream: 
+  local: IncrementalCert.Delta.submittedRequired IncrementalCert.Delta IncrementalCert.Delta.submittedAllowed IncrementalCert.Delta.inspect IncrementalCert.omitDelta IncrementalCert.Delta.changed IncrementalCert.noObsHigh IncrementalCert.Delta.boundTime IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.prevLib IncrementalCert.Delta.mk IncrementalCert.Delta.symHigh IncrementalCert.instDecidableEqVerdict IncrementalCert.Delta.deps IncrementalCert.Delta.boundCompute IncrementalCert.specLabel IncrementalCert.Verdict
+THEOREM IncrementalCert.budget_raised_refused
+  upstream: 
+  local: IncrementalCert.budgetDelta IncrementalCert.prevNeed IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.specBudget IncrementalCert.instDecidableEqVerdict IncrementalCert.Verdict
+THEOREM IncrementalCert.nothing_refused
+  upstream: 
+  local: IncrementalCert.HoldsRequired IncrementalCert.ObsRelease.behavior IncrementalCert.nothing
+THEOREM IncrementalCert.submitted_required_still_refused
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.submittedAllowed IncrementalCert.Delta.inspect IncrementalCert.Delta.obsHigh IncrementalCert.budgetDelta IncrementalCert.prevNeed IncrementalCert.Delta.boundTime IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.Delta.mk IncrementalCert.Delta.symHigh IncrementalCert.specBudget IncrementalCert.instDecidableEqVerdict IncrementalCert.Delta.deps IncrementalCert.Delta.boundCompute IncrementalCert.Verdict
+THEOREM IncrementalCert.unordered_traces
+  upstream: 
+  local: IncrementalCert.allowedTrace
+THEOREM IncrementalCert.profile_cannot_see_flow
+  upstream: 
+  local: IncrementalCert.Reaches.casesOn IncrementalCert.Reaches.here IncrementalCert.noDeps IncrementalCert.Profile.mk IncrementalCert.flowBeh IncrementalCert.flowDeps IncrementalCert.Reaches IncrementalCert.Reaches.step IncrementalCert.Profile IncrementalCert.Profile.obs
+'IncrementalCert.extensive' does not depend on any axioms
+'IncrementalCert.monotone' does not depend on any axioms
+'IncrementalCert.idempotent' does not depend on any axioms
+'IncrementalCert.compounding' does not depend on any axioms
+'IncrementalCert.evidence_cuts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IncrementalCert.check_sound' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.check_submitter_invariant' depends on axioms: [propext]
+'IncrementalCert.incremental_eq_scratch' does not depend on any axioms
+'IncrementalCert.pareto_monotone_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IncrementalCert.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IncrementalCert.nothing_refused' does not depend on any axioms
+'IncrementalCert.unordered_traces' depends on axioms: [propext]
+'IncrementalCert.profile_cannot_see_flow' depends on axioms: [propext]
+=== cli ===
+release-zero: accept
+release-one: refused app
+release-two: not-applied
+check passed

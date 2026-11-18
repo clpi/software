@@ -1,0 +1,53 @@
+import Lean
+import IncrementalCert
+
+open Lean
+
+def nameLE (a b : Name) : Bool :=
+  match Name.quickCmp a b with
+  | .gt => false
+  | _ => true
+
+def isLocal (n : Name) : Bool :=
+  (`IncrementalCert).isPrefixOf n || (`Audit).isPrefixOf n ||
+    (`SoftwareIsComposable).isPrefixOf n
+
+def isUpstream (n : Name) : Bool :=
+  (`SoftwareIsComposable).isPrefixOf n || (`IncrementalCert.Upstream).isPrefixOf n
+
+elab "implications_report" : command => do
+  let headlines : Array Name := #[
+    `IncrementalCert.extensive,
+    `IncrementalCert.monotone,
+    `IncrementalCert.idempotent,
+    `IncrementalCert.compounding,
+    `IncrementalCert.evidence_cuts,
+    `IncrementalCert.check_sound,
+    `IncrementalCert.check_submitter_invariant,
+    `IncrementalCert.incremental_eq_scratch,
+    `IncrementalCert.pareto_monotone_chain,
+    `IncrementalCert.axes_change_hides_regression,
+    `IncrementalCert.not_per_execution,
+    `IncrementalCert.combined_iff,
+    `IncrementalCert.feature_add_fails_releaseLE,
+    `IncrementalCert.removal_fails_acceptsRelease,
+    `IncrementalCert.empty_required_passes_c4,
+    `IncrementalCert.omitted_refused,
+    `IncrementalCert.leak_unlabeled_refused,
+    `IncrementalCert.budget_raised_refused,
+    `IncrementalCert.nothing_refused,
+    `IncrementalCert.submitted_required_still_refused,
+    `IncrementalCert.unordered_traces,
+    `IncrementalCert.profile_cannot_see_flow
+  ]
+  let env ← getEnv
+  for id in headlines do
+    let some ci := env.find? id | throwError s!"missing {id}"
+    let names := ci.getUsedConstantsAsSet.toList.mergeSort nameLE
+    let ups := names.filter isUpstream
+    let loc := names.filter fun n => isLocal n && !isUpstream n && n != id
+    IO.println ("THEOREM " ++ id.toString)
+    IO.println ("  upstream: " ++ String.intercalate " " (ups.map toString))
+    IO.println ("  local: " ++ String.intercalate " " (loc.map toString))
+
+implications_report
