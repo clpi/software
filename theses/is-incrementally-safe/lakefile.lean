@@ -15,6 +15,3 @@ require «software-is-composable» from git
 
 @[default_target]
 lean_lib «SoftwareIsIncrementallySafe»
-
-lean_lib Counterexamples where
-  srcDir := "audit"
