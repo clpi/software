@@ -58,11 +58,8 @@ def collect (calls : List (Nat × Nat)) (beh : Nat → List Nat) :
 def reached (spec : SpecAuthority) (beh : Nat → List Nat) (s : Nat) : List Nat :=
   collect spec.calls beh [s] [] (spec.roster.length + spec.calls.length + 2)
 
-def callStrings (calls : List (Nat × Nat)) : List (String × String) :=
-  calls.map fun e => (toString e.fst, toString e.snd)
-
 def affected (spec : SpecAuthority) (seed s : Nat) : Bool :=
-  (coneExecOf (callStrings spec.calls) [toString seed]).contains (toString s)
+  (coneExecOf spec.calls [seed]).contains s
 
 def behOf (p : Patch) (s : Nat) : List Nat :=
   if s == p.symbol then p.behaviors else []

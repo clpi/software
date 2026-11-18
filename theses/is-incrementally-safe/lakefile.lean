@@ -15,3 +15,8 @@ require «software-is-composable» from git
 
 @[default_target]
 lean_lib «SoftwareIsIncrementallySafe»
+
+@[default_target]
+lean_lib «AuditDependencyModules» where
+  srcDir := "audit"
+  roots := #[`DependencyModules]

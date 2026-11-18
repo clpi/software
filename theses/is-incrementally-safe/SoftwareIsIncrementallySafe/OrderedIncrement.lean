@@ -1,16 +1,52 @@
+import HypergraphIncremental
+
 namespace SoftwareIsIncrementallySafe.OrderedIncrement
 
 open Classical
 
-inductive Cone {σ : Type} (deps : σ → σ → Prop) (changed : σ → Bool) : σ → Prop where
-  | root {s : σ} : changed s = true → Cone deps changed s
-  | step {s t : σ} : deps s t → Cone deps changed t → Cone deps changed s
+def depGraph {σ : Type} (deps : σ → σ → Prop) (roots : σ → Prop) :
+    HypergraphIncremental.Hypergraph σ where
+  roots := roots
+  edges := fun ps a => ∃ t, ps = [t] ∧ deps a t
+
+theorem affected_root {σ : Type} {deps : σ → σ → Prop} {changed : σ → Bool} {s : σ}
+    (h : changed s = true) :
+    HypergraphIncremental.Affected (depGraph deps fun _ => False)
+      (depGraph deps fun x => changed x = true) s :=
+  .root (fun hr => hr.mpr h)
+
+theorem affected_step {σ : Type} {deps : σ → σ → Prop} {changed : σ → Bool} {s t : σ}
+    (hd : deps s t)
+    (ht : HypergraphIncremental.Affected (depGraph deps fun _ => False)
+      (depGraph deps fun x => changed x = true) t) :
+    HypergraphIncremental.Affected (depGraph deps fun _ => False)
+      (depGraph deps fun x => changed x = true) s :=
+  .downstream ht (Or.inl ⟨[t], ⟨t, rfl, hd⟩, List.mem_singleton_self t⟩)
+
+theorem affected_cases {σ : Type} {deps : σ → σ → Prop} {changed : σ → Bool} {s : σ}
+    (h : HypergraphIncremental.Affected (depGraph deps fun _ => False)
+      (depGraph deps fun x => changed x = true) s) :
+    changed s = true ∨ ∃ t, deps s t ∧ HypergraphIncremental.Affected
+      (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) t := by
+  cases h with
+  | root hr =>
+    left
+    cases hc : changed s with
+    | true => rfl
+    | false => exact (hr ⟨False.elim, fun he => Bool.noConfusion (hc.symm.trans he)⟩).elim
+  | edge he => exact (he Iff.rfl).elim
+  | @downstream p _ hp hd =>
+    right
+    rcases hd with ⟨ps, ⟨t, rfl, hdep⟩, hm⟩ | ⟨ps, ⟨t, rfl, hdep⟩, hm⟩ <;>
+      · rw [List.mem_singleton] at hm
+        subst hm
+        exact ⟨p, hdep, hp⟩
 
 theorem not_cone_not_changed {σ : Type} {deps : σ → σ → Prop} {changed : σ → Bool} {s : σ}
-    (h : ¬ Cone deps changed s) : changed s = false := by
+    (h : ¬ HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s) : changed s = false := by
   cases hc : changed s with
   | false => rfl
-  | true => exact (h (Cone.root hc)).elim
+  | true => exact (h (affected_root hc)).elim
 
 inductive DepStar {σ : Type} (deps : σ → σ → Prop) : σ → σ → Prop where
   | refl (s : σ) : DepStar deps s s
@@ -27,27 +63,27 @@ theorem update_unchanged {σ C : Type} {I : σ → C} {changed : σ → Bool} {n
   simp [update, h]
 
 theorem not_cone_closure_unchanged {σ : Type} {deps : σ → σ → Prop} {changed : σ → Bool}
-    {s : σ} (h : ¬ Cone deps changed s) : ∀ t, DepStar deps s t → changed t = false := by
+    {s : σ} (h : ¬ HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s) : ∀ t, DepStar deps s t → changed t = false := by
   intro t hst
   revert h
   induction hst with
   | refl _ => exact fun h => not_cone_not_changed h
-  | step hd _ ih => exact fun h => ih (fun hc => h (Cone.step hd hc))
+  | step hd _ ih => exact fun h => ih (fun hc => h (affected_step hd hc))
 
 theorem outside_cone_stable {σ C β : Type} {deps : σ → σ → Prop} {sem : (σ → C) → σ → β}
     {I : σ → C} {changed : σ → Bool} {new : σ → C} {s : σ}
-    (hLoc : Local deps sem) (h : ¬ Cone deps changed s) :
+    (hLoc : Local deps sem) (h : ¬ HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s) :
     sem (update I changed new) s = sem I s :=
   hLoc _ _ s (fun t ht => update_unchanged (not_cone_closure_unchanged h t ht))
 
 theorem recheck_iff_scratch {σ C β : Type} (deps : σ → σ → Prop) (sem : (σ → C) → σ → β)
     (Q : σ → β → Prop) (I : σ → C) (changed : σ → Bool) (new : σ → C)
     (hLoc : Local deps sem) (hOld : ∀ s, Q s (sem I s)) :
-    (∀ s, Cone deps changed s → Q s (sem (update I changed new) s)) ↔
+    (∀ s, HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s → Q s (sem (update I changed new) s)) ↔
       (∀ s, Q s (sem (update I changed new) s)) := by
   constructor
   · intro hc s
-    by_cases h : Cone deps changed s
+    by_cases h : HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s
     · exact hc s h
     · rw [outside_cone_stable hLoc h]
       exact hOld s
@@ -62,7 +98,7 @@ def ChainAccepted {σ C β : Type} (deps : σ → σ → Prop) (sem : (σ → C)
     (Q : σ → β → Prop) : (σ → C) → List ((σ → Bool) × (σ → C)) → Prop
   | _, [] => True
   | I, (ch, nw) :: rest =>
-      (∀ s, Cone deps ch s → Q s (sem (update I ch nw) s)) ∧
+      (∀ s, HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => ch x = true) s → Q s (sem (update I ch nw) s)) ∧
         ChainAccepted deps sem Q (update I ch nw) rest
 
 theorem chain_recheck {σ C β : Type} (deps : σ → σ → Prop) (sem : (σ → C) → σ → β)
@@ -108,7 +144,7 @@ def ReleaseGood {σ C ι ε : Type} (S : Spec σ ι ε) (sem : (σ → C) → σ
 
 def ConeGood {σ C ι ε : Type} (S : Spec σ ι ε) (deps : σ → σ → Prop)
     (sem : (σ → C) → σ → Beh ι ε) (I : σ → C) (changed : σ → Bool) (new : σ → C) : Prop :=
-  ∀ s, Cone deps changed s → Good S s (sem (update I changed new) s)
+  ∀ s, HypergraphIncremental.Affected (depGraph deps fun _ => False) (depGraph deps fun x => changed x = true) s → Good S s (sem (update I changed new) s)
 
 theorem ordered_incremental_iff_scratch {σ C ι ε : Type} (S : Spec σ ι ε)
     (deps : σ → σ → Prop) (sem : (σ → C) → σ → Beh ι ε)
@@ -236,14 +272,14 @@ theorem naive_changed_only_false :
     (h passSem oldCode newCode libChanged passSem_local old_release_good changed_only_accepts .app).2
 
 theorem cone_recheck_refuses : ¬ ConeGood passSpec symDeps passSem oldCode libChanged newCode :=
-  fun h => new_release_leaks (h .app (Cone.step ⟨rfl, rfl⟩ (Cone.root (by simp [libChanged])))).2
+  fun h => new_release_leaks (h .app (affected_step ⟨rfl, rfl⟩ (affected_root (by simp [libChanged])))).2
 
 theorem missing_edge_cone_passes :
     ConeGood passSpec (fun _ _ => False) passSem oldCode libChanged newCode := by
   intro s hc
-  cases hc with
-  | root h => exact changed_only_accepts s h
-  | step hd _ => exact hd.elim
+  rcases affected_cases hc with h | ⟨_, hd, _⟩
+  · exact changed_only_accepts s h
+  · exact hd.elim
 
 theorem missing_edge_not_local : ¬ Local (fun _ _ => False : Sym → Sym → Prop) passSem := by
   intro h
@@ -327,7 +363,7 @@ theorem door_old_good : ReleaseGood doorSpec doorSemP stopOpen := by
 theorem door_reordered_refused :
     ¬ ConeGood doorSpec doorDepsP doorSemP stopOpen sensorChanged openStop := by
   intro h
-  have hd := (h .door (Cone.step ⟨rfl, rfl⟩ (Cone.root (by simp [sensorChanged])))).1 ()
+  have hd := (h .door (affected_step ⟨rfl, rfl⟩ (affected_root (by simp [sensorChanged])))).1 ()
     ["open", "stop"] (by simp [doorSemP, update, sensorChanged, openStop])
   simp [doorSpec, doorOK] at hd
 
