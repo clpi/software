@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")"
+LEAN="${LEAN:-lean}"
+export LEAN_PATH=".:${LEAN_PATH:-}"
+# Reject source admissions and custom axioms, including those Lean would
+# only warn about. The scan covers every Lean file in the repository.
+if grep -En '(^|[^[:alnum:]_])(sorry|admit|axiom|native_decide)([^[:alnum:]_]|$)' ./*.lean; then
+  echo "Rejected prohibited proof escape hatch" >&2
+  exit 1
+fi
+CHECK_TMP="$(mktemp)"
+trap 'rm -f "$CHECK_TMP"' EXIT HUP INT TERM
+run_lean() {
+  if "$LEAN" -DwarningAsError=true "$@" >"$CHECK_TMP" 2>&1; then
+    cat "$CHECK_TMP"
+  else
+    cat "$CHECK_TMP"
+    return 1
+  fi
+  if grep -Eq 'sorryAx|error:|warning:' "$CHECK_TMP"; then
+    echo "Rejected checker diagnostics/admitted axioms" >&2
+    return 1
+  fi
+}
+"$LEAN" --version
+run_lean -o Basic.olean Basic.lean
+run_lean -o Loss.olean Loss.lean
+run_lean -o Preservation.olean Preservation.lean
+run_lean -o Completeness.olean Completeness.lean
+run_lean -o CompilersLoseInfo.olean CompilersLoseInfo.lean
