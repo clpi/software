@@ -49,8 +49,8 @@ theorem releaseAdmitted_iff_acceptsRelease
       ⟨hCtx, fun b hb => hadm.keeps b (by simpa [priorOf] using hb), hPoint⟩
   · intro hAcc
     intro p hp
-    have hp' : p = old := List.mem_singleton.mp (by simpa [hOld] using hp)
-    subst hp'
+    have hpEq : p = old := List.mem_singleton.mp (by simpa [hOld] using hp)
+    cases hpEq
     have hiff := (SoftwareIsQuantifiable.Pareto.acceptsRelease_iff baselineContext
       candidateContext (priorOf old) (submissionOf new) inc out).mp hAcc
     have hfind : newR.symbols.find? (fun q => q.id == old.id) = some new := by
@@ -92,6 +92,10 @@ theorem nothing_below
       { offered := [] } inc inc).mp hacc
     match hqual : prior.qualified with
     | [] => exact hne hqual
-    | b :: _ => exact List.not_mem_nil b (hiff.2.1 b (by simp [hqual]))
+    | b :: _ =>
+      have hbq : b ∈ prior.qualified := by
+        rw [hqual]
+        exact List.mem_cons.mpr (Or.inl rfl)
+      exact List.not_mem_nil (hiff.2.1 b hbq)
 
 end SoftwareIsComposable

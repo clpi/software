@@ -5,6 +5,7 @@ import SoftwareIsComposable.Composition
 import SoftwareIsComposable.Evidence
 import SoftwareIsComposable.Incremental
 import SoftwareIsComposable.Examples
+import SoftwareIsComposable.Bridge
 
 #print axioms SoftwareIsComposable.scheduleSpace_finite
 #print axioms SoftwareIsComposable.releaseAdmitted_iff
@@ -25,3 +26,6 @@ import SoftwareIsComposable.Examples
 #print axioms SoftwareIsComposable.incrementalRecheck_iff
 #print axioms SoftwareIsComposable.not_recheck_seed_only
 #print axioms SoftwareIsComposable.worse_refused
+#print axioms SoftwareIsComposable.releaseAdmitted_iff_acceptsRelease
+#print axioms SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease
+#print axioms SoftwareIsComposable.nothing_below
