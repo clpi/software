@@ -205,6 +205,21 @@ info: 'AuditDependencyModules.Legacy.stringCone_iff_affected' depends on axioms:
 #guard_msgs in
 #print axioms AuditDependencyModules.Legacy.stringCone_iff_affected
 /--
+info: 'Nat.repr_injective' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms Nat.repr_injective
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_inClosure_repr' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms AuditDependencyModules.Legacy.stringCone_iff_inClosure_repr
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_affected_repr' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms AuditDependencyModules.Legacy.stringCone_iff_affected_repr
+/--
 info: 'AuditDependencyModules.Legacy.orderedCone_iff_affected' depends on axioms: [propext]
 -/
 #guard_msgs in
