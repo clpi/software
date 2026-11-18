@@ -1,0 +1,11 @@
+--- GroupedEdits.lean
++++ GroupedEdits.lean
+@@ -10,7 +10,7 @@
+ def part (k : Nat) (r : Row) := if k = r.1 then r.2 else 0
+ def agg (k : Nat) (rows : List Row) := (rows.map (part k)).sum
+ def image (k : Nat) (r : Option Row) := (r.map (part k)).getD 0
+-def patch (k : Nat) (old new : Option Row) (cached : Int) := cached - image k old + image k new
++def patch (k : Nat) (old new : Option Row) (cached : Int) := cached + image k old + image k new
+ 
+ theorem splice (k : Nat) (left right : List Row) (old new : Option Row) :
+     patch k old new (agg k (left ++ old.toList ++ right)) =

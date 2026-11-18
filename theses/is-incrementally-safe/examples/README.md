@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 Rows are positional in this example. Reuse requires a correct original cache and pure evaluations of the declared facts. Work units are fresh rule evaluations; checking equality and reading the cache also cost work.
+
+## Additional worked example
+
+[Apply a telemetry row move without scanning both groups](range-ledger/README.md)
