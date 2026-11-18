@@ -1,0 +1,22 @@
+ℹ [2/7] Built Qualification
+info: ././././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [4/7] Built Redundancy
+info: ././././Redundancy.lean:144:0: 'TestingRedundancy.redundancy_iff' does not depend on any axioms
+info: ././././Redundancy.lean:145:0: 'TestingRedundancy.contextual_redundancy' does not depend on any axioms
+info: ././././Redundancy.lean:146:0: 'TestingRedundancy.compounding_congruence' does not depend on any axioms
+info: ././././Redundancy.lean:147:0: 'TestingRedundancy.derivable_iff_all_models' does not depend on any axioms
+info: ././././Redundancy.lean:148:0: 'TestingRedundancy.missing_obligation_has_countermodel' does not depend on any axioms
+info: ././././Redundancy.lean:149:0: 'TestingRedundancy.every_derived_view_preserved' depends on axioms: [propext, Quot.sound]
+info: ././././Redundancy.lean:150:0: 'TestingRedundancy.observational_independence' does not depend on any axioms
+ℹ [6/7] Built Tests
+info: ././././Tests.lean:108:0: 'TestingRedundancy.Tests.redundantOn_correct' depends on axioms: [propext, Quot.sound]
+info: ././././Tests.lean:109:0: 'TestingRedundancy.Tests.exhaustive_catalogue_exact' depends on axioms: [propext, Quot.sound]
+Build completed successfully.

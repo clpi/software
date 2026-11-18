@@ -1,0 +1,20 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Qualification.least' does not depend on any axioms
+'Qualification.monotone' does not depend on any axioms
+'Qualification.idempotent' does not depend on any axioms
+'Qualification.compounding' does not depend on any axioms
+'Qualification.order_independent' does not depend on any axioms
+'Qualification.soundness' does not depend on any axioms
+'Qualification.withdrawal_no_new_support' does not depend on any axioms
+'Qualification.surviving_subsystem' does not depend on any axioms
+'Qualification.no_bootstrap' does not depend on any axioms
+'TestingRedundancy.redundancy_iff' does not depend on any axioms
+'TestingRedundancy.contextual_redundancy' does not depend on any axioms
+'TestingRedundancy.compounding_congruence' does not depend on any axioms
+'TestingRedundancy.derivable_iff_all_models' does not depend on any axioms
+'TestingRedundancy.missing_obligation_has_countermodel' does not depend on any axioms
+'TestingRedundancy.every_derived_view_preserved' depends on axioms: [propext, Quot.sound]
+'TestingRedundancy.observational_independence' does not depend on any axioms
+'TestingRedundancy.Tests.redundantOn_correct' depends on axioms: [propext, Quot.sound]
+'TestingRedundancy.Tests.exhaustive_catalogue_exact' depends on axioms: [propext, Quot.sound]
+PASS: all three modules and both rejection controls
