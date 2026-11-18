@@ -1,0 +1,479 @@
+=== red: admitted proof ===
+controls/Admitted.lean:1:8: error: declaration uses 'sorry'
+=== red: C1-C4 accept under the submitted-field checker ===
+=== pass: default target ===
+ℹ [3/33] Replayed Qualification
+info: ././.lake/packages/software-optimality/././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [7/33] Replayed SoftwareIsQuantifiable.Interface
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1112:0: 'SoftwareIsQuantifiable.Interface.noWorse_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1113:0: 'SoftwareIsQuantifiable.Interface.noWorse_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1114:0: 'SoftwareIsQuantifiable.Interface.noWorse_antisymm' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1115:0: 'SoftwareIsQuantifiable.Interface.not_dominates_self' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1116:0: 'SoftwareIsQuantifiable.Interface.dominates_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1117:0: 'SoftwareIsQuantifiable.Interface.not_dominates_from_measures' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1118:0: 'SoftwareIsQuantifiable.Interface.measuresLe_append_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1119:0: 'SoftwareIsQuantifiable.Interface.noWorse_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1120:0: 'SoftwareIsQuantifiable.Interface.dominates_append_of_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1121:0: 'SoftwareIsQuantifiable.Interface.not_noWorse_append_converse' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1122:0: 'SoftwareIsQuantifiable.Interface.releaseLe_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1123:0: 'SoftwareIsQuantifiable.Interface.releaseLe_append' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1124:0: 'SoftwareIsQuantifiable.Interface.not_index_aligned_preorder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1125:0: 'SoftwareIsQuantifiable.Interface.duplicate_candidate_not_releaseLe' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1126:0: 'SoftwareIsQuantifiable.Interface.repeated_profile_not_releaseLe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1127:0: 'SoftwareIsQuantifiable.Interface.misaligned_addition_not_releaseLe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1128:0: 'SoftwareIsQuantifiable.Interface.not_axesLt_of_short_vector' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1129:0: 'SoftwareIsQuantifiable.Interface.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1130:0: 'SoftwareIsQuantifiable.Interface.misaligned_not_on_frontier' depends on axioms: [propext, Quot.sound]
+ℹ [8/33] Replayed SoftwareIsQuantifiable.Pareto
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:488:0: false
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:638:0: 'SoftwareIsQuantifiable.Pareto.frontier_can_regress' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:639:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:640:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_sound' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:641:0: 'SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:642:0: 'SoftwareIsQuantifiable.Pareto.omitted_qualified_behavior_refused' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:643:0: 'SoftwareIsQuantifiable.Pareto.empty_submission_refused_when_qualified' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:644:0: 'SoftwareIsQuantifiable.Pareto.acceptsRelease_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:645:0: 'SoftwareIsQuantifiable.Pareto.acceptsReplacement_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:646:0: 'SoftwareIsQuantifiable.Pareto.replacement_no_regression' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:647:0: 'SoftwareIsQuantifiable.Pareto.separated_sum' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:648:0: 'SoftwareIsQuantifiable.Pareto.separated_parallel' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:649:0: 'SoftwareIsQuantifiable.Pareto.not_scalarized' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:650:0: 'SoftwareIsQuantifiable.Pareto.scalar_optimum_undominated' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:651:0: 'SoftwareIsQuantifiable.Pareto.dominates_iff_interface' does not depend on any axioms
+ℹ [9/33] Replayed FiniteFrontier
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:105:0: 'FiniteFrontier.certificate_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:106:0: 'FiniteFrontier.certified_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:107:0: 'FiniteFrontier.certified_coverage' depends on axioms: [propext, Quot.sound]
+ℹ [10/33] Replayed LinearSelection
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:109:0: 'LinearSelection.allMinima_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:110:0: 'LinearSelection.allMinima_order_independent' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:111:0: 'LinearSelection.bestFrom_spec' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:112:0: 'LinearSelection.selected_minimum' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:113:0: 'LinearSelection.selected_eligible_minimum' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././LinearSelection.lean:114:0: 'LinearSelection.counted_refines' depends on axioms: [propext]
+ℹ [11/33] Replayed ExecutableClosure
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [12/33] Replayed Composition
+info: ././.lake/packages/software-optimality/././Composition.lean:820:0: 'Optimality.closure_compound_finite' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:821:0: 'Optimality.closure_factors_left' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:822:0: 'Optimality.closure_factors_right' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:823:0: 'Optimality.factorization_needs_separation' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././Composition.lean:824:0: 'Optimality.hornDeriv_iff_closure' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Composition.lean:825:0: 'Optimality.frontier_covers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:826:0: 'Optimality.pruning_sound_pareto' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:827:0: 'Optimality.joint_frontier_in_local_frontiers' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:828:0: 'Optimality.reduced_product_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:829:0: 'Optimality.product_of_frontiers_not_joint' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Composition.lean:830:0: 'Optimality.strict_lift_needs_premise' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Composition.lean:831:0: 'Optimality.scalar_frontier_iff_allMinima' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:832:0: 'Optimality.frontier_respects_coverage' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Composition.lean:833:0: 'Optimality.class_tag_is_not_coverage' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././Composition.lean:834:0: 'Optimality.import_mismatch_blocks_transfer' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Composition.lean:835:0: 'Optimality.union_misses_cross_consequence' depends on axioms: [propext, Quot.sound]
+ℹ [13/33] Replayed OptimalityInterface
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:256:0: 'Optimality.dominates_iff_strictPareto' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:257:0: 'Optimality.paretoMaximal_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:258:0: 'Optimality.paretoMaximal_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:259:0: 'Optimality.guardedMaximal_sound' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:260:0: 'Optimality.paretoMaximal_can_regress' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:261:0: 'Optimality.not_per_execution_dominance' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././OptimalityInterface.lean:262:0: 'Optimality.refusal_regressing_frontier' depends on axioms: [propext, Quot.sound]
+ℹ [14/33] Replayed HypergraphIncremental
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [15/33] Replayed FiniteSchedules
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:169:0: 'FiniteSchedules.queueFeasible_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:170:0: 'FiniteSchedules.improvementCertificate_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:171:0: 'FiniteSchedules.accepted_improvement_if_checkerSound' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:172:0: 'FiniteSchedules.tuples_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:173:0: 'FiniteSchedules.enumerate_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:174:0: 'FiniteSchedules.feasible_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:175:0: 'FiniteSchedules.feasibleSchedules_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:176:0: 'FiniteSchedules.nondominatedInSuppliedFiniteList_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteSchedules.lean:177:0: 'FiniteSchedules.nondominatedInEnumeratedSchedulesUnderSuppliedIntegerCost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [16/33] Replayed EligibleSchedules
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:99:0: 'EligibleSchedules.timingOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:100:0: 'EligibleSchedules.timedAdmission_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:101:0: 'EligibleSchedules.eligible_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:102:0: 'EligibleSchedules.admittedNondominatedUnderSuppliedIntegerCost_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:103:0: 'EligibleSchedules.rejected_not_nondominated_under_supplied_integer_cost' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleSchedules.lean:104:0: 'EligibleSchedules.dominator_refutes_certificate' depends on axioms: [propext, Quot.sound]
+ℹ [17/33] Replayed EligibleCampaign
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:84:0: 'EligibleCampaign.linear_selector_agrees' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:85:0: 'EligibleCampaign.all_admitted' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:86:0: 'EligibleCampaign.chosen_nondominated_under_supplied_integer_cost' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:87:0: 'EligibleCampaign.chosen_nondominated_under_supplied_integer_cost_semantics' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:88:0: 'EligibleCampaign.exact_eligible_frontier' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:89:0: 'EligibleCampaign.counterfactual_admitted' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:90:0: 'EligibleCampaign.chosen_beats_counterfactual' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:91:0: 'EligibleCampaign.counterfactual_not_nondominated_under_supplied_integer_cost' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:92:0: 'EligibleCampaign.every_paired_counterfactual_slower' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././EligibleCampaign.lean:93:0: 'EligibleCampaign.synthetic_one_nanosecond_over_cap_rejected' does not depend on any axioms
+ℹ [18/33] Replayed ForeignCampaign
+info: ././.lake/packages/software-optimality/././ForeignCampaign.lean:304:0: 'ForeignCampaign.chosen_accepted' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ForeignCampaign.lean:305:0: 'ForeignCampaign.chosen_nondominated' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ForeignCampaign.lean:306:0: 'ForeignCampaign.modeled_improvement_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ForeignCampaign.lean:307:0: 'ForeignCampaign.receipt_metrics_match' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ForeignCampaign.lean:308:0: 'ForeignCampaign.complete_list_frontier' does not depend on any axioms
+ℹ [19/33] Replayed ComparisonContract
+info: ././.lake/packages/software-optimality/././ComparisonContract.lean:144:0: 'ComparisonContract.compareVia_semantic' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ComparisonContract.lean:145:0: 'ComparisonContract.direct_improvement' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ComparisonContract.lean:146:0: 'ComparisonContract.mismatch_refused' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ComparisonContract.lean:147:0: 'ComparisonContract.transported_meaning' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ComparisonContract.lean:148:0: 'ComparisonContract.compareVia_exact' depends on axioms: [propext, Quot.sound]
+ℹ [20/33] Replayed ScopedEvidence
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:139:0: 'ScopedEvidence.checkRequirement_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:140:0: 'ScopedEvidence.accepted_receipt_is_scoped' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:141:0: 'ScopedEvidence.qualify_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:142:0: 'ScopedEvidence.qualification_witnesses' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:143:0: 'ScopedEvidence.duplicate_match_rejected' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:144:0: 'ScopedEvidence.wrong_scope_rejected' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedEvidence.lean:145:0: 'ScopedEvidence.qualification_sound_relative' depends on axioms: [propext, Quot.sound]
+ℹ [21/33] Replayed ScopedSelection
+info: ././.lake/packages/software-optimality/././ScopedSelection.lean:71:0: 'ScopedSelection.selected_all_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedSelection.lean:72:0: 'ScopedSelection.selected_all_order_independent' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedSelection.lean:73:0: 'ScopedSelection.certified_scoped_nondominated_under_supplied_integer_cost' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedSelection.lean:74:0: 'ScopedSelection.selected_scoped_minimum' depends on axioms: [propext, Quot.sound]
+ℹ [22/33] Replayed Admission
+info: ././.lake/packages/software-optimality/././Admission.lean:196:0: 'Admission.normalized_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Admission.lean:197:0: 'Admission.normalized_nodup' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././Admission.lean:198:0: 'Admission.duplicate_idempotent' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././Admission.lean:199:0: 'Admission.payload_unique' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Admission.lean:200:0: 'Admission.withdrawal_survives_append' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Admission.lean:201:0: 'Admission.unauthorized_event_ignored' depends on axioms: [propext]
+ℹ [23/33] Replayed AdmissionHypergraph
+info: ././.lake/packages/software-optimality/././AdmissionHypergraph.lean:103:0: 'AdmissionHypergraph.scoped_root_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././AdmissionHypergraph.lean:104:0: 'AdmissionHypergraph.lineage_isolation' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././AdmissionHypergraph.lean:105:0: 'AdmissionHypergraph.qualification_same' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././AdmissionHypergraph.lean:106:0: 'AdmissionHypergraph.replay_idempotent' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././AdmissionHypergraph.lean:107:0: 'AdmissionHypergraph.merge_order_independent' depends on axioms: [propext]
+ℹ [24/33] Replayed FrontierComposition
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:188:0: 'FrontierComposition.checkCover_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:189:0: 'FrontierComposition.Cover.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:190:0: 'FrontierComposition.Cover.trans' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:191:0: 'FrontierComposition.Cover.flatMap' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:192:0: 'FrontierComposition.frontier_covers' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:193:0: 'FrontierComposition.checkCover_iff_same_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:194:0: 'FrontierComposition.certificate_iff_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:195:0: 'FrontierComposition.partition_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:196:0: 'FrontierComposition.pareto_transitive' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FrontierComposition.lean:197:0: 'FrontierComposition.pareto_irreflexive' depends on axioms: [propext, Quot.sound]
+ℹ [25/33] Replayed ScopedFrontier
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:744:0: 'ScopedFrontier.dominates_trans' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:745:0: 'ScopedFrontier.certified_generator_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:746:0: 'ScopedFrontier.checkCoverage_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:747:0: 'ScopedFrontier.certifyCovered_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:748:0: 'ScopedFrontier.certified_covered_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:749:0: 'ScopedFrontier.certifyReplacement_sound' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:750:0: 'ScopedFrontier.certified_feasible_generator_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:751:0: 'ScopedFrontier.checkQualification_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:752:0: 'ScopedFrontier.certified_feasible_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:753:0: 'ScopedFrontier.certifyFeasibleReplacement_sound' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:754:0: 'ScopedFrontier.incremental_generator_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:755:0: 'ScopedFrontier.incremental_feasible_generator_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:756:0: 'ScopedFrontier.certifyClosed_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:757:0: 'ScopedFrontier.certifyClosed_obligation_witness' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:858:0: 'ScopedFrontier.expected_requirement_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:859:0: 'ScopedFrontier.coordinate_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:860:0: 'ScopedFrontier.admitted_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:861:0: 'ScopedFrontier.admitted_obligation_witness' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:862:0: 'ScopedFrontier.admitted_coordinate_witness' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:863:0: 'ScopedFrontier.admitted_cost_witness' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:864:0: 'ScopedFrontier.typed_cost_agrees' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:865:0: 'ScopedFrontier.typed_dominance_agrees' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:866:0: 'ScopedFrontier.typed_direct_agrees' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:867:0: 'ScopedFrontier.wrong_metric_schema_rejected' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:868:0: 'ScopedFrontier.wrong_scope_rejected' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:869:0: 'ScopedFrontier.selected_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:870:0: 'ScopedFrontier.certified_select_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:871:0: 'ScopedFrontier.certified_retained_admitted' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:872:0: 'ScopedFrontier.certified_obligation_witness' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:873:0: 'ScopedFrontier.selected_has_no_qualified_dominator' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:874:0: 'ScopedFrontier.dominator_excludes' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:875:0: 'ScopedFrontier.selected_order_independent' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:876:0: 'ScopedFrontier.tied_member_retained' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:877:0: 'ScopedFrontier.noRegression_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:878:0: 'ScopedFrontier.incremental_selection_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:879:0: 'ScopedFrontier.admitted_provenance_selection_same' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:880:0: 'ScopedFrontier.replay_selection_idempotent' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ScopedFrontier.lean:881:0: 'ScopedFrontier.merge_selection_order_independent' depends on axioms: [propext, Quot.sound]
+ℹ [26/33] Replayed CanonicalDominance
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:308:0: 'CanonicalDominance.one_iff' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:309:0: 'CanonicalDominance.one_releaseLe_iff' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:310:0: 'CanonicalDominance.one_release_iff' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:311:0: 'CanonicalDominance.Pareto.local_dominates_iff_canonical' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:312:0: 'CanonicalDominance.Pareto.local_noWorse_iff_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:313:0: 'CanonicalDominance.Optimality.local_dominates_iff_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:314:0: 'CanonicalDominance.Optimality.local_dominatesBool_iff_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:315:0: 'CanonicalDominance.Optimality.local_noWorse_iff_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:316:0: 'CanonicalDominance.Optimality.noWorse_needs_observed' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:317:0: 'CanonicalDominance.Eligible.local_dominates_iff_canonical' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:318:0: 'CanonicalDominance.Foreign.local_dominates_iff_canonical' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:319:0: 'CanonicalDominance.Hypergraph.local_dominates_iff_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:320:0: 'CanonicalDominance.Hypergraph.refines_canonical' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:321:0: 'CanonicalDominance.Hypergraph.counterexample_eligible' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:322:0: 'CanonicalDominance.Hypergraph.negative_not_canonical' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:323:0: 'CanonicalDominance.Comparison.local_dominates_iff_canonical' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:324:0: 'CanonicalDominance.Comparison.negative_not_canonical' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:325:0: 'CanonicalDominance.Comparison.maximize_not_raw' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:326:0: 'CanonicalDominance.Scoped.minimize_iff_canonical' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././CanonicalDominance.lean:327:0: 'CanonicalDominance.Scoped.maximize_not_minimize' does not depend on any axioms
+✔ [32/33] Built IncrementalCert
+Build completed successfully.
+=== red: empty required passes the subset reading of C4 ===
+empty_required_passes_c4
+THEOREM IncrementalCert.extensive
+  upstream: Qualification.Derives.root
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.monotone
+  upstream: Qualification.monotone
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.idempotent
+  upstream: Qualification.idempotent
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.compounding
+  upstream: Qualification.compounding
+  local: IncrementalCert.certClose
+THEOREM IncrementalCert.evidence_cuts
+  upstream: 
+  local: IncrementalCert.consistentLength IncrementalCert.pow2_add IncrementalCert.indices_bounded IncrementalCert.IndependencePremise IncrementalCert.consistent_pow IncrementalCert.pow2
+THEOREM IncrementalCert.check_sound
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.changed IncrementalCert.check IncrementalCert.ReleasePred IncrementalCert.check_accept_iff IncrementalCert.accepted_sound IncrementalCert.Spec IncrementalCert.Prev IncrementalCert.accepted IncrementalCert.Verdict.accept IncrementalCert.Verdict
+THEOREM IncrementalCert.check_submitter_invariant
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.changed IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.Spec IncrementalCert.Prev IncrementalCert.blame IncrementalCert.accepted IncrementalCert.Verdict.accept IncrementalCert.Verdict
+THEOREM IncrementalCert.incremental_eq_scratch
+  upstream: 
+  local: IncrementalCert.behaviorAfter IncrementalCert.baseNeed IncrementalCert.behaviorMap
+THEOREM IncrementalCert.pareto_monotone_chain
+  upstream: SoftwareIsQuantifiable.Pareto.costSpace SoftwareIsQuantifiable.Interface.Profile SoftwareIsQuantifiable.Interface.dominates SoftwareIsQuantifiable.Pareto.profileOf SoftwareIsQuantifiable.Interface.releaseLe_trans SoftwareIsQuantifiable.Interface.releaseLe CanonicalDominance.Optimality.local_dominates_iff_canonical Optimality.paretoMaximal_exact Optimality.dominates Optimality.paretoMaximal Optimality.GeneratorCoverage.complete SoftwareIsQuantifiable.Pareto.PriorQualification.qualified SoftwareIsQuantifiable.Pareto.CostAxis Optimality.Point
+  local: IncrementalCert.StepAdmitted.single IncrementalCert.NoCoverageGaps IncrementalCert.not_optimality_dominates_self IncrementalCert.StepAdmitted.cons IncrementalCert.not_point_dominates IncrementalCert.NothingOutside IncrementalCert.StepAdmitted IncrementalCert.requiredOf IncrementalCert.RequiredNonempty IncrementalCert.StepAdmitted.casesOn IncrementalCert.Prev IncrementalCert.priorOf IncrementalCert.RequiredNonempty.nonempty
+THEOREM IncrementalCert.outside_dominates
+  upstream: Optimality.instDecidableDominates Optimality.dominates Optimality.paretoMaximal Optimality.Point
+  local: IncrementalCert.NothingOutside
+THEOREM IncrementalCert.coverage_gap_dominates
+  upstream: Optimality.instDecidableDominates Optimality.dominates Optimality.paretoMaximal Optimality.GeneratorCoverage.complete Optimality.Point
+  local: IncrementalCert.NoCoverageGaps
+THEOREM IncrementalCert.axes_change_hides_regression
+  upstream: SoftwareIsQuantifiable.Interface.axesLe SoftwareIsQuantifiable.Interface.Profile SoftwareIsQuantifiable.Interface.behaviorLe SoftwareIsQuantifiable.Interface.Profile.symbol SoftwareIsQuantifiable.Interface.Profile.readings SoftwareIsQuantifiable.Interface.Profile.mk SoftwareIsQuantifiable.Interface.Axis.polarity SoftwareIsQuantifiable.Interface.Axis SoftwareIsQuantifiable.Interface.Profile.observed SoftwareIsQuantifiable.Interface.measuresLe SoftwareIsQuantifiable.Interface.instDecidableAxesLe SoftwareIsQuantifiable.Interface.axisLe SoftwareIsQuantifiable.Interface.profilesAligned SoftwareIsQuantifiable.Interface.releaseLe SoftwareIsQuantifiable.Interface.uniqueSymbols SoftwareIsQuantifiable.Interface.Release SoftwareIsQuantifiable.Interface.noWorse SoftwareIsQuantifiable.Interface.Axis.mk SoftwareIsQuantifiable.Interface.Polarity.minimize SoftwareIsQuantifiable.Interface.aligned
+  local: IncrementalCert.selectedSpace IncrementalCert.oneAxis
+THEOREM IncrementalCert.not_per_execution
+  upstream: SoftwareIsQuantifiable.Pareto.not_per_execution_dominance
+  local: 
+THEOREM IncrementalCert.combined_iff
+  upstream: SoftwareIsQuantifiable.Pareto.BehaviorSubmission.offered SoftwareIsQuantifiable.Pareto.PriorQualification SoftwareIsQuantifiable.Pareto.BehaviorSubmission.mk SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost SoftwareIsQuantifiable.Pareto.PriorQualification.qualified
+  local: IncrementalCert.releaseLE IncrementalCert.combinedAdmission
+THEOREM IncrementalCert.feature_add_fails_releaseLE
+  upstream: SoftwareIsQuantifiable.Pareto.BehaviorSubmission.mk SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost SoftwareIsQuantifiable.Pareto.PriorQualification.mk
+  local: IncrementalCert.releaseLE
+THEOREM IncrementalCert.removal_fails_acceptsRelease
+  upstream: SoftwareIsQuantifiable.Pareto.BehaviorSubmission.mk SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost SoftwareIsQuantifiable.Pareto.PriorQualification.mk
+  local: IncrementalCert.releaseLE
+THEOREM IncrementalCert.empty_required_passes_c4
+  upstream: SoftwareIsQuantifiable.Pareto.BehaviorSubmission.mk SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost SoftwareIsQuantifiable.Pareto.PriorQualification.mk
+  local: IncrementalCert.releaseLE
+THEOREM IncrementalCert.omitted_refused
+  upstream: 
+  local: IncrementalCert.specLeak IncrementalCert.omitDelta IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.prevLib IncrementalCert.instDecidableEqVerdict IncrementalCert.Verdict
+THEOREM IncrementalCert.leak_unlabeled_refused
+  upstream: 
+  local: IncrementalCert.Delta.submittedRequired IncrementalCert.Delta IncrementalCert.Delta.submittedAllowed IncrementalCert.Delta.inspect IncrementalCert.omitDelta IncrementalCert.Delta.changed IncrementalCert.noObsHigh IncrementalCert.Delta.boundTime IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.prevLib IncrementalCert.Delta.mk IncrementalCert.Delta.symHigh IncrementalCert.instDecidableEqVerdict IncrementalCert.Delta.deps IncrementalCert.Delta.boundCompute IncrementalCert.specLabel IncrementalCert.Verdict
+THEOREM IncrementalCert.budget_raised_refused
+  upstream: 
+  local: IncrementalCert.budgetDelta IncrementalCert.prevNeed IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.specBudget IncrementalCert.instDecidableEqVerdict IncrementalCert.Verdict
+THEOREM IncrementalCert.nothing_refused
+  upstream: 
+  local: IncrementalCert.HoldsRequired IncrementalCert.ObsRelease.behavior IncrementalCert.nothing
+THEOREM IncrementalCert.required_is_prior
+  upstream: SoftwareIsQuantifiable.Pareto.PriorQualification.qualified
+  local: IncrementalCert.requiredOf IncrementalCert.Prev IncrementalCert.priorOf
+THEOREM IncrementalCert.allowed_is_spec
+  upstream: 
+  local: IncrementalCert.allowedOf IncrementalCert.Spec IncrementalCert.Spec.allowed
+THEOREM IncrementalCert.check_ignores_spec_required
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Spec.mk IncrementalCert.Spec.boundTime IncrementalCert.check IncrementalCert.Spec.boundCompute IncrementalCert.Spec.deps IncrementalCert.Spec.allow IncrementalCert.Spec.symbols IncrementalCert.Spec IncrementalCert.Spec.forb IncrementalCert.Prev IncrementalCert.Spec.allowed IncrementalCert.Spec.obsHigh IncrementalCert.Spec.symHigh IncrementalCert.Verdict
+THEOREM IncrementalCert.empty_behaviors_refused
+  upstream: 
+  local: IncrementalCert.prevNeed IncrementalCert.specBudget IncrementalCert.accepted
+THEOREM IncrementalCert.spec_required_empty_still_refused
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.submittedAllowed IncrementalCert.Delta.inspect IncrementalCert.Delta.obsHigh IncrementalCert.budgetDelta IncrementalCert.Spec.mk IncrementalCert.Spec.boundTime IncrementalCert.prevNeed IncrementalCert.Delta.boundTime IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.Spec.boundCompute IncrementalCert.Spec.deps IncrementalCert.Delta.mk IncrementalCert.Delta.symHigh IncrementalCert.Spec.allow IncrementalCert.specBudget IncrementalCert.instDecidableEqVerdict IncrementalCert.Delta.deps IncrementalCert.Spec.symbols IncrementalCert.Spec IncrementalCert.Delta.boundCompute IncrementalCert.Spec.forb IncrementalCert.Spec.allowed IncrementalCert.Spec.obsHigh IncrementalCert.Spec.symHigh IncrementalCert.Verdict
+THEOREM IncrementalCert.submitted_required_still_refused
+  upstream: 
+  local: IncrementalCert.Delta IncrementalCert.Delta.submittedAllowed IncrementalCert.Delta.inspect IncrementalCert.Delta.obsHigh IncrementalCert.budgetDelta IncrementalCert.prevNeed IncrementalCert.Delta.boundTime IncrementalCert.check IncrementalCert.Verdict.refuse IncrementalCert.Delta.mk IncrementalCert.Delta.symHigh IncrementalCert.specBudget IncrementalCert.instDecidableEqVerdict IncrementalCert.Delta.deps IncrementalCert.Delta.boundCompute IncrementalCert.Verdict
+THEOREM IncrementalCert.unordered_traces
+  upstream: 
+  local: IncrementalCert.allowedTrace
+THEOREM IncrementalCert.profile_cannot_see_flow
+  upstream: 
+  local: IncrementalCert.Reaches.casesOn IncrementalCert.Reaches.here IncrementalCert.noDeps IncrementalCert.Profile.mk IncrementalCert.flowBeh IncrementalCert.flowDeps IncrementalCert.Reaches IncrementalCert.Reaches.step IncrementalCert.Profile IncrementalCert.Profile.obs
+'IncrementalCert.Certificate.mk.inj' does not depend on any axioms
+'IncrementalCert.Certificate.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.Certificate.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.CoveragePremise.mediated' does not depend on any axioms
+'IncrementalCert.Delta.mk.inj' does not depend on any axioms
+'IncrementalCert.Delta.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.Delta.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.IndependencePremise.distinct' does not depend on any axioms
+'IncrementalCert.IndependencePremise.inRange' does not depend on any axioms
+'IncrementalCert.ObsRelease.mk.inj' does not depend on any axioms
+'IncrementalCert.ObsRelease.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.ObsRelease.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.Prev.mk.inj' does not depend on any axioms
+'IncrementalCert.Prev.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.Prev.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.Profile.mk.inj' does not depend on any axioms
+'IncrementalCert.Profile.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.Profile.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.RequiredNonempty.nonempty' does not depend on any axioms
+'IncrementalCert.Spec.mk.inj' does not depend on any axioms
+'IncrementalCert.Spec.mk.injEq' depends on axioms: [propext]
+'IncrementalCert.Spec.mk.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.StepAdmitted.brecOn' does not depend on any axioms
+'IncrementalCert.Verdict.accept.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.Verdict.refuse.inj' does not depend on any axioms
+'IncrementalCert.Verdict.refuse.injEq' depends on axioms: [propext]
+'IncrementalCert.Verdict.refuse.sizeOf_spec' does not depend on any axioms
+'IncrementalCert.accepted.eq_1' does not depend on any axioms
+'IncrementalCert.accepted_sound' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.accepted_sound._proof_5' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.accepted_sound._proof_6' depends on axioms: [propext]
+'IncrementalCert.accepted_sound._proof_7' depends on axioms: [propext]
+'IncrementalCert.accepted_sound._proof_8' depends on axioms: [propext]
+'IncrementalCert.agrees.eq_1' does not depend on any axioms
+'IncrementalCert.agrees.eq_2' does not depend on any axioms
+'IncrementalCert.agrees_split' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.agrees_split._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.allVecs.eq_1' does not depend on any axioms
+'IncrementalCert.allVecs.eq_2' does not depend on any axioms
+'IncrementalCert.allVecs_card' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.allVecs_card._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.allVecs_succ' does not depend on any axioms
+'IncrementalCert.allVecs_vec_length' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.allVecs_vec_length._proof_1' depends on axioms: [propext]
+'IncrementalCert.allVecs_vec_length._proof_2' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.allowed_is_spec' does not depend on any axioms
+'IncrementalCert.and_comm_mid' does not depend on any axioms
+'IncrementalCert.and_false' does not depend on any axioms
+'IncrementalCert.and_rot' does not depend on any axioms
+'IncrementalCert.and_true' does not depend on any axioms
+'IncrementalCert.axes_change_hides_regression' depends on axioms: [propext]
+'IncrementalCert.budget_raised_refused' does not depend on any axioms
+'IncrementalCert.check.eq_1' does not depend on any axioms
+'IncrementalCert.check_accept_iff' depends on axioms: [propext]
+'IncrementalCert.check_ignores_spec_required' does not depend on any axioms
+'IncrementalCert.check_sound' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.check_submitter_invariant' depends on axioms: [propext]
+'IncrementalCert.combinedAdmission.eq_1' depends on axioms: [propext]
+'IncrementalCert.combined_iff' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.compounding' does not depend on any axioms
+'IncrementalCert.compounding_not_pointwise_union' depends on axioms: [propext]
+'IncrementalCert.consistentLength.eq_1' does not depend on any axioms
+'IncrementalCert.consistent_pow' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.consistent_pow._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.consistent_pow._proof_2' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.consistent_pow._proof_3' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.consistent_pow._proof_4' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.consistent_pow._proof_5' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.consistent_singleton_of_coverage' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.coverage_gap_dominates' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.coverage_length' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.cycle_obs_once' does not depend on any axioms
+'IncrementalCert.duplicate_does_not_cut' does not depend on any axioms
+'IncrementalCert.empty_behaviors_refused' does not depend on any axioms
+'IncrementalCert.empty_required_passes_c4' depends on axioms: [propext]
+'IncrementalCert.eq_of_pairwise' depends on axioms: [propext]
+'IncrementalCert.eq_of_uniqueSymbols' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.evidence_cuts' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.extensive' does not depend on any axioms
+'IncrementalCert.feature_add_fails_releaseLE' depends on axioms: [propext]
+'IncrementalCert.filter_partition_length' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.filter_partition_length._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.filter_partition_length._proof_2' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.flowBeh.eq_1' does not depend on any axioms
+'IncrementalCert.flowDeps.eq_1' does not depend on any axioms
+'IncrementalCert.getD_append_last' depends on axioms: [propext]
+'IncrementalCert.getD_append_low' depends on axioms: [propext]
+'IncrementalCert.high_card' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.idempotent' does not depend on any axioms
+'IncrementalCert.incremental_eq_scratch' does not depend on any axioms
+'IncrementalCert.indices_bounded' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.leak_unlabeled_refused' does not depend on any axioms
+'IncrementalCert.length_filter_half' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.length_ge_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IncrementalCert.length_split' depends on axioms: [propext]
+'IncrementalCert.low_premise' depends on axioms: [propext]
+'IncrementalCert.monotone' does not depend on any axioms
+'IncrementalCert.noDeps.eq_1' does not depend on any axioms
+'IncrementalCert.nodup_lt_length' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.nodup_lt_length._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.not_earlier_dominates' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.not_isEmpty_ne' depends on axioms: [propext]
+'IncrementalCert.not_optimality_dominates_self' does not depend on any axioms
+'IncrementalCert.not_per_execution' depends on axioms: [propext]
+'IncrementalCert.not_point_dominates' depends on axioms: [propext]
+'IncrementalCert.not_point_dominates._proof_1' depends on axioms: [propext]
+'IncrementalCert.not_true_iff' depends on axioms: [propext]
+'IncrementalCert.nothing_refused' does not depend on any axioms
+'IncrementalCert.omitted_refused' does not depend on any axioms
+'IncrementalCert.outside_dominates' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pairwise_indices' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pareto_monotone_chain' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.partial_not_singleton' depends on axioms: [propext, Quot.sound, Classical.choice]
+'IncrementalCert.partial_not_singleton._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.partial_not_singleton._proof_2' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pow2.eq_1' does not depend on any axioms
+'IncrementalCert.pow2.eq_2' does not depend on any axioms
+'IncrementalCert.pow2_add' depends on axioms: [propext]
+'IncrementalCert.pow2_at_least_two' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pow2_at_least_two._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pow2_ge_one' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.pow2_ge_one._proof_1' depends on axioms: [propext, Quot.sound]
+'IncrementalCert.profile_cannot_see_flow' depends on axioms: [propext]
+'IncrementalCert.releaseLE.eq_1' does not depend on any axioms
+'IncrementalCert.removal_fails_acceptsRelease' depends on axioms: [propext]
+'IncrementalCert.required_is_prior' does not depend on any axioms
+'IncrementalCert.spec_required_empty_still_refused' does not depend on any axioms
+'IncrementalCert.submitted_required_still_refused' does not depend on any axioms
+'IncrementalCert.unordered_traces' depends on axioms: [propext]
+=== cli ===
+release-zero: accept
+release-one: refused app
+release-two: not-applied
+check passed

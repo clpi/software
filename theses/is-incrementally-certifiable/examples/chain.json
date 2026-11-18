@@ -1,0 +1,7 @@
+{
+  "steps": [
+    {"name": "release-zero", "behaviors": ["need"]},
+    {"name": "release-one", "behaviors": ["ok"]},
+    {"name": "release-two", "behaviors": ["need", "ok"]}
+  ]
+}
