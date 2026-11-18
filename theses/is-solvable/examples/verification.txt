@@ -1,0 +1,13 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(8,
+ 6,
+ some [RestoreEvidence.Fact.snapshot,
+  RestoreEvidence.Fact.checksum,
+  RestoreEvidence.Fact.replay,
+  RestoreEvidence.Fact.intact,
+  RestoreEvidence.Fact.restorable])
+'RestoreEvidence.minimum' does not depend on any axioms
+'RestoreEvidence.before_after' does not depend on any axioms
+'RestoreEvidence.reclosure_matters' does not depend on any axioms
+
+Rejected control: remove replay as a restore prerequisite (Lean exit 1).
