@@ -6,4 +6,5 @@ import SoftwareIsComposable.Composition
 import SoftwareIsComposable.Evidence
 import SoftwareIsComposable.Incremental
 import SoftwareIsComposable.Examples
+import SoftwareIsComposable.Bridge
 import SoftwareIsComposable.Axioms
