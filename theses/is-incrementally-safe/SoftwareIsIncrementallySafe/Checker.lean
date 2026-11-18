@@ -45,14 +45,54 @@ def coneExec (d : ExecDelta) : List String :=
 def directDeps (deps : List (String × String)) (s : String) : List String :=
   (deps.filter (fun e => e.fst == s)).map Prod.snd
 
-def reachable (deps : List (String × String)) (beh : String → List String)
-    (s : String) : Nat → List String
+def reachFuel (deps : List (String × String)) : Nat :=
+  (deps.length + 1) * (deps.length + 2)
+
+def collect (deps : List (String × String)) (beh : String → List String)
+    (todo seen : List String) : Nat → List String
   | 0 => []
   | n + 1 =>
-    beh s ++ List.flatMap (fun t => reachable deps beh t n) (directDeps deps s)
+    match todo with
+    | [] => []
+    | s :: rest =>
+      if seen.contains s then
+        collect deps beh rest seen n
+      else
+        beh s ++ collect deps beh (directDeps deps s ++ rest) (s :: seen) n
 
 def reachedObs (deps : List (String × String)) (beh : String → List String) (s : String) : List String :=
-  reachable deps beh s (deps.length + 1)
+  collect deps beh [s] [] (reachFuel deps)
+
+def cycleDeps : List (String × String) :=
+  [("a", "b"), ("b", "c"), ("c", "a"), ("a", "c"), ("b", "a"), ("c", "b")]
+
+def cycleBeh : String → List String
+  | "a" => ["oa"]
+  | "b" => ["ob"]
+  | "c" => ["oc"]
+  | _ => ["other"]
+
+theorem cycle_reached_once :
+    reachedObs cycleDeps cycleBeh "a" = ["oa", "ob", "oc"] := by
+  decide
+
+def denseSyms : List String :=
+  ["s0", "s1", "s2", "s3", "s4"]
+
+def denseDeps : List (String × String) :=
+  denseSyms.flatMap (fun a => denseSyms.map (fun b => (a, b)))
+
+def denseBeh : String → List String
+  | "s0" => ["o0"]
+  | "s1" => ["o1"]
+  | "s2" => ["o2"]
+  | "s3" => ["o3"]
+  | "s4" => ["o4"]
+  | _ => []
+
+theorem dense_reached_once :
+    reachedObs denseDeps denseBeh "s0" = ["o0", "o1", "o2", "o3", "o4"] := by
+  decide
 
 def isForbiddenHit (forb : List String) (beh : String → List String) (s : String) : Bool :=
   forb.contains s && !(beh s).isEmpty
@@ -240,6 +280,89 @@ theorem accept_imp_no_new_forbidden (forb : List String) (allow base : String �
 
 def depProp (deps : List (String × String)) : String → String → Prop :=
   fun s t => (s, t) ∈ deps
+
+def behProfile (beh : String → List String) : String → Profile String :=
+  fun s => ⟨fun o => o ∈ beh s⟩
+
+inductive SymReach (deps : List (String × String)) : String → String → Prop where
+  | refl {s : String} : SymReach deps s s
+  | step {s t u : String} : (s, t) ∈ deps → SymReach deps t u → SymReach deps s u
+
+theorem symReach_obs {deps : List (String × String)} {beh : String → List String}
+    {s u o : String} (h : SymReach deps s u) (ho : o ∈ beh u) :
+    Reaches (depProp deps) (behProfile beh) s o :=
+  SymReach.rec
+    (motive := fun s tgt _ => o ∈ beh tgt → Reaches (depProp deps) (behProfile beh) s o)
+    (fun {tgt} (ho : o ∈ beh tgt) => Reaches.here (by simpa [behProfile] using ho))
+    (fun {_ _ _} hdep _ ih ho => Reaches.step hdep (ih ho))
+    h ho
+
+theorem mem_directDeps {deps : List (String × String)} {s t : String} :
+    t ∈ directDeps deps s ↔ (s, t) ∈ deps := by
+  induction deps with
+  | nil => simp [directDeps]
+  | cons e es ih =>
+    cases e with
+    | mk a b =>
+      cases hb : a == s with
+      | true =>
+        have hs : a = s := (beq_iff_eq).mp hb
+        subst hs
+        simp [directDeps, List.filter_cons, hb, List.mem_cons, ih]
+      | false =>
+        have hne : a ≠ s := by
+          intro h
+          have : (a == s) = true := (beq_iff_eq).mpr h
+          rw [hb] at this
+          cases this
+        simp only [directDeps, List.filter_cons, hb]
+        constructor
+        · intro h
+          exact List.Mem.tail _ (ih.mp h)
+        · intro h
+          cases h with
+          | head => exact (hne rfl).elim
+          | tail _ h => exact ih.mpr h
+
+theorem collect_sym {deps : List (String × String)} {beh : String → List String}
+    {o : String} :
+    ∀ (fuel : Nat) (todo seen : List String),
+      o ∈ collect deps beh todo seen fuel →
+      ∃ u, o ∈ beh u ∧ ∃ t, t ∈ todo ∧ SymReach deps t u
+  | 0, _, _, h => by simp [collect] at h
+  | n + 1, [], _, h => by simp [collect] at h
+  | n + 1, s :: rest, seen, h => by
+    cases hseen : seen.contains s with
+    | true =>
+      have h' : o ∈ collect deps beh rest seen n := by
+        simpa only [collect, hseen] using h
+      rcases collect_sym n rest seen h' with ⟨u, hou, t, ht, hsym⟩
+      exact ⟨u, hou, t, List.Mem.tail _ ht, hsym⟩
+    | false =>
+      have h' : o ∈ beh s ++ collect deps beh (directDeps deps s ++ rest) (s :: seen) n := by
+        simpa only [collect, hseen] using h
+      rw [List.mem_append] at h'
+      cases h' with
+      | inl ho =>
+        exact ⟨s, ho, s, List.Mem.head _, SymReach.refl⟩
+      | inr ho =>
+        rcases collect_sym n (directDeps deps s ++ rest) (s :: seen) ho with ⟨u, hou, t, ht, hsym⟩
+        rw [List.mem_append] at ht
+        cases ht with
+        | inl hdir =>
+          exact ⟨u, hou, s, List.Mem.head _, SymReach.step (mem_directDeps.mp hdir) hsym⟩
+        | inr hrest =>
+          exact ⟨u, hou, t, List.Mem.tail _ hrest, hsym⟩
+
+theorem reachedObs_imp_reaches {deps : List (String × String)} {beh : String → List String}
+    {s o : String} (h : o ∈ reachedObs deps beh s) :
+    Reaches (depProp deps) (behProfile beh) s o := by
+  rcases collect_sym (reachFuel deps) [s] [] h with ⟨u, hou, t, ht, hsym⟩
+  cases ht with
+  | head =>
+    exact symReach_obs hsym hou
+  | tail _ hempty =>
+    exact (List.not_mem_nil hempty).elim
 
 def changedProp (seeds : List String) : String → Bool :=
   fun s => seeds.contains s
