@@ -145,15 +145,63 @@ theorem mut_drop_hOld :
 
 end AuditDependencyModules.Mutation
 
+/--
+info: 'AuditDependencyModules.cone_sound' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.cone_sound
+/--
+info: 'AuditDependencyModules.cone_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.cone_complete
+/--
+info: 'AuditDependencyModules.cone_affected' depends on axioms: [propext, Classical.choice, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.cone_affected
+/--
+info: 'AuditDependencyModules.closureHyp_is_inClosure' does not depend on any axioms
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.closureHyp_is_inClosure
+/--
+info: 'AuditDependencyModules.coneGood_is_affected' does not depend on any axioms
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.coneGood_is_affected
+/--
+info: 'AuditDependencyModules.same_profile_pareto' depends on axioms: [propext, Classical.choice, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.same_profile_pareto
+/--
+info: 'AuditDependencyModules.outputPoint_faithful' depends on axioms: [propext, Classical.choice, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.outputPoint_faithful
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_inClosure' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.Legacy.stringCone_iff_inClosure
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_affected' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.Legacy.stringCone_iff_affected
+/--
+info: 'AuditDependencyModules.Legacy.orderedCone_iff_affected' depends on axioms: [propext]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.Legacy.orderedCone_iff_affected
+/--
+info: 'AuditDependencyModules.Mutation.mut_drop_hLoc' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.Mutation.mut_drop_hLoc
+/--
+info: 'AuditDependencyModules.Mutation.mut_drop_hOld' depends on axioms: [propext]
+-/
+#guard_msgs in
 #print axioms AuditDependencyModules.Mutation.mut_drop_hOld
