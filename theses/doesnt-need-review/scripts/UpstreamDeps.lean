@@ -79,6 +79,8 @@ def headlines : Array Name := #[
   `SoftwareDoesntNeedReview.Boundary.outside_not_through_facts,
   `SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified,
   `SoftwareDoesntNeedReview.Boundary.redundant_under_premises,
+  `SoftwareDoesntNeedReview.Boundary.redundant_on_unicodeBad,
+  `SoftwareDoesntNeedReview.Boundary.empty_release_not_observed,
   `SoftwareDoesntNeedReview.Controls.control_before_misses,
   `SoftwareDoesntNeedReview.Controls.control_predicate_catches,
   `SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name,

@@ -27,6 +27,8 @@ import SoftwareDoesntNeedReview.Controls
 #print axioms SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise
 #print axioms SoftwareDoesntNeedReview.Boundary.outside_not_through_facts
 #print axioms SoftwareDoesntNeedReview.Boundary.redundant_under_premises
+#print axioms SoftwareDoesntNeedReview.Boundary.redundant_on_unicodeBad
+#print axioms SoftwareDoesntNeedReview.Boundary.empty_release_not_observed
 #print axioms SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified
 #print axioms SoftwareDoesntNeedReview.Controls.control_before_misses
 #print axioms SoftwareDoesntNeedReview.Controls.control_predicate_catches

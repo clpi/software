@@ -110,20 +110,19 @@ structure SpecRight where
   watched : List (Sym × Ax)
   exact : ∀ s a, watchedHas intended s a = watchedHas watched s a
 
-structure CellsObserved where
+structure CellsObserved (R : Release) where
   intended : List (Sym × Ax)
-  observed : ∀ (R : Release) (s : Sym) (a : Ax),
-    watchedHas intended s a = true → behaviorAt R s a ≠ none
+  observed : ∀ s a, watchedHas intended s a = true → behaviorAt R s a ≠ none
 
-theorem redundant_under_premises (spec : SpecRight) (cov : CellsObserved)
-    (R : Release) (s : Sym) (a : Ax)
+theorem redundant_under_premises (spec : SpecRight) (R : Release)
+    (cov : CellsObserved R) (s : Sym) (a : Ax)
     (hagree : cov.intended = spec.intended)
     (hint : watchedHas spec.intended s a = true)
     (hbad : behaviorAt R s a = some Status.bad) :
     refusesCell spec.watched R s a = true := by
   have hobs : behaviorAt R s a ≠ none := by
     have hmem : watchedHas cov.intended s a = true := by simpa [hagree] using hint
-    exact cov.observed R s a hmem
+    exact cov.observed s a hmem
   cases hbeh : behaviorAt R s a with
   | none => exact False.elim (hobs hbeh)
   | some st =>
@@ -135,6 +134,55 @@ theorem redundant_under_premises (spec : SpecRight) (cov : CellsObserved)
         simp [hbeh]
         rfl
       exact refuses_of_mem spec.watched R s a hw hb
+
+def parseIntended : List (Sym × Ax) :=
+  [(Sym.parse, Ax.roundtrip), (Sym.parse, Ax.unicode)]
+
+def specParse : SpecRight where
+  intended := parseIntended
+  watched := parseIntended
+  exact := fun _ _ => rfl
+
+def unicodeObserved : CellsObserved unicodeBad where
+  intended := parseIntended
+  observed := by
+    intro s a h
+    cases s with
+    | parse =>
+      cases a with
+      | roundtrip => decide
+      | unicode => decide
+      | bytes =>
+        have hf : watchedHas parseIntended Sym.parse Ax.bytes = false := by decide
+        rw [hf] at h
+        cases h
+    | serialize =>
+      cases a with
+      | roundtrip =>
+        have hf : watchedHas parseIntended Sym.serialize Ax.roundtrip = false := by decide
+        rw [hf] at h
+        cases h
+      | unicode =>
+        have hf : watchedHas parseIntended Sym.serialize Ax.unicode = false := by decide
+        rw [hf] at h
+        cases h
+      | bytes =>
+        have hf : watchedHas parseIntended Sym.serialize Ax.bytes = false := by decide
+        rw [hf] at h
+        cases h
+
+theorem redundant_on_unicodeBad :
+    refusesCell specParse.watched unicodeBad Sym.parse Ax.unicode = true :=
+  redundant_under_premises specParse unicodeBad unicodeObserved Sym.parse Ax.unicode rfl
+    (by decide) (by decide)
+
+theorem empty_release_not_observed (s : Sym) (a : Ax)
+    (h : watchedHas parseIntended s a = true)
+    (cov : CellsObserved { cells := [] }) (hagree : cov.intended = parseIntended) :
+    False := by
+  have hmem : watchedHas cov.intended s a = true := by simpa [hagree] using h
+  have hobs := cov.observed s a hmem
+  simp [behaviorAt] at hobs
 
 end Boundary
 

@@ -30,8 +30,8 @@ The require pulls `software-is-quantifiable` at `37917a4195efb1d0423a422ee954d76
 | An identifier witness is ledger coverage | DISPROVEN (`unrestricted_witness` together with `boundary_legacy_witness_insufficient`) |
 | The boundary certifier mediates its roster | DISPROVEN (`boundary_no_platform_premise`) |
 | Coverage: every roster execution is a validated ledger record | PREMISE (`coverage` takes `PlatformPremise`). Not implied by an identifier witness |
-| The watched axes are the intended axes, and every intended cell is observed | PREMISE (`SpecRight`, `CellsObserved`) |
-| Given `SpecRight` and `CellsObserved`, a bad intended cell is refused (`redundant_under_premises`). This does not discharge `PlatformPremise` | PROVEN |
+| The watched axes are the intended axes, and the release being certified observes every intended cell | PREMISE (`SpecRight`, `CellsObserved R`) |
+| Given those premises for a release, a bad intended cell of that release is refused (`redundant_under_premises`, inhabited by `redundant_on_unicodeBad`). This does not discharge `PlatformPremise` | PROVEN |
 | Elimination of manual review | PROPOSAL. It rests on the spec premise, the coverage premise, and on the criterion being a decidable profile predicate. See PROPOSAL.md |
 | Human review collapses into rubber stamping in practice | UNMEASURED |
 
