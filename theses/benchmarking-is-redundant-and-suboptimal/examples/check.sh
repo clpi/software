@@ -10,3 +10,4 @@ export LEAN_PATH="$build"
 "$lean_bin" -DwarningAsError=true -o "$build/Benchmark.olean" "Benchmark.lean" >/dev/null
 "$lean_bin" --version
 "$lean_bin" -DwarningAsError=true examples/ShardCampaign.lean
+sh examples/range-ledger/check.sh

@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The evidence model treats the seven scoped results as already validated. An independent fresh sample, changed venue, expired receipt, or stochastic measurement changes the obligation. Retrieval and aggregation time are outside the run-count objective.
+
+## Additional worked example
+
+[How many paired loads certify an affine cost comparison?](range-ledger/README.md)

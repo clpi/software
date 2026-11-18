@@ -1,0 +1,11 @@
+--- AffineCalibration.lean
++++ AffineCalibration.lean
+@@ -6,7 +6,7 @@
+ def gap (setup per : Int) (n : Nat) : Int := setup + per * n
+ 
+ theorem endpoints (setup per : Int) (limit : Nat) :
+-    (∀ n ≤ limit, gap setup per n ≤ 0) ↔ gap setup per 0 ≤ 0 ∧ gap setup per limit ≤ 0 := by
++    (∀ n ≤ limit, gap setup per n ≤ 0) ↔ gap setup per 0 ≤ 0 ∧ gap setup per 0 ≤ 0 := by
+   constructor
+   · intro all; exact ⟨all 0 (by omega),all limit (by omega)⟩
+   · rintro ⟨first,last⟩ n hn
