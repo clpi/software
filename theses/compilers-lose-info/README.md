@@ -28,7 +28,7 @@ verified.
 | Loss: the forgetting compiler is non-injective on the qualified quotient, with a concrete distinguishing pair, and admits no recovery map | verified — Loss.lean, gate green |
 | Preservation: the derivation-carrying compiler admits recovery of the qualified quotient from the artifact; premise cones exact from the artifact; joins commute at the topology | verified — Preservation.lean, gate green |
 | Completeness: carried artifact equal if and only if qualified quotients agree | verified — Completeness.lean, gate green |
-| Implications (IMPLICATIONS.md) | not yet written |
+| Implications (IMPLICATIONS.md) | written — four proven corollaries (cone-exact revalidation and test selection at the compiler level, certification without reconstruction, the foreign-toolchain impossibility), the rest labeled proposals with closing conditions |
 
 Premises the proof rests on are named in THESIS.md with their home pins —
 the family's proven results are cited, never re-proven, and the one

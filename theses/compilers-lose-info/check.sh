@@ -28,4 +28,6 @@ run_lean -o Basic.olean Basic.lean
 run_lean -o Loss.olean Loss.lean
 run_lean -o Preservation.olean Preservation.lean
 run_lean -o Completeness.olean Completeness.lean
+run_lean -o Implications.olean Implications.lean
 run_lean -o CompilersLoseInfo.olean CompilersLoseInfo.lean
+run_lean Axioms.lean
