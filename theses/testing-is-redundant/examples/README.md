@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 Downward closure must be justified separately for the implementation and venue. The optimization is for the threshold contract; a richer behavior specification can require more observations.
+
+## Additional worked example
+
+[The minimum exact basis for every interval query](range-ledger/README.md)
