@@ -1,0 +1,11 @@
+--- BridgeRepair.lean
++++ BridgeRepair.lean
+@@ -46,7 +46,7 @@
+ 
+ def recover (x y z : Int) (i : Fin 4) : Int := [0,x,x+y,x+y+z].getD i.val 0
+ theorem three_suffice (p : Fin 4 → Int) (i : Fin 4) :
+-    recover (value p ab) (value p bc) (value p cd) i = p i - p 0 := by
++    recover (value p ab) (value p ac) (value p cd) i = p i - p 0 := by
+   have cases4 : i = 0 ∨ i = 1 ∨ i = 2 ∨ i = 3 := by omega
+   rcases cases4 with rfl | rfl | rfl | rfl
+   · change 0 = p 0 - p 0; omega

@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 This fixture has one event per kind, one invoice, and a trusted route tag. The scan-based extractor still reads the journal; the saving is in evidence presented for inspection. Production correlation, timestamps, and event authentication need their own contracts.
+
+## Additional worked example
+
+[Restore tracing across disconnected telemetry islands](range-ledger/README.md)
