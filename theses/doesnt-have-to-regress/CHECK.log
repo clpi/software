@@ -1,13 +1,13 @@
 RED admit
-/tmp/tmp.viMJWXXeEi/Admitted.lean:1:8: error: declaration uses 'sorry'
+/tmp/tmp.0z2IHJ1ABF/Admitted.lean:1:8: error: declaration uses 'sorry'
 RED sorry
-/tmp/tmp.viMJWXXeEi/Sorry.lean:1:8: error: declaration uses 'sorry'
+/tmp/tmp.0z2IHJ1ABF/Sorry.lean:1:8: error: declaration uses 'sorry'
 RED regressed symbol and false acceptance
 RED refuse symbol (some emit)
 RED pure false
 RED equal false
 RED trade false
-/tmp/tmp.viMJWXXeEi/Red.lean:9:65: error: tactic 'decide' proved that the proposition
+/tmp/tmp.0z2IHJ1ABF/Red.lean:9:65: error: tactic 'decide' proved that the proposition
   accepts exInc exPure = true
 is false
 GREEN
@@ -17,7 +17,10 @@ info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Par
 info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:316:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:317:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_sound' depends on axioms: [propext]
 info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:318:0: 'SoftwareIsQuantifiable.Pareto.acceptsRelease_iff' depends on axioms: [propext, Quot.sound]
-ℹ [14/22] Replayed SoftwareDoesntRegress.Implications
+✔ [14/22] Built SoftwareIsQuantifiable.Pareto:c.o
+✔ [17/22] Built SoftwareIsComposable.Profile
+✔ [18/22] Built SoftwareIsComposable.Admission
+ℹ [20/22] Replayed SoftwareDoesntRegress.Implications
 info: ././././SoftwareDoesntRegress/Implications.lean:111:0: IMPLICATION SoftwareDoesntRegress.step_witness
 FROM SoftwareIsQuantifiable.Pareto.accepts, SoftwareIsQuantifiable.Pareto.accepts_iff
 PLUS SoftwareDoesntRegress.Bound.noWorse_iff, SoftwareDoesntRegress.Bound.noWorse_refl, SoftwareDoesntRegress.Bound.noWorse_refl._proof_1, SoftwareDoesntRegress.accepts_iff_parts, SoftwareDoesntRegress.accepts_iff_parts._proof_2, SoftwareDoesntRegress.behaviorsKept_iff, SoftwareDoesntRegress.boundsNoWorse_refl, SoftwareDoesntRegress.noRegress_refl, SoftwareDoesntRegress.profileNoRegress_iff, SoftwareDoesntRegress.profileNoRegress_refl, SoftwareDoesntRegress.step_noRegress

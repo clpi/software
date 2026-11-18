@@ -3,8 +3,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 export PATH="${HOME}/.elan/bin:${PATH}"
 
-if [ "$(cat vendor/software-is-composable/REVISION)" != "033c12c01299a9b28983bee410c230641adc7d1e" ]; then
-  echo "composable snapshot is not 033c12c0" >&2
+if ! grep -q '033c12c01299a9b28983bee410c230641adc7d1e' lakefile.lean lake-manifest.json; then
+  echo "composable require is not 033c12c01299a9b28983bee410c230641adc7d1e" >&2
   exit 1
 fi
 

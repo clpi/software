@@ -5,7 +5,7 @@ Lean 4.19.0, core only. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `nat
 Pinned inputs:
 
 - `software-is-quantifiable` `9f5ca06c0d5d92904f8509af676ab09ea5e0d79c`, module `SoftwareIsQuantifiable.Pareto`
-- `software-is-composable` `033c12c01299a9b28983bee410c230641adc7d1e` (`033c12c0`). This environment cannot clone that private repository. `vendor/software-is-composable` is `Profile.lean` and `Admission.lean` from that commit. `REVISION` is the commit. `check.sh` checks it.
+- `software-is-composable` `033c12c01299a9b28983bee410c230641adc7d1e` (`033c12c0`), `require`d from git. Admission is `SoftwareIsComposable.Admission`.
 
 `behaviorsKept_eq_composable` is `behaviorsKept = SoftwareIsComposable.accepts`. `composable_hi_of_boundsNoWorse` sends a both-endpoint `boundsNoWorse` step to that repository's upper-bound inequality. `accepts` here also requires a strict gain, so it is not `symbolAdmitted`.
 
