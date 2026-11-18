@@ -1,0 +1,11 @@
+--- NullableAggregate.lean
++++ NullableAggregate.lean
+@@ -16,7 +16,7 @@
+   | [] => none
+   | x::xs => plus x (sql xs)
+ def sum0 (xs : List (Option Int)) := (xs.map (fun x => x.getD 0)).sum
+-def seen (xs : List (Option Int)) := xs.any Option.isSome
++def seen (xs : List (Option Int)) := xs.all Option.isSome
+ def decode (s : Int) (present : Bool) : Option Int := if present then some s else none
+ 
+ theorem summary (xs : List (Option Int)) : decode (sum0 xs) (seen xs) = sql xs := by

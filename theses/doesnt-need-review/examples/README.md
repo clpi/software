@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The lower bound is the number of ambiguous reports, assuming an independent retirement fact per change. A trusted retirement record or shared evidence across changes changes that bound. SQLite 3.35+ is required for DROP COLUMN.
+
+## Additional worked example
+
+[What must survive a SQL SUM rewrite?](range-ledger/README.md)
