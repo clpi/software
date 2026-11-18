@@ -204,14 +204,40 @@ theorem f2_two_run :
       ReleaseSafe doorAuthority doorPrior stopOpenRelease [["stop", "open"]] noiseSys :=
   ⟨leak_not_releaseSafe, door_releaseSafe_stop_open⟩
 
-def profileOf (f : Bool → Bool → Prop) : Bool → Prop :=
-  fun o => ∃ s, f s o
+noncomputable def outputPoint (f : Bool → Bool → Prop) : Point :=
+  open Classical in
+  (if ∃ s, f s false then 1 else 0, if ∃ s, f s true then 1 else 0)
+
+theorem outputPoint_eq_iff (f g : Bool → Bool → Prop) :
+    outputPoint f = outputPoint g ↔ (fun o => ∃ s, f s o) = (fun o => ∃ s, g s o) := by
+  constructor
+  · intro h
+    have h1 := congrArg Prod.fst h
+    have h2 := congrArg Prod.snd h
+    simp only [outputPoint] at h1 h2
+    funext o
+    apply propext
+    cases o with
+    | false =>
+      by_cases hf : ∃ s, f s false <;> by_cases hg : ∃ s, g s false <;> simp_all
+    | true =>
+      by_cases hf : ∃ s, f s true <;> by_cases hg : ∃ s, g s true <;> simp_all
+  · intro h
+    have h0 : (∃ s, f s false) = (∃ s, g s false) := congrFun h false
+    have h1 : (∃ s, f s true) = (∃ s, g s true) := congrFun h true
+    simp only [outputPoint]
+    by_cases hf0 : ∃ s, f s false <;> by_cases hf1 : ∃ s, f s true <;>
+      simp only [hf0, hf1, ← h0, ← h1, if_true, if_false]
 
 def leakBit : Bool → Bool → Prop := fun s o => o = s
 
 def noiseBit : Bool → Bool → Prop := fun _ _ => True
 
-theorem same_profile : profileOf leakBit = profileOf noiseBit := by
+theorem same_profile :
+    SoftwareIsQuantifiable.Pareto.profileOf (outputPoint leakBit) =
+      SoftwareIsQuantifiable.Pareto.profileOf (outputPoint noiseBit) := by
+  apply congrArg
+  apply (outputPoint_eq_iff leakBit noiseBit).mpr
   funext o
   apply propext
   exact ⟨fun _ => ⟨o, trivial⟩, fun _ => ⟨o, rfl⟩⟩
@@ -230,6 +256,7 @@ theorem releaseLe_keeps_incumbent
 #print axioms c5_swap_does_not_yield_releaseSafe
 #print axioms leak_not_gm
 #print axioms f2_two_run
+#print axioms outputPoint_eq_iff
 #print axioms same_profile
 #print axioms releaseLe_keeps_incumbent
 #print axioms door_is_prefixClosed

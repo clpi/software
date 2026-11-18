@@ -1,30 +1,30 @@
+import SoftwareIsComposable.Incremental
+
+open SoftwareIsComposable
+
 namespace SoftwareIsIncrementallySafe
 
-inductive Cone (deps : List (String × String)) (seeds : List String) : String → Prop where
-  | root {s : String} : s ∈ seeds → Cone deps seeds s
-  | step {s t : String} : (s, t) ∈ deps → Cone deps seeds t → Cone deps seeds s
-
-def parentsOf : List (String × String) → List String → List String
+def parentsOf : List (Nat × Nat) → List Nat → List Nat
   | [], _ => []
   | e :: es, acc =>
     if acc.contains e.snd then e.fst :: parentsOf es acc else parentsOf es acc
 
-def expand (deps : List (String × String)) (acc : List String) : List String :=
+def expand (deps : List (Nat × Nat)) (acc : List Nat) : List Nat :=
   acc ++ (parentsOf deps acc).filter (fun s => !acc.contains s)
 
-def iterCone (deps : List (String × String)) (seeds : List String) : Nat → List String
+def iterCone (deps : List (Nat × Nat)) (seeds : List Nat) : Nat → List Nat
   | 0 => seeds
   | n + 1 => expand deps (iterCone deps seeds n)
 
-def coneExecOf (deps : List (String × String)) (seeds : List String) : List String :=
+def coneExecOf (deps : List (Nat × Nat)) (seeds : List Nat) : List Nat :=
   iterCone deps seeds (deps.length + seeds.length + 1)
 
-theorem expand_keeps {deps : List (String × String)} {acc : List String} {s : String}
+theorem expand_keeps {deps : List (Nat × Nat)} {acc : List Nat} {s : Nat}
     (h : s ∈ acc) : s ∈ expand deps acc := by
   simp [expand, List.mem_append, h]
 
-theorem iter_mono {deps : List (String × String)} {seeds : List String} :
-    ∀ {k n : Nat}, k ≤ n → ∀ {s : String},
+theorem iter_mono {deps : List (Nat × Nat)} {seeds : List Nat} :
+    ∀ {k n : Nat}, k ≤ n → ∀ {s : Nat},
       s ∈ iterCone deps seeds k → s ∈ iterCone deps seeds n := by
   intro k n hkn
   induction hkn with
@@ -34,7 +34,7 @@ theorem iter_mono {deps : List (String × String)} {seeds : List String} :
     rw [iterCone]
     exact expand_keeps (ih hs)
 
-theorem parents_mem {deps : List (String × String)} {acc : List String} {s : String}
+theorem parents_mem {deps : List (Nat × Nat)} {acc : List Nat} {s : Nat}
     (h : s ∈ parentsOf deps acc) : ∃ t, (s, t) ∈ deps ∧ t ∈ acc := by
   induction deps with
   | nil => cases h
@@ -59,7 +59,7 @@ theorem parents_mem {deps : List (String × String)} {acc : List String} {s : St
       rcases ih hs with ⟨t, hdep, ht⟩
       exact ⟨t, List.Mem.tail _ hdep, ht⟩
 
-theorem parents_edge {deps : List (String × String)} {acc : List String} {s t : String}
+theorem parents_edge {deps : List (Nat × Nat)} {acc : List Nat} {s t : Nat}
     (hedge : (s, t) ∈ deps) (ht : t ∈ acc) : s ∈ parentsOf deps acc := by
   induction deps with
   | nil => cases hedge
@@ -82,7 +82,7 @@ theorem parents_edge {deps : List (String × String)} {acc : List String} {s t :
         simp
         exact ih h
 
-theorem expand_edge {deps : List (String × String)} {acc : List String} {s t : String}
+theorem expand_edge {deps : List (Nat × Nat)} {acc : List Nat} {s t : Nat}
     (hedge : (s, t) ∈ deps) (ht : t ∈ acc) : s ∈ expand deps acc := by
   by_cases hs : s ∈ acc
   · exact expand_keeps hs
@@ -92,7 +92,7 @@ theorem expand_edge {deps : List (String × String)} {acc : List String} {s t : 
     refine Or.inr ⟨hp, ?_⟩
     simpa [List.contains_iff] using hc
 
-theorem added_from {deps : List (String × String)} {seeds : List String} {s : String} {k : Nat}
+theorem added_from {deps : List (Nat × Nat)} {seeds : List Nat} {s : Nat} {k : Nat}
     (hs : s ∈ iterCone deps seeds (k + 1)) (hnot : ¬ s ∈ iterCone deps seeds k) :
     ∃ t, (s, t) ∈ deps ∧ t ∈ iterCone deps seeds k := by
   rw [iterCone, expand, List.mem_append] at hs
@@ -102,7 +102,7 @@ theorem added_from {deps : List (String × String)} {seeds : List String} {s : S
     rcases parents_mem (List.mem_filter.mp h).1 with ⟨t, hdep, ht⟩
     exact ⟨t, hdep, ht⟩
 
-theorem mem_map_fst {deps : List (String × String)} {s t : String}
+theorem mem_map_fst {deps : List (Nat × Nat)} {s t : Nat}
     (h : (s, t) ∈ deps) : s ∈ deps.map Prod.fst := by
   induction deps with
   | nil => cases h
@@ -111,7 +111,7 @@ theorem mem_map_fst {deps : List (String × String)} {s t : String}
     | head => simp
     | tail _ h => simp [ih h]
 
-theorem nodup_subset_length {l c : List String} (nd : c.Nodup)
+theorem nodup_subset_length {l c : List Nat} (nd : c.Nodup)
     (hsub : ∀ x, x ∈ c → x ∈ l) : c.length ≤ l.length := by
   induction c generalizing l with
   | nil => exact Nat.zero_le _
@@ -186,21 +186,21 @@ theorem leastFrom_min (p : Nat → Bool) (i fuel j : Nat) (hj : i ≤ j)
       · simpa [hji] using hpi
       · exact ih (i + 1) (by omega) hlt
 
-def memIter (deps : List (String × String)) (seeds : List String) (s : String) (n : Nat) : Bool :=
+def memIter (deps : List (Nat × Nat)) (seeds : List Nat) (s : Nat) (n : Nat) : Bool :=
   (iterCone deps seeds n).contains s
 
-theorem memIter_iff (deps : List (String × String)) (seeds : List String) (s : String) (n : Nat) :
+theorem memIter_iff (deps : List (Nat × Nat)) (seeds : List Nat) (s : Nat) (n : Nat) :
     memIter deps seeds s n = true ↔ s ∈ iterCone deps seeds n := by
   simp [memIter, List.contains_iff]
 
-theorem exists_spine (deps : List (String × String)) (seeds : List String) (n : Nat) :
+theorem exists_spine (deps : List (Nat × Nat)) (seeds : List Nat) (n : Nat) :
     ∀ s, s ∈ iterCone deps seeds n → (∀ m, m < n → ¬ s ∈ iterCone deps seeds m) →
-      ∃ c : List String, c.length = n + 1 ∧ c.Nodup ∧
+      ∃ c : List Nat, c.length = n + 1 ∧ c.Nodup ∧
         (∀ x, x ∈ c → x ∈ iterCone deps seeds n) ∧
         (∀ x, x ∈ c → x ∈ seeds ++ deps.map Prod.fst) :=
   Nat.strongRecOn (motive := fun n => ∀ s, s ∈ iterCone deps seeds n →
       (∀ m, m < n → ¬ s ∈ iterCone deps seeds m) →
-      ∃ c : List String, c.length = n + 1 ∧ c.Nodup ∧
+      ∃ c : List Nat, c.length = n + 1 ∧ c.Nodup ∧
         (∀ x, x ∈ c → x ∈ iterCone deps seeds n) ∧
         (∀ x, x ∈ c → x ∈ seeds ++ deps.map Prod.fst)) n
     (fun n IH s hs hmin => by
@@ -264,37 +264,37 @@ theorem exists_spine (deps : List (String × String)) (seeds : List String) (n :
           | head => exact List.mem_append.mpr (Or.inr (mem_map_fst hedge))
           | tail _ hxc => exact hsub x hxc)
 
-theorem cone_in_iter {deps : List (String × String)} {seeds : List String} {s : String}
-    (h : Cone deps seeds s) : ∃ n, s ∈ iterCone deps seeds n := by
+theorem cone_in_iter {deps : List (Nat × Nat)} {seeds : List Nat} {s : Nat}
+    (h : InClosure deps seeds s) : ∃ n, s ∈ iterCone deps seeds n := by
   induction h with
-  | root hmem => exact ⟨0, by simpa [iterCone] using hmem⟩
+  | seed hmem => exact ⟨0, by simpa [iterCone] using hmem⟩
   | step hdep _ ih =>
     rcases ih with ⟨n, hn⟩
     exact ⟨n + 1, by rw [iterCone]; exact expand_edge hdep hn⟩
 
-theorem iter_cone_sound {deps : List (String × String)} {seeds : List String} (n : Nat)
-    {s : String} (h : s ∈ iterCone deps seeds n) : Cone deps seeds s := by
+theorem iter_cone_sound {deps : List (Nat × Nat)} {seeds : List Nat} (n : Nat)
+    {s : Nat} (h : s ∈ iterCone deps seeds n) : InClosure deps seeds s := by
   induction n generalizing s with
   | zero =>
     simp [iterCone] at h
-    exact Cone.root h
+    exact InClosure.seed h
   | succ n ih =>
     rw [iterCone, expand, List.mem_append] at h
     cases h with
     | inl hs => exact ih hs
     | inr hs =>
       rcases parents_mem (List.mem_filter.mp hs).1 with ⟨t, hdep, ht⟩
-      exact Cone.step hdep (ih ht)
+      exact InClosure.step hdep (ih ht)
 
-theorem coneExec_sound {deps : List (String × String)} {seeds : List String} {s : String}
-    (h : s ∈ coneExecOf deps seeds) : Cone deps seeds s :=
+theorem coneExec_sound {deps : List (Nat × Nat)} {seeds : List Nat} {s : Nat}
+    (h : s ∈ coneExecOf deps seeds) : InClosure deps seeds s :=
   iter_cone_sound _ (by
     have h' : s ∈ iterCone deps seeds (deps.length + seeds.length + 1) := by
       simpa [coneExecOf] using h
     exact h')
 
-theorem coneExec_complete {deps : List (String × String)} {seeds : List String} {s : String}
-    (h : Cone deps seeds s) : s ∈ coneExecOf deps seeds := by
+theorem coneExec_complete {deps : List (Nat × Nat)} {seeds : List Nat} {s : Nat}
+    (h : InClosure deps seeds s) : s ∈ coneExecOf deps seeds := by
   rcases cone_in_iter h with ⟨n0, hn0⟩
   let p := fun j => memIter deps seeds s j
   let n := leastFrom p 0 n0
@@ -316,40 +316,51 @@ theorem coneExec_complete {deps : List (String × String)} {seeds : List String}
     omega
   exact iter_mono hfuel (by simpa [coneExecOf] using hn)
 
-def ClosureHyp (deps : List (String × String)) (seeds inspected : List String) : Prop :=
-  ∀ s, Cone deps seeds s → s ∈ inspected
+theorem coneExec_iff_affected {deps : List (Nat × Nat)} {seeds : List Nat} {s : Nat} :
+    s ∈ coneExecOf deps seeds ↔
+      HypergraphIncremental.Affected (hyper [] deps) (hyper seeds deps) s :=
+  ⟨fun h => inClosure_iff_affected.mp (coneExec_sound h),
+    fun h => coneExec_complete (inClosure_iff_affected.mpr h)⟩
 
-theorem closureHyp_of_computed (deps : List (String × String)) (seeds : List String) :
+def ClosureHyp (deps : List (Nat × Nat)) (seeds inspected : List Nat) : Prop :=
+  ∀ s, InClosure deps seeds s → s ∈ inspected
+
+theorem closureHyp_of_computed (deps : List (Nat × Nat)) (seeds : List Nat) :
     ClosureHyp deps seeds (coneExecOf deps seeds) :=
   fun _ hs => coneExec_complete hs
 
 def releaseCalls (symbols : List Nat) : List (Nat × Nat) :=
   symbols.flatMap fun _ => []
 
-theorem closure_from_release (symbols : List Nat) (changed : List String) :
-    ClosureHyp (releaseCalls symbols |>.map fun e => (toString e.fst, toString e.snd)) changed
-      (coneExecOf (releaseCalls symbols |>.map fun e => (toString e.fst, toString e.snd)) changed) :=
+theorem closure_from_release (symbols : List Nat) (changed : List Nat) :
+    ClosureHyp (releaseCalls symbols) changed
+      (coneExecOf (releaseCalls symbols) changed) :=
   closureHyp_of_computed _ _
 
+abbrev configSym : Nat := 0
+
+abbrev workerSym : Nat := 1
+
 theorem f3_external_uses_closureHyp
-    (hClo : ClosureHyp [("worker", "config")] ["config"]
-      (coneExecOf [("worker", "config")] ["config"])) :
-    "worker" ∈ coneExecOf [("worker", "config")] ["config"] := by
-  have hcone : Cone [("worker", "config")] ["config"] "worker" :=
-    Cone.step (t := "config") (by simp) (Cone.root (by simp))
-  exact hClo "worker" hcone
+    (hClo : ClosureHyp [(workerSym, configSym)] [configSym]
+      (coneExecOf [(workerSym, configSym)] [configSym])) :
+    workerSym ∈ coneExecOf [(workerSym, configSym)] [configSym] := by
+  have hcone : InClosure [(workerSym, configSym)] [configSym] workerSym :=
+    InClosure.step (callee := configSym) (by simp) (InClosure.seed (by simp))
+  exact hClo workerSym hcone
 
 theorem f3_external_instance :
-    ClosureHyp [("worker", "config")] ["config"]
-      (coneExecOf [("worker", "config")] ["config"]) :=
+    ClosureHyp [(workerSym, configSym)] [configSym]
+      (coneExecOf [(workerSym, configSym)] [configSym]) :=
   closureHyp_of_computed _ _
 
 theorem f3_config_in_cone :
-    "worker" ∈ coneExecOf [("worker", "config")] ["config"] :=
+    workerSym ∈ coneExecOf [(workerSym, configSym)] [configSym] :=
   f3_external_uses_closureHyp f3_external_instance
 
 #print axioms coneExec_sound
 #print axioms coneExec_complete
+#print axioms coneExec_iff_affected
 #print axioms closureHyp_of_computed
 #print axioms closure_from_release
 #print axioms f3_external_uses_closureHyp
