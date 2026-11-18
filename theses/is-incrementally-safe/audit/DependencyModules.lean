@@ -86,6 +86,20 @@ theorem stringCone_iff_affected (e : Nat → String) (he : ∀ a b, e a = e b �
       HypergraphIncremental.Affected (hyper [] calls) (hyper seeds calls) s :=
   (stringCone_iff_inClosure e he calls seeds s).trans inClosure_iff_affected
 
+theorem stringCone_iff_inClosure_repr
+    (calls : List (Nat × Nat)) (seeds : List Nat) (s : Nat) :
+    StringCone (calls.map fun c => (Nat.repr c.1, Nat.repr c.2)) (seeds.map Nat.repr)
+        (Nat.repr s) ↔
+      InClosure calls seeds s :=
+  stringCone_iff_inClosure Nat.repr (fun _ _ => Nat.repr_injective) calls seeds s
+
+theorem stringCone_iff_affected_repr
+    (calls : List (Nat × Nat)) (seeds : List Nat) (s : Nat) :
+    StringCone (calls.map fun c => (Nat.repr c.1, Nat.repr c.2)) (seeds.map Nat.repr)
+        (Nat.repr s) ↔
+      HypergraphIncremental.Affected (hyper [] calls) (hyper seeds calls) s :=
+  stringCone_iff_affected Nat.repr (fun _ _ => Nat.repr_injective) calls seeds s
+
 theorem orderedCone_iff_affected {σ : Type} (deps : σ → σ → Prop) (changed : σ → Bool) (s : σ) :
     OrderedCone deps changed s ↔
       HypergraphIncremental.Affected (OrderedIncrement.depGraph deps fun _ => False)
@@ -190,6 +204,21 @@ info: 'AuditDependencyModules.Legacy.stringCone_iff_affected' depends on axioms:
 -/
 #guard_msgs in
 #print axioms AuditDependencyModules.Legacy.stringCone_iff_affected
+/--
+info: 'Nat.repr_injective' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms Nat.repr_injective
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_inClosure_repr' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms AuditDependencyModules.Legacy.stringCone_iff_inClosure_repr
+/--
+info: 'AuditDependencyModules.Legacy.stringCone_iff_affected_repr' depends on axioms: [propext, Quot.sound]
+-/
+#guard_msgs in
+#print axioms AuditDependencyModules.Legacy.stringCone_iff_affected_repr
 /--
 info: 'AuditDependencyModules.Legacy.orderedCone_iff_affected' depends on axioms: [propext]
 -/
