@@ -20,3 +20,8 @@ lean_lib «SoftwareIsIncrementallySafe»
 lean_lib «AuditDependencyModules» where
   srcDir := "audit"
   roots := #[`DependencyModules, `RenameReorderAxioms]
+
+@[default_target]
+lean_lib «NatReprExample» where
+  srcDir := "examples"
+  roots := #[`NatReprInjective]
