@@ -59,20 +59,47 @@ theorem oneSymbol
     exact ⟨hId, hValidOld, hValidNew, fun b hb => hiff.2.1 b (by simpa [priorOf] using hb),
       hLen, hHi⟩
 
-def bareOld : Release :=
-  { symbols := [{ id := 0, behaviors := [1], costs := [{ lo := 0, hi := 1 }] }] }
+def bare : SymbolProfile :=
+  { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 1 }] }
+
+def bareOld : Release := { symbols := [bare] }
 
 def bareNew : Release := bareOld
 
 theorem not_bare_releaseAdmitted_acceptsRelease :
-    ReleaseAdmitted bareOld bareNew ∧
+    bareOld.symbols = [bare] ∧
+      bareNew.symbols = [bare] ∧
+      bare.id = bare.id ∧
+      (∀ b ∈ bare.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ bare.costs, b.lo ≤ b.hi) ∧
+      bare.costs.length = bare.costs.length ∧
+      (∀ x ∈ bare.costs.zip bare.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      ¬ SoftwareIsQuantifiable.Pareto.noWorse (1, 0) (0, 0) ∧
+      ReleaseAdmitted bareOld bareNew ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 1 }] })
-        (submissionOf { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 1 }] })
-        (0, 0) (1, 0) = false := by
-  constructor
-  · exact (releaseAdmitted_iff (old := bareOld) (new := bareNew)).mp (by decide)
-  · decide
+        (priorOf bare) (submissionOf bare) (0, 0) (1, 0) = false ∧
+      ¬ (ReleaseAdmitted bareOld bareNew ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf bare) (submissionOf bare) (0, 0) (1, 0) = true) := by
+  have hAdm : ReleaseAdmitted bareOld bareNew := (releaseAdmitted_iff).mp (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf bare) (submissionOf bare) (0, 0) (1, 0) = false := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [bare] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [bare] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [bare] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact Bool.noConfusion ((hiff.mp hAdm).symm.trans hAcc)
 
 def sym : SymbolProfile :=
   { id := 0, behaviors := [1], costs := [{ lo := 0, hi := 2 }] }
@@ -121,56 +148,199 @@ theorem refused {old new : Release} (h : releaseAdmitted old new = false) :
   exact Bool.noConfusion (((releaseAdmitted_iff).mpr hadm).symm.trans h)
 
 theorem not_context :
-    ¬ ((1 : Nat) = 0) ∧
+    symR.symbols = [sym] ∧
+      symR.symbols = [sym] ∧
+      sym.id = sym.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = sym.costs.length ∧
+      (∀ x ∈ sym.costs.zip sym.costs, x.2.hi ≤ x.1.hi) ∧
+      ¬ ((1 : Nat) = 0) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ReleaseAdmitted symR symR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease (0 : Nat) (1 : Nat)
-        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = false := by
-  refine ⟨by decide, (releaseAdmitted_iff).mp (by decide), by decide⟩
+        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = false ∧
+      ¬ (ReleaseAdmitted symR symR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease (0 : Nat) (1 : Nat)
+            (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true) := by
+  have hAdm : ReleaseAdmitted symR symR := (releaseAdmitted_iff).mp (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease (0 : Nat) (1 : Nat)
+      (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = false := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, by decide, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact Bool.noConfusion ((hiff.mp hAdm).symm.trans hAcc)
 
 theorem not_upper :
-    ((sym.costs.zip raised.costs).any (fun x => decide (x.2.hi > x.1.hi))) = true ∧
+    symR.symbols = [sym] ∧
+      raisedR.symbols = [raised] ∧
+      sym.id = raised.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ raised.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = raised.costs.length ∧
+      ¬ (∀ x ∈ sym.costs.zip raised.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ¬ ReleaseAdmitted symR raisedR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf raised) (2, 2) (2, 2) = true := by
-  refine ⟨by decide, refused (by decide), by decide⟩
+        (priorOf sym) (submissionOf raised) (2, 2) (2, 2) = true ∧
+      ¬ (ReleaseAdmitted symR raisedR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf raised) (2, 2) (2, 2) = true) := by
+  have hAdm : ¬ ReleaseAdmitted symR raisedR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf raised) (2, 2) (2, 2) = true := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [raised] at hb
+    subst hb
+    decide
+  · intro h
+    have hle : (9 : Nat) ≤ 2 := h ({ lo := 0, hi := 2 }, { lo := 0, hi := 9 })
+      (by simp [sym, raised])
+    omega
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_point :
-    ¬ SoftwareIsQuantifiable.Pareto.noWorse (1, 0) (0, 0) ∧
+    symR.symbols = [sym] ∧
+      symR.symbols = [sym] ∧
+      sym.id = sym.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = sym.costs.length ∧
+      (∀ x ∈ sym.costs.zip sym.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      ¬ SoftwareIsQuantifiable.Pareto.noWorse (1, 0) (0, 0) ∧
       ReleaseAdmitted symR symR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf sym) (0, 0) (1, 0) = false := by
-  refine ⟨by decide, (releaseAdmitted_iff).mp (by decide), by decide⟩
+        (priorOf sym) (submissionOf sym) (0, 0) (1, 0) = false ∧
+      ¬ (ReleaseAdmitted symR symR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf sym) (0, 0) (1, 0) = true) := by
+  have hAdm : ReleaseAdmitted symR symR := (releaseAdmitted_iff).mp (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf sym) (0, 0) (1, 0) = false := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact Bool.noConfusion ((hiff.mp hAdm).symm.trans hAcc)
 
 theorem not_id :
-    sym.id ≠ shifted.id ∧
+    symR.symbols = [sym] ∧
+      shiftedR.symbols = [shifted] ∧
+      ¬ (sym.id = shifted.id) ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ shifted.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = shifted.costs.length ∧
+      (∀ x ∈ sym.costs.zip shifted.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ¬ ReleaseAdmitted symR shiftedR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf shifted) (2, 2) (2, 2) = true := by
-  refine ⟨by decide, refused (by decide), by decide⟩
+        (priorOf sym) (submissionOf shifted) (2, 2) (2, 2) = true ∧
+      ¬ (ReleaseAdmitted symR shiftedR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf shifted) (2, 2) (2, 2) = true) := by
+  have hAdm : ¬ ReleaseAdmitted symR shiftedR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf shifted) (2, 2) (2, 2) = true := by decide
+  refine ⟨rfl, rfl, by decide, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [shifted] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym, shifted] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_old_bounds :
-    ¬ (∀ b ∈ inverted.costs, b.lo ≤ b.hi) ∧
+    invertedR.symbols = [inverted] ∧
+      lowHiR.symbols = [lowHi] ∧
+      inverted.id = lowHi.id ∧
+      ¬ (∀ b ∈ inverted.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ lowHi.costs, b.lo ≤ b.hi) ∧
+      inverted.costs.length = lowHi.costs.length ∧
       (∀ x ∈ inverted.costs.zip lowHi.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (1, 1) (1, 1) ∧
       ¬ ReleaseAdmitted invertedR lowHiR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf inverted) (submissionOf lowHi) (1, 1) (1, 1) = true := by
-  refine ⟨?_, ?_, refused (by decide), by decide⟩
+        (priorOf inverted) (submissionOf lowHi) (1, 1) (1, 1) = true ∧
+      ¬ (ReleaseAdmitted invertedR lowHiR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf inverted) (submissionOf lowHi) (1, 1) (1, 1) = true) := by
+  have hAdm : ¬ ReleaseAdmitted invertedR lowHiR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf inverted) (submissionOf lowHi) (1, 1) (1, 1) = true := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
   · intro h
     have hle : (5 : Nat) ≤ 1 := h { lo := 5, hi := 1 } (by simp [inverted])
     omega
+  · intro b hb
+    simp [lowHi] at hb
+    subst hb
+    decide
   · intro x hx
     simp [inverted, lowHi] at hx
     subst hx
     decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_new_bounds :
-    (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+    symR.symbols = [sym] ∧
+      invertedR.symbols = [inverted] ∧
+      sym.id = inverted.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
       ¬ (∀ b ∈ inverted.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = inverted.costs.length ∧
       (∀ x ∈ sym.costs.zip inverted.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (1, 1) (1, 1) ∧
       ¬ ReleaseAdmitted symR invertedR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf inverted) (1, 1) (1, 1) = true := by
-  refine ⟨?_, ?_, ?_, refused (by decide), by decide⟩
+        (priorOf sym) (submissionOf inverted) (1, 1) (1, 1) = true ∧
+      ¬ (ReleaseAdmitted symR invertedR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf inverted) (1, 1) (1, 1) = true) := by
+  have hAdm : ¬ ReleaseAdmitted symR invertedR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf inverted) (1, 1) (1, 1) = true := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
   · intro b hb
     simp [sym] at hb
     subst hb
@@ -182,34 +352,113 @@ theorem not_new_bounds :
     simp [sym, inverted] at hx
     subst hx
     decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_length :
-    sym.costs.length ≠ longer.costs.length ∧
+    symR.symbols = [sym] ∧
+      longerR.symbols = [longer] ∧
+      sym.id = longer.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ longer.costs, b.lo ≤ b.hi) ∧
+      ¬ (sym.costs.length = longer.costs.length) ∧
       (∀ x ∈ sym.costs.zip longer.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ¬ ReleaseAdmitted symR longerR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf longer) (2, 2) (2, 2) = true := by
-  refine ⟨by decide, ?_, refused (by decide), by decide⟩
-  intro x hx
-  simp [sym, longer] at hx
-  subst hx
-  decide
+        (priorOf sym) (submissionOf longer) (2, 2) (2, 2) = true ∧
+      ¬ (ReleaseAdmitted symR longerR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf longer) (2, 2) (2, 2) = true) := by
+  have hAdm : ¬ ReleaseAdmitted symR longerR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf longer) (2, 2) (2, 2) = true := by decide
+  refine ⟨rfl, rfl, rfl, ?_, ?_, by decide, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [longer] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym, longer] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_old_list :
-    twoOld.symbols ≠ [sym] ∧
+    ¬ (twoOld.symbols = [sym]) ∧
       symR.symbols = [sym] ∧
+      sym.id = sym.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = sym.costs.length ∧
+      (∀ x ∈ sym.costs.zip sym.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ¬ ReleaseAdmitted twoOld symR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true := by
-  refine ⟨by decide, rfl, refused (by decide), by decide⟩
+        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true ∧
+      ¬ (ReleaseAdmitted twoOld symR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true) := by
+  have hAdm : ¬ ReleaseAdmitted twoOld symR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true := by decide
+  refine ⟨by decide, rfl, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem not_new_list :
-    hiddenR.symbols ≠ [sym] ∧
-      symR.symbols = [sym] ∧
+    symR.symbols = [sym] ∧
+      ¬ (hiddenR.symbols = [sym]) ∧
+      sym.id = sym.id ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      (∀ b ∈ sym.costs, b.lo ≤ b.hi) ∧
+      sym.costs.length = sym.costs.length ∧
+      (∀ x ∈ sym.costs.zip sym.costs, x.2.hi ≤ x.1.hi) ∧
+      ((() : Unit) = ()) ∧
+      SoftwareIsQuantifiable.Pareto.noWorse (2, 2) (2, 2) ∧
       ¬ ReleaseAdmitted symR hiddenR ∧
       SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
-        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true := by
-  refine ⟨by decide, rfl, refused (by decide), by decide⟩
+        (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true ∧
+      ¬ (ReleaseAdmitted symR hiddenR ↔
+          SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+            (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true) := by
+  have hAdm : ¬ ReleaseAdmitted symR hiddenR := refused (by decide)
+  have hAcc : SoftwareIsQuantifiable.Pareto.acceptsRelease () ()
+      (priorOf sym) (submissionOf sym) (2, 2) (2, 2) = true := by decide
+  refine ⟨rfl, by decide, rfl, ?_, ?_, rfl, ?_, rfl, by decide, hAdm, hAcc, ?_⟩
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro b hb
+    simp [sym] at hb
+    subst hb
+    decide
+  · intro x hx
+    simp [sym] at hx
+    subst hx
+    decide
+  · intro hiff
+    exact hAdm (hiff.mpr hAcc)
 
 theorem nothing_below
     (space : SoftwareIsQuantifiable.Interface.MeasureSpace Unit)
