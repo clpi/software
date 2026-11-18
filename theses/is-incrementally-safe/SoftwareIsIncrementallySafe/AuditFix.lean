@@ -14,6 +14,7 @@ def kindOf : String → NodeKind
   | _ => .code
 
 def appSpec : RepoSpec where
+  symbols := ["app", "lib"]
   deps := [("app", "lib")]
   allow
     | "lib" => ["net"]
@@ -49,6 +50,7 @@ theorem omitted_matches_honest :
   decide
 
 def leakSpec : RepoSpec where
+  symbols := ["handler"]
   deps := []
   allow := fun _ => ["secret_out"]
   symHigh := fun _ => false
@@ -82,6 +84,7 @@ theorem leak_label_ignored :
   decide
 
 def budgetSpec : RepoSpec where
+  symbols := ["lib"]
   deps := []
   allow := fun _ => ["a", "b", "c", "d"]
   symHigh := fun _ => false
@@ -115,6 +118,7 @@ theorem budget_field_ignored :
   decide
 
 def liveSpec : RepoSpec where
+  symbols := ["lib"]
   deps := []
   allow := fun _ => ["serve", "idle"]
   symHigh := fun _ => false
@@ -232,9 +236,10 @@ theorem behaviorAfter_fun (base : String → List String) (d1 d2 : ExecDelta)
 theorem check_submitter_invariant (spec : RepoSpec) (base : String → List String)
     (d1 d2 : ExecDelta) (h : d1.changed = d2.changed) :
     check spec base d1 = check spec base d2 := by
-  simp [check, scopeRequired, scopeForbidden, scopeUnsafe, paretoOK, changedCost,
-    specCone, changedSymbols, missingRequired, isForbiddenHit, isUnsafeObs, reachedObs,
-    behaviorAfter_fun base d1 d2 h, h]
+  cases d1
+  cases d2
+  cases h
+  rfl
 
 #print axioms omitted_refused
 #print axioms leak_unlabeled_refused

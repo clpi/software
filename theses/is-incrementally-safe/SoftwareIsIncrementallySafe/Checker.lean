@@ -47,6 +47,8 @@ inductive NodeKind where
   deriving DecidableEq, Repr, BEq
 
 structure RepoSpec where
+  /-- Complete authoritative symbol domain for this qualification snapshot. -/
+  symbols : List String
   deps : List (String × String)
   allow : String → List String
   symHigh : String → Bool
@@ -144,7 +146,8 @@ def scopeUnsafe (spec : RepoSpec) (base : String → List String) (d : ExecDelta
   (specCone spec d).find? (fun s =>
     isUnsafeObs spec.allow (behaviorAfter base d) spec.symHigh spec.obsHigh spec.deps s)
 
-def check (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Verdict String :=
+/-- Incomplete cone-only diagnostic, not release admission. Use `check`. -/
+def checkConeOnly (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Verdict String :=
   match scopeRequired spec base d with
   | some s => .refuse s
   | none =>
@@ -206,27 +209,27 @@ theorem find?_none_iff {α : Type} {p : α → Bool} {l : List α} :
     | false =>
       simp [List.find?, hp, ih]
 
-theorem check_accept_iff (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
-    check spec base d = Verdict.accept ↔
+theorem coneOnly_check_accept_iff (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    checkConeOnly spec base d = Verdict.accept ↔
       scopeRequired spec base d = none ∧
       scopeForbidden spec base d = none ∧
       scopeUnsafe spec base d = none ∧
       paretoOK spec d = true := by
   cases hreq : scopeRequired spec base d with
   | some _ =>
-    simp [check, hreq]
+    simp [checkConeOnly, hreq]
   | none =>
     cases hforb : scopeForbidden spec base d with
     | some _ =>
-      simp [check, hreq, hforb]
+      simp [checkConeOnly, hreq, hforb]
     | none =>
       cases hunsafe : scopeUnsafe spec base d with
       | some _ =>
-        simp [check, hreq, hforb, hunsafe]
+        simp [checkConeOnly, hreq, hforb, hunsafe]
       | none =>
         cases hp : paretoOK spec d with
         | true =>
-          simp [check, hreq, hforb, hunsafe, hp]
+          simp [checkConeOnly, hreq, hforb, hunsafe, hp]
         | false =>
           cases hc : changedSymbols d with
           | nil =>
@@ -235,11 +238,11 @@ theorem check_accept_iff (spec : RepoSpec) (base : String → List String) (d : 
             rw [hp] at hok
             cases hok
           | cons _ _ =>
-            simp [check, hreq, hforb, hunsafe, hp, hc]
+            simp [checkConeOnly, hreq, hforb, hunsafe, hp, hc]
 
-theorem check_refuse_iff (spec : RepoSpec) (base : String → List String)
+theorem coneOnly_check_refuse_iff (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String) :
-    check spec base d = Verdict.refuse name ↔
+    checkConeOnly spec base d = Verdict.refuse name ↔
       scopeRequired spec base d = some name ∨
       (scopeRequired spec base d = none ∧ scopeForbidden spec base d = some name) ∨
       (scopeRequired spec base d = none ∧ scopeForbidden spec base d = none ∧
@@ -249,19 +252,19 @@ theorem check_refuse_iff (spec : RepoSpec) (base : String → List String)
         (changedSymbols d).head? = some name) := by
   cases hreq : scopeRequired spec base d with
   | some _ =>
-    simp [check, hreq]
+    simp [checkConeOnly, hreq]
   | none =>
     cases hforb : scopeForbidden spec base d with
     | some _ =>
-      simp [check, hreq, hforb]
+      simp [checkConeOnly, hreq, hforb]
     | none =>
       cases hunsafe : scopeUnsafe spec base d with
       | some _ =>
-        simp [check, hreq, hforb, hunsafe]
+        simp [checkConeOnly, hreq, hforb, hunsafe]
       | none =>
         cases hp : paretoOK spec d with
         | true =>
-          simp [check, hreq, hforb, hunsafe, hp]
+          simp [checkConeOnly, hreq, hforb, hunsafe, hp]
         | false =>
           cases hc : changedSymbols d with
           | nil =>
@@ -270,32 +273,32 @@ theorem check_refuse_iff (spec : RepoSpec) (base : String → List String)
             rw [hp] at hok
             cases hok
           | cons _ _ =>
-            simp [check, hreq, hforb, hunsafe, hp, hc, List.head?]
+            simp [checkConeOnly, hreq, hforb, hunsafe, hp, hc, List.head?]
 
-theorem forbidden_refusal_names (spec : RepoSpec) (base : String → List String)
+theorem coneOnly_forbidden_refusal_names (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String)
     (hreq : scopeRequired spec base d = none)
     (hforb : scopeForbidden spec base d = some name) :
-    check spec base d = Verdict.refuse name ∧
+    checkConeOnly spec base d = Verdict.refuse name ∧
       name ∈ spec.forbidden ∧ behaviorAfter base d name ≠ [] ∧
       ∃ pre post, specCone spec d = pre ++ name :: post ∧
         ∀ t, t ∈ pre → isForbiddenHit spec.forbidden (behaviorAfter base d) t = false := by
-  have hcheck := (check_refuse_iff spec base d name).mpr (Or.inr (Or.inl ⟨hreq, hforb⟩))
+  have hcheck := (coneOnly_check_refuse_iff spec base d name).mpr (Or.inr (Or.inl ⟨hreq, hforb⟩))
   rcases List.find?_eq_some_iff_append.mp hforb with ⟨hhit, pre, post, hsplit, hpre⟩
   have hmem := (isForbiddenHit_iff spec.forbidden (behaviorAfter base d) name).mp hhit
   exact ⟨hcheck, hmem.1, hmem.2, pre, post, hsplit,
     fun t ht => (bool_not_true_iff_false _).mp (hpre t ht)⟩
 
-theorem accept_imp_pareto (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
-    (h : check spec base d = Verdict.accept) :
+theorem coneOnly_accept_imp_pareto (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : checkConeOnly spec base d = Verdict.accept) :
     paretoLE ⟨changedCost spec d, changedCost spec d⟩ ⟨spec.boundTime, spec.boundCompute⟩ :=
-  (paretoOK_iff spec d).mp ((check_accept_iff spec base d).mp h).2.2.2
+  (paretoOK_iff spec d).mp ((coneOnly_check_accept_iff spec base d).mp h).2.2.2
 
-theorem accept_imp_no_new_forbidden (spec : RepoSpec) (base : String → List String)
-    (d : ExecDelta) (h : check spec base d = Verdict.accept) :
+theorem coneOnly_accept_imp_no_new_forbidden (spec : RepoSpec) (base : String → List String)
+    (d : ExecDelta) (h : checkConeOnly spec base d = Verdict.accept) :
     ∀ s, s ∈ specCone spec d → s ∈ spec.forbidden → behaviorAfter base d s = [] := by
   intro s hs hmem
-  have hnone := ((check_accept_iff spec base d).mp h).2.1
+  have hnone := ((coneOnly_check_accept_iff spec base d).mp h).2.1
   have hfalse : isForbiddenHit spec.forbidden (behaviorAfter base d) s = false :=
     (find?_none_iff.mp (by simpa [scopeForbidden] using hnone)) s hs
   cases hbeh : behaviorAfter base d s with
@@ -447,17 +450,117 @@ theorem coneExec_sound (deps : List (String × String)) (seeds : List String) {s
     Cone (depProp deps) (changedProp seeds) s :=
   iter_cone (deps.length + seeds.length + 1) (by simpa [coneExecOf] using h)
 
-theorem checker_scope_in_cone (spec : RepoSpec) (base : String → List String)
+theorem coneOnly_checker_scope_in_cone (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String)
-    (h : check spec base d = Verdict.refuse name)
+    (h : checkConeOnly spec base d = Verdict.refuse name)
     (hreq : scopeRequired spec base d = none) :
     name ∈ specCone spec d ∨ (changedSymbols d).head? = some name := by
-  rcases (check_refuse_iff spec base d name).mp h with h | h | h | h
+  rcases (coneOnly_check_refuse_iff spec base d name).mp h with h | h | h | h
   · nomatch (hreq.symm.trans h)
   · rcases (List.find?_eq_some_iff_append.mp h.2).2 with ⟨pre, post, hsplit, _⟩
     exact Or.inl (by simp [hsplit])
   · rcases (List.find?_eq_some_iff_append.mp h.2.2).2 with ⟨pre, post, hsplit, _⟩
     exact Or.inl (by simp [hsplit])
   · exact Or.inr h.2.2.2.2
+
+
+/-- Structural admission is computed from RepoSpec, never applicant metadata.
+Unknown symbols, duplicate updates and malformed graph endpoints fail closed. -/
+def wellScoped (spec : RepoSpec) (d : ExecDelta) : Prop :=
+  (changedSymbols d).Nodup ∧
+  (∀ x ∈ changedSymbols d, x ∈ spec.symbols) ∧
+  (∀ e ∈ spec.deps, e.1 ∈ spec.symbols ∧ e.2 ∈ spec.symbols)
+
+instance (spec : RepoSpec) (d : ExecDelta) : Decidable (wellScoped spec d) := by
+  unfold wellScoped
+  infer_instance
+
+/-- Finite envelope validation closes the reverse bridge not implied by
+`reachedObs_imp_reaches`. Exhausting fuel cannot silently under-qualify. -/
+def closedEnvelope (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Prop :=
+  (∀ x ∈ spec.symbols, ∀ o ∈ behaviorAfter base d x,
+    o ∈ reachedObs spec.deps (behaviorAfter base d) x) ∧
+  (∀ e ∈ spec.deps, ∀ o ∈ reachedObs spec.deps (behaviorAfter base d) e.2,
+    o ∈ reachedObs spec.deps (behaviorAfter base d) e.1)
+
+instance (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    Decidable (closedEnvelope spec base d) := by
+  unfold closedEnvelope
+  infer_instance
+
+/-- Full-snapshot obligations, including baseline symbols outside the delta cone.
+Required observations are possibility retention, not eventual-response liveness. -/
+def fullObligations (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Prop :=
+  ∀ x ∈ spec.symbols,
+    (∀ o ∈ spec.required x, o ∈ behaviorAfter base d x) ∧
+    (x ∈ spec.forbidden → reachedObs spec.deps (behaviorAfter base d) x = []) ∧
+    (∀ o ∈ reachedObs spec.deps (behaviorAfter base d) x,
+      o ∈ spec.allow x ∧ (spec.symHigh x = false → spec.obsHigh o = false))
+
+instance (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    Decidable (fullObligations spec base d) := by
+  unfold fullObligations
+  infer_instance
+
+def admissionCondition (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Prop :=
+  wellScoped spec d ∧ closedEnvelope spec base d ∧ fullObligations spec base d ∧
+    paretoOK spec d = true
+
+instance (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    Decidable (admissionCondition spec base d) := by
+  unfold admissionCondition
+  infer_instance
+
+/-- Diagnostic ordering only. Acceptance is controlled by admissionCondition. -/
+def refusalName (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : String :=
+  ((spec.symbols.find? (fun x => missingRequired spec base d x ||
+    isForbiddenHit spec.forbidden (reachedObs spec.deps (behaviorAfter base d)) x ||
+    isUnsafeObs spec.allow (behaviorAfter base d) spec.symHigh spec.obsHigh spec.deps x))).getD
+      ((changedSymbols d).headD "<snapshot>")
+
+/-- Canonical release admission: a full authoritative snapshot check. Repository
+extraction/authentication and actual observation-cost meaning remain external. -/
+def check (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Verdict String :=
+  if admissionCondition spec base d then .accept else .refuse (refusalName spec base d)
+
+theorem check_accept_iff (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    check spec base d = .accept ↔ admissionCondition spec base d := by
+  unfold check
+  split <;> simp_all
+
+theorem accepted_envelope (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = .accept) {x o : String} (hx : x ∈ spec.symbols)
+    (hr : Reaches (depProp spec.deps) (behProfile (behaviorAfter base d)) x o) :
+    o ∈ reachedObs spec.deps (behaviorAfter base d) x := by
+  have ha := (check_accept_iff spec base d).mp h
+  induction hr with
+  | here hd => exact ha.2.1.1 _ hx _ hd
+  | step hd _ ih => exact ha.2.1.2 _ hd _ (ih (ha.1.2.2 _ hd).2)
+
+theorem accepted_reachability (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = .accept) {x o : String} (hx : x ∈ spec.symbols)
+    (hr : Reaches (depProp spec.deps) (behProfile (behaviorAfter base d)) x o) :
+    o ∈ spec.allow x ∧ (spec.symHigh x = false → spec.obsHigh o = false) :=
+  (((check_accept_iff spec base d).mp h).2.2.1 x hx).2.2 o
+    (accepted_envelope spec base d h hx hr)
+
+theorem accepted_required (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = .accept) :
+    ∀ x ∈ spec.symbols, ∀ o ∈ spec.required x, o ∈ behaviorAfter base d x :=
+  fun x hx => (((check_accept_iff spec base d).mp h).2.2.1 x hx).1
+
+theorem accepted_forbidden_no_reaches (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = .accept) {x o : String} (hx : x ∈ spec.symbols)
+    (hf : x ∈ spec.forbidden) :
+    ¬ Reaches (depProp spec.deps) (behProfile (behaviorAfter base d)) x o := by
+  intro hr
+  have hm := accepted_envelope spec base d h hx hr
+  rw [(((check_accept_iff spec base d).mp h).2.2.1 x hx).2.1 hf] at hm
+  cases hm
+
+theorem accept_imp_pareto (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = .accept) :
+    paretoLE ⟨changedCost spec d, changedCost spec d⟩ ⟨spec.boundTime, spec.boundCompute⟩ :=
+  (paretoOK_iff spec d).mp ((check_accept_iff spec base d).mp h).2.2.2
 
 end SoftwareIsIncrementallySafe

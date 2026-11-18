@@ -3,6 +3,7 @@ import SoftwareIsIncrementallySafe.Checker
 namespace SoftwareIsIncrementallySafe
 
 def evilSpec : RepoSpec where
+  symbols := ["unsafe_exec"]
   deps := []
   allow := fun _ => []
   symHigh := fun _ => false
@@ -28,6 +29,7 @@ theorem evil_refused :
   decide
 
 def benignSpec : RepoSpec where
+  symbols := ["logger"]
   deps := []
   allow := fun _ => ["write"]
   symHigh := fun _ => false

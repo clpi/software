@@ -4,3 +4,5 @@ import SoftwareIsIncrementallySafe.Security
 import SoftwareIsIncrementallySafe.Checker
 import SoftwareIsIncrementallySafe.Example
 import SoftwareIsIncrementallySafe.AuditFix
+import SoftwareIsIncrementallySafe.RunAdmission
+import SoftwareIsIncrementallySafe.FullSnapshotAudit

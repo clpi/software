@@ -1,3 +1,6 @@
+/- Adapted audit: C1-C3 now require refusal under independent RepoSpec.
+Original pinned file is retained verbatim in audit/fixtures/.
+C4-C6 remain counterexamples to overbroad profile semantics. -/
 /-
   Independent counterexamples for clpi/software-is-incrementally-safe
   (branch cursor/incremental-safety-0f5e @ de1b30716e2b), which also carries
@@ -31,8 +34,8 @@ def honest : ExecDelta where
 
 def omitted : ExecDelta := { honest with deps := [], inspect := ["lib"] }
 
-theorem honest_refused : check [] allow (fun _ => []) honest = .refuse "app" := by decide
-theorem omitted_accepted : check [] allow (fun _ => []) omitted = .accept := by decide
+theorem honest_refused : check appSpec (fun _ => []) honest = .refuse "app" := by decide
+theorem omitted_refused : check appSpec (fun _ => []) omitted = .refuse "app" := by decide
 
 /-! ## C2. The submitter also declares which observations are secret.
 A low symbol reaching "secret_out" is refused when the delta marks it high,
@@ -50,8 +53,8 @@ def leakUnlabeled : ExecDelta := { leakHonest with obsHigh := fun _ => false }
 
 def allowAll : String → List String := fun _ => ["secret_out"]
 
-theorem leak_refused : check [] allowAll (fun _ => []) leakHonest = .refuse "handler" := by decide
-theorem leak_accepted : check [] allowAll (fun _ => []) leakUnlabeled = .accept := by decide
+theorem leak_refused : check leakSpec (fun _ => []) leakHonest = .refuse "handler" := by decide
+theorem leak_unlabeled_refused : check leakSpec (fun _ => []) leakUnlabeled = .refuse "handler" := by decide
 
 /-! ## C3. The cost budget is also part of the submitted delta. -/
 def bigChange : ExecDelta where
@@ -64,10 +67,10 @@ def bigChange : ExecDelta where
   boundCompute := 1
 
 theorem over_budget_refused :
-    check [] (fun _ => ["a", "b", "c", "d"]) (fun _ => []) bigChange = .refuse "lib" := by decide
-theorem budget_raised_accepted :
-    check [] (fun _ => ["a", "b", "c", "d"]) (fun _ => [])
-      { bigChange with boundTime := 1000, boundCompute := 1000 } = .accept := by decide
+    check budgetSpec (fun _ => []) bigChange = .refuse "lib" := by decide
+theorem budget_raised_refused :
+    check budgetSpec (fun _ => [])
+      { bigChange with boundTime := 1000, boundCompute := 1000 } = .refuse "lib" := by decide
 
 /-! ## C4. A release that does nothing is maximally "safe" and "monotone".
 Deleting every behavior satisfies every allow-list, every NI condition and
@@ -116,9 +119,9 @@ theorem noise_hides : ∀ s o, noise s o := fun _ _ => trivial
 
 end AuditCounterexamples
 
-#print axioms AuditCounterexamples.omitted_accepted
-#print axioms AuditCounterexamples.leak_accepted
-#print axioms AuditCounterexamples.budget_raised_accepted
+#print axioms AuditCounterexamples.omitted_refused
+#print axioms AuditCounterexamples.leak_unlabeled_refused
+#print axioms AuditCounterexamples.budget_raised_refused
 #print axioms AuditCounterexamples.nothing_safe
 #print axioms AuditCounterexamples.allowedTrace_swap
 #print axioms AuditCounterexamples.same_profile
