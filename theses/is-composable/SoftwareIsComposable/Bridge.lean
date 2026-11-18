@@ -20,7 +20,7 @@ def admittedBySpec {B Context : Type} [DecidableEq B] [DecidableEq Context]
     SoftwareIsQuantifiable.Pareto.acceptsRelease baselineContext candidateContext
       prior submission inc out = true
 
-theorem releaseAdmitted_iff_acceptsRelease
+theorem oneSymbol
     {Context : Type} [DecidableEq Context]
     {old new : SymbolProfile} {oldR newR : Release}
     {baselineContext candidateContext : Context}
