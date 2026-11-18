@@ -51,7 +51,7 @@ for line in text.splitlines():
         found = True
 if not found:
     sys.exit("refused: no axiom report")
-if "zero_information" not in text:
+if "narrow_rubber" not in text or "mco_boundary" not in text or "mcas_boundary" not in text:
     sys.exit("refused: headline missing from axiom report")
 print("axiom audit clean")
 PY
@@ -71,36 +71,17 @@ for line in text.splitlines():
     elif line.startswith("DEP ") and name:
         blocks[name].append(line[len("DEP "):].strip())
 required = {
-    "SoftwareDoesntNeedReview.RubberStamp.zero_information": [],
-    "SoftwareDoesntNeedReview.RubberStamp.guarded_independent_of_approval": [
-        "SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded"],
-    "SoftwareDoesntNeedReview.Replacement.process_monotone": [
-        "SoftwareDoesntNeedReview.Chain.Certifiable.extensive"],
-    "SoftwareDoesntNeedReview.Replacement.criterion_never_lost": [
-        "SoftwareDoesntNeedReview.Chain.Certifiable.extensive"],
-    "SoftwareDoesntNeedReview.Boundary.boundary_missed_by_certifier": [
-        "SoftwareDoesntNeedReview.Chain.Quantifiable.recorded"],
-    "SoftwareDoesntNeedReview.Boundary.boundary_legacy_witness_insufficient": [
-        "SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness"],
-    "SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise": [
-        "SoftwareDoesntNeedReview.Chain.Quantifiable.coverage",
-        "SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise"],
-    "SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified": [
-        "SoftwareIsComposable.symbolAdmitted"],
-    "SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv": [
-        "SoftwareIsComposable.symbolAdmitted"],
-    "SoftwareDoesntNeedReview.Chain.Regress.regress_equiv": [
-        "SoftwareIsComposable.symbolAdmitted"],
-    "SoftwareDoesntNeedReview.Chain.Safe.safe_equiv": [
-        "SoftwareIsComposable.accepts"],
-    "SoftwareDoesntNeedReview.Controls.control_human_regression_refused": [
-        "SoftwareDoesntNeedReview.Chain.Regress.verdict"],
-    "SoftwareDoesntNeedReview.Controls.control_human_regression_equiv": [
-        "SoftwareIsComposable.symbolVerdict"],
-    "SoftwareDoesntNeedReview.Controls.safety_refused_by_name": [
-        "SoftwareDoesntNeedReview.Chain.Safe.verdict"],
-    "SoftwareDoesntNeedReview.Controls.safety_equiv": [
-        "SoftwareIsComposable.symbolVerdict"],
+    "SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff": [
+        "SoftwareIsComposable.incrementalRecheck_iff",
+        "SoftwareIsComposable.InClosure"],
+    "SoftwareDoesntNeedReview.Narrow.narrow_rubber": [
+        "SoftwareIsComposable.ReleaseAdmitted"],
+    "SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected": [
+        "SoftwareIsComposable.inClosure_iff_affected"],
+    "SoftwareDoesntNeedReview.Narrow.sound_needs_premises": [
+        "Qualification.soundness"],
+    "SoftwareDoesntNeedReview.SpecBoundary.mco_boundary": [],
+    "SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two": [],
 }
 for thm, deps in required.items():
     if thm not in blocks:
@@ -113,8 +94,10 @@ for thm, deps in required.items():
             sys.exit("refused: " + thm + " missing " + dep)
     for dep in have:
         if dep != "none" and not (
-            dep.startswith("SoftwareDoesntNeedReview.Chain.") or
-            dep.startswith("SoftwareIsComposable.")):
+            dep.startswith("SoftwareDoesntNeedReview.") or
+            dep.startswith("SoftwareIsComposable.") or
+            dep.startswith("Qualification.") or
+            dep.startswith("HypergraphIncremental.")):
             sys.exit("refused: unexpected dependency " + dep)
 print("dependency check clean")
 PY

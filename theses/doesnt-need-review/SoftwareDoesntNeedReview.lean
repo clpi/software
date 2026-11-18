@@ -7,4 +7,6 @@ import SoftwareDoesntNeedReview.Mechanize
 import SoftwareDoesntNeedReview.Replacement
 import SoftwareDoesntNeedReview.Boundary
 import SoftwareDoesntNeedReview.Controls
+import SoftwareDoesntNeedReview.Narrow
+import SoftwareDoesntNeedReview.SpecBoundary
 import SoftwareDoesntNeedReview.Audit

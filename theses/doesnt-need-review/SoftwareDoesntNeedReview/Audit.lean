@@ -3,6 +3,8 @@ import SoftwareDoesntNeedReview.Mechanize
 import SoftwareDoesntNeedReview.Replacement
 import SoftwareDoesntNeedReview.Boundary
 import SoftwareDoesntNeedReview.Controls
+import SoftwareDoesntNeedReview.Narrow
+import SoftwareDoesntNeedReview.SpecBoundary
 
 #print axioms SoftwareDoesntNeedReview.RubberStamp.zero_information
 #print axioms SoftwareDoesntNeedReview.RubberStamp.veto_empties
@@ -38,4 +40,13 @@ import SoftwareDoesntNeedReview.Controls
 #print axioms SoftwareDoesntNeedReview.Controls.safety_equiv
 #print axioms SoftwareDoesntNeedReview.Controls.control_incomplete_passes
 #print axioms SoftwareDoesntNeedReview.Controls.safety_refused_by_name
+#print axioms SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected
+#print axioms SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff
+#print axioms SoftwareDoesntNeedReview.Narrow.narrow_rubber
+#print axioms SoftwareDoesntNeedReview.Narrow.sound_needs_premises
+#print axioms SoftwareDoesntNeedReview.SpecBoundary.mco_boundary
+#print axioms SoftwareDoesntNeedReview.SpecBoundary.mco_rule_invalid
+#print axioms SoftwareDoesntNeedReview.SpecBoundary.mcas_boundary
+#print axioms SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two
+#print axioms SoftwareDoesntNeedReview.SpecBoundary.mcas_rule_invalid
 #print axioms SoftwareDoesntNeedReview.Chain.Quantifiable.coverage

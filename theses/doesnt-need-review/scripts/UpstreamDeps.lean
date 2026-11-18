@@ -1,5 +1,7 @@
 import Lean
 import SoftwareDoesntNeedReview.Audit
+import SoftwareDoesntNeedReview.Narrow
+import SoftwareDoesntNeedReview.SpecBoundary
 
 open Lean Elab Command
 
@@ -14,7 +16,9 @@ def followName (n : Name) : Bool :=
 def chainName (n : Name) : Bool :=
   let s := n.toString
   s.startsWith "SoftwareDoesntNeedReview.Chain." ||
-    s.startsWith "SoftwareIsComposable."
+    s.startsWith "SoftwareIsComposable." ||
+    s.startsWith "Qualification." ||
+    s.startsWith "HypergraphIncremental."
 
 partial def chase (env : Environment) (fuel : Nat) (stack : List Name)
     (seen : NameSet) (hits : Array Name) : Array Name :=
@@ -94,7 +98,16 @@ def headlines : Array Name := #[
   `SoftwareDoesntNeedReview.Chain.Quantifiable.coverage,
   `SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness,
   `SoftwareDoesntNeedReview.Chain.Quantifiable.missing_empty,
-  `SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded_iff
+  `SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded_iff,
+  `SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected,
+  `SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff,
+  `SoftwareDoesntNeedReview.Narrow.narrow_rubber,
+  `SoftwareDoesntNeedReview.Narrow.sound_needs_premises,
+  `SoftwareDoesntNeedReview.SpecBoundary.mco_boundary,
+  `SoftwareDoesntNeedReview.SpecBoundary.mco_rule_invalid,
+  `SoftwareDoesntNeedReview.SpecBoundary.mcas_boundary,
+  `SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two,
+  `SoftwareDoesntNeedReview.SpecBoundary.mcas_rule_invalid
 ]
 
 elab "emit_deps" : command => do
