@@ -151,7 +151,7 @@ info: 'AuditDependencyModules.cone_sound' depends on axioms: [propext, Quot.soun
 #guard_msgs in
 #print axioms AuditDependencyModules.cone_sound
 /--
-info: 'AuditDependencyModules.cone_complete' depends on axioms: [propext, Quot.sound]
+info: 'AuditDependencyModules.cone_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
 -/
 #guard_msgs in
 #print axioms AuditDependencyModules.cone_complete
