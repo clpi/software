@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The recovered property is the pair of source-choice flags. Recovering all source text, constants, or an arbitrary provenance DAG would require a different observation contract.
+
+## Additional worked example
+
+[Eliminate canceled endpoint loads while preserving provenance](range-ledger/README.md)
