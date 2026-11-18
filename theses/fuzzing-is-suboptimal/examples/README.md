@@ -25,3 +25,7 @@ The [verification transcript](verification.txt) includes the observed outputs an
 ## Scope
 
 The baseline is exhaustive raw enumeration, and the objective is distinct successful commands. The example makes no estimate of random-fuzzer runtime or fault-finding power.
+
+## Additional worked example
+
+[Generate one interval per actual routing behavior](range-ledger/README.md)
