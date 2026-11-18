@@ -39,8 +39,30 @@ def iterCone (deps : List (String × String)) (acc : List String) : Nat → List
   | 0 => acc
   | n + 1 => expand deps (iterCone deps acc n)
 
-def coneExec (d : ExecDelta) : List String :=
-  iterCone d.deps (changedSymbols d) (d.deps.length + (changedSymbols d).length + 1)
+inductive NodeKind where
+  | code
+  | context
+  | configuration
+  | data
+  deriving DecidableEq, Repr, BEq
+
+structure RepoSpec where
+  deps : List (String × String)
+  allow : String → List String
+  symHigh : String → Bool
+  obsHigh : String → Bool
+  boundTime : Nat
+  boundCompute : Nat
+  required : String → List String
+  obsCost : String → Nat
+  forbidden : List String
+  kind : String → NodeKind
+
+def coneExecOf (deps : List (String × String)) (seeds : List String) : List String :=
+  iterCone deps seeds (deps.length + seeds.length + 1)
+
+def specCone (spec : RepoSpec) (d : ExecDelta) : List String :=
+  coneExecOf spec.deps (changedSymbols d)
 
 def directDeps (deps : List (String × String)) (s : String) : List String :=
   (deps.filter (fun e => e.fst == s)).map Prod.snd
@@ -102,33 +124,37 @@ def isUnsafeObs (allow : String → List String) (beh : String → List String)
   let got := reachedObs deps beh s
   got.any (fun o => !(allow s).contains o) || (!symHigh s && got.any obsHigh)
 
-def changedCost (d : ExecDelta) : Nat :=
-  d.changed.foldl (fun n p => n + p.snd.length) 0
+def changedCost (spec : RepoSpec) (d : ExecDelta) : Nat :=
+  d.changed.foldl (fun n p => n + p.snd.foldl (fun m o => m + spec.obsCost o) 0) 0
 
-def paretoOK (d : ExecDelta) : Bool :=
-  decide (changedCost d ≤ d.boundTime) && decide (changedCost d ≤ d.boundCompute)
+def paretoOK (spec : RepoSpec) (d : ExecDelta) : Bool :=
+  decide (changedCost spec d ≤ spec.boundTime) &&
+    decide (changedCost spec d ≤ spec.boundCompute)
 
-def scopeMiss (d : ExecDelta) : Option String :=
-  (coneExec d).find? (fun s => !d.inspect.contains s)
+def missingRequired (spec : RepoSpec) (base : String → List String) (d : ExecDelta) (s : String) : Bool :=
+  (spec.required s).any (fun o => !(behaviorAfter base d s).contains o)
 
-def scopeForbidden (forb : List String) (base : String → List String) (d : ExecDelta) : Option String :=
-  (coneExec d).find? (fun s => isForbiddenHit forb (behaviorAfter base d) s)
+def scopeRequired (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Option String :=
+  (specCone spec d).find? (fun s => missingRequired spec base d s)
 
-def scopeUnsafe (allow base : String → List String) (d : ExecDelta) : Option String :=
-  (coneExec d).find? (fun s =>
-    isUnsafeObs allow (behaviorAfter base d) d.symHigh d.obsHigh d.deps s)
+def scopeForbidden (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Option String :=
+  (specCone spec d).find? (fun s => isForbiddenHit spec.forbidden (behaviorAfter base d) s)
 
-def check (forb : List String) (allow base : String → List String) (d : ExecDelta) : Verdict String :=
-  match scopeMiss d with
+def scopeUnsafe (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Option String :=
+  (specCone spec d).find? (fun s =>
+    isUnsafeObs spec.allow (behaviorAfter base d) spec.symHigh spec.obsHigh spec.deps s)
+
+def check (spec : RepoSpec) (base : String → List String) (d : ExecDelta) : Verdict String :=
+  match scopeRequired spec base d with
   | some s => .refuse s
   | none =>
-    match scopeForbidden forb base d with
+    match scopeForbidden spec base d with
     | some s => .refuse s
     | none =>
-      match scopeUnsafe allow base d with
+      match scopeUnsafe spec base d with
       | some s => .refuse s
       | none =>
-        if paretoOK d then
+        if paretoOK spec d then
           .accept
         else
           match changedSymbols d with
@@ -145,7 +171,8 @@ theorem isForbiddenHit_iff (forb : List String) (beh : String → List String) (
     isForbiddenHit forb beh s = true ↔ s ∈ forb ∧ beh s ≠ [] := by
   simp [isForbiddenHit, Bool.and_eq_true, List.contains_iff, not_isEmpty_iff]
 
-theorem changedCost_of_nil {d : ExecDelta} (h : d.changed = []) : changedCost d = 0 := by
+theorem changedCost_of_nil {spec : RepoSpec} {d : ExecDelta} (h : d.changed = []) :
+    changedCost spec d = 0 := by
   simp [changedCost, h]
 
 theorem changedSymbols_nil {d : ExecDelta} (h : changedSymbols d = []) : d.changed = [] := by
@@ -153,12 +180,13 @@ theorem changedSymbols_nil {d : ExecDelta} (h : changedSymbols d = []) : d.chang
   | nil => rfl
   | cons _ _ => simp [changedSymbols, hchg] at h
 
-theorem paretoOK_zero {d : ExecDelta} (h : changedCost d = 0) : paretoOK d = true := by
+theorem paretoOK_zero {spec : RepoSpec} {d : ExecDelta} (h : changedCost spec d = 0) :
+    paretoOK spec d = true := by
   simp [paretoOK, h, decide_eq_true_iff, Nat.zero_le]
 
-theorem paretoOK_iff (d : ExecDelta) :
-    paretoOK d = true ↔
-      paretoLE ⟨changedCost d, changedCost d⟩ ⟨d.boundTime, d.boundCompute⟩ := by
+theorem paretoOK_iff (spec : RepoSpec) (d : ExecDelta) :
+    paretoOK spec d = true ↔
+      paretoLE ⟨changedCost spec d, changedCost spec d⟩ ⟨spec.boundTime, spec.boundCompute⟩ := by
   simp [paretoOK, paretoLE, Bool.and_eq_true, decide_eq_true_iff]
 
 theorem find?_none_iff {α : Type} {p : α → Bool} {l : List α} :
@@ -178,103 +206,103 @@ theorem find?_none_iff {α : Type} {p : α → Bool} {l : List α} :
     | false =>
       simp [List.find?, hp, ih]
 
-theorem check_accept_iff (forb : List String) (allow base : String → List String) (d : ExecDelta) :
-    check forb allow base d = Verdict.accept ↔
-      scopeMiss d = none ∧
-      scopeForbidden forb base d = none ∧
-      scopeUnsafe allow base d = none ∧
-      paretoOK d = true := by
-  cases hmiss : scopeMiss d with
+theorem check_accept_iff (spec : RepoSpec) (base : String → List String) (d : ExecDelta) :
+    check spec base d = Verdict.accept ↔
+      scopeRequired spec base d = none ∧
+      scopeForbidden spec base d = none ∧
+      scopeUnsafe spec base d = none ∧
+      paretoOK spec d = true := by
+  cases hreq : scopeRequired spec base d with
   | some _ =>
-    simp [check, hmiss]
+    simp [check, hreq]
   | none =>
-    cases hforb : scopeForbidden forb base d with
+    cases hforb : scopeForbidden spec base d with
     | some _ =>
-      simp [check, hmiss, hforb]
+      simp [check, hreq, hforb]
     | none =>
-      cases hunsafe : scopeUnsafe allow base d with
+      cases hunsafe : scopeUnsafe spec base d with
       | some _ =>
-        simp [check, hmiss, hforb, hunsafe]
+        simp [check, hreq, hforb, hunsafe]
       | none =>
-        cases hp : paretoOK d with
+        cases hp : paretoOK spec d with
         | true =>
-          simp [check, hmiss, hforb, hunsafe, hp]
+          simp [check, hreq, hforb, hunsafe, hp]
         | false =>
           cases hc : changedSymbols d with
           | nil =>
-            have hok : paretoOK d = true :=
+            have hok : paretoOK spec d = true :=
               paretoOK_zero (changedCost_of_nil (changedSymbols_nil hc))
             rw [hp] at hok
             cases hok
           | cons _ _ =>
-            simp [check, hmiss, hforb, hunsafe, hp, hc]
+            simp [check, hreq, hforb, hunsafe, hp, hc]
 
-theorem check_refuse_iff (forb : List String) (allow base : String → List String)
+theorem check_refuse_iff (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String) :
-    check forb allow base d = Verdict.refuse name ↔
-      scopeMiss d = some name ∨
-      (scopeMiss d = none ∧ scopeForbidden forb base d = some name) ∨
-      (scopeMiss d = none ∧ scopeForbidden forb base d = none ∧
-        scopeUnsafe allow base d = some name) ∨
-      (scopeMiss d = none ∧ scopeForbidden forb base d = none ∧
-        scopeUnsafe allow base d = none ∧ paretoOK d = false ∧
+    check spec base d = Verdict.refuse name ↔
+      scopeRequired spec base d = some name ∨
+      (scopeRequired spec base d = none ∧ scopeForbidden spec base d = some name) ∨
+      (scopeRequired spec base d = none ∧ scopeForbidden spec base d = none ∧
+        scopeUnsafe spec base d = some name) ∨
+      (scopeRequired spec base d = none ∧ scopeForbidden spec base d = none ∧
+        scopeUnsafe spec base d = none ∧ paretoOK spec d = false ∧
         (changedSymbols d).head? = some name) := by
-  cases hmiss : scopeMiss d with
+  cases hreq : scopeRequired spec base d with
   | some _ =>
-    simp [check, hmiss]
+    simp [check, hreq]
   | none =>
-    cases hforb : scopeForbidden forb base d with
+    cases hforb : scopeForbidden spec base d with
     | some _ =>
-      simp [check, hmiss, hforb]
+      simp [check, hreq, hforb]
     | none =>
-      cases hunsafe : scopeUnsafe allow base d with
+      cases hunsafe : scopeUnsafe spec base d with
       | some _ =>
-        simp [check, hmiss, hforb, hunsafe]
+        simp [check, hreq, hforb, hunsafe]
       | none =>
-        cases hp : paretoOK d with
+        cases hp : paretoOK spec d with
         | true =>
-          simp [check, hmiss, hforb, hunsafe, hp]
+          simp [check, hreq, hforb, hunsafe, hp]
         | false =>
           cases hc : changedSymbols d with
           | nil =>
-            have hok : paretoOK d = true :=
+            have hok : paretoOK spec d = true :=
               paretoOK_zero (changedCost_of_nil (changedSymbols_nil hc))
             rw [hp] at hok
             cases hok
           | cons _ _ =>
-            simp [check, hmiss, hforb, hunsafe, hp, hc, List.head?]
+            simp [check, hreq, hforb, hunsafe, hp, hc, List.head?]
 
-theorem forbidden_refusal_names (forb : List String) (allow base : String → List String)
+theorem forbidden_refusal_names (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String)
-    (hmiss : scopeMiss d = none)
-    (hforb : scopeForbidden forb base d = some name) :
-    check forb allow base d = Verdict.refuse name ∧
-      name ∈ forb ∧ behaviorAfter base d name ≠ [] ∧
-      ∃ pre post, coneExec d = pre ++ name :: post ∧
-        ∀ t, t ∈ pre → isForbiddenHit forb (behaviorAfter base d) t = false := by
-  have hcheck := (check_refuse_iff forb allow base d name).mpr (Or.inr (Or.inl ⟨hmiss, hforb⟩))
+    (hreq : scopeRequired spec base d = none)
+    (hforb : scopeForbidden spec base d = some name) :
+    check spec base d = Verdict.refuse name ∧
+      name ∈ spec.forbidden ∧ behaviorAfter base d name ≠ [] ∧
+      ∃ pre post, specCone spec d = pre ++ name :: post ∧
+        ∀ t, t ∈ pre → isForbiddenHit spec.forbidden (behaviorAfter base d) t = false := by
+  have hcheck := (check_refuse_iff spec base d name).mpr (Or.inr (Or.inl ⟨hreq, hforb⟩))
   rcases List.find?_eq_some_iff_append.mp hforb with ⟨hhit, pre, post, hsplit, hpre⟩
-  have hmem := (isForbiddenHit_iff forb (behaviorAfter base d) name).mp hhit
+  have hmem := (isForbiddenHit_iff spec.forbidden (behaviorAfter base d) name).mp hhit
   exact ⟨hcheck, hmem.1, hmem.2, pre, post, hsplit,
     fun t ht => (bool_not_true_iff_false _).mp (hpre t ht)⟩
 
-theorem accept_imp_pareto (forb : List String) (allow base : String → List String) (d : ExecDelta)
-    (h : check forb allow base d = Verdict.accept) :
-    paretoLE ⟨changedCost d, changedCost d⟩ ⟨d.boundTime, d.boundCompute⟩ :=
-  (paretoOK_iff d).mp ((check_accept_iff forb allow base d).mp h).2.2.2
+theorem accept_imp_pareto (spec : RepoSpec) (base : String → List String) (d : ExecDelta)
+    (h : check spec base d = Verdict.accept) :
+    paretoLE ⟨changedCost spec d, changedCost spec d⟩ ⟨spec.boundTime, spec.boundCompute⟩ :=
+  (paretoOK_iff spec d).mp ((check_accept_iff spec base d).mp h).2.2.2
 
-theorem accept_imp_no_new_forbidden (forb : List String) (allow base : String → List String)
-    (d : ExecDelta) (h : check forb allow base d = Verdict.accept) :
-    ∀ s, s ∈ coneExec d → s ∈ forb → behaviorAfter base d s = [] := by
+theorem accept_imp_no_new_forbidden (spec : RepoSpec) (base : String → List String)
+    (d : ExecDelta) (h : check spec base d = Verdict.accept) :
+    ∀ s, s ∈ specCone spec d → s ∈ spec.forbidden → behaviorAfter base d s = [] := by
   intro s hs hmem
-  have hnone := ((check_accept_iff forb allow base d).mp h).2.1
-  have hfalse : isForbiddenHit forb (behaviorAfter base d) s = false :=
+  have hnone := ((check_accept_iff spec base d).mp h).2.1
+  have hfalse : isForbiddenHit spec.forbidden (behaviorAfter base d) s = false :=
     (find?_none_iff.mp (by simpa [scopeForbidden] using hnone)) s hs
   cases hbeh : behaviorAfter base d s with
   | nil => rfl
   | cons _ _ =>
-    have hhit : isForbiddenHit forb (behaviorAfter base d) s = true :=
-      (isForbiddenHit_iff forb (behaviorAfter base d) s).mpr ⟨hmem, by simp [hbeh]⟩
+    have hhit : isForbiddenHit spec.forbidden (behaviorAfter base d) s = true :=
+      (isForbiddenHit_iff spec.forbidden (behaviorAfter base d) s).mpr ⟨hmem, by simp [hbeh]⟩
     rw [hfalse] at hhit
     cases hhit
 
@@ -414,17 +442,18 @@ theorem iter_cone {deps : List (String × String)} {seeds : List String} (n : Na
     rw [iterCone] at h
     exact expand_cone (fun x hx => ih hx) h
 
-theorem coneExec_sound (d : ExecDelta) {s : String} (h : s ∈ coneExec d) :
-    Cone (depProp d.deps) (changedProp (changedSymbols d)) s :=
-  iter_cone (d.deps.length + (changedSymbols d).length + 1) (by simpa [coneExec] using h)
+theorem coneExec_sound (deps : List (String × String)) (seeds : List String) {s : String}
+    (h : s ∈ coneExecOf deps seeds) :
+    Cone (depProp deps) (changedProp seeds) s :=
+  iter_cone (deps.length + seeds.length + 1) (by simpa [coneExecOf] using h)
 
-theorem checker_scope_in_cone (forb : List String) (allow base : String → List String)
+theorem checker_scope_in_cone (spec : RepoSpec) (base : String → List String)
     (d : ExecDelta) (name : String)
-    (h : check forb allow base d = Verdict.refuse name)
-    (hmiss : scopeMiss d = none) :
-    name ∈ coneExec d ∨ (changedSymbols d).head? = some name := by
-  rcases (check_refuse_iff forb allow base d name).mp h with h | h | h | h
-  · nomatch (hmiss.symm.trans h)
+    (h : check spec base d = Verdict.refuse name)
+    (hreq : scopeRequired spec base d = none) :
+    name ∈ specCone spec d ∨ (changedSymbols d).head? = some name := by
+  rcases (check_refuse_iff spec base d name).mp h with h | h | h | h
+  · nomatch (hreq.symm.trans h)
   · rcases (List.find?_eq_some_iff_append.mp h.2).2 with ⟨pre, post, hsplit, _⟩
     exact Or.inl (by simp [hsplit])
   · rcases (List.find?_eq_some_iff_append.mp h.2.2).2 with ⟨pre, post, hsplit, _⟩

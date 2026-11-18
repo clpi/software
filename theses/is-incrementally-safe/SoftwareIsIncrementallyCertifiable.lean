@@ -115,14 +115,12 @@ theorem equivalence_obligation_paretoExport (a b : Cost) :
 
 structure SiblingPin where
   composable : String
-  certifiable : String
+  certifiableLocal : Bool
   optimality : String
-  quantifiable : String
 
 def siblingPin : SiblingPin where
-  composable := "929d8e355857b6557c1b5d1a6bd505d9bdaeea7f"
-  certifiable := "f3b9f896ac76a95e7104c98af66e41413e7e5b2d"
-  optimality := "af23f5d27990c84ac392c156f4bef61f61b64767"
-  quantifiable := "a1d84c603906edfbf34dd117e5bd5de986db3940"
+  composable := "033c12c01299a9b28983bee410c230641adc7d1e"
+  certifiableLocal := true
+  optimality := "aab49084e30757f39c7f9d7e4403522abf5ce46f"
 
 end SoftwareIsIncrementallyCertifiable

@@ -2,6 +2,18 @@ import SoftwareIsIncrementallySafe.Checker
 
 namespace SoftwareIsIncrementallySafe
 
+def evilSpec : RepoSpec where
+  deps := []
+  allow := fun _ => []
+  symHigh := fun _ => false
+  obsHigh := fun _ => false
+  boundTime := 10
+  boundCompute := 10
+  required := fun _ => []
+  obsCost := fun _ => 1
+  forbidden := ["unsafe_exec"]
+  kind := fun _ => .code
+
 def evilDelta : ExecDelta where
   changed := [("unsafe_exec", ["spawn"])]
   deps := []
@@ -11,15 +23,21 @@ def evilDelta : ExecDelta where
   boundTime := 10
   boundCompute := 10
 
-example :
-    check ["unsafe_exec"] (fun _ => []) (fun _ => []) evilDelta =
-      Verdict.refuse "unsafe_exec" := by
+theorem evil_refused :
+    check evilSpec (fun _ => []) evilDelta = Verdict.refuse "unsafe_exec" := by
   decide
 
-theorem evil_refused :
-    check ["unsafe_exec"] (fun _ => []) (fun _ => []) evilDelta =
-      Verdict.refuse "unsafe_exec" := by
-  decide
+def benignSpec : RepoSpec where
+  deps := []
+  allow := fun _ => ["write"]
+  symHigh := fun _ => false
+  obsHigh := fun _ => false
+  boundTime := 10
+  boundCompute := 10
+  required := fun _ => []
+  obsCost := fun _ => 1
+  forbidden := []
+  kind := fun _ => .code
 
 def benignDelta : ExecDelta where
   changed := [("logger", ["write"])]
@@ -31,9 +49,12 @@ def benignDelta : ExecDelta where
   boundCompute := 10
 
 theorem benign_accepted :
-    check [] (fun _ => ["write"]) (fun _ => []) benignDelta = Verdict.accept := by
+    check benignSpec (fun _ => []) benignDelta = Verdict.accept := by
   decide
 
-#eval check ["unsafe_exec"] (fun _ => []) (fun _ => []) evilDelta
+#eval check evilSpec (fun _ => []) evilDelta
+
+#print axioms evil_refused
+#print axioms benign_accepted
 
 end SoftwareIsIncrementallySafe
