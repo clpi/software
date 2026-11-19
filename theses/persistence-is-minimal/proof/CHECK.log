@@ -1,4 +1,9 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Persistence.noderiv' depends on axioms: [propext]
+'Persistence.controlone' depends on axioms: [propext, Quot.sound]
+'Persistence.controltwo' depends on axioms: [propext, Quot.sound]
+'Persistence.controlthree' depends on axioms: [propext, Quot.sound]
+'Persistence.controlfour' depends on axioms: [propext, Quot.sound]
 'Persistence.stepclose' does not depend on any axioms
 'Persistence.monof' does not depend on any axioms
 'Persistence.monoe' does not depend on any axioms
@@ -25,10 +30,26 @@ Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
 'Persistence.readmono' does not depend on any axioms
 'Persistence.vcostcons' does not depend on any axioms
 'Persistence.kept' depends on axioms: [propext]
-'Persistence.noderiv' depends on axioms: [propext]
-'Persistence.controlone' depends on axioms: [propext, Quot.sound]
-'Persistence.controltwo' depends on axioms: [propext, Quot.sound]
-'Persistence.controlthree' depends on axioms: [propext, Quot.sound]
-'Persistence.controlfour' depends on axioms: [propext, Quot.sound]
+'Synthesis.additive' depends on axioms: [propext]
+'Synthesis.projected' depends on axioms: [propext]
+'Synthesis.split' depends on axioms: [propext]
+'Synthesis.gapfree' depends on axioms: [propext]
+'Synthesis.composed' depends on axioms: [propext]
+'Synthesis.wholefree' depends on axioms: [propext]
+'Synthesis.leterm' depends on axioms: [propext]
+'Synthesis.subadd3' depends on axioms: [propext, Quot.sound]
+'Synthesis.compound' depends on axioms: [propext, Quot.sound]
+'Synthesis.localizes' depends on axioms: [propext]
+'Synthesis.sound' does not depend on any axioms
+'Synthesis.allsound' depends on axioms: [propext, Quot.sound]
+'Synthesis.gridlength' depends on axioms: [propext]
+'Synthesis.spacefinite' depends on axioms: [propext]
+'Synthesis.gapzero' depends on axioms: [propext, Quot.sound]
+'Synthesis.profbaseline' does not depend on any axioms
+'Synthesis.leastcost' depends on axioms: [propext]
+'Synthesis.tmem' depends on axioms: [propext, Quot.sound]
+'Synthesis.tretract' depends on axioms: [propext, Quot.sound]
+'Synthesis.onlycarrying' does not depend on any axioms
+'Synthesis.joined' depends on axioms: [propext, Quot.sound]
 Axiom subset check passed: printed axioms are a subset of {propext, Classical.choice, Quot.sound}
 Axioms printed: Quot.sound propext 

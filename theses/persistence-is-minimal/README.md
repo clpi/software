@@ -26,6 +26,10 @@ load-bearing condition bites.
   representations and minima, composition, semi-persistence.
 - `proof/Controls.lean` — four standing controls, each a
   proved negation over concrete numbers.
+- `proof/Synthesis.lean` — the synthesis across the
+  family: the mirrored imports discharged here, the
+  restated hypotheses and named premises, and the joined
+  theorem assembling the method.
 - `proof/check.sh` — the family gate.
 
 ## The gate
