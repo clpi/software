@@ -19,6 +19,7 @@ lean_lib SoftwareFrontier where
     `Solve,
     `Instances,
     `Frontier,
+    `Search,
     `Tests,
     `examples.ReplicaPlacement
   ]

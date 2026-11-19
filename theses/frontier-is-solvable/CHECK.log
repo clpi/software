@@ -13,3 +13,26 @@ Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
 'FrontierSolvable.guarded_global_frontier' depends on axioms: [propext]
 'FrontierSolvable.compute_exact' depends on axioms: [propext, Quot.sound]
 'FrontierSolvable.frontier_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Search.join.mem' depends on axioms: [propext]
+'Search.sat.least' does not depend on any axioms
+'Search.glb.join' depends on axioms: [propext, Quot.sound]
+'Search.gub.join' depends on axioms: [propext, Quot.sound]
+'Search.tighten' depends on axioms: [propext]
+'Search.glb.exists' depends on axioms: [propext, Quot.sound]
+'Search.optimal' depends on axioms: [propext, Quot.sound]
+'Search.join.frontier' depends on axioms: [propext, Quot.sound]
+'Search.cone.list' does not depend on any axioms
+'Search.discharge.list' does not depend on any axioms
+'Search.discharge' does not depend on any axioms
+'Search.refuted' does not depend on any axioms
+'Search.qualified.seen' depends on axioms: [propext]
+'Search.dropped' does not depend on any axioms
+'Search.capped' does not depend on any axioms
+'Search.part.bound' depends on axioms: [propext, Quot.sound]
+'Search.order.mem' depends on axioms: [propext]
+'Search.reorder' depends on axioms: [propext, Quot.sound]
+'Search.weighted' depends on axioms: [propext, Quot.sound]
+'Search.reweight' depends on axioms: [propext, Quot.sound]
+'Search.full' depends on axioms: [propext, Quot.sound]
+'Search.trace.sound' depends on axioms: [propext, Quot.sound]
+'Search.order.shift' does not depend on any axioms
