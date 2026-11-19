@@ -1,0 +1,34 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Persistence.stepclose' does not depend on any axioms
+'Persistence.monof' does not depend on any axioms
+'Persistence.monoe' does not depend on any axioms
+'Persistence.elim' depends on axioms: [propext]
+'Persistence.runsound' depends on axioms: [propext, Quot.sound]
+'Persistence.runmono' depends on axioms: [propext, Quot.sound]
+'Persistence.certsound' depends on axioms: [propext, Quot.sound]
+'Persistence.certmono' depends on axioms: [propext, Quot.sound]
+'Persistence.certcomp' depends on axioms: [propext, Quot.sound]
+'Persistence.certcompcheck' depends on axioms: [propext, Quot.sound]
+'Persistence.sumconst' depends on axioms: [propext]
+'Persistence.sumconstf' depends on axioms: [propext]
+'Persistence.finite' depends on axioms: [propext]
+'Persistence.costadd' does not depend on any axioms
+'Persistence.dombridge' depends on axioms: [propext, Quot.sound]
+'Persistence.mincheck' depends on axioms: [propext, Quot.sound]
+'Persistence.domirr' does not depend on any axioms
+'Persistence.nodom' does not depend on any axioms
+'Persistence.choosecore' depends on axioms: [propext, Quot.sound]
+'Persistence.choosemin' depends on axioms: [propext, Quot.sound]
+'Persistence.existsmin' depends on axioms: [propext, Quot.sound]
+'Persistence.domlift' depends on axioms: [propext]
+'Persistence.wholemin' depends on axioms: [propext]
+'Persistence.readmono' does not depend on any axioms
+'Persistence.vcostcons' does not depend on any axioms
+'Persistence.kept' depends on axioms: [propext]
+'Persistence.noderiv' depends on axioms: [propext]
+'Persistence.controlone' depends on axioms: [propext, Quot.sound]
+'Persistence.controltwo' depends on axioms: [propext, Quot.sound]
+'Persistence.controlthree' depends on axioms: [propext, Quot.sound]
+'Persistence.controlfour' depends on axioms: [propext, Quot.sound]
+Axiom subset check passed: printed axioms are a subset of {propext, Classical.choice, Quot.sound}
+Axioms printed: Quot.sound propext 
