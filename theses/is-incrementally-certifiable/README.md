@@ -1,12 +1,58 @@
 # software-is-incrementally-certifiable
 
+## Release-sequence claim
+
+**Individual admission does not imply release improvement.** This repository
+proves conditional sequence guarantees and checked counterexamples to the
+unconditional claim. The complete labeled proof / falsification / response
+deliverable is [DUET.md](DUET.md).
+
+For the historical two-cost model, adjacent nonregression is necessary and
+sufficient for nonregression between every earlier/later pair. Along that chain,
+strict endpoint improvement holds exactly when an intervening step is strict.
+A separate fixed positive requirement condition prevents behavior deletion.
+For the current canonical interface, successful adjacent `releaseLe` checks
+yield arbitrary-length all-pairs nonregression, observed-symbol preservation,
+and a frontier result relative to the compared history. No theorem asserts
+global Pareto optimality without coverage of the declared feasible universe.
+
+The audited pin `f3b9f896ac76a95e7104c98af66e41413e7e5b2d` remains README-only.
+The namespace-isolated historical model and exact source pins are documented in
+[Legacy/README.md](Legacy/README.md). These sources support the historical
+counterexamples; the active interface remains the pinned family dependency.
+
 Lean 4.19.0, core only. `software-is-composable` is required at `476059c25b93679919238ae4293c6b0b4befe486`. `software-optimality` is required at `b52c3170a6e108345bd5ada44ca7355dae55b395`. `software-is-quantifiable` is `430340295c52a015772022b2b663d01120a3a747`, one revision, inherited from those requires. `releaseLe` is `SoftwareIsQuantifiable.Interface.releaseLe`. `certClose` is `Qualification.Derives`.
 
 ```sh
 ./check.sh
 ```
 
-`./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, and runs the CLI. The transcript is `CHECK.log`.
+`./check.sh` discovers and freshly compiles every repository Lean file, treats
+warnings as errors, rejects proof escapes, enforces the compiled proof dependency
+allowlist, and exercises standing controls and the CLI. The exact contract is
+[CHECK_CONTROLS.md](CHECK_CONTROLS.md). Its current receipt and logs are written
+under `.lake/all-files-gate/`. The retained `CHECK.log` is historical evidence from
+the earlier integration, not the receipt for the new sequence proof.
+
+| Sequence claim | Checked theorem |
+|---|---|
+| Admission alone implies temporal improvement | Refuted by `Audit.DuetControls.admission_does_not_imply_release_monotonicity` |
+| Adjacent two-cost nonregression iff all-pairs nonregression | `LegacySequence.cost_adjacent_iff_global` |
+| Endpoint costs strictly improve iff an intervening edge is strict | `LegacySequence.strict_interval_iff` |
+| Weak cycle returning to its initial cost is constant throughout | `LegacySequence.return_forces_constant_interval` |
+| Existing downward-admission hypotheses propagate admission | `LegacySequence.admitted_sequence` |
+| Separately named guard preserves admission, fixed requirements, and cost nonregression | `LegacySequence.guarded_sequence` |
+| Historical cost order agrees with the canonical two-cost order | `LegacyBridge.weak_iff_canonical`, `LegacyBridge.strict_iff_canonical` |
+| Canonical adjacent comparisons iff all-pairs comparisons | `ReleaseSequence.adjacent_iff_all_pairs` |
+| Canonical observed symbols persist without worse readings | `ReleaseSequence.observed_behavior_retained` |
+| Later frontiers cover earlier profiles and latest profiles lie on the visited-history frontier | `ReleaseSequence.frontier_covered`, `ReleaseSequence.latest_on_history_frontier` |
+| Strict refinement survives weak steps and cannot return | `ReleaseSequence.strict_refinement_persists`, `ReleaseSequence.strict_refinement_no_return` |
+| Finite canonical edge checker exactly decides `releaseLe` | `ReleaseSequence.stepCheck_exact`, `ReleaseSequence.checked_sequence` |
+
+The theorem names above are within `IncrementalCert` unless fully qualified.
+The new checker is available to callers; the older demonstration CLI retains its
+existing admission behavior. Pipeline enforcement is a separate application
+obligation, recorded in the duet.
 
 ## Premises
 
@@ -61,7 +107,10 @@ Lean 4.19.0, core only. `software-is-composable` is required at `476059c25b93679
 | `allowedTrace` distinguishes `List.Perm` traces | `unordered_traces` | DISPROVEN |
 | `flowBeh` determines `Reaches` of `"secret"` from `"app"` | `profile_cannot_see_flow` | DISPROVEN |
 
-`Audit/Counterexamples.lean` is Lake target `Evidence`, checked at `d094a2e32fd89e55fcdd879941e9feb1011bf50c`. It is not a default target. Its theorems are `c1_omitted_edge_accepts`, `c2_label_hides_leak`, `c3_raised_budget_accepts`, `c4_nothing_safe`, `c4_nothing_ni`, and `c4_releaseLE_nothing`. `Audit/Refusals.lean` is the `Audit` root.
+`Audit/Counterexamples.lean` remains Lake target `Evidence`; the exhaustive
+`./check.sh` gate always checks it, independent of default Lake targets.
+`Audit/Refusals.lean` and `Audit/DuetControls.lean` are `Audit` roots. The duet
+controls are also imported by the default `IncrementalCert` root.
 
 ## Implications
 
@@ -79,4 +128,5 @@ release-two: not-applied
 
 ## Build log
 
-`./check.sh` exit 0. The transcript is `CHECK.log`.
+The historical transcript is `CHECK.log`. Current exact-pin verification uses
+the receipt and logs described in [CHECK_CONTROLS.md](CHECK_CONTROLS.md).

@@ -3,5 +3,9 @@ import IncrementalCert.Evidence
 import IncrementalCert.Admission
 import IncrementalCert.Check
 import IncrementalCert.Chain
+import IncrementalCert.LegacySequence
+import IncrementalCert.LegacyBridge
+import IncrementalCert.ReleaseSequence
 import IncrementalCert.Limits
 import Audit.Refusals
+import Audit.DuetControls
