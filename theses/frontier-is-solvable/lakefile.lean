@@ -20,6 +20,7 @@ lean_lib SoftwareFrontier where
     `Instances,
     `Frontier,
     `Search,
+    `Candidate,
     `Tests,
     `examples.ReplicaPlacement
   ]

@@ -352,3 +352,274 @@ family, and one behavioral hypergraph per library in the library
 repository, each row dated, pinned, and labeled campaign evidence. This
 repository's contribution to the corpus is its instance modules and
 examples, whose outputs the gate reproduces exactly.
+
+## 11. The candidate space
+
+This section is the specification of the candidate space: the
+structurally searchable space of candidates drawn from the graph of
+behavior. It is proved in the candidate module, which cites the
+search and frontier modules and re-proves none of their results.
+Theorem names below are the single-word names of the candidate
+module, together with the names it cites.
+
+**Named premise, with its falsification route.** The graph in this
+section is the singular hypergraph of the ruling given by Chris on
+2026-11-19 at 15:43 Pacific: the total equivalence graph of
+equivalent terms, symbol-bound at minimum resolution, bound only by
+the finite resolved upper bound at resolution time via the only
+lattice; resolution levels reconciled on the same graph; growth
+append-only; colorings and qualifications constructed from it, with
+overlapping qualifications appended or colored in the same edges.
+The list constructions used in the proofs (candidate lists with
+premise and conclusion readings, incidence counting) are a finite
+instance of that graph, never the graph itself, and no statement
+here presents them as it. Falsification route: a parallel program
+is re-founding the redundant-compute theory on this model; if its
+disposition, recorded at
+`~/workspace/research/redundant-compute-coloring-2026-11-19.md`
+when it lands, rejects or revises the ruling, every statement in
+this section that rests on the premise is re-examined against the
+disposition. At the time of writing that record has not landed, so
+the premise stands at the strength of the ruling itself. The
+finiteness used below is derived from what a qualification is
+(section 5), never assumed.
+
+**Settled intent.** The space is drawn from the append-only graph
+of possible, observed, qualified, disqualified, and otherwise
+colored behavior. A candidate enters by append and never by
+rewriting what the graph already carries. Qualification and
+disqualification are colorings of the candidate in the standing
+sense of section 2: the observed filter and the qualified filter
+are distinct, and no result trades one for the other. A candidate's
+standing is its measure vector under a weighting epoch (section
+11.3). The solved set of the space is the nondominated qualified
+set under the epoch's measures, maintained with the exactness of
+sections 3 and 6 as the graph appends.
+
+### 11.1 The candidate record
+
+**Implemented.** A candidate record is data with four parts. The
+entry carries the candidate's own term, the list of terms it is
+composed from (its parts), and the list of premise terms it builds
+on (its links). The score carries the six improvement readings of
+section 11.2. The two filter inputs, seen and wanted, carry the
+observed side and the intended side separately. The record's
+coloring is the four-color painting of the hypergraph module
+applied to exactly those two inputs, and its qualification is the
+boolean that both inputs hold.
+
+**Verified.** A record whose qualification holds has the intended
+color (`record.intended`). The projection from a list of records
+to a space is a definition: identifiers are the record terms, the
+reading of an identifier is the reading of its record's score, the
+qualification of an identifier is the qualification of its record,
+and an identifier with no record reads zero and does not qualify
+(`project`). The solved set of the projected space is the solved
+set of the records by the definition of the solved set below.
+
+### 11.2 The measures
+
+Each measure is a computable function or relation over the record
+and the space, stated with its direction. No measure is a prose
+judgment.
+
+- **Net-newness** (`fresh`). What the candidate adds that the
+  carried list does not already carry: one for its own term when
+  that term is new, plus one for each part that is not carried.
+  Direction: higher is more new. Evidence: the count itself,
+  computed from the record and the carried list. Verified at its
+  boundary: a carried term with no parts reads zero, and a new
+  term with no parts reads one (`fresh.done`, `fresh.one`).
+- **Impact** (`reach`). How many entries of the space are composed
+  from this candidate's term. Direction: higher reaches more of
+  the space. Evidence: the count itself, computed from the space.
+  Verified at its boundary: the empty space reaches zero
+  (`reach.nil`).
+- **Novelty of composition** (`blend`). Zero when the term is
+  already carried; otherwise the count of its parts that are
+  carried, so a recombination of carried parts into a new term
+  reads high and a composition of wholly new parts reads low.
+  Direction: higher is a more novel recombination of what exists.
+  Evidence: the count itself. Verified at its boundary: a
+  candidate with no parts reads zero either way (`blend.done`).
+- **Gap-solving** (`solves`). The count of gaps of the space that
+  the candidate closes, under the closing relation of section
+  11.4. Direction: higher closes more gaps. Evidence: the count
+  itself, computed from the gap list and the closing relation.
+- **The improvement axes** (the score). Six readings, each a
+  natural number, higher is better on every axis, each with its
+  evidence requirement. Better (`gain`): the stated quality
+  reading of the candidate's behavior, evidenced by a checked
+  comparison against the incumbent it would replace. Faster
+  (`speed`): the stated time reading, evidenced by a timed run at
+  a named pin on a named venue. Less redundant (`lean`): the
+  stated count of duplicated behavior the candidate removes,
+  evidenced by the graph count before and after. More powerful
+  (`power`): the stated count of behaviors the candidate makes
+  derivable that were not derivable before, evidenced by the
+  derivability closure count. More expressive (`width`): the
+  stated count of distinct forms the candidate can state,
+  evidenced by enumeration of the forms. More ergonomic (`ease`):
+  the stated character count of the shortest form that invokes
+  the candidate, evidenced by the counted canonical form. A
+  reading with no evidence of its stated kind is not a reading;
+  it is absent, and absence is handled by the three-valued
+  discipline of the schedule layer, never by scoring an unknown
+  as intended (section 9, control 4).
+
+**Verified.** The score reading turns a score into a cost by
+negation on the six axes and zero off them, so the existing
+dominance vocabulary applies unchanged. Equal scores are never a
+strict win (`score.tie`, by the frontier module's ties result).
+Dominance on the six axes is exactly the pareto form: no worse on
+every axis and strictly better on one (`score.exact`, by the
+frontier module's pareto exactness).
+
+### 11.3 Epochs and the solved set
+
+**Implemented.** A space is a finite list of candidate
+identifiers, a reading function, and the qualification coloring
+as a boolean predicate. An epoch is data: the active axis list
+and a total confidence weighting, in the sense of section 7. The
+solved set under an epoch is the evaluator of the frontier module
+run over the weighted order of the candidate list, qualified by
+the coloring and dominated under the epoch's axes.
+
+**Verified.**
+
+1. Exactness. The solved set under a weighting epoch is exactly
+   the nondominated qualified set of candidates under that
+   epoch's measures (`exact`). The proof is a thin join: it is
+   the search module's `full` statement, which itself joins its
+   `weighted` statement to the frontier module's evaluator
+   exactness. Nothing is re-proved.
+2. Weightings never bound. Membership in the solved set depends
+   on the epoch's axes and never on its weighting: two epochs
+   with the same axes solve the same set (`same`, by the search
+   module's reweighting statement). A weighting change is exact
+   and moves order only, as section 7 already established.
+3. Epochs are appended records. The solved set at an epoch index
+   is a function of that index's record alone (`replay`: two
+   epoch lists agreeing at an index solve the same set there).
+   Appending a new epoch never changes an earlier index's solved
+   set (`keep`, by induction on the epoch list). Every earlier
+   epoch's solved set therefore stays exactly reproducible from
+   its epoch record.
+
+### 11.4 Gaps as objects of the space
+
+**Settled intent.** A gap is a first-class structural object in
+the same space, never a prose note. It is itself constructive and
+solvable across the same parametric dimensions as a candidate,
+and it carries its own measure vector.
+
+**Implemented.** A gap record carries an axis list, a target
+reading on those axes (its mark), its own term, and the epoch
+index at which it entered. Its measure vector is four computable
+counts: its size, the axis count (`gsize`); its reach, the count
+of candidates that close it, the dual of impact (`greach`); its
+open width, the count of its axes on which every candidate still
+reads above the mark (`gopen`); and its age, the count of epoch
+records since it entered (`gage`). A
+candidate closes a gap when it dominates the gap's target
+reading on the gap's axes, under the reading that sends the
+gap's term to its target and every other term to the space's
+reading (`closes`). Gap-solving for a candidate is the count of
+gaps it closes (`solves`, section 11.2).
+
+**Verified.** Closing is decidable within the space's finite
+bound: the scan of the candidate list returns a closing
+candidate exactly when one is in the list (`hit`: a returned
+candidate is a member and closes the gap; `miss`: when the scan
+returns nothing, no member closes the gap), and the existence of
+a closing candidate in the list is a decidable proposition
+(`solvable`, a decision procedure, not a theorem). The list of
+closing candidates is no longer than the candidate list
+(`bound`).
+
+**Premise, with closing route.** The exact comparison count of
+the closing scan — one closing test per candidate, each test
+costing one comparison per gap axis — is stated as a premise,
+not a theorem: no counted form of the scan is proved here.
+Closing route: a counted scan in the shape of the counted
+evaluator proposed in section 8, item 7, proved to return the
+same result as the scan with its counter bounded by the product
+of the candidate count and the gap axis count. Until that lands,
+any claim needing the count itself is unmeasured; the
+decidability and the length bound above do not need it.
+
+### 11.5 Updates as the graph appends
+
+**Settled intent.** The space is semi-persistent: appends update
+it incrementally, and the updated solved set equals a from-scratch
+solve of the updated space. This is the incremental-covers-full
+property of the standing measurement discipline, stated for the
+candidate space.
+
+**Verified.**
+
+1. From-scratch form. The solved set of the grown space, computed
+   through the epoch's weighted order, has exactly the members of
+   a from-scratch solve of the grown candidate list (`fresh.solve`,
+   by the search module's `weighted` statement applied to the
+   grown list).
+2. Incremental form, qualified append. When the appended
+   candidate is qualified, the new frontier predicate is the old
+   frontier filtered by the appended candidate, plus the appended
+   candidate when nothing old dominates it (`grow`, and its
+   solved-set form `step`). The proof transports list append to
+   eligibility insertion by view extensionality and then applies
+   the frontier module's insertion exactness; the side condition
+   is exactly that the appended candidate is qualified.
+3. Incremental form, disqualified append. When the appended
+   candidate is disqualified, the solved set is unchanged
+   (`grow.dead`, by view extensionality): a disqualification
+   coloring is an update with an exact, empty effect on the
+   solved set, proved rather than assumed.
+4. Join. The solved predicate of a joined space is the frontier
+   predicate over the joined membership (`join`, by the search
+   module's join frontier statement through the epoch weighting).
+5. Retraction. Removing an eligibility set exposes exactly the
+   candidates whose every former dominator was removed (`drop`,
+   the frontier module's retraction exactness stated for the
+   candidate space). A coloring change that disqualifies a set
+   of candidates updates by this rule and by rule 3, never by
+   an unstated recomputation.
+
+### 11.6 Standing controls for this layer
+
+Two new controls, each a proved statement over the named demo
+space (two candidates trading the two axes, a third reading zero
+on both), in the style of section 9.
+
+1. A change of epoch axes preserves the solved set: refuted
+   (`epoch.shift`). Under the first axis alone the solved set is
+   the first candidate; under the second axis alone it is the
+   second. An epoch change that moves the axes is a change of
+   measures, not a reweighting, and section 11.3 rule 2 is the
+   exact boundary of what a reweighting preserves.
+2. Appending a candidate never removes a solved member: refuted
+   (`loss`). The third demo candidate dominates both axes, and
+   appending it removes the first candidate from the solved set
+   under the two-axis epoch. Semi-persistence is exactness of
+   the update, never monotonicity of membership; any consumer
+   that assumes solved members only accumulate is wrong by this
+   control.
+
+The controls of sections 9 remain in force for this layer: in
+particular the weighting of section 7 provably moves the returned
+list's order while membership stands (the search module's order
+control), and filtering a former solved set is not an update
+(section 9, control 5).
+
+### 11.7 What is not claimed
+
+No counted bound is claimed for the closing scan (section 11.4,
+premise). No statement is made about candidates or gaps outside
+the finite list, about readings that were not supplied, or about
+the general hypergraph beyond the finite-list instance, beyond
+the named premise that heads this section. The moved-set
+characterization proposed in section 7 remains proposed there
+and is not claimed here. The search-space bet of section 10 is
+unchanged: the candidate space is the structure the bet is about,
+and this layer adds no corpus evidence for or against it.
