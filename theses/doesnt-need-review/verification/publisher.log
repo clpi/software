@@ -401,19 +401,20 @@ DEP none
 dependency check clean
 admitted-proof control
 refused controls/Admitted.negative
-/tmp/tmp.hZm3uOdSKv/Negative.lean:1:8: error: declaration uses 'sorry'
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:8: error: declaration uses 'sorry'
 admit control
 refused controls/AdmitTactic.negative
-/tmp/tmp.hZm3uOdSKv/Negative.lean:1:8: error: declaration uses 'sorry'
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:8: error: declaration uses 'sorry'
 warning control
 refused controls/Unused.negative
-/tmp/tmp.hZm3uOdSKv/Negative.lean:1:12: error: unused variable `x`
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:12: error: unused variable `x`
 note: this linter can be disabled with `set_option linter.unusedVariables false`
 custom-axiom control
 'bogusAxiom' depends on axioms: [bogusAxiom]
 refused controls/CustomAxiom.negative
 source gate detects the planted controls
 legacy check clean
+TOOLCHAIN VERIFIED PATH: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
 CONTROL passed: an unimported file is discovered and audited
 CONTROL rejected: unimported-compile-error
 CONTROL rejected: warning
@@ -426,6 +427,8 @@ CONTROL rejected: diagnostic-weakening
 CONTROL rejected: extern
 CONTROL rejected: implemented-by
 CONTROL rejected: generated custom axiom at kernel audit
+TOOLCHAIN VERIFIED .: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+TOOLCHAIN VERIFIED statement: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
 CHECKED SoftwareDoesntNeedReview/Audit.lean declarations=0 compiler_implementation_auxiliaries=0
 CHECKED SoftwareDoesntNeedReview/Boundary.lean declarations=60 compiler_implementation_auxiliaries=49
 CHECKED SoftwareDoesntNeedReview/Certifier.lean declarations=136 compiler_implementation_auxiliaries=160
@@ -444,8 +447,12 @@ CHECKED examples/range-ledger/NullableAggregate.lean declarations=29 compiler_im
 CHECKED scripts/AuditAll.lean declarations=6 compiler_implementation_auxiliaries=68
 CHECKED scripts/UpstreamDeps.lean declarations=12 compiler_implementation_auxiliaries=240
 CHECKED statement/ReviewControls.lean declarations=24 compiler_implementation_auxiliaries=39
+CHECKED statement/ReviewFinite.lean declarations=12 compiler_implementation_auxiliaries=5
+CHECKED statement/ReviewOmission.lean declarations=7 compiler_implementation_auxiliaries=0
+CHECKED statement/ReviewProofs.lean declarations=12 compiler_implementation_auxiliaries=0
 CHECKED statement/ReviewStatement.lean declarations=8 compiler_implementation_auxiliaries=0
-ALL-FILE GATE PASSED: 19 Lean sources; 2 isolated packages
+CHECKED statement/ReviewStrengtheningControls.lean declarations=40 compiler_implementation_auxiliaries=30
+ALL-FILE GATE PASSED: 23 Lean sources; 2 isolated packages
 IMPORT PIN VERIFIED clpi/software-is-quantifiable d88acbdc3ba78fff994067d2c73bcc01622b3f61 2 files
 IMPORT PIN VERIFIED clpi/software-optimality 0bbc1f3b8aa38afe17e02ccbd7ddd0e7722b3cb0 8 files
 LEGACY PINS VERIFIED; statement and legacy environments remain distinct

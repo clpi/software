@@ -1,47 +1,62 @@
 # software-doesnt-need-review
 
-**Claim:** a named review can be omitted for a pinned set of objectives only
-when independent evidence already discharges those objectives, the review
-cannot change their qualification or the declared admission/frontier decisions,
-and the applicable assurance process permits the substitution.
+**Proved claim:** for a fixed contract, catalogue, and relevant objective slice,
+valid independent baseline evidence, uniformly conservative review outcomes,
+and a decision projection that respects that slice preserve qualification,
+admission, and the frontier. A successful application
+also retains the named subject's admission and proves every required objective
+both derivable and true before and after every allowed review outcome.
 
-The repository title is not an unconditional assertion that human review is
-unnecessary. [CLAIM.md](CLAIM.md) is the authoritative statement, including its
-falsifiers, imported definitions, evidence obligations, and open premises.
+The repository title does not assert that all human review is unnecessary.
+[CLAIM.md](CLAIM.md) is the authoritative formal claim, including exact imports,
+falsifiers, discharging evidence, and open application premises. Permission to
+omit a mandated activity remains external to the mathematical result.
 
-## Status at this change
+## What improved at this change
 
 | Claim or obligation | Status and evidence |
 |---|---|
-| Full qualification closure is unchanged exactly when the two normalized bases mutually preserve each other's closure | SPECIFIED, NOT PROVEN here: `ReviewStatement.FullClosureClaim` |
-| Equality on a declared relevant slice preserves candidate admission and the frontier through a projection that respects that slice | SPECIFIED, NOT PROVEN here: `ReviewStatement.RelevantClaim` |
-| Prospective omission preserves declared objectives for every admissible review outcome under the stated independent evidence and soundness hypotheses | SPECIFIED, NOT PROVEN here: `ReviewStatement.OmissionClaim`; application premises P1–P11 remain explicit |
-| Narrow incremental recheck equivalence under its existing cost validity and unchanged-outside-cone hypotheses | Existing theorem: `Narrow.narrow_recheck_iff` |
-| A review bit agrees with admission when agreement with recheck is supplied as a hypothesis | Existing conditional theorem: `Narrow.narrow_rubber`; not a proof that human judgment always factors through the checker |
-| Valid roots and valid rules suffice for true derived conclusions | Imported theorem: `Qualification.soundness`; validity is not proved by derivability |
-| A derivable false atom refutes the conjunction of root/rule validity | Existing theorem: `Narrow.sound_needs_premises` |
-| Passing a checker alone makes review unnecessary | REFUTED by the existing specification-boundary controls and the new [standing controls](statement/COUNTEREXAMPLES.md) |
-| Concrete regulated deployment may omit review, or omission saves resources | OPEN APPLICATION PREMISES; no such deployment or economic result is certified here |
+| Exact full-closure equality iff mutual root/rule absorption | **PROVEN**: `ReviewStatement.full_closure_claim : FullClosureClaim` and `basis_conservative_iff` |
+| Relevant qualification equality preserves decisions through the original projection invariant | **PROVEN**: `ReviewStatement.relevant_claim : RelevantClaim` |
+| Original prospective omission proposition | **PROVEN**: `ReviewStatement.omission_claim : OmissionClaim`; original proposition unchanged |
+| Weaker decision-level invariant suffices, while required post-review derivability and truth are retained | **PROVEN**: `ReviewStatement.review_omission`; more general four-premise core `prospective_omission` |
+| Decision noninterference is strictly weaker than equality of the complete projected inputs | **PROVEN** implication plus nonvacuous separating counterexample in `ReviewStrengtheningControls` |
+| Exact root-only, rule-only, combined positive-addition, and uniform-outcome absorption conditions | **PROVEN** in [ReviewProofs.lean](statement/ReviewProofs.lean) |
+| Technical redundancy iff there is no changed relevant atom, subject admission, or frontier | **PROVEN** pair and uniform-outcome characterizations in [ReviewOmission.lean](statement/ReviewOmission.lean) |
+| Finite checker acceptance, disagreement, and malformed-input cases, plus complete-outcome lifting | **PROVEN** in [ReviewFinite.lean](statement/ReviewFinite.lean); composes the pinned upstream closure checker |
+| Narrow incremental recheck equivalence | Retained existing conditional theorem: `Narrow.narrow_recheck_iff` |
+| A review bit agrees with admission given agreement with recheck | Retained `Narrow.narrow_rubber`; its review-bit hypothesis is still explicit |
+| Passing a checker alone establishes requirements fidelity or permission to omit review | **REFUTED** by the specification-boundary and [18 standing counterexample theorems](statement/COUNTEREXAMPLES.md) |
+| A production deployment may omit review, or omission saves resources | **OPEN APPLICATION PREMISES** P1–P11; no such deployment or economic result is certified |
 
-The initial audit pin `ae5f3918f7689267d07044a00e6a11b071510bba` contained only
-the README. The inspected starting head for this change was
-`1d504014be0c727b3f12e4d8e17f47dfceb118b6`, which already contained the narrow
-lemmas and examples. This change preserves them and supplies the explicit
-family-level statement requested by the audit follow-up.
+The three original F1–F3 proof terms and the stronger prospective core/application
+theorems are axiom-free. Some supporting extensionality, classical equivalence,
+and imported finite-checker correctness proofs use Lean's standard logical
+axioms; the repository gate allows no custom axioms or unfinished proofs.
+
+## Exact authority and history
+
+The initial audit pin `ae5f3918f7689267d07044a00e6a11b071510bba` was README-only.
+The initial statement landed at `3552dfd7c1e63eeea15182bd827543dd44385b23`, after
+the earlier narrow lemmas. This improvement proves the same original
+propositions and extends them; earlier pins retain their original claim status.
+
+The statement package still imports `software-optimality` at
+`0bbc1f3b8aa38afe17e02ccbd7ddd0e7722b3cb0` and `software-is-quantifiable` at
+`d88acbdc3ba78fff994067d2c73bcc01622b3f61`. [imports.lock.json](imports.lock.json)
+records the exact declaration/file mapping and content hashes. No upstream pin
+changed. Its separate Lake package prevents the legacy composable package's
+vendored module names from replacing the current optimality definitions.
 
 ## Reproduce
 
 Use Lean `leanprover/lean4:v4.19.0` and run `./check.sh` with `lake` on `PATH`.
-The repository gate checks every accepted `.lean` file, the legacy package,
-the isolated statement package, proof axiom dependencies, and standing controls.
-Intentionally invalid source fixtures use `.negative`, never the accepted-source
-extension. See [VERIFICATION.md](VERIFICATION.md) for the exact check record and
-trust limits.
+The gate verifies the running Lean/Lake versions against both toolchain files,
+builds all declared modules, and discovers and checks every accepted `.lean`
+file, including unimported examples and helper scripts. It enforces warnings as
+errors, escape scans, and a transitive kernel-axiom audit.
 
-The new statement imports `software-optimality` at
-`0bbc1f3b8aa38afe17e02ccbd7ddd0e7722b3cb0` and `software-is-quantifiable` at
-`d88acbdc3ba78fff994067d2c73bcc01622b3f61`. [imports.lock.json](imports.lock.json)
-records the imported declarations. Its separate Lake package avoids mixing
-the legacy composable package's vendored module names with the current
-optimality definitions. A successful build of a proposition definition is
-**statement typechecking, not a proof of that proposition**.
+[VERIFICATION.md](VERIFICATION.md) records the checks and trust boundary.
+Intentionally invalid source fixtures use `.negative` and run as explicit
+rejection controls. No successful build or proof-policy gate establishes
+real-world scope completeness, model fidelity, or safety-tool qualification.

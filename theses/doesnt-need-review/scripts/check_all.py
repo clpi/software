@@ -146,6 +146,22 @@ def command_for(package: Path | None) -> list[str]:
     return ["lake", "env", "lean"] if package is not None else ["lean"]
 
 
+def check_toolchain(package: Path, *, direct: bool = False) -> None:
+    """Bind the running binaries to the declared release, including direct PATH use."""
+    pin = (ROOT / "lean-toolchain").read_text(encoding="utf-8").strip()
+    match = re.fullmatch(r"leanprover/lean4:v(\d+\.\d+\.\d+)", pin)
+    if not match or (package / "lean-toolchain").read_text(encoding="utf-8").strip() != pin:
+        raise GateError(f"unsupported or inconsistent toolchain pin: {package}")
+    version = match.group(1)
+    command = ["lean"] if direct else ["lake", "env", "lean"]
+    actual = invoke(command + ["--version"], package, "read running Lean version").strip()
+    lake = invoke(["lake", "--version"], package, "read running Lake version").strip()
+    if not actual.startswith(f"Lean (version {version},") or f"(Lean version {version})" not in lake:
+        raise GateError(f"running toolchain differs from {pin}: {actual}; {lake}")
+    mode = "PATH" if direct else str(package.relative_to(ROOT))
+    print(f"TOOLCHAIN VERIFIED {mode}: {actual}; {lake}", flush=True)
+
+
 def module_name(relative: Path) -> str:
     parts = relative.with_suffix("").parts
     return ".".join(part if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", part)
@@ -298,6 +314,7 @@ def main() -> int:
     args = parser.parse_args()
     if not shutil.which("lean") or not shutil.which("lake"):
         raise GateError("lean and lake must be on PATH (the pinned lean-toolchain is authoritative)")
+    check_toolchain(ROOT, direct=True)
     auditor = AUDITOR.read_text(encoding="utf-8")
     scan_source(AUDITOR, auditor)
     with tempfile.TemporaryDirectory(prefix="review-all-file-gate-") as temporary_name:
@@ -313,6 +330,7 @@ def main() -> int:
             scan_source(path, path.read_text(encoding="utf-8"))
         packages = sorted({package_for(path, ROOT) for path in files} - {None})
         for package in packages:
+            check_toolchain(package)
             invoke(["lake", "build"], package, f"build package {package.relative_to(ROOT)}")
         checked = temporary / "wrapped-sources"
         checked.mkdir()
