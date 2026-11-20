@@ -10,7 +10,7 @@ scan_sources() {
 scan_sources SoftwareIsIncrementallySafe/*.lean audit/Counterexamples.lean
 lake build
 lake build Counterexamples
-for f in SoftwareIsIncrementallySafe/Checker.lean SoftwareIsIncrementallySafe/AuditFix.lean SoftwareIsIncrementallySafe/Example.lean SoftwareIsIncrementallySafe/RunAdmission.lean SoftwareIsIncrementallySafe/FullSnapshotAudit.lean audit/Counterexamples.lean; do
+for f in SoftwareIsIncrementallySafe/Checker.lean SoftwareIsIncrementallySafe/AuditFix.lean SoftwareIsIncrementallySafe/Example.lean SoftwareIsIncrementallySafe/RunAdmission.lean SoftwareIsIncrementallySafe/FullSnapshotAudit.lean SoftwareIsIncrementallySafe/OrderedIncrement.lean SoftwareIsIncrementallySafe/OrderedIncrementRun.lean audit/Counterexamples.lean; do
   lake env lean -DwarningAsError=true "$f"
 done
 # Exercise both the scanner and compiler; expected failures must really fail.

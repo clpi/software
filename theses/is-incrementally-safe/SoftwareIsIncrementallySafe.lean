@@ -6,3 +6,5 @@ import SoftwareIsIncrementallySafe.Example
 import SoftwareIsIncrementallySafe.AuditFix
 import SoftwareIsIncrementallySafe.RunAdmission
 import SoftwareIsIncrementallySafe.FullSnapshotAudit
+import SoftwareIsIncrementallySafe.OrderedIncrement
+import SoftwareIsIncrementallySafe.OrderedIncrementRun
