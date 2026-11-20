@@ -25,3 +25,6 @@ lean_lib «AuditDependencyModules» where
 lean_lib «NatReprExample» where
   srcDir := "examples"
   roots := #[`NatReprInjective]
+
+@[default_target]
+lean_lib «Family»
