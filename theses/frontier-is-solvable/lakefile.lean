@@ -23,6 +23,8 @@ lean_lib SoftwareFrontier where
     `Candidate,
     `Pipeline,
     `Worklist,
+    `Canon,
+    `Bridge,
     `Tests,
     `examples.ReplicaPlacement
   ]
