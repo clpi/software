@@ -15,7 +15,7 @@ scan() {
 }
 
 echo "library gate"
-if scan SoftwareDoesntNeedReview SoftwareDoesntNeedReview.lean lakefile.lean scripts; then
+if scan SoftwareDoesntNeedReview SoftwareDoesntNeedReview.lean scripts/UpstreamDeps.lean; then
   echo "refused: sorry, admit, or axiom declaration in the library" >&2
   exit 1
 fi
@@ -103,7 +103,8 @@ print("dependency check clean")
 PY
 
 expect_fail() {
-  if lake env lean -DwarningAsError=true "$1" >"$tmp/ctrl.out" 2>&1; then
+  cp "$1" "$tmp/Negative.lean"
+  if lake env lean -DwarningAsError=true "$tmp/Negative.lean" >"$tmp/ctrl.out" 2>&1; then
     echo "refused: $1 was accepted" >&2
     cat "$tmp/ctrl.out" >&2
     exit 1
@@ -113,14 +114,15 @@ expect_fail() {
 }
 
 echo "admitted-proof control"
-expect_fail controls/Admitted.lean
+expect_fail controls/Admitted.negative
 echo "admit control"
-expect_fail controls/AdmitTactic.lean
+expect_fail controls/AdmitTactic.negative
 echo "warning control"
-expect_fail controls/Unused.lean
+expect_fail controls/Unused.negative
 
 echo "custom-axiom control"
-lake env lean controls/CustomAxiom.lean >"$tmp/custom.out" 2>&1 || true
+cp controls/CustomAxiom.negative "$tmp/CustomAxiom.lean"
+lake env lean -DwarningAsError=true "$tmp/CustomAxiom.lean" >"$tmp/custom.out" 2>&1
 cat "$tmp/custom.out"
 if ! grep -q bogusAxiom "$tmp/custom.out"; then
   echo "refused: custom axiom control did not report bogusAxiom" >&2
@@ -145,11 +147,15 @@ then
   echo "refused: custom axiom passed the allowlist" >&2
   exit 1
 fi
-echo "refused controls/CustomAxiom.lean"
+echo "refused controls/CustomAxiom.negative"
 
-if ! scan controls/Admitted.lean controls/AdmitTactic.lean controls/CustomAxiom.lean >/dev/null; then
+if ! scan controls/Admitted.negative controls/AdmitTactic.negative controls/CustomAxiom.negative >/dev/null; then
   echo "refused: planted controls were not detected by the source gate" >&2
   exit 1
 fi
 echo "source gate detects the planted controls"
-echo "check clean"
+echo "legacy check clean"
+python3 scripts/check_all.py
+python3 scripts/check_imports.py
+sh examples/check.sh
+echo "repository check clean"

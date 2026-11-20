@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "review_kind": "independent_agent_counterexample_attempt",
+  "status": "no_remaining_material_counterexample_found_to_scoped_statement",
+  "main_theorem_status": "SPECIFIED_NOT_PROVEN",
+  "payloads": {
+    "CLAIM.md": "e494645afd91d7e94ae3515f77a8d92b134a43608f22c554ed8e9b7e5f73be11",
+    "statement/ReviewStatement.lean": "76d4fc9173ab04bfc3fd84a4d19b7a9b4ff0c5ccf5d8ae2d93e336b620595b9f",
+    "imports.lock.json": "7527e4b644901f694e60017e6f5d24dc2f5e377a7efa2a5db25d62bdeaf28acd"
+  },
+  "findings_applied": [
+    "separate retrospective redundancy, prospective omission and process permission",
+    "normalize withdrawal and distinguish event admission from candidate admission",
+    "permit irrelevant provenance through a certified relevant slice",
+    "quantify every independently covered admissible review outcome",
+    "require nonempty objectives/outcomes and a successful baseline subject admission",
+    "pin epoch, projection, contract and candidate catalogue",
+    "retain authentication and hash collision/binding assumptions"
+  ],
+  "limits": [
+    "No production omission instance has been certified.",
+    "No main theorem proof was supplied.",
+    "This is an independent agent review, not third-party safety certification.",
+    "Final candidate requires independent source-tree-matched gate recheck before landing."
+  ]
+}

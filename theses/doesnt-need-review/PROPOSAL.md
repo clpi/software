@@ -1,14 +1,24 @@
-# Proposal
+# Review replacement boundary
 
-Human review of a code diff is removed only for a change inside the narrow theorem: the impact lies in a sound cone (`ClosureHyp`, the context-aware call closure), and the spec, roots, and rules are unchanged. For the machine-checked property, rechecking that cone is the review. The review bit adds nothing beyond the certifier.
+[CLAIM.md](CLAIM.md) is the authoritative formal statement and premise ledger.
 
-Human attention moves to what certification cannot discharge. `Qualification.soundness` needs `validRoots` and `validRules`. A wrong spec, a missing requirement, or a wrong allow-list is a failure of those premises. The Mars Climate Orbiter boundary is an opaque token the allow-list treats as one unit while the two sides denote pound-force seconds and newton seconds. The MCAS boundary is a rule that one angle-of-attack sensor is enough. In both, the certifier accepts and only a review of the spec rejects.
+The retained narrow result concerns a model of incremental release admission:
+`narrow_recheck_iff` relates a cone recheck to `ReleaseAdmitted`, given valid
+old cost bounds and unchanged symbols outside the cone. `narrow_rubber`
+additionally assumes the review bit is equivalent to that recheck. It does not
+derive that assumption from human behavior or from a safety standard.
 
-What remains for a person:
+The new statement removes that review-bit assumption. It asks for qualification
+conservativity, a faithful fixed decision projection, independently complete
+objectives, and explicit assurance premises. It permits changed roots and rules
+when their relevant consequences are preserved, and handles withdrawal through
+the family's existing live-evidence admission semantics.
 
-- the spec
-- the roots
-- the rules
-- qualification of the dependency analysis that computes the cone, in the style of DO-330 tool qualification
+Human review remains load-bearing when it supplies otherwise missing relevant
+evidence, detects a fidelity or validity error, changes a required decision, or
+fulfills an otherwise unmet mandatory process objective. An unresolved premise
+blocks omission without proving that a particular human reviewer would help.
 
-That qualification is of the analysis, not a second reading of a diff already inside a qualified cone. Nothing here says how often reviewers rubber-stamp, and nothing here says review is redundant once a certifier has run.
+The older unit-token and sensor-count examples are small formal countermodels.
+Their names do not make them complete reconstructions or causal proofs of
+historical aircraft or spacecraft accidents.
