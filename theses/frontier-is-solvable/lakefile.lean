@@ -21,6 +21,7 @@ lean_lib SoftwareFrontier where
     `Frontier,
     `Search,
     `Candidate,
+    `Pipeline,
     `Tests,
     `examples.ReplicaPlacement
   ]
