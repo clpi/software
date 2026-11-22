@@ -51,3 +51,32 @@ eight readiness flag combinations. These are correctness controls, not a
 benchmark. The Lean controls cover two-step composition, missing wiring,
 false health, deployment and faithfulness flags, nullary rules, and a
 target not represented by the closure.
+
+## Exact repair after active-view edits
+
+`MediationRepair.lean` defines the affected region as the least predecessor
+closure of changed outbound-arc sources and changed readiness nodes in the
+union of old and new arcs. Given a complete delta, every source outside that
+region has identical arcs and readiness, and cannot enter it in either graph.
+`outside_exact` proves that its old reachability is unchanged. Inside the
+region, discard the old marks. Start from new ready vertices and true exits
+to the retained outside, then reverse-traverse new arcs within the region.
+`repair_exact` proves this least repair equals fresh observation at every
+vertex; an unsupported cycle cannot justify retaining its own marks.
+
+For supplied changes and maintained indexes, the traversal inspects only
+the affected vertices, their old/new predecessor lists, and their new
+outgoing arcs for exits. This is an affected-region work bound, not a
+measured speedup; the region may be the whole graph. Discovering a complete
+delta, constructing the snapshots, and validating physical evidence are
+excluded. Vertex identities must mean the same thing across both snapshots.
+
+The isolated executable repair agreed with an independent forward oracle on
+319,488 one- or two-bit edits over every three-node snapshot, including loops
+(958,464 target comparisons; 110,928 edits changed an answer). A standing
+Lean control demonstrates a two-node cycle losing its only exit to a sensor.
+The Boolean cache is not a physical proof cache: when its primary sensor
+fails but another at the same vertex stays ready, the bit is unchanged and
+the named witness must still be replaced. The same rule applies to changed
+wiring attestations with unchanged endpoints. This module does not check
+those external identities or claim that an old named witness remains valid.
