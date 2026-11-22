@@ -1,0 +1,93 @@
+{
+  "contract": {
+    "context": 0,
+    "keys": [
+      0
+    ],
+    "cells": [
+      {
+        "key": 0,
+        "required": [
+          0
+        ],
+        "allowed": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "initial": {
+    "id": 0,
+    "context": 0,
+    "cells": [
+      {
+        "key": 0,
+        "offered": [
+          0
+        ],
+        "possible": [
+          0
+        ],
+        "cost": [
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "op": "arrive",
+      "event": 1,
+      "releases": [
+        {
+          "id": 1,
+          "context": 0,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                2,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "context",
+      "event": 2,
+      "context": 1,
+      "initial": 0,
+      "releases": [
+        {
+          "id": 0,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                2,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
