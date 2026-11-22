@@ -53,9 +53,15 @@ style of the template repositories):
    contributes it. The premise set of every witnessed
    conclusion is read off the hypergraph exactly as recorded:
    nothing added, nothing lost.
-2. `returns_head` — every derivation that any event
-   contributes and whose head is a witnessed node of the
-   folded hypergraph is present in the folded hypergraph.
+2. `returns_head` — a derivation that a named event of the
+   stream contributes is present in the folded hypergraph.
+   An earlier form also assumed the derivation's head is a
+   witnessed node of the fold; that hypothesis was never read
+   by its proof term, and it is removed. The Controls module
+   pins both directions of the head's independence on concrete
+   data: `separation` (a witnessed head with no contribution
+   does not return) and `unwitnessed` (a contribution returns
+   with no witnessed head).
 3. `fold_ext` — order and duplication independence. Two
    streams with the same membership have equal folds; the
    fold is a function of the set of events alone.

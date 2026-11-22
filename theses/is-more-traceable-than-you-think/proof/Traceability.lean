@@ -210,15 +210,27 @@ theorem fold_edges {Node Ev : Type} (lift : Ev → Graph Node)
       | head _ => exact Or.inl hce'
       | tail _ hmem => exact Or.inr (ih.mpr ⟨e', hmem, hce'⟩)
 
-/-- Every derivation that any event contributes and whose head is
-    a witnessed node of the folded hypergraph is present in the
-    folded hypergraph. -/
+/-- **Provable return.** A derivation that a named event of the
+    stream contributes is present in the folded hypergraph. The
+    contribution existential of `fold_edges` is constructed in
+    the proof from the named event; it is not assumed as a
+    hypothesis. An earlier form of this theorem carried two
+    further hypotheses: the contribution in its existential form,
+    which restated the right side of `fold_edges`, and a
+    witnessed-head hypothesis — the derivation's head is a
+    witnessed node of the fold — which its proof term never
+    read. The witnessed-head hypothesis is not load-bearing and
+    is removed: presence on the derivation face is decided by
+    contribution alone. Two controls in the Controls module pin
+    both directions of that independence on concrete data:
+    `separation` (a witnessed head with no contribution does not
+    return) and `unwitnessed` (a contribution returns with no
+    witnessed head). -/
 theorem returns_head {Node Ev : Type} (lift : Ev → Graph Node)
-    {l : List Ev} {d : Derivation Node}
-    (_witnessed : (fold lift l).nodes d.head = true)
-    (contributed : ∃ e, e ∈ l ∧ (lift e).edges d = true) :
+    {l : List Ev} {d : Derivation Node} (e : Ev)
+    (he : e ∈ l) (hc : (lift e).edges d = true) :
     (fold lift l).edges d = true :=
-  (fold_edges lift).mpr contributed
+  (fold_edges lift).mpr ⟨e, he, hc⟩
 
 /-- **Order and duplication independence.** Two streams with the
     same membership have equal folds. The fold is a function of

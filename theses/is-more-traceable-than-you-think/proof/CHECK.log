@@ -35,8 +35,8 @@ Timed : Type → Type → Type
   (fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
 @fold_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
   (fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
-@returns_head : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
-  (fold lift l).nodes d.head = true → (∃ e, e ∈ l ∧ (lift e).edges d = true) → (fold lift l).edges d = true
+@returns_head : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node} (e : Ev),
+  e ∈ l → (lift e).edges d = true → (fold lift l).edges d = true
 @fold_ext : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev},
   (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → fold lift l₁ = fold lift l₂
 @fold_perm : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev}, l₁.Perm l₂ → fold lift l₁ = fold lift l₂
@@ -63,6 +63,10 @@ Timed : Type → Type → Type
 'Controls.grain_absent' depends on axioms: [propext]
 'Controls.grain_coarse_present' depends on axioms: [propext]
 'Controls.grain_claim_fails' depends on axioms: [propext]
+'Controls.marked' depends on axioms: [propext]
+'Controls.absent' depends on axioms: [propext]
+'Controls.separation' depends on axioms: [propext]
+'Controls.unwitnessed' depends on axioms: [propext]
 'Controls.residue_survivor_absent' depends on axioms: [propext]
 'Controls.residue_present' depends on axioms: [propext]
 'Controls.residue_claim_fails' depends on axioms: [propext]
@@ -84,6 +88,12 @@ grain_absent : (fold grainlift [0]).edges noprem = false
 grain_coarse_present : ∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = noprem.head
 grain_claim_fails : ¬∀ (d : Derivation Nat),
     (∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = d.head) → (fold grainlift [0]).edges d = true
+beacon : Nat → Graph Nat
+marked : (fold beacon [0]).nodes noprem.head = true
+absent : (fold beacon [0]).edges noprem = false
+separation : ¬∀ (lift : Nat → Graph Nat) (l : List Nat) (d : Derivation Nat),
+    (fold lift l).nodes d.head = true → (fold lift l).edges d = true
+unwitnessed : (fold grainlift [0]).edges fullprem = true ∧ (fold grainlift [0]).nodes fullprem.head = false
 residuefold : (Nat → Graph Nat) → (Nat → Bool) → List Nat → Graph Nat
 residue_survivor_absent : (fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])).nodes 0 = false
 residue_present : (residuefold ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true

@@ -141,6 +141,68 @@ theorem grain_claim_fails :
   rw [grain_absent] at hpres
   exact Bool.false_ne_true hpres
 
+/-- A concrete contribution assignment for the return control:
+    every event contributes node one and no derivation at all.
+    Under this assignment the head of the second grain derivation
+    is witnessed by every stream, and nothing is ever
+    contributed. -/
+def beacon (_e : Nat) : Graph Nat :=
+  ⟨fun n => decide (n = 1), fun _ => false⟩
+
+/-- Under the return control's assignment, the head of the
+    second grain derivation is a witnessed node of the folded
+    hypergraph of the concrete stream. -/
+theorem marked : (fold beacon [0]).nodes noprem.head = true :=
+  (fold_nodes beacon).mpr ⟨0, by simp, by simp [beacon, noprem]⟩
+
+/-- Under the return control's assignment, the second grain
+    derivation is absent from the folded hypergraph of the
+    concrete stream: no event contributes it. -/
+theorem absent : (fold beacon [0]).edges noprem = false := by
+  cases h : (fold beacon [0]).edges noprem with
+  | false => rfl
+  | true =>
+    rcases (fold_edges beacon).mp h with ⟨e, he, hce⟩
+    simp at he
+    subst he
+    simp [beacon] at hce
+
+/-- Control for provable returns, against the witnessed head:
+    the claim that a derivation whose head is a witnessed node
+    of the fold is present in the fold is false. The concrete
+    stream witnesses the head and contributes nothing, and the
+    derivation stays absent. Head witnessing alone returns
+    nothing; contribution is the load-bearing hypothesis of
+    `returns_head`. -/
+theorem separation :
+    ¬ (∀ (lift : Nat → Graph Nat) (l : List Nat) (d : Derivation Nat),
+      (fold lift l).nodes d.head = true →
+        (fold lift l).edges d = true) := by
+  intro h
+  have hpres := h beacon [0] noprem marked
+  rw [absent] at hpres
+  exact Bool.false_ne_true hpres
+
+/-- A contribution returns with no witnessed head: under the
+    grain assignment, which contributes derivations and no
+    nodes at all, the first grain derivation is present in the
+    fold while its head is not a witnessed node. The
+    witnessed-head hypothesis of the earlier form of
+    `returns_head` was therefore not necessary either. -/
+theorem unwitnessed :
+    (fold grainlift [0]).edges fullprem = true ∧
+      (fold grainlift [0]).nodes fullprem.head = false := by
+  constructor
+  · exact (fold_edges grainlift).mpr
+      ⟨0, by simp, by simp [grainlift, fullprem]⟩
+  · cases h : (fold grainlift [0]).nodes fullprem.head with
+    | false => rfl
+    | true =>
+      rcases (fold_nodes grainlift).mp h with ⟨e, he, hce⟩
+      simp at he
+      subst he
+      simp [grainlift] at hce
+
 /-- The residue fold: a retraction variant whose derivation face
     is retracted exactly, but whose node face keeps the nodes of
     the full, unretracted fold joined in. Retracted events leave
@@ -192,6 +254,10 @@ theorem residue_claim_fails :
 #print axioms grain_absent
 #print axioms grain_coarse_present
 #print axioms grain_claim_fails
+#print axioms marked
+#print axioms absent
+#print axioms separation
+#print axioms unwitnessed
 #print axioms residue_survivor_absent
 #print axioms residue_present
 #print axioms residue_claim_fails
@@ -213,6 +279,11 @@ theorem residue_claim_fails :
 #check @Controls.grain_absent
 #check @Controls.grain_coarse_present
 #check @Controls.grain_claim_fails
+#check @Controls.beacon
+#check @Controls.marked
+#check @Controls.absent
+#check @Controls.separation
+#check @Controls.unwitnessed
 #check @Controls.residuefold
 #check @Controls.residue_survivor_absent
 #check @Controls.residue_present

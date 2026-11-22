@@ -1,4 +1,4 @@
-Statement enumeration: 48 statements
+Statement enumeration: 53 statements
   statement Traceability.Derivation
   statement Traceability.Graph
   statement Traceability.join
@@ -43,6 +43,11 @@ Statement enumeration: 48 statements
   statement Controls.grain_absent
   statement Controls.grain_coarse_present
   statement Controls.grain_claim_fails
+  statement Controls.beacon
+  statement Controls.marked
+  statement Controls.absent
+  statement Controls.separation
+  statement Controls.unwitnessed
   statement Controls.residuefold
   statement Controls.residue_survivor_absent
   statement Controls.residue_present
@@ -74,9 +79,8 @@ Traceability.Timed : Type → Type → Type
 @Traceability.fold_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
   {d : Traceability.Derivation Node}, (Traceability.fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
 @Traceability.returns_head : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
-  {d : Traceability.Derivation Node},
-  (Traceability.fold lift l).nodes d.head = true →
-    (∃ e, e ∈ l ∧ (lift e).edges d = true) → (Traceability.fold lift l).edges d = true
+  {d : Traceability.Derivation Node} (e : Ev),
+  e ∈ l → (lift e).edges d = true → (Traceability.fold lift l).edges d = true
 @Traceability.fold_ext : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
   (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → Traceability.fold lift l₁ = Traceability.fold lift l₂
 @Traceability.fold_perm : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
@@ -122,6 +126,13 @@ Controls.grain_coarse_present : ∃ d',
 Controls.grain_claim_fails : ¬∀ (d : Traceability.Derivation Nat),
     (∃ d', (Traceability.fold Controls.grainlift [0]).edges d' = true ∧ d'.head = d.head) →
       (Traceability.fold Controls.grainlift [0]).edges d = true
+Controls.beacon : Nat → Traceability.Graph Nat
+Controls.marked : (Traceability.fold Controls.beacon [0]).nodes Controls.noprem.head = true
+Controls.absent : (Traceability.fold Controls.beacon [0]).edges Controls.noprem = false
+Controls.separation : ¬∀ (lift : Nat → Traceability.Graph Nat) (l : List Nat) (d : Traceability.Derivation Nat),
+    (Traceability.fold lift l).nodes d.head = true → (Traceability.fold lift l).edges d = true
+Controls.unwitnessed : (Traceability.fold Controls.grainlift [0]).edges Controls.fullprem = true ∧
+  (Traceability.fold Controls.grainlift [0]).nodes Controls.fullprem.head = false
 Controls.residuefold : (Nat → Traceability.Graph Nat) → (Nat → Bool) → List Nat → Traceability.Graph Nat
 Controls.residue_survivor_absent : (Traceability.fold Controls.ownlift
         (List.filter (fun e => decide (e = 1)) [0, 1])).nodes
