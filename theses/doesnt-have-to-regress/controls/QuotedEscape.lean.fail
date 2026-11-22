@@ -1,0 +1,4 @@
+def q1 : Char := '"'
+unsafe def sneaky : Nat := 0
+def q2 : Char := '"'
+theorem ordinary : True := True.intro

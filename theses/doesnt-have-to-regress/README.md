@@ -1,6 +1,12 @@
 # software-doesnt-have-to-regress
 
-Lean 4.19.0, core only. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, runs the negative controls, and runs `gate` on `examples/stream.json`. The transcript is `CHECK.log`.
+**Claim scope:** a release process can preserve its declared, faithfully represented qualification and cost contract by publishing a certified incumbent or a checked replacement. It may have to block. Strict improvement, uninterrupted availability, complete physical coverage, and global optimality are not consequences of this claim.
+
+[The definition audit](AUDIT.md) gives the candidate readings, minimal counterexamples, surviving conjunction, enforcement costs, and model limits. The requested historical pin `24d36c13414867e59ae67ccf47f83cc250ce55af` was README only; this development does not retroactively credit it.
+
+`Audit.Contract` adds separate required-capability and permitted-outcome checks to the pinned family cost and qualification vocabulary. It proves fixed-contract sequence preservation and a deployment wrapper that blocks an uncertified baseline. `Audit.Readings`, `Audit.ContractControls`, and `Audit.Projection` retain the independent counterexamples and information-erasure limits. These are finite model results. The legacy `gate` executable below still implements the original narrower profile policy; it has no outcome-envelope input or physical evidence extractor.
+
+Lean 4.19.0, core only. `./check.sh` inventories and recompiles every repository Lean file with warnings as errors, checks both dependency pins, scans source escapes, audits every proposition-valued declaration's transitive axioms, runs standing rejection controls, and checks both worked examples and the stream executable. Fresh logs and source fingerprints are in `.lake/all-files-gate/`. `CHECK.log` is a historical transcript, not current-pin evidence. Standard Lean foundational axioms and compiler-generated nonlogical runtime internals are reported separately from custom proof axioms and authored source escapes.
 
 Pinned inputs:
 
@@ -42,6 +48,6 @@ r2 refuse emit ship r1
 r3 refuse-equal ship r1
 ```
 
-`Implications.lean` prints each headline as `IMPLICATION`, `FROM`, `PLUS`. Those lines are in `CHECK.log`. No separate implications prose is maintained.
+`Implications.lean` retains the dependency-report helpers and headline axiom prints. The generated gate audit invokes its report and audits every logical declaration, including the definition-audit modules. The historical `IMPLICATION`, `FROM`, and `PLUS` output remains in `CHECK.log`; current evidence is generated under `.lake/all-files-gate/`. See [the claim ledger](AUDIT.md#7-proof-strength-and-application-premise-ledger) for the physical-coverage and deployment premises.
 
 Nothing here is a measurement of Ariane 5, CrowdStrike, or Knight Capital, and nothing here ranks one implementation against another.

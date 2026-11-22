@@ -18,6 +18,8 @@ def parseNat : Cs → Option (Nat × Cs)
   | [] => none
   | c :: cs =>
     if c.isDigit then
+      if c == '0' && (cs.headD ' ').isDigit then none
+      else
       let rec go (n : Nat) : Cs → Nat × Cs
         | d :: rest =>
           if d.isDigit then go (n * 10 + (d.toNat - '0'.toNat)) rest else (n, d :: rest)
@@ -30,6 +32,8 @@ def parseString : Cs → Option (String × Cs)
     let rec go : Cs → Option (List Char × Cs)
       | '"' :: rest => some ([], rest)
       | c :: rest =>
+        if c == '\\' || c.toNat < 32 then none
+        else
         match go rest with
         | some (xs, rest) => some (c :: xs, rest)
         | none => none
@@ -40,7 +44,9 @@ def parseString : Cs → Option (String × Cs)
   | _ => none
 
 mutual
-partial def parseValue (cs : Cs) : Option (J × Cs) :=
+def parseValue : Nat → Cs → Option (J × Cs)
+  | 0, _ => none
+  | fuel + 1, cs =>
   let cs := ws cs
   match cs with
   | '"' :: _ =>
@@ -48,11 +54,11 @@ partial def parseValue (cs : Cs) : Option (J × Cs) :=
     | some (s, rest) => some (.str s, rest)
     | none => none
   | '[' :: rest =>
-    match parseArray (ws rest) with
+    match parseArray fuel (ws rest) with
     | some (xs, rest) => some (.arr xs, rest)
     | none => none
   | '{' :: rest =>
-    match parseObject (ws rest) with
+    match parseObject fuel (ws rest) with
     | some (xs, rest) => some (.obj xs, rest)
     | none => none
   | _ =>
@@ -60,23 +66,29 @@ partial def parseValue (cs : Cs) : Option (J × Cs) :=
     | some (n, rest) => some (.num n, rest)
     | none => none
 
-partial def parseArray (cs : Cs) : Option (List J × Cs) :=
+def parseArray : Nat → Cs → Option (List J × Cs)
+  | 0, _ => none
+  | fuel + 1, cs =>
   let cs := ws cs
   match cs with
   | ']' :: rest => some ([], rest)
   | _ =>
-    match parseValue cs with
+    match parseValue fuel cs with
     | none => none
     | some (v, rest) =>
       match ws rest with
       | ',' :: rest =>
-        match parseArray rest with
+        if (ws rest).head? == some ']' then none
+        else
+        match parseArray fuel rest with
         | some (vs, rest) => some (v :: vs, rest)
         | none => none
       | ']' :: rest => some ([v], rest)
       | _ => none
 
-partial def parseObject (cs : Cs) : Option (List (String × J) × Cs) :=
+def parseObject : Nat → Cs → Option (List (String × J) × Cs)
+  | 0, _ => none
+  | fuel + 1, cs =>
   let cs := ws cs
   match cs with
   | '}' :: rest => some ([], rest)
@@ -86,13 +98,17 @@ partial def parseObject (cs : Cs) : Option (List (String × J) × Cs) :=
     | some (k, rest) =>
       match ws rest with
       | ':' :: rest =>
-        match parseValue rest with
+        match parseValue fuel rest with
         | none => none
         | some (v, rest) =>
           match ws rest with
           | ',' :: rest =>
-            match parseObject rest with
-            | some (vs, rest) => some ((k, v) :: vs, rest)
+            if (ws rest).head? == some '}' then none
+            else
+            match parseObject fuel rest with
+            | some (vs, rest) =>
+              if vs.any (fun entry => entry.1 == k) then none
+              else some ((k, v) :: vs, rest)
             | none => none
           | '}' :: rest => some ([(k, v)], rest)
           | _ => none
@@ -136,7 +152,7 @@ def releaseOf : J → Option (String × SoftwareDoesntRegress.Release Nat)
   | _ => none
 
 def parseFile (cs : Cs) : Option (List String × List (String × SoftwareDoesntRegress.Release Nat)) := do
-  let (v, rest) ← parseValue cs
+  let (v, rest) ← parseValue (cs.length * 3 + 1) cs
   if ws rest ≠ [] then none
   else
     match v with

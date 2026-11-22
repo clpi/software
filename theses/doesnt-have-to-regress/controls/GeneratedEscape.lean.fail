@@ -1,0 +1,9 @@
+import Lean
+open Lean Elab Command
+elab "inject_runtime" : command => do
+  let env ← getEnv
+  match Parser.runParserCategory env `command "unsafe def hiddenRuntime : Nat := 0" with
+  | .ok stx => elabCommand stx
+  | .error message => throwError message
+inject_runtime
+theorem ordinary : True := True.intro

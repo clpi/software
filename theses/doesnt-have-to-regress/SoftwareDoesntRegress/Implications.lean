@@ -103,13 +103,6 @@ end SoftwareDoesntRegress
 
 open SoftwareDoesntRegress
 
-elab "#upstream_implications" : command => do
-  let env ← getEnv
-  for line in implicationLines env do
-    logInfo line
-
-#upstream_implications
-
 #print axioms SoftwareDoesntRegress.step_witness
 #print axioms SoftwareDoesntRegress.shipped_chain
 #print axioms SoftwareDoesntRegress.policy_exists

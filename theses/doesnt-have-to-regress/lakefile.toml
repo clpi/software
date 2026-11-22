@@ -1,0 +1,26 @@
+name = "«software-doesnt-have-to-regress»"
+defaultTargets = ["SoftwareDoesntRegress", "gate", "Audit"]
+
+[leanOptions]
+warningAsError = true
+
+[[require]]
+name = "«software-is-composable»"
+git = "https://github.com/clpi/software-is-composable"
+rev = "033c12c01299a9b28983bee410c230641adc7d1e"
+
+[[require]]
+name = "«software-is-quantifiable»"
+git = "https://github.com/clpi/software-is-quantifiable"
+rev = "a21c7c56fa028f32014dd795b35b14f688e8fdf1"
+
+[[lean_lib]]
+name = "SoftwareDoesntRegress"
+
+[[lean_lib]]
+name = "Audit"
+roots = ["Audit.Contract", "Audit.Readings"]
+
+[[lean_exe]]
+name = "gate"
+root = "GateExe"
