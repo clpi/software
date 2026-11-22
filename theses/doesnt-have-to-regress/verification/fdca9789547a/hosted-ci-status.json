@@ -1,0 +1,22 @@
+{
+  "commit": "fdca9789547ad62536ab71d7689d99dc7754a116",
+  "workflow_run": "https://github.com/clpi/software-doesnt-have-to-regress/actions/runs/44981291638",
+  "jobs": [
+    {
+      "id": 137082135224,
+      "status": "completed",
+      "conclusion": "failure",
+      "runner_id": 0,
+      "runner_name": "",
+      "steps": [],
+      "html_url": "https://github.com/clpi/software-doesnt-have-to-regress/actions/runs/44981291638/job/137082135224"
+    }
+  ],
+  "hosted_gate_pass_claimed": false,
+  "reason_known": false,
+  "operational_prerequisites": [
+    "Hosted runner availability",
+    "FAMILY_READ_TOKEN secret with read access to the private software-is-composable prerequisite"
+  ],
+  "note": "The final-pin hosted job ended before any step ran. Earlier candidate hosted execution also failed before runner assignment on two attempts, and its log endpoint returned404. No cause beyond those observations is asserted; no hosted CI pass is counted."
+}

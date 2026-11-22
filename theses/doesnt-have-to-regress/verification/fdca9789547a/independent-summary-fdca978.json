@@ -1,0 +1,47 @@
+{
+  "source_commit": "fdca9789547ad62536ab71d7689d99dc7754a116",
+  "source_tree": "9508544f033bb3ac3fc5d077e10ae9532c0662c5",
+  "verdict": "PASS",
+  "fresh_source_only_full_gate": true,
+  "gate_elapsed_seconds": 51.42,
+  "files_checked": 27,
+  "proof_declarations_audited": 916,
+  "generated_nonlogical_unsafe_runtime_declarations": 2025,
+  "custom_proof_axioms": 0,
+  "source_proof_escapes": 0,
+  "warnings_as_errors": true,
+  "dynamic_controls": [
+    "DYNAMIC_CONTROLS_PASS cases=44"
+  ],
+  "audit_partition_covers_unique_source_modules": 27,
+  "partition_attack_cases": 4,
+  "remote_blob_count": 70,
+  "remote_tree_objects_verified": 11,
+  "unchanged_source_and_dependency_postcheck": true,
+  "head_clean": true,
+  "hosted_ci_pass_observed_by_this_reviewer": false,
+  "artifacts": {
+    "independent-receipt-fdca978.json": {
+      "path": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/independent-receipt-fdca978.json",
+      "sha256": "cf95873cec50bfc4b79158c399c0fdd67cdbd06c25e00df32a97600dc820d832",
+      "bytes": 9573
+    },
+    "independent-source-fdca978.json": {
+      "path": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/independent-source-fdca978.json",
+      "sha256": "69a42d5ec4e89680778aa3bc77cdd625aa117ba560ce35461a7a73017ba09892",
+      "bytes": 18262
+    },
+    "independent-partition-fdca978.json": {
+      "path": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/independent-partition-fdca978.json",
+      "sha256": "2c0623908dd95910c6a90e79b119d8b799c08f19c6a3b44870356bf05b6baf4b",
+      "bytes": 1930
+    },
+    "independent-full-logs-fdca978.txt.gz": {
+      "path": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/independent-full-logs-fdca978.txt.gz",
+      "sha256": "e63e9a05ee06e052915f39bc96961ad3831f7e7754db02f7d823507725b79a4d",
+      "bytes": 41574
+    }
+  },
+  "log_sections": 79,
+  "uncompressed_log_bytes": 607239
+}

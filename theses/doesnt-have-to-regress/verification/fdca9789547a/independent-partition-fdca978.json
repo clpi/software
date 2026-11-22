@@ -1,0 +1,38 @@
+{
+  "source_pin": "fdca9789547ad62536ab71d7689d99dc7754a116",
+  "gate_sha256": "efb7d5488c570d2e479f34338f687ed7a8ff4e4809912ff95ba118b524e26fc0",
+  "cases": [
+    {
+      "case": "ReviewExecEmpty",
+      "expected_rejected": false,
+      "exit": 0,
+      "log": "GENERATED_UNSAFE_RUNTIME main._cstage1\nGENERATED_UNSAFE_RUNTIME main._cstage2\nAUDIT_TOTAL 0\nGENERATED_UNSAFE_RUNTIME_TOTAL 2\n",
+      "source_sha256": "f11e49e3bc67f64bf3369f4fad94d4e3d83cdbe07470058c34c7bc1af263cf64",
+      "checker_sha256": "ee54d137b844badbafced52542831f56ffdb0773a278db8ff08a55490c39f67a"
+    },
+    {
+      "case": "ReviewExecClaim",
+      "expected_rejected": false,
+      "exit": 0,
+      "log": "AUDITED checked AXIOMS #[]\nAUDIT_TOTAL 1\nGENERATED_UNSAFE_RUNTIME_TOTAL 0\n",
+      "source_sha256": "645c141e348a59d9a82f3d174785b7bb648f8e1962dc0cd43589d9e105105241",
+      "checker_sha256": "86053bc0dbeb3392e3f3a2130583e188c6493343733b60dc0cb45741d61c0c9e"
+    },
+    {
+      "case": "ReviewExecPoison",
+      "expected_rejected": true,
+      "exit": 1,
+      "log": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/partition-fdca978/AuditReviewExecPoison.lean:44:0: error: custom axiom declaration: injectedExecutableAxiom\n",
+      "source_sha256": "88aa094c324e0e6e52f12d59a6ebc5c09799b4f4bf24e78b55e22219d25612e8",
+      "checker_sha256": "1a1715a4fd2408a66c365736a85bfef5f955afbd4a186561d4b6b5ccb0b20996"
+    },
+    {
+      "case": "ReviewExecInherited",
+      "expected_rejected": true,
+      "exit": 1,
+      "log": "/workspace/scratch/567d7be8cbe5/independent-dynamic-recheck/partition-fdca978/AuditReviewExecInherited.lean:44:0: error: prohibited transitive axiom injectedExecutableAxiom in inheritedExecutablePoison\n",
+      "source_sha256": "a525f236656f3c8e90183ac72fde34881a53c69366c3cdf37acab3f7be6a8ff1",
+      "checker_sha256": "ec869370b7a6cbb0cffe4942ccb8e880b67887a18ac60ce3d6be1aef79028bc6"
+    }
+  ]
+}

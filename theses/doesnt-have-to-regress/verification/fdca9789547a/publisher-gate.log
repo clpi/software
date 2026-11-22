@@ -1,0 +1,30 @@
+Checking 27 Lean files with Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+COMPILED Audit/Contract.lean
+COMPILED Audit/ContractControls.lean
+COMPILED Audit/Projection.lean
+COMPILED SoftwareDoesntRegress/Profiles.lean
+COMPILED SoftwareDoesntRegress/Gate.lean
+COMPILED Audit/Readings.lean
+COMPILED Dynamic/Incremental.lean
+COMPILED Dynamic/Greedy.lean
+COMPILED Dynamic/Evolution.lean
+COMPILED Dynamic/Engine.lean
+COMPILED Dynamic/GreedyControls.lean
+COMPILED Dynamic/History.lean
+COMPILED Dynamic/HistoryControls.lean
+COMPILED Dynamic/IndependentControls.lean
+COMPILED GateExe/Parser.lean
+COMPILED DynamicCli.lean
+COMPILED GateExe.lean
+COMPILED SoftwareDoesntRegress/Policy.lean
+COMPILED SoftwareDoesntRegress/Boundary.lean
+COMPILED SoftwareDoesntRegress/Resolution.lean
+COMPILED SoftwareDoesntRegress/Baseline.lean
+COMPILED SoftwareDoesntRegress/ContextCone.lean
+COMPILED SoftwareDoesntRegress/Implications.lean
+COMPILED SoftwareDoesntRegress/Checks.lean
+COMPILED SoftwareDoesntRegress.lean
+COMPILED examples/LogBatching.lean
+COMPILED examples/range-ledger/AccumulatorBudget.lean
+PASS: 27 Lean files; 916 proof declarations; no custom proof axioms; all controls rejected
+Receipt: /workspace/scratch/567d7be8cbe5/software-doesnt-have-to-regress/.lake/all-files-gate/receipt.json

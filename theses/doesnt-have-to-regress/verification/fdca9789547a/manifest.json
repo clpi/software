@@ -1,0 +1,38 @@
+{
+  "hosted-ci-status.json": {
+    "sha256": "6ebf1ea44d2fd262d2e108a853b5ce8d490b356af4abdbcda84e875d03f18414",
+    "bytes": 959
+  },
+  "independent-full-logs-fdca978.txt.gz": {
+    "sha256": "e63e9a05ee06e052915f39bc96961ad3831f7e7754db02f7d823507725b79a4d",
+    "bytes": 41574
+  },
+  "independent-partition-fdca978.json": {
+    "sha256": "2c0623908dd95910c6a90e79b119d8b799c08f19c6a3b44870356bf05b6baf4b",
+    "bytes": 1930
+  },
+  "independent-receipt-fdca978.json": {
+    "sha256": "cf95873cec50bfc4b79158c399c0fdd67cdbd06c25e00df32a97600dc820d832",
+    "bytes": 9573
+  },
+  "independent-source-fdca978.json": {
+    "sha256": "69a42d5ec4e89680778aa3bc77cdd625aa117ba560ce35461a7a73017ba09892",
+    "bytes": 18262
+  },
+  "independent-summary-fdca978.json": {
+    "sha256": "4e134060104729255229278924c8c677c0c969a111706ee5c3e9133b608c502a",
+    "bytes": 1914
+  },
+  "publisher-gate.log": {
+    "sha256": "aab6d8e4b8b43d19e8afaea1c522b0154bf0ebbba1ee1b24685aa0381a25755a",
+    "bytes": 1308
+  },
+  "publisher-logs.json.gz": {
+    "sha256": "a0e7d12de4f47d6f349c7a61fe4684c2fad500e05d8ee1cf3515368be1ac5ba4",
+    "bytes": 40675
+  },
+  "publisher-receipt.json": {
+    "sha256": "cf95873cec50bfc4b79158c399c0fdd67cdbd06c25e00df32a97600dc820d832",
+    "bytes": 9573
+  }
+}

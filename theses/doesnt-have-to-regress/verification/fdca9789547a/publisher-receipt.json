@@ -1,0 +1,179 @@
+{
+  "commit": "fdca9789547ad62536ab71d7689d99dc7754a116",
+  "dirty": false,
+  "source_proof_escapes": 0,
+  "generated_checker_sha256": "4439049441296350a946da81a0a0311c87c97c01d8d46cb28494258d7f535431",
+  "generated_checkers": {
+    "AxiomAudit0.lean": "6f442d234e1aaa9818bd7d59cb9bdf9123f59f73198e1a41b11562f8756f3392",
+    "AxiomAudit1.lean": "bdf20154cc7736fff70535e35a5a0c8a4956042ec3e2a3bff6141f9699a5115c",
+    "AxiomAudit2.lean": "dff94813b9bb2bbef9ff4a37bc7d0125e4f853989691ebe579b914978a7aa04e"
+  },
+  "audit_groups": [
+    {
+      "label": "libraries",
+      "modules": [
+        "Audit.Contract",
+        "Audit.ContractControls",
+        "Audit.Projection",
+        "Audit.Readings",
+        "Dynamic.Engine",
+        "Dynamic.Evolution",
+        "Dynamic.Greedy",
+        "Dynamic.GreedyControls",
+        "Dynamic.History",
+        "Dynamic.HistoryControls",
+        "Dynamic.Incremental",
+        "Dynamic.IndependentControls",
+        "GateExe.Parser",
+        "SoftwareDoesntRegress.Baseline",
+        "SoftwareDoesntRegress.Boundary",
+        "SoftwareDoesntRegress.Checks",
+        "SoftwareDoesntRegress.ContextCone",
+        "SoftwareDoesntRegress.Gate",
+        "SoftwareDoesntRegress.Implications",
+        "SoftwareDoesntRegress.Policy",
+        "SoftwareDoesntRegress.Profiles",
+        "SoftwareDoesntRegress.Resolution",
+        "SoftwareDoesntRegress",
+        "examples.LogBatching",
+        "examples.\u00abrange-ledger\u00bb.AccumulatorBudget"
+      ],
+      "proof_declarations": 790,
+      "generated_unsafe_runtime_declarations": 1448
+    },
+    {
+      "label": "DynamicCli",
+      "modules": [
+        "DynamicCli"
+      ],
+      "proof_declarations": 126,
+      "generated_unsafe_runtime_declarations": 520
+    },
+    {
+      "label": "GateExe",
+      "modules": [
+        "GateExe"
+      ],
+      "proof_declarations": 0,
+      "generated_unsafe_runtime_declarations": 57
+    }
+  ],
+  "generated_unsafe_runtime_declarations": 2025,
+  "lean": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "files_checked": 27,
+  "proof_declarations_audited": 916,
+  "allowed_standard_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "custom_proof_axioms": 0,
+  "warnings_as_errors": true,
+  "dependencies": [
+    {
+      "name": "software-is-quantifiable",
+      "commit": "a21c7c56fa028f32014dd795b35b14f688e8fdf1"
+    },
+    {
+      "name": "software-is-composable",
+      "commit": "033c12c01299a9b28983bee410c230641adc7d1e"
+    }
+  ],
+  "sources": {
+    "Audit/Contract.lean": "8068ca383cd9107eb88b08d6525cb4d353f1cfcfc42f49f262510dbea205d09e",
+    "Audit/ContractControls.lean": "bb54e4c579eb1647e18e6bd93cfec01f4457fc9be039626101560c22f17a3e79",
+    "Audit/Projection.lean": "333037a0dd3ee5759301e787b7e0dbf46832c8535866b87b8ad97623d2340a10",
+    "Audit/Readings.lean": "8be778e4221dbb3f0d5f3e007c7ee7026eb20136089e8908b5b464ef5f96faad",
+    "Dynamic/Engine.lean": "47bea160716ea99f2735e6b56dbe1aedb8b244232dee7697e71f8c7350a50ef4",
+    "Dynamic/Evolution.lean": "eaa67ec5310538c9f062e704ac37e00cb78f3b7c84272be8a3e6260e842786ca",
+    "Dynamic/Greedy.lean": "f6a02263bd733dd731f668bf4c8537a3d46e2107ac3525a059d57185c21ff0f3",
+    "Dynamic/GreedyControls.lean": "01989a78549f40aa10830008e2af6a3aae7b52e010b619b80d37283964f52a90",
+    "Dynamic/History.lean": "edc0efcd3b0b0420ac672ba6d8b6646b511c31fa77214d745f4e1c0be8171fc9",
+    "Dynamic/HistoryControls.lean": "87b059160b70bdc4341bd2396cbeb12d3f8be7f450db1db465ac07cb2ad376a9",
+    "Dynamic/Incremental.lean": "f1bf5d9536dd0c4347ce5793570132c6e8b764fcac314c19f245a434fb0b488b",
+    "Dynamic/IndependentControls.lean": "0d75efdfc0255fa41a7f43fa2b86c20ff7eda0e25edf0842674c0ddc4d0e4aff",
+    "DynamicCli.lean": "3512b55d842c11f4516de4ca07ff03452c315ab562a0d38f9069814fda6b41b1",
+    "GateExe/Parser.lean": "a74625be3a12bef117bc73c002fe561fb386935c262bc26bb4dab4ac588a6389",
+    "GateExe.lean": "466a0b3b005a61673bef7e87f926567dc5d7b70627f082bb8cfdc68fb71c9d18",
+    "SoftwareDoesntRegress/Baseline.lean": "b5aa5aad244985a93ce1497b3731338baa816acfecc8379b95f24c64a50371d8",
+    "SoftwareDoesntRegress/Boundary.lean": "87babc4449a0e4330462985aa35be2c7faa42f44480f0f196fcbf43636cd724e",
+    "SoftwareDoesntRegress/Checks.lean": "fe042d43bc3e36903b59e978011d9fece445f80cc90f8bd2efa659af6dd70eac",
+    "SoftwareDoesntRegress/ContextCone.lean": "e36dc6afd32ca0476f511ae6fe9e74518b3a6c74e94e42949718a3a5f647669c",
+    "SoftwareDoesntRegress/Gate.lean": "f627e0d7921697a9eaf8121bf31f8030f5e671106412af544f6e1a496a95a5bf",
+    "SoftwareDoesntRegress/Implications.lean": "e26d1701fc2603a68da02db19999238ddd78276e89d673bb629bb4b8ec9d6d86",
+    "SoftwareDoesntRegress/Policy.lean": "f1ec346bc2599cb49e54e75832c62a1a72fd18bf14ef77c38eb484aa7267b40a",
+    "SoftwareDoesntRegress/Profiles.lean": "e0713ca5a56663024882498353ff41e3519dd56ef9e1121fc07a4f6b4e9ad325",
+    "SoftwareDoesntRegress/Resolution.lean": "c80c2e5a42fc367e65134bdeb028f93b20cf25b0c68394cfd7381b0410ddb69e",
+    "SoftwareDoesntRegress.lean": "7777fdc017948cd80783b18375ddc99c39b13ec1bbdf09f217507c462b8e60b8",
+    "examples/LogBatching.lean": "5717f647ddac2f78acf3a20b29785afddd351afcb1be45dfd02e9405942505d2",
+    "examples/range-ledger/AccumulatorBudget.lean": "4b0d9d7029d13ac6594397db862f9f11b91184e30bead94297121767e260b18e"
+  },
+  "gate_inputs": {
+    "check.sh": "d4a16262232c26dd48191217c1113cbbeda7dbc8ea0826505ca1bf767d0f8acd",
+    "scripts/check.py": "efb7d5488c570d2e479f34338f687ed7a8ff4e4809912ff95ba118b524e26fc0",
+    "lakefile.toml": "fa2f27b91616592724a2d665b2455fc54dbdf3c50a5c289ca8e8f1672908d56e",
+    "lake-manifest.json": "8db944a4bd8e8576c0d73ef0f3367cc7140897f5a8791cdd761faf253e5782a4",
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "examples/stream.json": "d4cdb55cc0c511d7702c2da9c4c121546e7e9f89428da97dad19f266fff93862",
+    "examples/stream.expected": "62669c963fe99e11a94462cc0468fc6ddf07266557ad8621ccb9028d11a1b9a0",
+    "examples/check.sh": "c141ca315e2be437b40f0ed1085e54e2d52eee1a34ba43907c0963d804ecb17e",
+    "examples/replay.py": "3f8bcea9d17f263e35571a98f7f8eaff962a14e250feacf5b40349d6d49a0207",
+    "examples/range-ledger/check.sh": "b5839abe76c1fe03432f27af1c04e6521f4c74e48e0a4b9aa599e7549843080d",
+    "examples/range-ledger/replay.py": "018929c13faf686c1f42df5c4b5c4eba58e7e81e77890b725d3e3e4171bbc2be",
+    "examples/range-ledger/mutation.patch": "1cb1ae43b997288f7afd94f63a951f105215efbbc1f22f2b7b57ee28707aa4ee",
+    "controls/QuotedEscape.lean.fail": "1dbf9ccaf1e47e9eeaf06e447699f2a9bf2aae19811850fcaa4eda5af66866b3",
+    "controls/GeneratedEscape.lean.fail": "4fcb903b499ef667ac11804513594f413bc997554be9166df2d563b8bd4e723a",
+    "controls/SpoofedRuntime.lean.fail": "a79d3b649e127a8ea93ec14fa47db4dba4e8706b7efd6e107343dfe079c62513",
+    "examples/check_dynamic.py": "e8d47fae38b79d3808e4aa25859a3b8bae593cf0b48cb69c3b68c6d1126eff39",
+    ".github/workflows/check.yml": "263c1cd42eb127cd6d5df01451d22f4d496629b13dc2302c0b4e4e9ea2ba97a1",
+    "examples/dynamic-contract-refusal-greedy.json": "3513d8461df5f10631e8d20218bf2aca796bef522ab3d49ea8e601758ff6145e",
+    "examples/dynamic-invalid-archived-scope.json": "ebbd96af98329836ddfb02a3542b4e35e221c341c1f5ffe48260d998daa77603",
+    "examples/dynamic-invalid-baseline.json": "072654a147483368bd24c2440ec32093a2d94a2cc17501e3d910e858c18ebb9f",
+    "examples/dynamic-invalid-context-omission.json": "89d95a8368235f97b9d577cb2475b0ce5ab1dad98abfd4af45fb50b538b64916",
+    "examples/dynamic-invalid-context-rebase.json": "5821b6f2349f27316486422714888de387a81e2e7264662534f6e338eb03a300",
+    "examples/dynamic-invalid-context-undo.json": "b49bc0f86eb322dd75f91565ceb4ee56b794db673254146728bb4bf4161f9779",
+    "examples/dynamic-invalid-context.json": "d9d2484dd40438641afe21e494947dbcdf3b10f27e76f5873cfc3c117692432d",
+    "examples/dynamic-invalid-duplicate-key.json": "2ec580b1381c75e34a84f0ba3999464f2a964d4e58734f4c63e8bcc7e4a053c5",
+    "examples/dynamic-invalid-missing-key.json": "0df996ae5dbb0adf380e1ebe887fdf7876694284b73363a0db714faffc2c7428",
+    "examples/dynamic-invalid-stale-undo.json": "9017fd4711abde4f21ee1b5d67fd0edb2f71c4581ed34e7fe5e9c02c6b3cab45",
+    "examples/dynamic-invalid-unknown-undo.json": "c2a5dd1f649cf679e2b13217ae87c6bd34158c0aeb9806f2290e574bb3c8c4c4",
+    "examples/dynamic-reversible.json": "1bc06f3edc26c6203540660d4b284c191d78722bfbaf5b75d335e16172e74417",
+    "examples/dynamic-scope.json": "8915a064d58716672bc9ed673eca380d6764d1da6bf3acf607bbd8237a6d1ed3",
+    "examples/dynamic-stream.json": "68bfb76e449e1172980a9f06a6a33d29a54c73235fe8e5ce02d8ce3a89b00b3c"
+  },
+  "dynamic_controls": [
+    "DYNAMIC_CONTROLS_PASS cases=44"
+  ],
+  "negative_controls": [
+    "admitted proof",
+    "unlisted custom axiom",
+    "nested metadata-name source",
+    "native decision",
+    "kernel bypass",
+    "warning bypass",
+    "source directory symlink",
+    "compiled custom axiom",
+    "imported custom axiom",
+    "warning",
+    "partial definition",
+    "unsafe definition",
+    "extern",
+    "implemented_by",
+    "sorry",
+    "range-ledger mutation",
+    "false acceptance",
+    "malformed parser input",
+    "truncated parser input",
+    "trailing parser input",
+    "parser fuel exhaustion",
+    "quote-literal unsafe concealment",
+    "raw-string unsafe concealment",
+    "command-synthesized unsafe declaration",
+    "spoofed compiler runtime name",
+    "duplicate object keys",
+    "trailing commas",
+    "leading-zero numbers",
+    "raw string controls",
+    "unsupported JSON escapes"
+  ]
+}
