@@ -26,5 +26,7 @@ lean_lib SoftwareFrontier where
     `Canon,
     `Bridge,
     `Tests,
+    `LinkHypergraph,
+    `LinkPareto,
     `examples.ReplicaPlacement
   ]
