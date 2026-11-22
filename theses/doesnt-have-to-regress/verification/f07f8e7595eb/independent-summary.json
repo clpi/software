@@ -1,0 +1,21 @@
+{
+  "commit": "f07f8e7595eb70afe84a40403f54481dfc22f6cc",
+  "tree": "9108e2e6fd7ed5787b1253dbd124d16d8ca5cf26",
+  "remote_blobs_verified": 42,
+  "source_only_dependencies_verified": {
+    "software-is-quantifiable": 37,
+    "software-is-composable": 28
+  },
+  "initial_precompiled_artifacts": 0,
+  "command": "LEAN=/workspace/scratch/7afbab13e4a8/proof_work/lean-4.19.0-linux/bin/lean ./check.sh",
+  "exit_code": 0,
+  "files_checked": 17,
+  "named_theorem_declarations": 203,
+  "proof_declarations_audited": 427,
+  "source_proof_escapes": 0,
+  "custom_proof_axioms": 0,
+  "generated_nonlogical_runtime_declarations": 940,
+  "dirty_after_check": false,
+  "publisher_source_and_gate_inputs_identical": true,
+  "complete_log_files": 49
+}

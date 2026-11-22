@@ -1,0 +1,573 @@
+[
+  {
+    "name": "software-is-quantifiable",
+    "sha": "a21c7c56fa028f32014dd795b35b14f688e8fdf1",
+    "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/trees/a21c7c56fa028f32014dd795b35b14f688e8fdf1",
+    "tree": [
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01f8cdb637da2370fa79960e25efa59dd8cffd6d",
+        "size": 7,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/01f8cdb637da2370fa79960e25efa59dd8cffd6d"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e6e72388b007ab495242e103bb13e91edf8c2ad7",
+        "size": 19095,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e6e72388b007ab495242e103bb13e91edf8c2ad7"
+      },
+      {
+        "path": "SoftwareIsQuantifiable.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1d5dcf44be6a27f853a54fc32e0cd5693ef873c1",
+        "size": 270,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/1d5dcf44be6a27f853a54fc32e0cd5693ef873c1"
+      },
+      {
+        "path": "SoftwareIsQuantifiable",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "8016298fc453a3a9c1ab9e246eb8701023e5a474",
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/trees/8016298fc453a3a9c1ab9e246eb8701023e5a474"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Coloring.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bcbed46f7c6be0adbb7c252727d80d850b2a3f2b",
+        "size": 27741,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/bcbed46f7c6be0adbb7c252727d80d850b2a3f2b"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Coverage.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a1ed68424249fd9f522b976f657f62b77e2dd8e8",
+        "size": 7812,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/a1ed68424249fd9f522b976f657f62b77e2dd8e8"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Finiteness.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "eca691dd1dcd869168cffdaf718bdf09c57303ce",
+        "size": 14162,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/eca691dd1dcd869168cffdaf718bdf09c57303ce"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Fold.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3b785c8788171be5a2fadff927c33579459d1330",
+        "size": 9560,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/3b785c8788171be5a2fadff927c33579459d1330"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Instance.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a1a206ef02e12e96d792e144cc10f127580744fd",
+        "size": 8848,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/a1a206ef02e12e96d792e144cc10f127580744fd"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Interface.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f60772a2ab3e778d04b9a265adecd90167da4bec",
+        "size": 34910,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/f60772a2ab3e778d04b9a265adecd90167da4bec"
+      },
+      {
+        "path": "SoftwareIsQuantifiable/Pareto.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "732572654548c144f6f2b3fb7037ab5137a676a1",
+        "size": 27020,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/732572654548c144f6f2b3fb7037ab5137a676a1"
+      },
+      {
+        "path": "lake-manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d8b06d8fef7592d9a58bdc5a4c8977def64594bf",
+        "size": 134,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/d8b06d8fef7592d9a58bdc5a4c8977def64594bf"
+      },
+      {
+        "path": "lakefile.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a816339c28a4380dcf1d52b7ea8189420dcfe2e6",
+        "size": 150,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/a816339c28a4380dcf1d52b7ea8189420dcfe2e6"
+      },
+      {
+        "path": "lean-toolchain",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7aca1d8a939cc24c413eddd793671cdce7070b74",
+        "size": 25,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/7aca1d8a939cc24c413eddd793671cdce7070b74"
+      },
+      {
+        "path": "verification",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "0a727eb2b31484154befd91c4dff690f02b5531a",
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/trees/0a727eb2b31484154befd91c4dff690f02b5531a"
+      },
+      {
+        "path": "verification/ParetoControls.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3da699c8f215c7d9bfd04db6d80f3abf186aee37",
+        "size": 1033,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/3da699c8f215c7d9bfd04db6d80f3abf186aee37"
+      },
+      {
+        "path": "verification/coverage",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "dfc10f46dfcc1cbad0da75c98f1f2deedbf118bf",
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/trees/dfc10f46dfcc1cbad0da75c98f1f2deedbf118bf"
+      },
+      {
+        "path": "verification/coverage/Axioms.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "91b36a607b36505412d0e82636fa363e0eb55112",
+        "size": 4080,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/91b36a607b36505412d0e82636fa363e0eb55112"
+      },
+      {
+        "path": "verification/coverage/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c311d9d653217fd6f7a5f6aa68651af029d8bfbe",
+        "size": 2431,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/c311d9d653217fd6f7a5f6aa68651af029d8bfbe"
+      },
+      {
+        "path": "verification/coverage/axioms.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/axioms.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef207cf0770d6b0caef13ca45bed26423da64925",
+        "size": 5644,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/ef207cf0770d6b0caef13ca45bed26423da64925"
+      },
+      {
+        "path": "verification/coverage/build.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/build.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "becc8bf797997ad43621dccc65ba2d123837cd06",
+        "size": 1421,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/becc8bf797997ad43621dccc65ba2d123837cd06"
+      },
+      {
+        "path": "verification/coverage/clean.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/clean.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/lean-version.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/lean-version.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f807d4b1be3665555206fa44d494fe43f20af871",
+        "size": 78,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/f807d4b1be3665555206fa44d494fe43f20af871"
+      },
+      {
+        "path": "verification/coverage/missing-behavior-gate.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/missing-behavior-gate.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "11133c77a88cba1b45eef008d8f9284c45d6c5bb",
+        "size": 1474,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/11133c77a88cba1b45eef008d8f9284c45d6c5bb"
+      },
+      {
+        "path": "verification/coverage/missing-compute-gate.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/missing-compute-gate.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8223dfd7cb0b19c57463c7053cefa984ed57b13d",
+        "size": 832,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/8223dfd7cb0b19c57463c7053cefa984ed57b13d"
+      },
+      {
+        "path": "verification/coverage/missing-validator.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/missing-validator.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6059ca8c2eeb2fd8ce9c43379946f0983180b425",
+        "size": 1045,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/6059ca8c2eeb2fd8ce9c43379946f0983180b425"
+      },
+      {
+        "path": "verification/coverage/record.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "56d7f99343265f4cc9f16eed33a2c9b276b7d21f",
+        "size": 10363,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/56d7f99343265f4cc9f16eed33a2c9b276b7d21f"
+      },
+      {
+        "path": "verification/coverage/unrecorded-witness.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/unrecorded-witness.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "afa61a487aa2745aef5639e9baedf32dc72f6b84",
+        "size": 978,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/afa61a487aa2745aef5639e9baedf32dc72f6b84"
+      },
+      {
+        "path": "verification/coverage/upstream-pareto-controls.stderr",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/upstream-pareto-controls.stdout",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "size": 0,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "path": "verification/coverage/verify.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8914fd529cb1797cb1758a25644ee43866a2c829",
+        "size": 5806,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/8914fd529cb1797cb1758a25644ee43866a2c829"
+      },
+      {
+        "path": "verification/pareto-repair.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "43cf4d12a6931a0d26aff510d5f7a0b12b31575f",
+        "size": 2319,
+        "url": "https://api.github.com/repos/clpi/software-is-quantifiable/git/blobs/43cf4d12a6931a0d26aff510d5f7a0b12b31575f"
+      }
+    ],
+    "truncated": false
+  },
+  {
+    "name": "software-is-composable",
+    "sha": "033c12c01299a9b28983bee410c230641adc7d1e",
+    "url": "https://api.github.com/repos/clpi/software-is-composable/git/trees/033c12c01299a9b28983bee410c230641adc7d1e",
+    "tree": [
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c0bd20d71383c2ff68891d44aec9cc8fb660e89",
+        "size": 30,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/6c0bd20d71383c2ff68891d44aec9cc8fb660e89"
+      },
+      {
+        "path": "CHECK.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "aa82c7e25e4cd5871c0233a5bb7b81f96062ad97",
+        "size": 12128,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/aa82c7e25e4cd5871c0233a5bb7b81f96062ad97"
+      },
+      {
+        "path": "ExecutableClosure.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "60366c4306c5ebfd0416769ed2e3145c21324b3a",
+        "size": 9106,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/60366c4306c5ebfd0416769ed2e3145c21324b3a"
+      },
+      {
+        "path": "FiniteFrontier.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "637b8e584a5a58252af8aceace919ad030b3f8df",
+        "size": 1846,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/637b8e584a5a58252af8aceace919ad030b3f8df"
+      },
+      {
+        "path": "FiniteQualification.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d9311bce4a6a5722d951f504f64fcfd8459b8bcc",
+        "size": 1354,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/d9311bce4a6a5722d951f504f64fcfd8459b8bcc"
+      },
+      {
+        "path": "HypergraphIncremental.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a47467cb5fa8c9124fca24405cb9aeaad064f080",
+        "size": 12872,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/a47467cb5fa8c9124fca24405cb9aeaad064f080"
+      },
+      {
+        "path": "Implications.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "90018a65a848f48cfbac86542657cec9bb53e553",
+        "size": 3990,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/90018a65a848f48cfbac86542657cec9bb53e553"
+      },
+      {
+        "path": "Main.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fb05fe64a04d5a15ce2733e24a2d0714e7de2cc3",
+        "size": 2406,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/fb05fe64a04d5a15ce2733e24a2d0714e7de2cc3"
+      },
+      {
+        "path": "Qualification.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a63283d34211fe6c4e3fc21c201be10ce91bebfa",
+        "size": 4613,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/a63283d34211fe6c4e3fc21c201be10ce91bebfa"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2fb91c738c7ee2f1b929463de90db3b01448ed5b",
+        "size": 4596,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/2fb91c738c7ee2f1b929463de90db3b01448ed5b"
+      },
+      {
+        "path": "SHA256SUMS",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a0474189ffffefbe2a62e73ac5c3fbee365a065a",
+        "size": 444,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/a0474189ffffefbe2a62e73ac5c3fbee365a065a"
+      },
+      {
+        "path": "SoftwareIsComposable.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "256b9f78e559c262d9067791af63b9722f18aea0",
+        "size": 343,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/256b9f78e559c262d9067791af63b9722f18aea0"
+      },
+      {
+        "path": "SoftwareIsComposable",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "1edf3ab7e199ab11dda8a96b530ef691524d7c51",
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/trees/1edf3ab7e199ab11dda8a96b530ef691524d7c51"
+      },
+      {
+        "path": "SoftwareIsComposable/Admission.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "72dda01e9417b69e20a25dc8f6fa41784324dc69",
+        "size": 9737,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/72dda01e9417b69e20a25dc8f6fa41784324dc69"
+      },
+      {
+        "path": "SoftwareIsComposable/Axioms.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "830f3e59e211b1f4d02a0ef2ee06da8db3068a90",
+        "size": 1343,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/830f3e59e211b1f4d02a0ef2ee06da8db3068a90"
+      },
+      {
+        "path": "SoftwareIsComposable/Composition.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c562dd12a8e85cefb071f75fa70c4445aae9da99",
+        "size": 9529,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/c562dd12a8e85cefb071f75fa70c4445aae9da99"
+      },
+      {
+        "path": "SoftwareIsComposable/Evidence.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b1581af5c28e55fcb697d32e2d8b662667502c86",
+        "size": 5606,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/b1581af5c28e55fcb697d32e2d8b662667502c86"
+      },
+      {
+        "path": "SoftwareIsComposable/Examples.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "50ca62f46c88b3534b8bf8c3e5480895907991ce",
+        "size": 747,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/50ca62f46c88b3534b8bf8c3e5480895907991ce"
+      },
+      {
+        "path": "SoftwareIsComposable/Finiteness.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "424900a5ec326e61439916be162f7b084b5ab0ed",
+        "size": 397,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/424900a5ec326e61439916be162f7b084b5ab0ed"
+      },
+      {
+        "path": "SoftwareIsComposable/Incremental.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cf94d463edda55b1b97b8848afee8f2e4f2aec15",
+        "size": 4259,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/cf94d463edda55b1b97b8848afee8f2e4f2aec15"
+      },
+      {
+        "path": "SoftwareIsComposable/Monotonicity.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "49d694deeba15add692247a1afdbe7a1007fa8ef",
+        "size": 3505,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/49d694deeba15add692247a1afdbe7a1007fa8ef"
+      },
+      {
+        "path": "SoftwareIsComposable/Profile.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc2ab87e390b283212f185207459f1a9b460aafc",
+        "size": 1055,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/cc2ab87e390b283212f185207459f1a9b460aafc"
+      },
+      {
+        "path": "check.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "cb741ff3c0b4fc77d356580dcb784a985583c534",
+        "size": 2706,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/cb741ff3c0b4fc77d356580dcb784a985583c534"
+      },
+      {
+        "path": "examples",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "ae3c8f0c3fea79332eb93d2df8f26e430a478ce0",
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/trees/ae3c8f0c3fea79332eb93d2df8f26e430a478ce0"
+      },
+      {
+        "path": "examples/expected.txt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "69e407045db3f38a48634003e3536893db2e0c5d",
+        "size": 38,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/69e407045db3f38a48634003e3536893db2e0c5d"
+      },
+      {
+        "path": "examples/new.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e0d94aab03a093a609bc54730f62a8160da6d2b6",
+        "size": 43,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/e0d94aab03a093a609bc54730f62a8160da6d2b6"
+      },
+      {
+        "path": "examples/old.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6755864a90868ca76d6b2c1fc89a12a79ccd522b",
+        "size": 41,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/6755864a90868ca76d6b2c1fc89a12a79ccd522b"
+      },
+      {
+        "path": "lake-manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "55a16cdd1d67895ac6f03e2c621dfde231fffcb2",
+        "size": 499,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/55a16cdd1d67895ac6f03e2c621dfde231fffcb2"
+      },
+      {
+        "path": "lakefile.lean",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "98d474237e24b35347bd6be2c157a500d7f831fe",
+        "size": 490,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/98d474237e24b35347bd6be2c157a500d7f831fe"
+      },
+      {
+        "path": "lean-toolchain",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7aca1d8a939cc24c413eddd793671cdce7070b74",
+        "size": 25,
+        "url": "https://api.github.com/repos/clpi/software-is-composable/git/blobs/7aca1d8a939cc24c413eddd793671cdce7070b74"
+      }
+    ],
+    "truncated": false
+  }
+]
