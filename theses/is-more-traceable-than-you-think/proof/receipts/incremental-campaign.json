@@ -1,0 +1,1257 @@
+{
+  "cartesian_family": {
+    "kernel": {
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "lean_processes": 1,
+      "module": "IncrementalReceipt1",
+      "new_modules": 1,
+      "new_rows": 2,
+      "new_value_proofs": 2,
+      "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' does not depend on any axioms\n'IncrementalReceipt1.value_1_correct' does not depend on any axioms\n",
+      "reused_prefix_rows": 0,
+      "total_rows": 2,
+      "total_value_proofs": 2
+    },
+    "manifest": {
+      "choice_assignments": 1048576,
+      "claim": "independent coordinate choices only; no interaction or output enumeration claim",
+      "factors": [
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate0"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate1"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate2"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate3"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate4"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate5"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate6"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate7"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate8"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate9"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate10"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate11"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate12"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate13"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate14"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate15"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate16"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate17"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate18"
+        },
+        {
+          "alternatives": [
+            {
+              "check": 8,
+              "compile": 6
+            },
+            {
+              "check": 3,
+              "compile": 1
+            }
+          ],
+          "name": "coordinate19"
+        }
+      ],
+      "materialized_tuples": 0,
+      "representation": "independent-cartesian-tuples",
+      "task": 10
+    },
+    "materialized_tuples": 0,
+    "metrics": {
+      "attempts_this_session": {
+        "certificate": 2,
+        "check": 2,
+        "compile": 2,
+        "execute": 2,
+        "factor": 1,
+        "recompute": 2
+      },
+      "dependency_visits": 50,
+      "descriptor_bytes_this_session": 9951,
+      "events": 23,
+      "executed": {
+        "certificate": 2,
+        "check": 2,
+        "compile": 2,
+        "execute": 2,
+        "factor": 1,
+        "recompute": 2
+      },
+      "failures_this_session": {},
+      "hot_history_scans": 0,
+      "intern_reused": {},
+      "interned": {
+        "certificate": 2,
+        "check": 2,
+        "compile": 2,
+        "execute": 2,
+        "factor": 1,
+        "recompute": 2
+      },
+      "journal_bytes": 18445,
+      "key_comparisons_this_session": 0,
+      "replay_events": 0,
+      "results": 11,
+      "reused": {
+        "check": 2
+      },
+      "shared_visits": 44,
+      "source_argument_reads": 0,
+      "source_nodes_planned": 2,
+      "source_reverse_edge_visits": 0,
+      "source_validation_visits": 0,
+      "tasks": 11,
+      "work": {
+        "certificate": 4,
+        "check": 4,
+        "compile": 4,
+        "execute": 2,
+        "factor": 41,
+        "recompute": 2
+      }
+    },
+    "qualification": "independent tuple coordinates choosing distinct constants 0 or 1; no cross-coordinate constraints",
+    "represented_distinct_tuples": 1048576
+  },
+  "contract": "finite pure exact-integer reference compiler; no production Idol integration",
+  "cumulative_cold_executed": {
+    "certificate": 161,
+    "check": 161,
+    "compile": 161,
+    "execute": 161,
+    "recompute": 161
+  },
+  "cumulative_cold_work": {
+    "certificate": 894,
+    "check": 894,
+    "compile": 894,
+    "execute": 733,
+    "recompute": 447
+  },
+  "cumulative_incremental": {
+    "attempts_this_session": {
+      "certificate": 23,
+      "check": 23,
+      "compile": 23,
+      "execute": 23,
+      "recompute": 23
+    },
+    "dependency_visits": 320,
+    "descriptor_bytes_this_session": 102126,
+    "events": 659,
+    "executed": {
+      "certificate": 57,
+      "check": 57,
+      "compile": 57,
+      "execute": 78,
+      "recompute": 78
+    },
+    "failures_this_session": {},
+    "hot_history_scans": 0,
+    "intern_reused": {},
+    "interned": {
+      "certificate": 57,
+      "check": 57,
+      "compile": 57,
+      "execute": 78,
+      "recompute": 78
+    },
+    "journal_bytes": 477931,
+    "key_comparisons_this_session": 0,
+    "replay_events": 428,
+    "results": 327,
+    "reused": {
+      "check": 2,
+      "execute": 2,
+      "recompute": 2
+    },
+    "shared_visits": 211,
+    "tasks": 327,
+    "work": {
+      "certificate": 320,
+      "check": 320,
+      "compile": 320,
+      "execute": 364,
+      "recompute": 221
+    }
+  },
+  "depth": 20,
+  "diamond": {
+    "expanded_tree_nodes": 2097151,
+    "expanded_tree_nodes_are": "constructed count; no expanded tree was executed or allocated",
+    "local_proofs": "DAG nodes referencing parent proof IDs, never copied subproof trees",
+    "stored_source_nodes_in_main_diamond": 21
+  },
+  "kernel_cold_new_modules": 7,
+  "kernel_cold_new_rows": 161,
+  "kernel_cold_receipt_processes": 7,
+  "kernel_cumulative": {
+    "fixed_modules_built_this_session": 0,
+    "lean_processes_this_session": 1,
+    "receipt_modules_built_this_session": 1,
+    "replayed_receipts": 3,
+    "rows_checked_this_session": 23,
+    "scope": {
+      "driver": "6e93d1d8809694a038a53d825ba393a35644aa7d6bf613712d4903ddff761203",
+      "format": "lean-cumulative-integer-receipts-v1",
+      "lean_binary": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+      "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+      "sources": {
+        "Evaluation": "e85b900f25bc3a551ed473d21ea5fc54246b6c2c8fb1deb6bffe2c6eaec82f12",
+        "Incremental": "f15ed735a8133b455e4d9b28564a1be4e930d4c9288a17691ebf3f4d1c3295cc",
+        "Pipeline": "6b141cb82c29e86e02a6f3eb5ba319bdcdaed893d6e4886eb396e0136913b94a"
+      }
+    },
+    "total_receipts": 4,
+    "total_rows": 57,
+    "total_value_proofs": 78,
+    "values_checked_this_session": 23
+  },
+  "kernel_prior_sessions": [
+    {
+      "fixed_modules_built_this_session": 4,
+      "lean_processes_this_session": 7,
+      "receipt_modules_built_this_session": 3,
+      "replayed_receipts": 0,
+      "rows_checked_this_session": 34,
+      "scope": {
+        "driver": "6e93d1d8809694a038a53d825ba393a35644aa7d6bf613712d4903ddff761203",
+        "format": "lean-cumulative-integer-receipts-v1",
+        "lean_binary": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+        "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+        "sources": {
+          "Evaluation": "e85b900f25bc3a551ed473d21ea5fc54246b6c2c8fb1deb6bffe2c6eaec82f12",
+          "Incremental": "f15ed735a8133b455e4d9b28564a1be4e930d4c9288a17691ebf3f4d1c3295cc",
+          "Pipeline": "6b141cb82c29e86e02a6f3eb5ba319bdcdaed893d6e4886eb396e0136913b94a"
+        }
+      },
+      "total_receipts": 3,
+      "total_rows": 34,
+      "total_value_proofs": 55,
+      "values_checked_this_session": 55
+    }
+  ],
+  "measurement_limits": [
+    "executed counts successful completed stage invocations; attempted and failed callback counts are separately recorded per process",
+    "work is instrumented local stage operation units, not CPU cycles or a bound on arbitrary-precision arithmetic or JSON serialization",
+    "seconds are measured wall time including persistence and optional kernel checks; no universal wall-time speedup is claimed",
+    "compiler correspondence proofs and captured-input value proofs are separately incrementally checked by Lean; Python check receipts are not kernel receipts",
+    "warm/no-op operations perform key/index/receipt checks even when zero new stage work and zero new journal records are reported",
+    "revert appends a current-head update while reusing prior tasks/results; append-only history never erases obsolete contracts",
+    "journal replay is linear at restart and reported explicitly; hot source updates visit changed dependency cones without scanning history",
+    "generic runner purity and complete dependency declarations, single-writer local journal ownership, and physical storage integrity remain assumptions",
+    "an exponential number of distinct demanded outputs still requires proportional materialization; factoring does not execute them for free"
+  ],
+  "steps": [
+    {
+      "affected_source_nodes": [
+        "d0",
+        "side",
+        "d1",
+        "side_out",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
+        "d9",
+        "d10",
+        "d11",
+        "d12",
+        "d13",
+        "d14",
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "d19",
+        "d20"
+      ],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.351895892000016,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 23,
+      "delta": {
+        "attempts_this_session": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "dependency_visits": 320,
+        "descriptor_bytes_this_session": 96296,
+        "events": 231,
+        "executed": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {},
+        "interned": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "journal_bytes": 166669,
+        "key_comparisons_this_session": 0,
+        "replay_events": 0,
+        "results": 115,
+        "reused": {},
+        "shared_visits": 211,
+        "source_argument_reads": 41,
+        "source_nodes_planned": 23,
+        "source_reverse_edge_visits": 21,
+        "source_validation_visits": 23,
+        "tasks": 115,
+        "work": {
+          "certificate": 128,
+          "check": 128,
+          "compile": 128,
+          "execute": 105,
+          "recompute": 64
+        }
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "new_compiler_rows": 23,
+      "seconds": 0.7846008879999999,
+      "step": "cold",
+      "values": {
+        "d20": 2097152,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.4738608210000166,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 23,
+      "delta": {
+        "attempts_this_session": {},
+        "dependency_visits": 0,
+        "descriptor_bytes_this_session": 0,
+        "events": 0,
+        "executed": {},
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {},
+        "interned": {},
+        "journal_bytes": 0,
+        "key_comparisons_this_session": 0,
+        "replay_events": 0,
+        "results": 0,
+        "reused": {
+          "check": 2,
+          "execute": 2,
+          "recompute": 2
+        },
+        "shared_visits": 0,
+        "source_argument_reads": 0,
+        "source_nodes_planned": 0,
+        "source_reverse_edge_visits": 0,
+        "source_validation_visits": 0,
+        "tasks": 0,
+        "work": {}
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 0,
+        "module": "IncrementalReceipt1",
+        "new_modules": 0,
+        "new_rows": 0,
+        "new_value_proofs": 0,
+        "output": "Reused compiler and captured-input value proofs; no new rows.\n",
+        "reused_prefix_rows": 23,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "new_compiler_rows": 0,
+      "seconds": 0.0006130840000651006,
+      "step": "warm",
+      "values": {
+        "d20": 2097152,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [
+        "d0",
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
+        "d9",
+        "d10",
+        "d11",
+        "d12",
+        "d13",
+        "d14",
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "d19",
+        "d20"
+      ],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.925941507999937,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 23,
+      "delta": {
+        "attempts_this_session": {
+          "execute": 21,
+          "recompute": 21
+        },
+        "dependency_visits": 122,
+        "descriptor_bytes_this_session": 87979,
+        "events": 85,
+        "executed": {
+          "execute": 21,
+          "recompute": 21
+        },
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {
+          "certificate": 21,
+          "check": 21,
+          "compile": 21
+        },
+        "interned": {
+          "execute": 21,
+          "recompute": 21
+        },
+        "journal_bytes": 57478,
+        "key_comparisons_this_session": 63,
+        "replay_events": 0,
+        "results": 42,
+        "reused": {
+          "check": 22,
+          "compile": 21,
+          "execute": 1,
+          "recompute": 1
+        },
+        "shared_visits": 41,
+        "source_argument_reads": 40,
+        "source_nodes_planned": 21,
+        "source_reverse_edge_visits": 20,
+        "source_validation_visits": 0,
+        "tasks": 42,
+        "work": {
+          "execute": 101,
+          "recompute": 61
+        }
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt2",
+        "new_modules": 1,
+        "new_rows": 0,
+        "new_value_proofs": 21,
+        "output": "'IncrementalReceipt2.history_length' depends on axioms: [propext]\n'IncrementalReceipt2.certified' depends on axioms: [propext]\n'IncrementalReceipt2.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt2.value_23_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_24_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_25_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_26_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_27_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_28_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_29_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_30_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_31_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_32_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_33_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_34_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_35_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_36_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_37_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_38_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_39_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_40_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_41_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_42_correct' depends on axioms: [propext]\n'IncrementalReceipt2.value_43_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 23,
+        "total_rows": 23,
+        "total_value_proofs": 44
+      },
+      "new_compiler_rows": 0,
+      "seconds": 0.4579024299999901,
+      "step": "input_edit",
+      "values": {
+        "d20": 3145728,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [
+        "d10",
+        "d11",
+        "d12",
+        "d13",
+        "d14",
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "d19",
+        "d20"
+      ],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.145418045000042,
+      "cold_work": {
+        "certificate": 126,
+        "check": 126,
+        "compile": 126,
+        "execute": 103,
+        "recompute": 63
+      },
+      "compiler_prefix_rows": 34,
+      "delta": {
+        "attempts_this_session": {
+          "certificate": 11,
+          "check": 11,
+          "compile": 11,
+          "execute": 11,
+          "recompute": 11
+        },
+        "dependency_visits": 160,
+        "descriptor_bytes_this_session": 46155,
+        "events": 111,
+        "executed": {
+          "certificate": 11,
+          "check": 11,
+          "compile": 11,
+          "execute": 11,
+          "recompute": 11
+        },
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {},
+        "interned": {
+          "certificate": 11,
+          "check": 11,
+          "compile": 11,
+          "execute": 11,
+          "recompute": 11
+        },
+        "journal_bytes": 79928,
+        "key_comparisons_this_session": 0,
+        "replay_events": 0,
+        "results": 55,
+        "reused": {
+          "certificate": 1,
+          "check": 2,
+          "compile": 1,
+          "execute": 2,
+          "recompute": 2
+        },
+        "shared_visits": 103,
+        "source_argument_reads": 21,
+        "source_nodes_planned": 11,
+        "source_reverse_edge_visits": 10,
+        "source_validation_visits": 11,
+        "tasks": 55,
+        "work": {
+          "certificate": 64,
+          "check": 64,
+          "compile": 64,
+          "execute": 53,
+          "recompute": 32
+        }
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt3",
+        "new_modules": 1,
+        "new_rows": 11,
+        "new_value_proofs": 11,
+        "output": "'IncrementalReceipt3.history_length' depends on axioms: [propext]\n'IncrementalReceipt3.certified' depends on axioms: [propext]\n'IncrementalReceipt3.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt3.delta_checked' does not depend on any axioms\n'IncrementalReceipt3.value_44_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_45_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_46_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_47_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_48_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_49_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_50_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_51_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_52_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_53_correct' depends on axioms: [propext]\n'IncrementalReceipt3.value_54_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 23,
+        "total_rows": 34,
+        "total_value_proofs": 55
+      },
+      "new_compiler_rows": 11,
+      "seconds": 0.4000771960000975,
+      "step": "structural_edit",
+      "values": {
+        "d20": -1572864,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [
+        "d0",
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
+        "d9",
+        "d10",
+        "d11",
+        "d12",
+        "d13",
+        "d14",
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "d19",
+        "d20"
+      ],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.1895078210000065,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 34,
+      "delta": {
+        "attempts_this_session": {},
+        "dependency_visits": 0,
+        "descriptor_bytes_this_session": 87903,
+        "events": 1,
+        "executed": {},
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {
+          "certificate": 21,
+          "check": 21,
+          "compile": 21,
+          "execute": 21,
+          "recompute": 21
+        },
+        "interned": {},
+        "journal_bytes": 1609,
+        "key_comparisons_this_session": 105,
+        "replay_events": 0,
+        "results": 0,
+        "reused": {
+          "check": 2,
+          "execute": 2,
+          "recompute": 2
+        },
+        "shared_visits": 0,
+        "source_argument_reads": 40,
+        "source_nodes_planned": 21,
+        "source_reverse_edge_visits": 20,
+        "source_validation_visits": 11,
+        "tasks": 0,
+        "work": {}
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 0,
+        "module": "IncrementalReceipt3",
+        "new_modules": 0,
+        "new_rows": 0,
+        "new_value_proofs": 0,
+        "output": "Reused compiler and captured-input value proofs; no new rows.\n",
+        "reused_prefix_rows": 34,
+        "total_rows": 34,
+        "total_value_proofs": 55
+      },
+      "new_compiler_rows": 0,
+      "seconds": 0.00427326399994854,
+      "step": "revert",
+      "values": {
+        "d20": 2097152,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.5677083929999753,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 34,
+      "delta": {
+        "attempts_this_session": {},
+        "dependency_visits": 0,
+        "descriptor_bytes_this_session": 0,
+        "events": 0,
+        "executed": {},
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {},
+        "interned": {},
+        "journal_bytes": 0,
+        "key_comparisons_this_session": 0,
+        "replay_events": 0,
+        "results": 0,
+        "reused": {
+          "check": 2,
+          "execute": 2,
+          "recompute": 2
+        },
+        "shared_visits": 0,
+        "source_argument_reads": 0,
+        "source_nodes_planned": 0,
+        "source_reverse_edge_visits": 0,
+        "source_validation_visits": 0,
+        "tasks": 0,
+        "work": {}
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 0,
+        "module": "IncrementalReceipt3",
+        "new_modules": 0,
+        "new_rows": 0,
+        "new_value_proofs": 0,
+        "output": "Reused compiler and captured-input value proofs; no new rows.\n",
+        "reused_prefix_rows": 34,
+        "total_rows": 34,
+        "total_value_proofs": 55
+      },
+      "new_compiler_rows": 0,
+      "restart": {
+        "kernel_new_lean_processes": 0,
+        "kernel_replayed_receipts": 3,
+        "kernel_seconds": 0.06495850999999675,
+        "replayed_events": 428,
+        "scope": "one explicit restart replay; excluded from the following hot-operation delta",
+        "seconds": 0.037529453999923135
+      },
+      "seconds": 0.0004558960000622392,
+      "step": "restart",
+      "values": {
+        "d20": 2097152,
+        "side_out": -7
+      }
+    },
+    {
+      "affected_source_nodes": [
+        "d0",
+        "side",
+        "d1",
+        "side_out",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
+        "d9",
+        "d10",
+        "d11",
+        "d12",
+        "d13",
+        "d14",
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "d19",
+        "d20"
+      ],
+      "cold_executed": {
+        "certificate": 23,
+        "check": 23,
+        "compile": 23,
+        "execute": 23,
+        "recompute": 23
+      },
+      "cold_kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt1",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt1.history_length' depends on axioms: [propext]\n'IncrementalReceipt1.certified' depends on axioms: [propext]\n'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt1.delta_checked' does not depend on any axioms\n'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]\n'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 0,
+        "total_rows": 23,
+        "total_value_proofs": 23
+      },
+      "cold_seconds": 3.101718989999995,
+      "cold_work": {
+        "certificate": 128,
+        "check": 128,
+        "compile": 128,
+        "execute": 105,
+        "recompute": 64
+      },
+      "compiler_prefix_rows": 57,
+      "delta": {
+        "attempts_this_session": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "dependency_visits": 320,
+        "descriptor_bytes_this_session": 102126,
+        "events": 231,
+        "executed": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "failures_this_session": {},
+        "hot_history_scans": 0,
+        "intern_reused": {},
+        "interned": {
+          "certificate": 23,
+          "check": 23,
+          "compile": 23,
+          "execute": 23,
+          "recompute": 23
+        },
+        "journal_bytes": 172247,
+        "key_comparisons_this_session": 0,
+        "replay_events": 0,
+        "results": 115,
+        "reused": {},
+        "shared_visits": 211,
+        "source_argument_reads": 41,
+        "source_nodes_planned": 23,
+        "source_reverse_edge_visits": 0,
+        "source_validation_visits": 0,
+        "tasks": 115,
+        "work": {
+          "certificate": 128,
+          "check": 128,
+          "compile": 128,
+          "execute": 105,
+          "recompute": 64
+        }
+      },
+      "kernel": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "lean_processes": 1,
+        "module": "IncrementalReceipt4",
+        "new_modules": 1,
+        "new_rows": 23,
+        "new_value_proofs": 23,
+        "output": "'IncrementalReceipt4.history_length' depends on axioms: [propext]\n'IncrementalReceipt4.certified' depends on axioms: [propext]\n'IncrementalReceipt4.semantics' depends on axioms: [propext, Quot.sound]\n'IncrementalReceipt4.delta_checked' does not depend on any axioms\n'IncrementalReceipt4.value_55_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_56_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_57_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_58_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_59_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_60_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_61_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_62_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_63_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_64_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_65_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_66_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_67_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_68_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_69_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_70_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_71_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_72_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_73_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_74_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_75_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_76_correct' depends on axioms: [propext]\n'IncrementalReceipt4.value_77_correct' depends on axioms: [propext]\n",
+        "reused_prefix_rows": 34,
+        "total_rows": 57,
+        "total_value_proofs": 78
+      },
+      "new_compiler_rows": 23,
+      "seconds": 0.6960230529999762,
+      "step": "scope_change",
+      "values": {
+        "d20": 2097152,
+        "side_out": -7
+      }
+    }
+  ]
+}

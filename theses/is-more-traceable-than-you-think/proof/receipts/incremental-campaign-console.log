@@ -1,0 +1,7 @@
+{"executed": {"certificate": 23, "check": 23, "compile": 23, "execute": 23, "recompute": 23}, "kernel_new_modules": 1, "kernel_new_value_proofs": 23, "new_compiler_rows": 23, "step": "cold", "values": {"d20": 2097152, "side_out": -7}}
+{"executed": {}, "kernel_new_modules": 0, "kernel_new_value_proofs": 0, "new_compiler_rows": 0, "step": "warm", "values": {"d20": 2097152, "side_out": -7}}
+{"executed": {"execute": 21, "recompute": 21}, "kernel_new_modules": 1, "kernel_new_value_proofs": 21, "new_compiler_rows": 0, "step": "input_edit", "values": {"d20": 3145728, "side_out": -7}}
+{"executed": {"certificate": 11, "check": 11, "compile": 11, "execute": 11, "recompute": 11}, "kernel_new_modules": 1, "kernel_new_value_proofs": 11, "new_compiler_rows": 11, "step": "structural_edit", "values": {"d20": -1572864, "side_out": -7}}
+{"executed": {}, "kernel_new_modules": 0, "kernel_new_value_proofs": 0, "new_compiler_rows": 0, "step": "revert", "values": {"d20": 2097152, "side_out": -7}}
+{"executed": {}, "kernel_new_modules": 0, "kernel_new_value_proofs": 0, "new_compiler_rows": 0, "step": "restart", "values": {"d20": 2097152, "side_out": -7}}
+{"executed": {"certificate": 23, "check": 23, "compile": 23, "execute": 23, "recompute": 23}, "kernel_new_modules": 1, "kernel_new_value_proofs": 23, "new_compiler_rows": 23, "step": "scope_change", "values": {"d20": 2097152, "side_out": -7}}

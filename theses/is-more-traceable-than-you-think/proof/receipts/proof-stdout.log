@@ -1,13 +1,28 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
-Repository Lean files: 5
+Repository Lean files: 20
 Compiled: examples/InvoiceTrace.lean
 Compiled: examples/range-ledger/BridgeRepair.lean
+Compiled: proof/Incremental.lean
+Compiled: proof/Pipeline.lean
+Compiled: proof/Projection.lean
+Compiled: proof/Sharing.lean
 Compiled: proof/Traceability.lean
 Compiled: proof/Controls.lean
+Compiled: proof/Evaluation.lean
+Compiled: proof/EvaluationControls.lean
+Compiled: proof/Families.lean
+Compiled: proof/IncrementalControls.lean
+Compiled: proof/Provenance.lean
 Compiled: proof/ReturnControls.lean
-Kernel theorem audit: 123 theorem declarations (including generated declarations)
+Compiled: examples/incremental/IndependentComponents.lean
+Compiled: examples/incremental/receipts/IncrementalReceipt0.lean
+Compiled: examples/incremental/receipts/IncrementalReceipt1.lean
+Compiled: examples/incremental/receipts/IncrementalReceipt2.lean
+Compiled: examples/incremental/receipts/IncrementalReceipt3.lean
+Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
+Kernel theorem audit: 628 theorem declarations (including generated declarations)
 Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
 Axioms printed: [propext, Quot.sound]
-Gate passed: 5 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
+Gate passed: 20 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
 Full proof transcript: proof/CHECK.log
 Checked source hashes: proof/SOURCE-SHA256.txt

@@ -146,7 +146,8 @@ def main():
             ROOT / "proof" / "platform-audit.py", ROOT / "proof" / "lean-toolchain",
             ROOT / "examples" / "check.sh", ROOT / "examples" / "range-ledger" / "check.sh",
             ROOT / "examples" / "range-ledger" / "mutation.patch",
-        ]))
+            ROOT / "examples" / "incremental" / "check.sh",
+        ] + list((ROOT / "incremental").glob("*.py"))))
         emit("Source SHA256 manifest:")
         manifest = []
         for path in manifest_files:

@@ -1,0 +1,38 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(8,
+ [InvoiceTrace.Event.override, InvoiceTrace.Event.signature],
+ [InvoiceTrace.Event.quote, InvoiceTrace.Event.tax, InvoiceTrace.Event.currency])
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(some 7, none)
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+Rejected control: use the wrong middle bridge for the chain decoder.
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Incremental receipt directory: /workspace/scratch/8968f3d9c353/software-is-more-traceable-than-you-think/proof/receipts
+Incremental tests: 38/38 passed; OK
+Full named test transcript: /workspace/scratch/8968f3d9c353/software-is-more-traceable-than-you-think/proof/receipts/incremental-tests.log
+Deterministic proof fixtures: 5/5 regenerated modules byte-identical
+cold: recompute=23 compile=23 certificate=23 check=23 execute=23; Lean rows=23 values=23 modules=1; d20=2097152 side_out=-7
+warm: recompute=0 compile=0 certificate=0 check=0 execute=0; Lean rows=0 values=0 modules=0; d20=2097152 side_out=-7
+input_edit: recompute=21 compile=0 certificate=0 check=0 execute=21; Lean rows=0 values=21 modules=1; d20=3145728 side_out=-7
+structural_edit: recompute=11 compile=11 certificate=11 check=11 execute=11; Lean rows=11 values=11 modules=1; d20=-1572864 side_out=-7
+revert: recompute=0 compile=0 certificate=0 check=0 execute=0; Lean rows=0 values=0 modules=0; d20=2097152 side_out=-7
+restart: recompute=0 compile=0 certificate=0 check=0 execute=0; Lean rows=0 values=0 modules=0; d20=2097152 side_out=-7
+scope_change: recompute=23 compile=23 certificate=23 check=23 execute=23; Lean rows=23 values=23 modules=1; d20=2097152 side_out=-7
+Cumulative incremental: recompute=78 compile=57 certificate=57 check=57 execute=78
+Cumulative actual cold rebuilds: 161 successful invocations per stage across seven fresh rebuilds
+Kernel cumulative: 57 compiler rows, 78 value proofs, 4 new receipt modules; 4 fixed/bootstrap modules built once, 8 total Lean processes
+Kernel actual cold rebuilds: 161 compiler rows, 161 value proofs, 7 new receipt modules across seven fresh sessions
+Kernel restart: 3 retained receipts replayed, 0 new Lean processes
+Factored family: 1,048,576 represented independent tuples; 0 tuples materialized; 2 compiled and kernel-checked alternatives
+Full measured campaign: /workspace/scratch/8968f3d9c353/software-is-more-traceable-than-you-think/proof/receipts/incremental-campaign.json
+Incremental pipeline gate: PASS
