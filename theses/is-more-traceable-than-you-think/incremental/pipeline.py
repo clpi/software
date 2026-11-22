@@ -16,7 +16,7 @@ import platform
 import sys
 from typing import Any
 
-from .engine import Engine, Context, Result, canonical, clone, difference
+from .engine import Engine, Context, Result, canonical, clone, difference, same_identity
 
 STAGES = ("recompute", "compile", "certificate", "check", "execute")
 ARITY = {"const": 0, "input": 0, "add": 2, "mul": 2, "neg": 1}
@@ -320,11 +320,12 @@ class Program:
         for node in engine.by_stage.get("check", []):
             task = engine.tasks[node]
             self.proofs_by_compile[task.deps[0]] = (task.deps[1], node)
-        if self.artifacts and any(engine.tasks[bundle["compile"]].scope != engine.scope
-                                  for bundle in self.artifacts.values()):
-            self.change_scope(engine.scope)
-        if definitions is not None:
-            self.apply(definitions)
+        # Validate the whole retained view once; hot operations use this marker.
+        current_scope = canonical(engine.scope)
+        self._artifact_scope = (current_scope if all(
+            canonical(engine.tasks[node].scope) == current_scope
+            for bundle in self.artifacts.values() for node in bundle.values()) else None)
+        self.apply(definitions if definitions is not None else {})
 
     def _validate_changes(self, changes: dict[str, dict], candidate: dict[str, dict]):
         for name, definition in changes.items():
@@ -333,30 +334,43 @@ class Program:
                     raise ValueError(f"unknown source premise {argument}")
         done, active = set(), set()
 
-        def visit(name):
-            if name in active:
-                raise ValueError("cyclic source graph: no seeded topological derivation")
-            if name in done:
-                return
-            self.validation_visits += 1
-            active.add(name)
-            for argument in candidate[name].get("args", []):
-                visit(argument)
-            active.remove(name)
-            done.add(name)
-
-        for name in changes:
-            if changes[name].get("args", []) != self.definitions.get(name, {}).get("args", []):
-                visit(name)
+        for root in changes:
+            if changes[root].get("args", []) == self.definitions.get(root, {}).get("args", []):
+                continue
+            stack = [(root, False)]
+            while stack:
+                name, exiting = stack.pop()
+                if exiting:
+                    active.remove(name)
+                    done.add(name)
+                    continue
+                if name in active:
+                    raise ValueError("cyclic source graph: no seeded topological derivation")
+                if name in done:
+                    continue
+                self.validation_visits += 1
+                active.add(name)
+                stack.append((name, True))
+                for argument in reversed(candidate[name].get("args", [])):
+                    stack.append((argument, False))
 
     def apply(self, definitions: dict[str, dict]):
         changes = {name: normalize(name, value) for name, value in definitions.items()}
         changes = {name: value for name, value in changes.items() if self.definitions.get(name) != value}
-        if not changes:
-            self.last_affected = []
-            return {"affected": [], "planned": 0}
         candidate = ChainMap(changes, self.definitions)
         self._validate_changes(changes, candidate)
+        scope = self.engine.scope
+        scope_identity = canonical(scope)
+        if self._artifact_scope != scope_identity:
+            scope = clone(scope)
+            scope["implementation"] = implementation()
+            scope_identity = canonical(scope)
+        scope_changed = self._artifact_scope != scope_identity
+        if not changes and not scope_changed:
+            if not same_identity(self.engine.scope, scope):
+                self.engine.set_scope(scope)
+            self.last_affected = []
+            return {"affected": [], "planned": 0}
         touched = {argument for name, definition in changes.items()
                    for argument in [*self.definitions.get(name, {}).get("args", []),
                                     *definition.get("args", [])]}
@@ -367,21 +381,29 @@ class Program:
                 reverse[previous].discard(name)
             for argument in definition.get("args", []):
                 reverse[argument].add(name)
-        affected = set(changes)
-        pending = deque(sorted(changes))
-        while pending:
-            name = pending.popleft()
-            for user in sorted(reverse.get(name, set())):
-                self.reverse_edge_visits += 1
-                if user not in affected:
-                    affected.add(user)
-                    pending.append(user)
+        if scope_changed:
+            # Plan the edited candidate once, including its unchanged parents.
+            affected = set(candidate)
+        else:
+            affected = set(changes)
+            pending = deque(sorted(changes))
+            while pending:
+                name = pending.popleft()
+                for user in sorted(reverse.get(name, set())):
+                    self.reverse_edge_visits += 1
+                    if user not in affected:
+                        affected.add(user)
+                        pending.append(user)
+        if not same_identity(self.engine.scope, scope):
+            self.engine.set_scope(scope)
         artifacts, order = self._plan(candidate, affected)
         bindings = {f"{name}/{stage}": node for name, bundle in artifacts.items() for stage, node in bundle.items()}
         self.engine.commit_update(changes, bindings)
         self.definitions.update(changes)
         self.dependents.update(reverse_changes)
         self.artifacts.update(artifacts)
+        # Advance only after the source/binding transaction has succeeded.
+        self._artifact_scope = scope_identity
         self.last_affected = order
         self.planned_nodes += len(order)
         return {"affected": order, "planned": len(order)}
@@ -431,21 +453,10 @@ class Program:
         complete = clone(scope)
         complete["implementation"] = implementation()
         self.engine.set_scope(complete)
-        if all(self.engine.tasks[bundle["compile"]].scope == self.engine.scope
-               for bundle in self.artifacts.values()):
-            self.last_affected = []
-            return {"affected": [], "planned": 0}
-        produced, order = self._plan(self.definitions, set(self.definitions))
-        self.engine.commit_update({}, {f"{name}/{stage}": node for name, bundle in produced.items() for stage, node in bundle.items()})
-        self.artifacts.update(produced)
-        self.last_affected = order
-        self.planned_nodes += len(order)
-        return {"affected": order, "planned": len(order)}
+        return self.apply({})
 
     def run(self, outputs: list[str]) -> dict:
-        if any(name in self.artifacts and
-               self.engine.tasks[self.artifacts[name]["compile"]].scope != self.engine.scope
-               for name in outputs):
+        if self._artifact_scope != canonical(self.engine.scope):
             self.change_scope(self.engine.scope)
         roots = []
         for name in outputs:
@@ -541,26 +552,32 @@ def cold_oracle(definitions: dict[str, dict], outputs: list[str]) -> dict[str, i
     values = {}
     active = set()
 
-    def evaluate(name):
-        if name in values:
-            return values[name]
-        if name in active:
-            raise ValueError("cyclic cold source graph")
-        active.add(name)
-        definition = definitions[name]
-        op = definition["op"]
-        if op == "const" or op == "input":
-            result = definition["value"]
-        elif op == "neg":
-            result = -evaluate(definition["args"][0])
-        elif op == "add":
-            result = evaluate(definition["args"][0]) + evaluate(definition["args"][1])
-        elif op == "mul":
-            result = evaluate(definition["args"][0]) * evaluate(definition["args"][1])
-        else:
-            raise ValueError("unsupported cold source operation")
-        active.remove(name)
-        values[name] = result
-        return result
-
-    return {name: evaluate(name) for name in outputs}
+    for root in outputs:
+        stack = [(root, False)]
+        while stack:
+            name, expanded = stack.pop()
+            if name in values:
+                continue
+            definition = definitions[name]
+            op = definition["op"]
+            if op not in ("const", "input", "neg", "add", "mul"):
+                raise ValueError("unsupported cold source operation")
+            if not expanded:
+                if name in active:
+                    raise ValueError("cyclic cold source graph")
+                active.add(name)
+                stack.append((name, True))
+                for argument in reversed(definition.get("args", [])):
+                    stack.append((argument, False))
+                continue
+            if op == "const" or op == "input":
+                result = definition["value"]
+            elif op == "neg":
+                result = -values[definition["args"][0]]
+            elif op == "add":
+                result = values[definition["args"][0]] + values[definition["args"][1]]
+            else:
+                result = values[definition["args"][0]] * values[definition["args"][1]]
+            active.remove(name)
+            values[name] = result
+    return {name: values[name] for name in outputs}

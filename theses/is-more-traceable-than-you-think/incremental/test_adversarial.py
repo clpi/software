@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from .engine import Engine, Result, difference
+from .engine import Engine, Result, canonical, difference
 from .pipeline import Program, make_engine
 
 
@@ -128,6 +128,23 @@ class EngineAttacks(unittest.TestCase):
         before = engine.metrics()
         engine.bind("head", new)
         self.assertEqual(difference(engine.metrics(), before)["events"], 0)
+        retained = self.path.read_bytes()
+        for invalid in (True, float(new), False, float(old), -1, len(engine.tasks)):
+            with self.subTest(binding=invalid, binding_type=type(invalid).__name__):
+                with self.assertRaisesRegex(ValueError, "unknown task"):
+                    engine.commit_update({"pending": {"value": 99}}, {"head": invalid})
+                self.assertEqual(self.path.read_bytes(), retained)
+                self.assertEqual(engine.bindings["head"], new)
+                self.assertIs(type(engine.bindings["head"]), int)
+                self.assertNotIn("pending", engine.sources)
+        for value in (1, True, 1.0):
+            before = engine.metrics()
+            engine.commit_update({"identity": {"value": value}}, {"head": new})
+            self.assertEqual(difference(engine.metrics(), before)["events"], 1)
+            self.assertEqual(canonical(engine.sources["identity"]), canonical({"value": value}))
+            before = engine.metrics()
+            engine.commit_update({"identity": {"value": value}}, {"head": new})
+            self.assertEqual(difference(engine.metrics(), before)["events"], 0)
 
     def test_forced_digest_collisions_do_not_alias_distinct_descriptors(self):
         engine = self.engine({"leaf": self.leaf, "sum": lambda c: sum(d.value for d in c.dependencies)},
@@ -245,6 +262,56 @@ class PipelineAttacks(unittest.TestCase):
         self.path = Path(self.temporary.name) / "history.jsonl"
         self.engine = make_engine(self.path)
         self.addCleanup(lambda: self.engine.close() if not self.engine._stream.closed else None)
+
+    def test_scope_identity_distinguishes_bool_int_and_float_across_current_views(self):
+        baseline = {"qualification": {"label": 1}}
+        definitions = {"out": {"op": "input", "value": 2}}
+
+        def check_current(engine, program, previous, replacement):
+            for stage, node in program.artifacts["out"].items():
+                self.assertNotEqual(node, previous[stage])
+                self.assertEqual(canonical(engine.tasks[node].scope), canonical(engine.scope))
+                self.assertIs(type(engine.tasks[node].scope["qualification"]["label"]), type(replacement))
+            self.assertIn(previous["check"], engine.results)
+
+        for replacement in (True, 1.0):
+            kind = type(replacement).__name__
+            changed = {"qualification": {"label": replacement}}
+            self.assertNotEqual(canonical(baseline), canonical(changed))
+            with self.subTest(scope=kind, path="unresolved"):
+                path = self.path.parent / f"identity-{kind}-unresolved.jsonl"
+                with Engine(path, baseline, {"leaf": EngineAttacks.leaf}) as engine:
+                    old = engine.intern("leaf", {"value": 2})
+                    engine.set_scope(changed)
+                    with self.assertRaisesRegex(ValueError, "historical"):
+                        engine.demand([old])
+                    self.assertNotIn(old, engine.results)
+                    current = engine.intern("leaf", {"value": 2})
+                    self.assertNotEqual(current, old)
+                    self.assertEqual(engine.demand([current]), [2])
+            for mode in ("change_scope", "run", "startup"):
+                with self.subTest(scope=kind, path=mode):
+                    path = self.path.parent / f"identity-{kind}-{mode}.jsonl"
+                    with make_engine(path, scope=baseline) as engine:
+                        program = Program(engine, definitions)
+                        self.assertEqual(program.run(["out"])["out"]["value"], 2)
+                        previous = copy.deepcopy(program.artifacts["out"])
+                        revised = copy.deepcopy(engine.scope)
+                        revised["qualification"]["label"] = replacement
+                        if mode == "change_scope":
+                            program.change_scope(revised)
+                            check_current(engine, program, previous, replacement)
+                            self.assertEqual(program.run(["out"])["out"]["executed"], 2)
+                        elif mode == "run":
+                            engine.set_scope(revised)
+                            self.assertEqual(program.run(["out"])["out"]["executed"], 2)
+                            check_current(engine, program, previous, replacement)
+                    if mode == "startup":
+                        with make_engine(path, scope=changed) as engine:
+                            restored = Program(engine)
+                            # Startup itself must rebind, before run can repair it.
+                            check_current(engine, restored, previous, replacement)
+                            self.assertEqual(restored.run(["out"])["out"]["executed"], 2)
 
     def test_input_change_reuses_all_symbolic_compilation_and_check_artifacts(self):
         program = Program(self.engine, {

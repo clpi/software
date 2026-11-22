@@ -15,7 +15,7 @@ import shutil
 import subprocess
 import tempfile
 
-from .engine import canonical, clone
+from .engine import canonical, clone, same_identity
 
 
 class KernelError(RuntimeError):
@@ -196,7 +196,7 @@ theorem certified : Pipeline.check 0 history = true := rfl
 
     def _restore(self):
         config = json.loads(self.config_path.read_text())
-        if config["scope"] != self.scope:
+        if not same_identity(config["scope"], self.scope):
             raise KernelError("proof source/toolchain scope changed; use a new proof session")
         self._check_files(config["files"])
         self.axioms = config["axioms"]
@@ -240,15 +240,15 @@ theorem certified : Pipeline.check 0 history = true := rfl
     def _validate(self, snapshot):
         if snapshot.get("format") != "incremental-linked-integer-blocks-v1":
             raise KernelError("unknown compiler bridge format")
-        if snapshot.get("start") != self.count or snapshot.get("prefix") != self.prefix:
+        if natural(snapshot.get("start"), "compiler start") != self.count or snapshot.get("prefix") != self.prefix:
             raise KernelError("compiler prefix does not match retained proof")
         rows = clone(snapshot.get("rows"))
-        if not isinstance(rows, list) or snapshot.get("end") != self.count + len(rows):
+        if not isinstance(rows, list) or natural(snapshot.get("end"), "compiler end") != self.count + len(rows):
             raise KernelError("compiler suffix length mismatch")
         added, added_tasks, prefix = [], set(), self.prefix
         for offset, row in enumerate(rows):
             index = self.count + offset
-            if row.get("id") != index:
+            if natural(row.get("id"), "compiler row") != index:
                 raise KernelError("compiler rows must append consecutive completion indices")
             task = natural(row.get("task"), "compiler task")
             if task in self.tasks or task in added_tasks:
@@ -265,12 +265,12 @@ theorem certified : Pipeline.check 0 history = true := rfl
                 if position >= index:
                     raise KernelError("compiler premise is not an earlier completed row")
                 parents.append(self.rows[position] if position < self.count else added[position - self.count])
-            if row.get("links") != [parent["task"] for parent in parents]:
+            if not same_identity(row.get("links"), [parent["task"] for parent in parents]):
                 raise KernelError("task IDs do not match completed-row premise projection")
-            if row.get("check_parents") != [parent["check"] for parent in parents]:
+            if not same_identity(row.get("check_parents"), [parent["check"] for parent in parents]):
                 raise KernelError("certificate composition omitted or changed a parent")
             artifact = row.get("artifact")
-            if artifact != {"source": row.get("operation"), "links": row.get("links"), "code": row.get("code")}:
+            if not same_identity(artifact, {"source": row.get("operation"), "links": row.get("links"), "code": row.get("code")}):
                 raise KernelError("exported operation, links, or code differ from compiler artifact")
             render_row(row)
             descriptor = {"stage": "compile", "payload": row["operation"], "deps": row["links"], "scope": row["scope"]}
@@ -280,16 +280,16 @@ theorem certified : Pipeline.check 0 history = true := rfl
             added_tasks.add(task)
         if snapshot.get("tail") != prefix:
             raise KernelError("compiler artifact suffix does not match journal completion chain")
-        if snapshot.get("execution_start") != self.execution_count or snapshot.get("execution_prefix") != self.execution_prefix:
+        if natural(snapshot.get("execution_start"), "execution start") != self.execution_count or snapshot.get("execution_prefix") != self.execution_prefix:
             raise KernelError("execution prefix does not match retained proof")
         executions = clone(snapshot.get("execution_rows"))
-        if not isinstance(executions, list) or snapshot.get("execution_end") != self.execution_count + len(executions):
+        if not isinstance(executions, list) or natural(snapshot.get("execution_end"), "execution end") != self.execution_count + len(executions):
             raise KernelError("execution suffix length mismatch")
         added_executions, added_execution_tasks = [], {}
         execution_prefix = self.execution_prefix
         for offset, row in enumerate(executions):
             index = self.execution_count + offset
-            if row.get("id") != index:
+            if natural(row.get("id"), "execution row") != index:
                 raise KernelError("execution rows must append consecutive completion indices")
             task = natural(row.get("task"), "execution task")
             if task in self.execution_tasks or task in added_execution_tasks:
@@ -299,7 +299,7 @@ theorem certified : Pipeline.check 0 history = true := rfl
                 raise KernelError("execution refers to an absent compiler row")
             compiled = self.rows[compiled_at] if compiled_at < self.count else added[compiled_at - self.count]
             descriptor = row.get("descriptor", {})
-            if descriptor.get("stage") != "execute" or descriptor.get("scope") != compiled["scope"]:
+            if descriptor.get("stage") != "execute" or not same_identity(descriptor.get("scope"), compiled["scope"]):
                 raise KernelError("execution scope differs from its checked compiler artifact")
             parents = []
             for position in row.get("parents", []):
@@ -308,11 +308,11 @@ theorem certified : Pipeline.check 0 history = true := rfl
                     raise KernelError("execution parent is not an earlier completed row")
                 parents.append(self.executions[position] if position < self.execution_count
                                else added_executions[position - self.execution_count])
-            if descriptor.get("deps") != [compiled["task"], compiled["check"], *[parent["task"] for parent in parents]]:
+            if not same_identity(descriptor.get("deps"), [compiled["task"], compiled["check"], *[parent["task"] for parent in parents]]):
                 raise KernelError("execution task IDs differ from its projected all-parent proof")
             if [parent["compiler_row"] for parent in parents] != compiled["premises"]:
                 raise KernelError("execution arguments differ from the compiler's ordered links")
-            if any(parent["descriptor"]["scope"] != descriptor["scope"] for parent in parents):
+            if any(not same_identity(parent["descriptor"]["scope"], descriptor["scope"]) for parent in parents):
                 raise KernelError("execution composes different scopes")
             payload = descriptor.get("payload")
             if not isinstance(payload, dict) or set(payload) != {"inputs"} or not isinstance(payload["inputs"], dict):
@@ -336,13 +336,15 @@ theorem certified : Pipeline.check 0 history = true := rfl
             if index >= self.count + len(added):
                 raise KernelError("observed output is absent from certified prefix")
             row = self.rows[index] if index < self.count else added[index - self.count]
-            if observed.get("compile_task") != row["task"] or observed.get("scope") != row["scope"]:
+            if natural(observed.get("compile_task"), "observed compiler task") != row["task"] or not same_identity(observed.get("scope"), row["scope"]):
                 raise KernelError("observed output refers to a different compiler identity")
-            if observed["scope"] != snapshot["scope"]:
+            if not same_identity(observed["scope"], snapshot["scope"]):
                 raise KernelError("historical proof cannot label a different active scope current")
-            if type(observed.get("value")) is not int or observed.get("value") != observed.get("executed"):
+            if (type(observed.get("value")) is not int or type(observed.get("executed")) is not int
+                    or observed.get("value") != observed.get("executed")):
                 raise KernelError("observed execution is missing or differs from recomputation")
-            position = self.execution_tasks.get(observed.get("execute_task"), added_execution_tasks.get(observed.get("execute_task")))
+            observed_task = natural(observed.get("execute_task"), "observed execution task")
+            position = self.execution_tasks.get(observed_task, added_execution_tasks.get(observed_task))
             if position is None:
                 raise KernelError("observed execution has no value proof")
             result = self.executions[position] if position < self.execution_count else added_executions[position - self.execution_count]

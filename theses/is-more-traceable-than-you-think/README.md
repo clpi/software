@@ -8,7 +8,7 @@ The delivered reference compiler uses pure exact-integer `const`, `input`, `add`
 
 Across seven revisions, the cumulative pipeline retains 57 compiler rows and 78 actual-value proofs, compared with 161 of each in seven actual fresh cold rebuilds. A parametric shared-diamond theorem proves `n+1` versus `2^(n+1)-1` stage invocations with the same result. Independent component proofs cover every binary selection; 40 references represent 1,048,576 selectors at 20 coordinates without materializing the tuples.
 
-Voice Two's attacks exposed and repaired mutable dependency metadata, stale current scopes, fabricated matching output observations, and inconsistent retained-proof metadata. A standing contradictory-input counterexample limits the unconditional value theorem to explicitly named captured-trace correctness. The duet states the additional global-environment obligation and the Python-refinement, total-cost, source-fidelity, local-trust, and production-integration boundaries. The existing frozen witness-data pipeline is unchanged.
+Voice Two's attacks exposed and repaired mutable dependency metadata, stale current scopes, fabricated matching output observations, inconsistent retained-proof metadata, Python's numeric/Boolean scope aliases, and recursive validation of deep DAGs. A standing contradictory-input counterexample limits the unconditional value theorem to explicitly named captured-trace correctness. The duet states the additional global-environment obligation and the Python-refinement, total-cost, source-fidelity, local-trust, and production-integration boundaries. The existing frozen witness-data pipeline is unchanged.
 
 ## The intended claim and the proven boundary
 
@@ -40,4 +40,4 @@ The original modules prove the witness-stream fold independently of platform det
 
 ## Replay
 
-With Lean 4.19.0 available, run `sh proof/check.sh` and `sh examples/check.sh`. Set `LEAN=/path/to/lean` when needed. The examples gate includes the range-ledger gate and its rejected wrong-bridge mutation, plus `examples/incremental/check.sh`, its 38 named tests, real Lean campaign, and deterministic proof-fixture regeneration. Both nested gates can also be run independently. Run `python3 proof/platform-audit.py` for the supplementary statement scan. The incremental duet carries the exact proves/cannot-say lists and named remaining obligations.
+With Lean 4.19.0 available, run `sh proof/check.sh` and `sh examples/check.sh`. Set `LEAN=/path/to/lean` when needed. The examples gate includes the range-ledger gate and its rejected wrong-bridge mutation, plus `examples/incremental/check.sh`, its 42 named tests, real Lean campaign, and deterministic proof-fixture regeneration. Both nested gates can also be run independently. Run `python3 proof/platform-audit.py` for the supplementary statement scan. The incremental duet carries the exact proves/cannot-say lists and named remaining obligations.

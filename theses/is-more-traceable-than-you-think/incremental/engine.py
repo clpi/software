@@ -22,6 +22,10 @@ def canonical(value: Any) -> bytes:
                       ensure_ascii=False, allow_nan=False).encode("utf-8")
 
 
+def same_identity(left: Any, right: Any) -> bool:
+    return canonical(left) == canonical(right)
+
+
 def clone(value: Any) -> Any:
     return json.loads(canonical(value))
 
@@ -139,7 +143,7 @@ class Engine:
         if kind == "task":
             description = clone(event["descriptor"])
             node = event["id"]
-            if node != len(self.tasks):
+            if type(node) is not int or node != len(self.tasks):
                 raise ValueError("task IDs must be append-only consecutive indices")
             deps = description["deps"]
             if any(type(dep) is not int or dep < 0 or dep >= node for dep in deps):
@@ -211,13 +215,13 @@ class Engine:
         return node
 
     def commit_update(self, sources: dict[str, Any], bindings: dict[str, int]):
-        changed_sources = {name: clone(value) for name, value in sources.items()
-                           if name not in self.sources or self.sources[name] != value}
-        changed_bindings = {name: node for name, node in bindings.items()
-                            if self.bindings.get(name) != node}
-        for node in changed_bindings.values():
+        for node in bindings.values():
             if type(node) is not int or not 0 <= node < len(self.tasks):
                 raise ValueError("binding refers to an unknown task")
+        changed_sources = {name: clone(value) for name, value in sources.items()
+                           if name not in self.sources or not same_identity(self.sources[name], value)}
+        changed_bindings = {name: node for name, node in bindings.items()
+                            if self.bindings.get(name) != node}
         if changed_sources or changed_bindings:
             self._append({"kind": "update", "sources": changed_sources,
                           "bindings": changed_bindings})
@@ -242,7 +246,7 @@ class Engine:
                     self.reused[task.stage] += 1
                     seen.add(node)
                     continue
-                if task.scope != self.scope:
+                if not same_identity(task.scope, self.scope):
                     raise ValueError("cannot execute an unresolved historical task under a different scope")
                 if not expanded:
                     stack.append((node, True))
