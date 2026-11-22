@@ -10,11 +10,13 @@ trap 'rm -rf "$BUILD"' EXIT
 
 echo "== compile =="
 "$LEAN" -o "$BUILD/Pareto.olean" Pareto.lean
+LEAN_PATH="$BUILD" "$LEAN" -o "$BUILD/Second.olean" Second.lean
 LEAN_PATH="$BUILD" "$LEAN" -o "$BUILD/Tests.olean" Tests.lean
+LEAN_PATH="$BUILD" "$LEAN" -o "$BUILD/Tests2.olean" Tests2.lean
 echo "compile exit 0"
 
 echo "== placeholder scan =="
-if grep -nE 'sorry|admit' Pareto.lean Tests.lean; then
+if grep -nE 'sorry|admit' Pareto.lean Tests.lean Second.lean Tests2.lean; then
   echo "REFUSED: placeholder proof step found"
   exit 1
 fi
@@ -43,7 +45,7 @@ print("axioms within the standard three:", sorted(found) if found else "none bey
 PYEOF
 
 echo "== hypothesis and naming audit =="
-python3 audit.py Pareto.lean Tests.lean
+python3 audit.py Pareto.lean Tests.lean Second.lean Tests2.lean
 echo "== control: the audit must refuse the draft that assumes finiteness =="
 if python3 audit.py controls/draft.lean; then
   echo "REFUSED: the hypothesis audit passed a draft it must refuse"
