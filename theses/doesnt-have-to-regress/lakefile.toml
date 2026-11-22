@@ -19,7 +19,7 @@ name = "SoftwareDoesntRegress"
 
 [[lean_lib]]
 name = "Audit"
-roots = ["Audit.Contract", "Audit.ContractControls", "Audit.Projection", "Audit.Readings"]
+roots = ["Audit.Contract", "Audit.ContractControls", "Audit.Projection", "Audit.Readings", "Audit.Definitional.Readings", "Audit.Definitional.Survivor", "Audit.Definitional.Necessity"]
 
 [[lean_exe]]
 name = "gate"
