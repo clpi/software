@@ -1,0 +1,1110 @@
+{
+ "commit": "6c37120b16c7ce3871f20f738a30ed12df7f5064",
+ "modules": 156,
+ "internal_edges": 267,
+ "cross_edges": [
+  [
+   "Conform.CC.Case",
+   "Conform.Rng"
+  ],
+  [
+   "Conform.Flatten.Case",
+   "Conform.Emit"
+  ],
+  [
+   "Conform.Flatten.Case",
+   "SemperProofs.EMatch.Flatten.FoldPlan"
+  ],
+  [
+   "Conform.Flatten.Oracle",
+   "SemperProofs.EMatch.Flatten.RegroupDefs"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.CC.ARound"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Engine.Main"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Engine.Rounds.SeqSplice"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Env.Main"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.EngineComplete"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.FixKind"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.FixMain"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.FoldPlan"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.LawsMain"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.Main"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Flatten.Plan"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Main"
+  ],
+  [
+   "SemperProofs",
+   "SemperProofs.EMatch.Steps.Main"
+  ],
+  [
+   "SemperProofs.CC.Bridge.Represents",
+   "SemperProofs.EMatch.Engine.Main"
+  ],
+  [
+   "SemperProofs.CC.Bridge.Represents",
+   "SemperProofs.EMatch.Env.Snapshot"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Check",
+   "SemperProofs.EMatch.Engine.ByOp"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Check",
+   "SemperProofs.EMatch.Main"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.Atoms"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.AtomsMatch"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.ByOp"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.Lower"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Pattern",
+   "SemperProofs.EMatch.Engine.AtomsMatch"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Rounds.AtomDelta",
+   "SemperProofs.EMatch.Engine.Rounds.Round"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Rounds.Delta",
+   "SemperProofs.EMatch.Engine.Rounds.AtomDelta"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Rounds.Round",
+   "SemperProofs.EMatch.Env.Snapshot"
+  ],
+  [
+   "SemperProofs.EMatch.Engine.Sched",
+   "SemperProofs.EMatch.Engine.Lower"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.Fix",
+   "SemperProofs.EMatch.Flatten.Main"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.FoldPlan",
+   "SemperProofs.EMatch.Flatten.Fold"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.PlanDefs",
+   "SemperProofs.EMatch.Engine.Lower"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.PlanDefs",
+   "SemperProofs.EMatch.Flatten.Interp"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.RegroupComplete",
+   "SemperProofs.EMatch.Flatten.RegroupSound"
+  ],
+  [
+   "SemperProofs.EMatch.Flatten.RegroupSound",
+   "SemperProofs.EMatch.Flatten.Fold"
+  ],
+  [
+   "SemperProofs.EMatch.Steps.Main",
+   "SemperProofs.EMatch.Steps.Collect"
+  ],
+  [
+   "SemperProofs.EMatch.Steps.Main",
+   "SemperProofs.EMatch.Steps.Simple"
+  ],
+  [
+   "SemperProofs.EMatch.Steps.WF",
+   "SemperProofs.EMatch.Steps.Simple"
+  ],
+  [
+   "SemperProofs.Fidelity.Main",
+   "SemperProofs.Fidelity.ByOpPolicy"
+  ]
+ ],
+ "cross_count": 40,
+ "cones": {
+  "0": [
+   "Conform",
+   "Conform.Case",
+   "Conform.Emit",
+   "Conform.Main",
+   "Conform.Oracle",
+   "Conform.Rng",
+   "Conform.Rounds.Dump",
+   "Conform.Rounds.Gen",
+   "Conform.Rounds.Main",
+   "Conform.Rounds.Oracle",
+   "SemperProofs.CC.ARound",
+   "SemperProofs.CC.ARound.Basic",
+   "SemperProofs.CC.ARound.Choice",
+   "SemperProofs.CC.ARound.Nested",
+   "SemperProofs.CC.ARound.Store",
+   "SemperProofs.CC.ARoundCheck",
+   "SemperProofs.EMatch.Engine.AtomsWF",
+   "SemperProofs.EMatch.Engine.Check",
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.Pattern",
+   "SemperProofs.EMatch.Engine.Plan",
+   "SemperProofs.EMatch.Engine.Rounds.Round",
+   "SemperProofs.EMatch.Engine.Rounds.SeqSplice",
+   "SemperProofs.EMatch.Engine.Rounds.SeqSpliceCheck",
+   "SemperProofs.EMatch.Engine.Runtime",
+   "SemperProofs.EMatch.Engine.Sched",
+   "SemperProofs.EMatch.Engine.SchedRun",
+   "SemperProofs.EMatch.Engine.SemiNaive",
+   "SemperProofs.EMatch.Engine.WF",
+   "SemperProofs.EMatch.Flatten.EngineCheck",
+   "SemperProofs.EMatch.Flatten.EngineComplete",
+   "SemperProofs.EMatch.Flatten.EngineRule",
+   "SemperProofs.EMatch.Flatten.Fix",
+   "SemperProofs.EMatch.Flatten.FixCheck",
+   "SemperProofs.EMatch.Flatten.FixKind",
+   "SemperProofs.EMatch.Flatten.FixMain",
+   "SemperProofs.EMatch.Flatten.FoldPlan",
+   "SemperProofs.EMatch.Flatten.Laws",
+   "SemperProofs.EMatch.Flatten.LawsCheck",
+   "SemperProofs.EMatch.Flatten.LawsMain",
+   "SemperProofs.EMatch.Flatten.Plan",
+   "SemperProofs.EMatch.Flatten.PlanDefs",
+   "SemperProofs.EMatch.Flatten.Regroup",
+   "SemperProofs.EMatch.Flatten.RegroupDefs",
+   "SemperProofs.EMatch.Flatten.RegroupSound",
+   "SemperProofs.EMatch.Steps.Check",
+   "SemperProofs.EMatch.Steps.Main",
+   "SemperProofs.EMatch.Steps.WF"
+  ],
+  "1": [
+   "Conform.CC.Case",
+   "Conform.CC.Cert",
+   "Conform.CC.CertMain",
+   "Conform.CC.Emit",
+   "Conform.CC.Main",
+   "Conform.CC.Oracle",
+   "Conform.Flatten.Case",
+   "Conform.Flatten.Emit",
+   "Conform.Flatten.Main",
+   "Conform.Flatten.Oracle",
+   "SemperProofs",
+   "SemperProofs.Basic",
+   "SemperProofs.CC.Assemble",
+   "SemperProofs.CC.BoundedOracle",
+   "SemperProofs.CC.Bridge.Check",
+   "SemperProofs.CC.Bridge.Modulo",
+   "SemperProofs.CC.Bridge.Represents",
+   "SemperProofs.CC.Check",
+   "SemperProofs.CC.Countermodel",
+   "SemperProofs.CC.CountermodelCheck",
+   "SemperProofs.CC.Defs",
+   "SemperProofs.CC.Lattice",
+   "SemperProofs.CC.LatticeCheck",
+   "SemperProofs.CC.Laws.Basic",
+   "SemperProofs.CC.Laws.Check",
+   "SemperProofs.CC.Laws.Combined",
+   "SemperProofs.CC.Laws.Count",
+   "SemperProofs.CC.Laws.CriticalPairs",
+   "SemperProofs.CC.Laws.Idempotent",
+   "SemperProofs.CC.Laws.Identity",
+   "SemperProofs.CC.Laws.InvRules",
+   "SemperProofs.CC.Laws.InvRulesCheck",
+   "SemperProofs.CC.Laws.InvRulesMain",
+   "SemperProofs.CC.Laws.Inverse",
+   "SemperProofs.CC.Laws.Main",
+   "SemperProofs.CC.Laws.Nilpotent",
+   "SemperProofs.CC.Lemmas",
+   "SemperProofs.CC.Main",
+   "SemperProofs.CC.MinMonoKey",
+   "SemperProofs.CC.MinMonoKeyCheck",
+   "SemperProofs.CC.Proofs.CriticalPairModulo",
+   "SemperProofs.CC.Proofs.RunStabilizes",
+   "SemperProofs.CC.Slot",
+   "SemperProofs.EMatch.Engine.Rounds.Check",
+   "SemperProofs.EMatch.Engine.Rounds.Complete",
+   "SemperProofs.EMatch.Engine.Rounds.Counter",
+   "SemperProofs.EMatch.Engine.Rounds.Delta",
+   "SemperProofs.EMatch.Engine.Saturate.ActRound",
+   "SemperProofs.EMatch.Engine.Saturate.Actions",
+   "SemperProofs.EMatch.Engine.Saturate.Check",
+   "SemperProofs.EMatch.Engine.Saturate.Invariant",
+   "SemperProofs.EMatch.Engine.Saturate.Transport",
+   "SemperProofs.EMatch.Flatten.RegroupChain",
+   "SemperProofs.EMatch.Flatten.RegroupCheck",
+   "SemperProofs.EMatch.Flatten.RegroupComplete",
+   "SemperProofs.EMatch.Flatten.RegroupFits",
+   "SemperProofs.EMatch.Flatten.RegroupNested",
+   "SemperProofs.Fidelity.Check",
+   "SemperProofs.Fidelity.Index",
+   "SemperProofs.Fidelity.Main",
+   "SemperProofs.Fidelity.Normalize",
+   "SemperProofs.Fidelity.NormalizeSat",
+   "SemperProofs.Fidelity.Sound",
+   "SemperProofs.Fidelity.StopTest",
+   "SemperProofs.Fidelity.StopTestCheck",
+   "SemperProofs.Fidelity.Subsume",
+   "SemperProofs.Final.Check",
+   "SemperProofs.Final.Main"
+  ],
+  "2": [
+   "SemperProofs.EMatch.Check",
+   "SemperProofs.EMatch.Defs",
+   "SemperProofs.EMatch.Engine.Atoms",
+   "SemperProofs.EMatch.Engine.AtomsMatch",
+   "SemperProofs.EMatch.Engine.ByOp",
+   "SemperProofs.EMatch.Engine.Lower",
+   "SemperProofs.EMatch.Engine.Rounds.AtomDelta",
+   "SemperProofs.EMatch.Env.Check",
+   "SemperProofs.EMatch.Env.Dup",
+   "SemperProofs.EMatch.Env.Exec",
+   "SemperProofs.EMatch.Env.Lemmas",
+   "SemperProofs.EMatch.Env.Main",
+   "SemperProofs.EMatch.Env.Model",
+   "SemperProofs.EMatch.Env.Refine",
+   "SemperProofs.EMatch.Env.Snapshot",
+   "SemperProofs.EMatch.Env.StepA",
+   "SemperProofs.EMatch.Env.StepAC",
+   "SemperProofs.EMatch.Env.StepACI",
+   "SemperProofs.EMatch.Env.StepComm",
+   "SemperProofs.EMatch.Flatten.Canon",
+   "SemperProofs.EMatch.Flatten.Check",
+   "SemperProofs.EMatch.Flatten.Enum",
+   "SemperProofs.EMatch.Flatten.Fold",
+   "SemperProofs.EMatch.Flatten.Interp",
+   "SemperProofs.EMatch.Flatten.Main",
+   "SemperProofs.EMatch.Flatten.Refold",
+   "SemperProofs.EMatch.Flatten.Views",
+   "SemperProofs.EMatch.Lemmas",
+   "SemperProofs.EMatch.Main",
+   "SemperProofs.EMatch.Proofs.CompileWF",
+   "SemperProofs.EMatch.Proofs.DecomposeAC",
+   "SemperProofs.EMatch.Proofs.Interp",
+   "SemperProofs.EMatch.Proofs.JoinCommA",
+   "SemperProofs.EMatch.Ref",
+   "SemperProofs.EMatch.Steps.Assemble",
+   "SemperProofs.EMatch.Steps.Collect",
+   "SemperProofs.EMatch.Steps.Defs",
+   "SemperProofs.EMatch.Steps.Interp",
+   "SemperProofs.EMatch.Steps.Simple",
+   "SemperProofs.Fidelity.ByOpPolicy"
+  ]
+ },
+ "cone_lines": {
+  "0": 15640,
+  "1": 13173,
+  "2": 15644
+ },
+ "cone_modules": {
+  "0": 48,
+  "1": 68,
+  "2": 40
+ },
+ "check_files_per_cone": {
+  "0": [
+   "SemperProofs.CC.ARoundCheck",
+   "SemperProofs.EMatch.Engine.Check",
+   "SemperProofs.EMatch.Engine.Rounds.SeqSpliceCheck",
+   "SemperProofs.EMatch.Flatten.EngineCheck",
+   "SemperProofs.EMatch.Flatten.FixCheck",
+   "SemperProofs.EMatch.Flatten.LawsCheck",
+   "SemperProofs.EMatch.Steps.Check"
+  ],
+  "1": [
+   "SemperProofs.CC.Bridge.Check",
+   "SemperProofs.CC.Check",
+   "SemperProofs.CC.CountermodelCheck",
+   "SemperProofs.CC.LatticeCheck",
+   "SemperProofs.CC.Laws.Check",
+   "SemperProofs.CC.Laws.InvRulesCheck",
+   "SemperProofs.CC.MinMonoKeyCheck",
+   "SemperProofs.EMatch.Engine.Rounds.Check",
+   "SemperProofs.EMatch.Engine.Saturate.Check",
+   "SemperProofs.EMatch.Flatten.RegroupCheck",
+   "SemperProofs.Fidelity.Check",
+   "SemperProofs.Fidelity.StopTestCheck",
+   "SemperProofs.Final.Check"
+  ],
+  "2": [
+   "SemperProofs.EMatch.Check",
+   "SemperProofs.EMatch.Env.Check",
+   "SemperProofs.EMatch.Flatten.Check"
+  ]
+ },
+ "max_load_ratio": 40,
+ "max_depth": 25,
+ "edges": {
+  "Conform": [
+   "Conform.Case",
+   "Conform.Emit",
+   "Conform.Oracle",
+   "Conform.Rng"
+  ],
+  "Conform.CC.Case": [
+   "Conform.CC.Oracle",
+   "Conform.Rng"
+  ],
+  "Conform.CC.Cert": [
+   "Conform.CC.Emit"
+  ],
+  "Conform.CC.CertMain": [
+   "Conform.CC.Cert"
+  ],
+  "Conform.CC.Emit": [
+   "Conform.CC.Case"
+  ],
+  "Conform.CC.Main": [
+   "Conform.CC.Emit"
+  ],
+  "Conform.CC.Oracle": [
+   "SemperProofs.CC.BoundedOracle"
+  ],
+  "Conform.Case": [
+   "Conform.Rng"
+  ],
+  "Conform.Emit": [
+   "Conform.Oracle"
+  ],
+  "Conform.Flatten.Case": [
+   "Conform.Emit",
+   "SemperProofs.EMatch.Flatten.FoldPlan"
+  ],
+  "Conform.Flatten.Emit": [
+   "Conform.Flatten.Oracle"
+  ],
+  "Conform.Flatten.Main": [
+   "Conform.Flatten.Emit"
+  ],
+  "Conform.Flatten.Oracle": [
+   "Conform.Flatten.Case",
+   "SemperProofs.EMatch.Flatten.RegroupDefs"
+  ],
+  "Conform.Main": [
+   "Conform.Emit"
+  ],
+  "Conform.Oracle": [
+   "Conform.Case",
+   "SemperProofs.EMatch.Flatten.RegroupDefs"
+  ],
+  "Conform.Rng": [
+   "SemperProofs.EMatch.Flatten.LawsMain"
+  ],
+  "Conform.Rounds.Dump": [
+   "Conform.Rounds.Gen"
+  ],
+  "Conform.Rounds.Gen": [
+   "Conform.Case"
+  ],
+  "Conform.Rounds.Main": [
+   "Conform.Rounds.Oracle"
+  ],
+  "Conform.Rounds.Oracle": [
+   "Conform.Oracle",
+   "Conform.Rounds.Dump"
+  ],
+  "SemperProofs": [
+   "SemperProofs.Basic",
+   "SemperProofs.CC.ARound",
+   "SemperProofs.CC.Bridge.Modulo",
+   "SemperProofs.CC.Countermodel",
+   "SemperProofs.CC.Lattice",
+   "SemperProofs.CC.Laws.InvRulesMain",
+   "SemperProofs.CC.Laws.Main",
+   "SemperProofs.CC.Main",
+   "SemperProofs.CC.MinMonoKey",
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.Rounds.Complete",
+   "SemperProofs.EMatch.Engine.Rounds.Counter",
+   "SemperProofs.EMatch.Engine.Rounds.SeqSplice",
+   "SemperProofs.EMatch.Engine.Saturate.Invariant",
+   "SemperProofs.EMatch.Env.Main",
+   "SemperProofs.EMatch.Flatten.EngineComplete",
+   "SemperProofs.EMatch.Flatten.FixKind",
+   "SemperProofs.EMatch.Flatten.FixMain",
+   "SemperProofs.EMatch.Flatten.FoldPlan",
+   "SemperProofs.EMatch.Flatten.LawsMain",
+   "SemperProofs.EMatch.Flatten.Main",
+   "SemperProofs.EMatch.Flatten.Plan",
+   "SemperProofs.EMatch.Flatten.RegroupChain",
+   "SemperProofs.EMatch.Flatten.RegroupComplete",
+   "SemperProofs.EMatch.Flatten.RegroupFits",
+   "SemperProofs.EMatch.Flatten.RegroupNested",
+   "SemperProofs.EMatch.Main",
+   "SemperProofs.EMatch.Steps.Main",
+   "SemperProofs.Fidelity.Main",
+   "SemperProofs.Fidelity.StopTest",
+   "SemperProofs.Final.Main"
+  ],
+  "SemperProofs.Basic": [],
+  "SemperProofs.CC.ARound": [
+   "SemperProofs.CC.ARound.Basic",
+   "SemperProofs.CC.ARound.Choice",
+   "SemperProofs.CC.ARound.Nested",
+   "SemperProofs.CC.ARound.Store"
+  ],
+  "SemperProofs.CC.ARound.Basic": [],
+  "SemperProofs.CC.ARound.Choice": [
+   "SemperProofs.CC.ARound.Basic"
+  ],
+  "SemperProofs.CC.ARound.Nested": [
+   "SemperProofs.CC.ARound.Basic"
+  ],
+  "SemperProofs.CC.ARound.Store": [
+   "SemperProofs.CC.ARound.Choice"
+  ],
+  "SemperProofs.CC.ARoundCheck": [
+   "SemperProofs.CC.ARound"
+  ],
+  "SemperProofs.CC.Assemble": [
+   "SemperProofs.CC.Lemmas",
+   "SemperProofs.CC.Proofs.CriticalPairModulo",
+   "SemperProofs.CC.Slot"
+  ],
+  "SemperProofs.CC.BoundedOracle": [
+   "SemperProofs.CC.Laws.Combined"
+  ],
+  "SemperProofs.CC.Bridge.Check": [
+   "SemperProofs.CC.Bridge.Modulo"
+  ],
+  "SemperProofs.CC.Bridge.Modulo": [
+   "SemperProofs.CC.Bridge.Represents"
+  ],
+  "SemperProofs.CC.Bridge.Represents": [
+   "SemperProofs.CC.Main",
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Env.Snapshot"
+  ],
+  "SemperProofs.CC.Check": [
+   "SemperProofs.CC.Main"
+  ],
+  "SemperProofs.CC.Countermodel": [
+   "SemperProofs.CC.BoundedOracle"
+  ],
+  "SemperProofs.CC.CountermodelCheck": [
+   "SemperProofs.CC.Countermodel"
+  ],
+  "SemperProofs.CC.Defs": [],
+  "SemperProofs.CC.Lattice": [
+   "SemperProofs.CC.Laws.Combined",
+   "SemperProofs.CC.Main"
+  ],
+  "SemperProofs.CC.LatticeCheck": [
+   "SemperProofs.CC.Lattice"
+  ],
+  "SemperProofs.CC.Laws.Basic": [
+   "SemperProofs.CC.Main"
+  ],
+  "SemperProofs.CC.Laws.Check": [
+   "SemperProofs.CC.Laws.Main"
+  ],
+  "SemperProofs.CC.Laws.Combined": [
+   "SemperProofs.CC.Laws.Identity",
+   "SemperProofs.CC.Laws.Inverse",
+   "SemperProofs.CC.Laws.Nilpotent"
+  ],
+  "SemperProofs.CC.Laws.Count": [
+   "SemperProofs.CC.Laws.Basic"
+  ],
+  "SemperProofs.CC.Laws.CriticalPairs": [
+   "SemperProofs.CC.Laws.Combined",
+   "SemperProofs.CC.Laws.Idempotent",
+   "SemperProofs.CC.Laws.Identity",
+   "SemperProofs.CC.Laws.Inverse",
+   "SemperProofs.CC.Laws.Nilpotent"
+  ],
+  "SemperProofs.CC.Laws.Idempotent": [
+   "SemperProofs.CC.Laws.Count"
+  ],
+  "SemperProofs.CC.Laws.Identity": [
+   "SemperProofs.CC.Laws.Basic"
+  ],
+  "SemperProofs.CC.Laws.InvRules": [
+   "SemperProofs.CC.Laws.Main"
+  ],
+  "SemperProofs.CC.Laws.InvRulesCheck": [
+   "SemperProofs.CC.Laws.InvRulesMain"
+  ],
+  "SemperProofs.CC.Laws.InvRulesMain": [
+   "SemperProofs.CC.Laws.InvRules"
+  ],
+  "SemperProofs.CC.Laws.Inverse": [
+   "SemperProofs.CC.Laws.Basic"
+  ],
+  "SemperProofs.CC.Laws.Main": [
+   "SemperProofs.CC.Laws.CriticalPairs"
+  ],
+  "SemperProofs.CC.Laws.Nilpotent": [
+   "SemperProofs.CC.Laws.Count"
+  ],
+  "SemperProofs.CC.Lemmas": [
+   "SemperProofs.CC.Defs"
+  ],
+  "SemperProofs.CC.Main": [
+   "SemperProofs.CC.Assemble",
+   "SemperProofs.CC.Lemmas",
+   "SemperProofs.CC.Proofs.CriticalPairModulo",
+   "SemperProofs.CC.Proofs.RunStabilizes",
+   "SemperProofs.CC.Slot"
+  ],
+  "SemperProofs.CC.MinMonoKey": [
+   "SemperProofs.CC.Slot"
+  ],
+  "SemperProofs.CC.MinMonoKeyCheck": [
+   "SemperProofs.CC.MinMonoKey"
+  ],
+  "SemperProofs.CC.Proofs.CriticalPairModulo": [
+   "SemperProofs.CC.Lemmas"
+  ],
+  "SemperProofs.CC.Proofs.RunStabilizes": [
+   "SemperProofs.CC.Lemmas"
+  ],
+  "SemperProofs.CC.Slot": [
+   "SemperProofs.CC.Lemmas"
+  ],
+  "SemperProofs.EMatch.Check": [
+   "SemperProofs.EMatch.Main"
+  ],
+  "SemperProofs.EMatch.Defs": [],
+  "SemperProofs.EMatch.Engine.Atoms": [
+   "SemperProofs.EMatch.Proofs.Interp"
+  ],
+  "SemperProofs.EMatch.Engine.AtomsMatch": [
+   "SemperProofs.EMatch.Engine.Atoms"
+  ],
+  "SemperProofs.EMatch.Engine.AtomsWF": [
+   "SemperProofs.EMatch.Engine.SchedRun"
+  ],
+  "SemperProofs.EMatch.Engine.ByOp": [
+   "SemperProofs.EMatch.Lemmas",
+   "SemperProofs.EMatch.Proofs.Interp",
+   "SemperProofs.EMatch.Proofs.JoinCommA"
+  ],
+  "SemperProofs.EMatch.Engine.Check": [
+   "SemperProofs.EMatch.Engine.ByOp",
+   "SemperProofs.EMatch.Engine.Main",
+   "SemperProofs.EMatch.Engine.Runtime",
+   "SemperProofs.EMatch.Engine.SemiNaive",
+   "SemperProofs.EMatch.Engine.WF",
+   "SemperProofs.EMatch.Main"
+  ],
+  "SemperProofs.EMatch.Engine.Lower": [
+   "SemperProofs.EMatch.Engine.Atoms"
+  ],
+  "SemperProofs.EMatch.Engine.Main": [
+   "SemperProofs.EMatch.Engine.Atoms",
+   "SemperProofs.EMatch.Engine.AtomsMatch",
+   "SemperProofs.EMatch.Engine.AtomsWF",
+   "SemperProofs.EMatch.Engine.ByOp",
+   "SemperProofs.EMatch.Engine.Lower",
+   "SemperProofs.EMatch.Engine.Pattern",
+   "SemperProofs.EMatch.Engine.Plan",
+   "SemperProofs.EMatch.Engine.Runtime",
+   "SemperProofs.EMatch.Engine.Sched",
+   "SemperProofs.EMatch.Engine.SchedRun",
+   "SemperProofs.EMatch.Engine.SemiNaive",
+   "SemperProofs.EMatch.Engine.WF"
+  ],
+  "SemperProofs.EMatch.Engine.Pattern": [
+   "SemperProofs.EMatch.Engine.AtomsMatch",
+   "SemperProofs.EMatch.Engine.Plan"
+  ],
+  "SemperProofs.EMatch.Engine.Plan": [
+   "SemperProofs.EMatch.Engine.SchedRun"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.AtomDelta": [
+   "SemperProofs.EMatch.Engine.Lower",
+   "SemperProofs.EMatch.Engine.Rounds.Round"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.Check": [
+   "SemperProofs.EMatch.Engine.Rounds.Complete",
+   "SemperProofs.EMatch.Engine.Rounds.Counter"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.Complete": [
+   "SemperProofs.EMatch.Engine.Rounds.Delta"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.Counter": [
+   "SemperProofs.EMatch.Engine.Rounds.Delta"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.Delta": [
+   "SemperProofs.EMatch.Engine.Rounds.AtomDelta"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.Round": [
+   "SemperProofs.EMatch.Engine.SemiNaive",
+   "SemperProofs.EMatch.Env.Snapshot"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.SeqSplice": [
+   "SemperProofs.EMatch.Engine.Rounds.Round"
+  ],
+  "SemperProofs.EMatch.Engine.Rounds.SeqSpliceCheck": [
+   "SemperProofs.EMatch.Engine.Rounds.SeqSplice"
+  ],
+  "SemperProofs.EMatch.Engine.Runtime": [
+   "SemperProofs.EMatch.Engine.Plan"
+  ],
+  "SemperProofs.EMatch.Engine.Saturate.ActRound": [
+   "SemperProofs.EMatch.Engine.Saturate.Transport"
+  ],
+  "SemperProofs.EMatch.Engine.Saturate.Actions": [
+   "SemperProofs.EMatch.Engine.Rounds.Complete"
+  ],
+  "SemperProofs.EMatch.Engine.Saturate.Check": [
+   "SemperProofs.EMatch.Engine.Saturate.Invariant"
+  ],
+  "SemperProofs.EMatch.Engine.Saturate.Invariant": [
+   "SemperProofs.EMatch.Engine.Saturate.ActRound"
+  ],
+  "SemperProofs.EMatch.Engine.Saturate.Transport": [
+   "SemperProofs.EMatch.Engine.Saturate.Actions"
+  ],
+  "SemperProofs.EMatch.Engine.Sched": [
+   "SemperProofs.EMatch.Engine.Lower"
+  ],
+  "SemperProofs.EMatch.Engine.SchedRun": [
+   "SemperProofs.EMatch.Engine.Sched"
+  ],
+  "SemperProofs.EMatch.Engine.SemiNaive": [
+   "SemperProofs.EMatch.Engine.Plan"
+  ],
+  "SemperProofs.EMatch.Engine.WF": [
+   "SemperProofs.EMatch.Engine.Sched"
+  ],
+  "SemperProofs.EMatch.Env.Check": [
+   "SemperProofs.EMatch.Env.Main"
+  ],
+  "SemperProofs.EMatch.Env.Dup": [
+   "SemperProofs.EMatch.Env.Lemmas"
+  ],
+  "SemperProofs.EMatch.Env.Exec": [
+   "SemperProofs.EMatch.Env.Model"
+  ],
+  "SemperProofs.EMatch.Env.Lemmas": [
+   "SemperProofs.EMatch.Env.Exec"
+  ],
+  "SemperProofs.EMatch.Env.Main": [
+   "SemperProofs.EMatch.Env.Dup",
+   "SemperProofs.EMatch.Env.Refine",
+   "SemperProofs.EMatch.Env.Snapshot"
+  ],
+  "SemperProofs.EMatch.Env.Model": [
+   "SemperProofs.EMatch.Ref"
+  ],
+  "SemperProofs.EMatch.Env.Refine": [
+   "SemperProofs.EMatch.Env.StepA",
+   "SemperProofs.EMatch.Env.StepAC",
+   "SemperProofs.EMatch.Env.StepACI",
+   "SemperProofs.EMatch.Env.StepComm"
+  ],
+  "SemperProofs.EMatch.Env.Snapshot": [
+   "SemperProofs.EMatch.Env.Model"
+  ],
+  "SemperProofs.EMatch.Env.StepA": [
+   "SemperProofs.EMatch.Env.Lemmas"
+  ],
+  "SemperProofs.EMatch.Env.StepAC": [
+   "SemperProofs.EMatch.Env.Lemmas"
+  ],
+  "SemperProofs.EMatch.Env.StepACI": [
+   "SemperProofs.EMatch.Env.Lemmas"
+  ],
+  "SemperProofs.EMatch.Env.StepComm": [
+   "SemperProofs.EMatch.Env.Lemmas"
+  ],
+  "SemperProofs.EMatch.Flatten.Canon": [
+   "SemperProofs.EMatch.Flatten.Views",
+   "SemperProofs.EMatch.Proofs.DecomposeAC"
+  ],
+  "SemperProofs.EMatch.Flatten.Check": [
+   "SemperProofs.EMatch.Flatten.Main"
+  ],
+  "SemperProofs.EMatch.Flatten.EngineCheck": [
+   "SemperProofs.EMatch.Flatten.EngineComplete",
+   "SemperProofs.EMatch.Flatten.FoldPlan",
+   "SemperProofs.EMatch.Flatten.Plan"
+  ],
+  "SemperProofs.EMatch.Flatten.EngineComplete": [
+   "SemperProofs.EMatch.Flatten.EngineRule"
+  ],
+  "SemperProofs.EMatch.Flatten.EngineRule": [
+   "SemperProofs.EMatch.Flatten.LawsMain"
+  ],
+  "SemperProofs.EMatch.Flatten.Enum": [
+   "SemperProofs.EMatch.Flatten.Views"
+  ],
+  "SemperProofs.EMatch.Flatten.Fix": [
+   "SemperProofs.EMatch.Flatten.Main"
+  ],
+  "SemperProofs.EMatch.Flatten.FixCheck": [
+   "SemperProofs.EMatch.Flatten.FixKind"
+  ],
+  "SemperProofs.EMatch.Flatten.FixKind": [
+   "SemperProofs.EMatch.Flatten.FixMain"
+  ],
+  "SemperProofs.EMatch.Flatten.FixMain": [
+   "SemperProofs.EMatch.Flatten.Fix"
+  ],
+  "SemperProofs.EMatch.Flatten.Fold": [
+   "SemperProofs.EMatch.Flatten.Views"
+  ],
+  "SemperProofs.EMatch.Flatten.FoldPlan": [
+   "SemperProofs.EMatch.Flatten.Fold",
+   "SemperProofs.EMatch.Flatten.Plan"
+  ],
+  "SemperProofs.EMatch.Flatten.Interp": [
+   "SemperProofs.EMatch.Flatten.Canon",
+   "SemperProofs.EMatch.Flatten.Enum",
+   "SemperProofs.EMatch.Main"
+  ],
+  "SemperProofs.EMatch.Flatten.Laws": [
+   "SemperProofs.EMatch.Flatten.FixKind"
+  ],
+  "SemperProofs.EMatch.Flatten.LawsCheck": [
+   "SemperProofs.EMatch.Flatten.LawsMain"
+  ],
+  "SemperProofs.EMatch.Flatten.LawsMain": [
+   "SemperProofs.EMatch.Flatten.Laws"
+  ],
+  "SemperProofs.EMatch.Flatten.Main": [
+   "SemperProofs.EMatch.Flatten.Canon",
+   "SemperProofs.EMatch.Flatten.Enum",
+   "SemperProofs.EMatch.Flatten.Interp",
+   "SemperProofs.EMatch.Flatten.Refold",
+   "SemperProofs.EMatch.Flatten.Views"
+  ],
+  "SemperProofs.EMatch.Flatten.Plan": [
+   "SemperProofs.EMatch.Engine.SchedRun",
+   "SemperProofs.EMatch.Flatten.PlanDefs"
+  ],
+  "SemperProofs.EMatch.Flatten.PlanDefs": [
+   "SemperProofs.EMatch.Engine.Lower",
+   "SemperProofs.EMatch.Flatten.EngineRule",
+   "SemperProofs.EMatch.Flatten.Interp"
+  ],
+  "SemperProofs.EMatch.Flatten.Refold": [
+   "SemperProofs.EMatch.Flatten.Views",
+   "SemperProofs.EMatch.Proofs.DecomposeAC"
+  ],
+  "SemperProofs.EMatch.Flatten.Regroup": [
+   "SemperProofs.EMatch.Flatten.Plan",
+   "SemperProofs.EMatch.Flatten.RegroupDefs"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupChain": [
+   "SemperProofs.EMatch.Flatten.RegroupFits"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupCheck": [
+   "SemperProofs.EMatch.Flatten.RegroupNested"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupComplete": [
+   "SemperProofs.EMatch.Flatten.RegroupSound"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupDefs": [
+   "SemperProofs.EMatch.Flatten.FoldPlan"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupFits": [
+   "SemperProofs.EMatch.Flatten.RegroupComplete"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupNested": [
+   "SemperProofs.EMatch.Flatten.RegroupChain"
+  ],
+  "SemperProofs.EMatch.Flatten.RegroupSound": [
+   "SemperProofs.EMatch.Flatten.Fold",
+   "SemperProofs.EMatch.Flatten.Regroup"
+  ],
+  "SemperProofs.EMatch.Flatten.Views": [
+   "SemperProofs.EMatch.Ref"
+  ],
+  "SemperProofs.EMatch.Lemmas": [
+   "SemperProofs.EMatch.Ref"
+  ],
+  "SemperProofs.EMatch.Main": [
+   "SemperProofs.EMatch.Lemmas",
+   "SemperProofs.EMatch.Proofs.CompileWF",
+   "SemperProofs.EMatch.Proofs.DecomposeAC",
+   "SemperProofs.EMatch.Proofs.Interp",
+   "SemperProofs.EMatch.Proofs.JoinCommA"
+  ],
+  "SemperProofs.EMatch.Proofs.CompileWF": [
+   "SemperProofs.EMatch.Lemmas"
+  ],
+  "SemperProofs.EMatch.Proofs.DecomposeAC": [
+   "SemperProofs.EMatch.Lemmas"
+  ],
+  "SemperProofs.EMatch.Proofs.Interp": [
+   "SemperProofs.EMatch.Lemmas",
+   "SemperProofs.EMatch.Proofs.CompileWF",
+   "SemperProofs.EMatch.Proofs.DecomposeAC",
+   "SemperProofs.EMatch.Proofs.JoinCommA"
+  ],
+  "SemperProofs.EMatch.Proofs.JoinCommA": [
+   "SemperProofs.EMatch.Lemmas"
+  ],
+  "SemperProofs.EMatch.Ref": [
+   "SemperProofs.EMatch.Defs"
+  ],
+  "SemperProofs.EMatch.Steps.Assemble": [
+   "SemperProofs.EMatch.Steps.Defs"
+  ],
+  "SemperProofs.EMatch.Steps.Check": [
+   "SemperProofs.EMatch.Steps.Main"
+  ],
+  "SemperProofs.EMatch.Steps.Collect": [
+   "SemperProofs.EMatch.Steps.Interp"
+  ],
+  "SemperProofs.EMatch.Steps.Defs": [
+   "SemperProofs.EMatch.Ref"
+  ],
+  "SemperProofs.EMatch.Steps.Interp": [
+   "SemperProofs.EMatch.Steps.Assemble"
+  ],
+  "SemperProofs.EMatch.Steps.Main": [
+   "SemperProofs.EMatch.Steps.Collect",
+   "SemperProofs.EMatch.Steps.Simple",
+   "SemperProofs.EMatch.Steps.WF"
+  ],
+  "SemperProofs.EMatch.Steps.Simple": [
+   "SemperProofs.EMatch.Main",
+   "SemperProofs.EMatch.Steps.Interp"
+  ],
+  "SemperProofs.EMatch.Steps.WF": [
+   "SemperProofs.EMatch.Steps.Simple"
+  ],
+  "SemperProofs.Fidelity.ByOpPolicy": [
+   "SemperProofs.EMatch.Engine.ByOp"
+  ],
+  "SemperProofs.Fidelity.Check": [
+   "SemperProofs.Fidelity.Main"
+  ],
+  "SemperProofs.Fidelity.Index": [
+   "SemperProofs.EMatch.Engine.Saturate.Invariant"
+  ],
+  "SemperProofs.Fidelity.Main": [
+   "SemperProofs.Fidelity.ByOpPolicy",
+   "SemperProofs.Fidelity.Index",
+   "SemperProofs.Fidelity.Normalize",
+   "SemperProofs.Fidelity.NormalizeSat",
+   "SemperProofs.Fidelity.Sound",
+   "SemperProofs.Fidelity.Subsume"
+  ],
+  "SemperProofs.Fidelity.Normalize": [
+   "SemperProofs.Fidelity.Subsume"
+  ],
+  "SemperProofs.Fidelity.NormalizeSat": [
+   "SemperProofs.Fidelity.Normalize"
+  ],
+  "SemperProofs.Fidelity.Sound": [
+   "SemperProofs.Fidelity.NormalizeSat"
+  ],
+  "SemperProofs.Fidelity.StopTest": [
+   "SemperProofs.Fidelity.NormalizeSat"
+  ],
+  "SemperProofs.Fidelity.StopTestCheck": [
+   "SemperProofs.Fidelity.StopTest"
+  ],
+  "SemperProofs.Fidelity.Subsume": [
+   "SemperProofs.Fidelity.Index"
+  ],
+  "SemperProofs.Final.Check": [
+   "SemperProofs.Final.Main"
+  ],
+  "SemperProofs.Final.Main": [
+   "SemperProofs.CC.Bridge.Modulo",
+   "SemperProofs.EMatch.Engine.Saturate.Invariant"
+  ]
+ },
+ "weight": {
+  "Conform": 5,
+  "Conform.CC.Case": 184,
+  "Conform.CC.Cert": 282,
+  "Conform.CC.CertMain": 41,
+  "Conform.CC.Emit": 133,
+  "Conform.CC.Main": 40,
+  "Conform.CC.Oracle": 131,
+  "Conform.Case": 350,
+  "Conform.Emit": 130,
+  "Conform.Flatten.Case": 388,
+  "Conform.Flatten.Emit": 139,
+  "Conform.Flatten.Main": 42,
+  "Conform.Flatten.Oracle": 142,
+  "Conform.Main": 52,
+  "Conform.Oracle": 236,
+  "Conform.Rng": 46,
+  "Conform.Rounds.Dump": 197,
+  "Conform.Rounds.Gen": 520,
+  "Conform.Rounds.Main": 169,
+  "Conform.Rounds.Oracle": 202,
+  "SemperProofs": 32,
+  "SemperProofs.Basic": 5,
+  "SemperProofs.CC.ARound": 57,
+  "SemperProofs.CC.ARound.Basic": 533,
+  "SemperProofs.CC.ARound.Choice": 309,
+  "SemperProofs.CC.ARound.Nested": 222,
+  "SemperProofs.CC.ARound.Store": 288,
+  "SemperProofs.CC.ARoundCheck": 53,
+  "SemperProofs.CC.Assemble": 198,
+  "SemperProofs.CC.BoundedOracle": 321,
+  "SemperProofs.CC.Bridge.Check": 18,
+  "SemperProofs.CC.Bridge.Modulo": 291,
+  "SemperProofs.CC.Bridge.Represents": 169,
+  "SemperProofs.CC.Check": 19,
+  "SemperProofs.CC.Countermodel": 151,
+  "SemperProofs.CC.CountermodelCheck": 14,
+  "SemperProofs.CC.Defs": 261,
+  "SemperProofs.CC.Lattice": 806,
+  "SemperProofs.CC.LatticeCheck": 32,
+  "SemperProofs.CC.Laws.Basic": 340,
+  "SemperProofs.CC.Laws.Check": 34,
+  "SemperProofs.CC.Laws.Combined": 203,
+  "SemperProofs.CC.Laws.Count": 186,
+  "SemperProofs.CC.Laws.CriticalPairs": 380,
+  "SemperProofs.CC.Laws.Idempotent": 83,
+  "SemperProofs.CC.Laws.Identity": 139,
+  "SemperProofs.CC.Laws.InvRules": 420,
+  "SemperProofs.CC.Laws.InvRulesCheck": 25,
+  "SemperProofs.CC.Laws.InvRulesMain": 424,
+  "SemperProofs.CC.Laws.Inverse": 521,
+  "SemperProofs.CC.Laws.Main": 160,
+  "SemperProofs.CC.Laws.Nilpotent": 72,
+  "SemperProofs.CC.Lemmas": 485,
+  "SemperProofs.CC.Main": 120,
+  "SemperProofs.CC.MinMonoKey": 277,
+  "SemperProofs.CC.MinMonoKeyCheck": 19,
+  "SemperProofs.CC.Proofs.CriticalPairModulo": 257,
+  "SemperProofs.CC.Proofs.RunStabilizes": 158,
+  "SemperProofs.CC.Slot": 351,
+  "SemperProofs.EMatch.Check": 11,
+  "SemperProofs.EMatch.Defs": 258,
+  "SemperProofs.EMatch.Engine.Atoms": 196,
+  "SemperProofs.EMatch.Engine.AtomsMatch": 1155,
+  "SemperProofs.EMatch.Engine.AtomsWF": 454,
+  "SemperProofs.EMatch.Engine.ByOp": 155,
+  "SemperProofs.EMatch.Engine.Check": 31,
+  "SemperProofs.EMatch.Engine.Lower": 1161,
+  "SemperProofs.EMatch.Engine.Main": 110,
+  "SemperProofs.EMatch.Engine.Pattern": 313,
+  "SemperProofs.EMatch.Engine.Plan": 259,
+  "SemperProofs.EMatch.Engine.Rounds.AtomDelta": 67,
+  "SemperProofs.EMatch.Engine.Rounds.Check": 17,
+  "SemperProofs.EMatch.Engine.Rounds.Complete": 93,
+  "SemperProofs.EMatch.Engine.Rounds.Counter": 211,
+  "SemperProofs.EMatch.Engine.Rounds.Delta": 77,
+  "SemperProofs.EMatch.Engine.Rounds.Round": 154,
+  "SemperProofs.EMatch.Engine.Rounds.SeqSplice": 308,
+  "SemperProofs.EMatch.Engine.Rounds.SeqSpliceCheck": 15,
+  "SemperProofs.EMatch.Engine.Runtime": 219,
+  "SemperProofs.EMatch.Engine.Saturate.ActRound": 62,
+  "SemperProofs.EMatch.Engine.Saturate.Actions": 143,
+  "SemperProofs.EMatch.Engine.Saturate.Check": 17,
+  "SemperProofs.EMatch.Engine.Saturate.Invariant": 240,
+  "SemperProofs.EMatch.Engine.Saturate.Transport": 534,
+  "SemperProofs.EMatch.Engine.Sched": 504,
+  "SemperProofs.EMatch.Engine.SchedRun": 608,
+  "SemperProofs.EMatch.Engine.SemiNaive": 120,
+  "SemperProofs.EMatch.Engine.WF": 287,
+  "SemperProofs.EMatch.Env.Check": 13,
+  "SemperProofs.EMatch.Env.Dup": 231,
+  "SemperProofs.EMatch.Env.Exec": 278,
+  "SemperProofs.EMatch.Env.Lemmas": 337,
+  "SemperProofs.EMatch.Env.Main": 80,
+  "SemperProofs.EMatch.Env.Model": 662,
+  "SemperProofs.EMatch.Env.Refine": 264,
+  "SemperProofs.EMatch.Env.Snapshot": 79,
+  "SemperProofs.EMatch.Env.StepA": 359,
+  "SemperProofs.EMatch.Env.StepAC": 194,
+  "SemperProofs.EMatch.Env.StepACI": 89,
+  "SemperProofs.EMatch.Env.StepComm": 94,
+  "SemperProofs.EMatch.Flatten.Canon": 300,
+  "SemperProofs.EMatch.Flatten.Check": 45,
+  "SemperProofs.EMatch.Flatten.EngineCheck": 71,
+  "SemperProofs.EMatch.Flatten.EngineComplete": 353,
+  "SemperProofs.EMatch.Flatten.EngineRule": 520,
+  "SemperProofs.EMatch.Flatten.Enum": 361,
+  "SemperProofs.EMatch.Flatten.Fix": 743,
+  "SemperProofs.EMatch.Flatten.FixCheck": 67,
+  "SemperProofs.EMatch.Flatten.FixKind": 764,
+  "SemperProofs.EMatch.Flatten.FixMain": 993,
+  "SemperProofs.EMatch.Flatten.Fold": 189,
+  "SemperProofs.EMatch.Flatten.FoldPlan": 145,
+  "SemperProofs.EMatch.Flatten.Interp": 418,
+  "SemperProofs.EMatch.Flatten.Laws": 1712,
+  "SemperProofs.EMatch.Flatten.LawsCheck": 138,
+  "SemperProofs.EMatch.Flatten.LawsMain": 549,
+  "SemperProofs.EMatch.Flatten.Main": 123,
+  "SemperProofs.EMatch.Flatten.Plan": 771,
+  "SemperProofs.EMatch.Flatten.PlanDefs": 173,
+  "SemperProofs.EMatch.Flatten.Refold": 332,
+  "SemperProofs.EMatch.Flatten.Regroup": 531,
+  "SemperProofs.EMatch.Flatten.RegroupChain": 724,
+  "SemperProofs.EMatch.Flatten.RegroupCheck": 86,
+  "SemperProofs.EMatch.Flatten.RegroupComplete": 464,
+  "SemperProofs.EMatch.Flatten.RegroupDefs": 285,
+  "SemperProofs.EMatch.Flatten.RegroupFits": 123,
+  "SemperProofs.EMatch.Flatten.RegroupNested": 149,
+  "SemperProofs.EMatch.Flatten.RegroupSound": 535,
+  "SemperProofs.EMatch.Flatten.Views": 395,
+  "SemperProofs.EMatch.Lemmas": 194,
+  "SemperProofs.EMatch.Main": 166,
+  "SemperProofs.EMatch.Proofs.CompileWF": 286,
+  "SemperProofs.EMatch.Proofs.DecomposeAC": 845,
+  "SemperProofs.EMatch.Proofs.Interp": 3369,
+  "SemperProofs.EMatch.Proofs.JoinCommA": 451,
+  "SemperProofs.EMatch.Ref": 456,
+  "SemperProofs.EMatch.Steps.Assemble": 303,
+  "SemperProofs.EMatch.Steps.Check": 22,
+  "SemperProofs.EMatch.Steps.Collect": 603,
+  "SemperProofs.EMatch.Steps.Defs": 285,
+  "SemperProofs.EMatch.Steps.Interp": 225,
+  "SemperProofs.EMatch.Steps.Main": 140,
+  "SemperProofs.EMatch.Steps.Simple": 533,
+  "SemperProofs.EMatch.Steps.WF": 377,
+  "SemperProofs.Fidelity.ByOpPolicy": 82,
+  "SemperProofs.Fidelity.Check": 30,
+  "SemperProofs.Fidelity.Index": 118,
+  "SemperProofs.Fidelity.Main": 27,
+  "SemperProofs.Fidelity.Normalize": 343,
+  "SemperProofs.Fidelity.NormalizeSat": 230,
+  "SemperProofs.Fidelity.Sound": 234,
+  "SemperProofs.Fidelity.StopTest": 285,
+  "SemperProofs.Fidelity.StopTestCheck": 18,
+  "SemperProofs.Fidelity.Subsume": 257,
+  "SemperProofs.Final.Check": 9,
+  "SemperProofs.Final.Main": 189
+ }
+}
