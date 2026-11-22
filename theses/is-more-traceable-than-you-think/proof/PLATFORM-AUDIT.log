@@ -1,4 +1,4 @@
-Statement enumeration: 289 statements
+Statement enumeration: 320 statements
   statement Controls.countjoin
   statement Controls.countsingle
   statement Controls.countfold
@@ -67,6 +67,37 @@ Statement enumeration: 289 statements
   statement Families.binaryTuples_nodup
   statement Families.binary_compact_distinct
   statement Families.binary_component_family_correct
+  statement HeadedReturn.Headed
+  statement HeadedReturn.Closed
+  statement HeadedReturn.Grounded
+  statement HeadedReturn.returns_headed
+  statement HeadedReturn.head_witnessed
+  statement HeadedReturn.returns_headed_iff
+  statement HeadedReturn.returned_premises_witnessed
+  statement HeadedReturn.headed_iff_singleton
+  statement HeadedReturn.unique_iff_contributed_unique
+  statement HeadedReturn.recordLift_headed
+  statement HeadedReturn.recordLift_closed
+  statement HeadedReturnControls.nodeOnly_not_headed
+  statement HeadedReturnControls.edgeOnly_not_closed
+  statement HeadedReturnControls.headlift
+  statement HeadedReturnControls.headlift_headed
+  statement HeadedReturnControls.headlift_closed
+  statement HeadedReturnControls.headlift_returns
+  statement HeadedReturnControls.witnessed_needed
+  statement HeadedReturnControls.grounded_needed
+  statement HeadedReturnControls.fullB
+  statement HeadedReturnControls.noB
+  statement HeadedReturnControls.splitlift
+  statement HeadedReturnControls.splitlift_headed
+  statement HeadedReturnControls.splitlift_closed
+  statement HeadedReturnControls.splitlift_grounded
+  statement HeadedReturnControls.splitlift_functional
+  statement HeadedReturnControls.fullB_ne_noB
+  statement HeadedReturnControls.return_not_unique
+  statement HeadedReturnControls.atmostone
+  statement HeadedReturnControls.atmostone_singletons
+  statement HeadedReturnControls.atmostone_not_lifted
   statement Incremental.Stage
   statement Incremental.Scope
   statement Incremental.TaskKey
@@ -424,6 +455,80 @@ Families.binary_component_family_correct : ∀ (left right : Families.Component)
                   ∃ values,
                     Families.sourceTuple env selected = some values ∧
                       Families.targetTuple env selected = some values ∧ values.length = count
+@HeadedReturn.Headed : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.Closed : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.Grounded : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.returns_headed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift →
+    ∀ {l : List Ev} {n : Node},
+      (Traceability.fold lift l).nodes n = true →
+        ∃ d,
+          (Traceability.fold lift l).edges d = true ∧
+            d.head = n ∧ ∃ e, e ∈ l ∧ (lift e).nodes n = true ∧ (lift e).edges d = true
+@HeadedReturn.head_witnessed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Closed lift →
+    ∀ {l : List Ev} {d : Traceability.Derivation Node},
+      (Traceability.fold lift l).edges d = true → (Traceability.fold lift l).nodes d.head = true
+@HeadedReturn.returns_headed_iff : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift →
+    HeadedReturn.Closed lift →
+      ∀ {l : List Ev} {n : Node},
+        (Traceability.fold lift l).nodes n = true ↔ ∃ d, (Traceability.fold lift l).edges d = true ∧ d.head = n
+@HeadedReturn.returned_premises_witnessed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Grounded lift →
+    ∀ {l : List Ev} {d : Traceability.Derivation Node} {m : Node},
+      (Traceability.fold lift l).edges d = true → d.premises m = true → (Traceability.fold lift l).nodes m = true
+@HeadedReturn.headed_iff_singleton : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift ↔
+    ∀ (e : Ev) (n : Node),
+      (Traceability.fold lift [e]).nodes n = true → ∃ d, (Traceability.fold lift [e]).edges d = true ∧ d.head = n
+@HeadedReturn.unique_iff_contributed_unique : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev},
+  (∀ (d d' : Traceability.Derivation Node),
+      (Traceability.fold lift l).edges d = true →
+        (Traceability.fold lift l).edges d' = true → d.head = d'.head → d = d') ↔
+    ∀ (e e' : Ev) (d d' : Traceability.Derivation Node),
+      e ∈ l → e' ∈ l → (lift e).edges d = true → (lift e').edges d' = true → d.head = d'.head → d = d'
+@HeadedReturn.recordLift_headed : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node),
+  HeadedReturn.Headed (Traceability.recordLift record)
+@HeadedReturn.recordLift_closed : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node),
+  HeadedReturn.Closed (Traceability.recordLift record)
+HeadedReturnControls.nodeOnly_not_headed : ¬HeadedReturn.Headed ReturnControls.nodeOnly
+HeadedReturnControls.edgeOnly_not_closed : ¬HeadedReturn.Closed ReturnControls.edgeOnly
+HeadedReturnControls.headlift : Nat → Traceability.Graph Nat
+HeadedReturnControls.headlift_headed : HeadedReturn.Headed HeadedReturnControls.headlift
+HeadedReturnControls.headlift_closed : HeadedReturn.Closed HeadedReturnControls.headlift
+HeadedReturnControls.headlift_returns : ∃ d,
+  (Traceability.fold HeadedReturnControls.headlift [0, 1]).edges d = true ∧
+    d.head = 1 ∧
+      ∃ e,
+        e ∈ [0, 1] ∧ (HeadedReturnControls.headlift e).nodes 1 = true ∧ (HeadedReturnControls.headlift e).edges d = true
+HeadedReturnControls.witnessed_needed : ¬∀ (n : Nat),
+    ∃ d, (Traceability.fold HeadedReturnControls.headlift [0]).edges d = true ∧ d.head = n
+HeadedReturnControls.grounded_needed : ¬∀ (d : Traceability.Derivation Nat) (m : Nat),
+    (Traceability.fold HeadedReturnControls.headlift [0]).edges d = true →
+      d.premises m = true → (Traceability.fold HeadedReturnControls.headlift [0]).nodes m = true
+HeadedReturnControls.fullB : Traceability.Derivation Bool
+HeadedReturnControls.noB : Traceability.Derivation Bool
+HeadedReturnControls.splitlift : Nat → Traceability.Graph Bool
+HeadedReturnControls.splitlift_headed : HeadedReturn.Headed HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_closed : HeadedReturn.Closed HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_grounded : HeadedReturn.Grounded HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_functional : ∀ (e : Nat) (d d' : Traceability.Derivation Bool),
+  (HeadedReturnControls.splitlift e).edges d = true →
+    (HeadedReturnControls.splitlift e).edges d' = true → d.head = d'.head → d = d'
+HeadedReturnControls.fullB_ne_noB : HeadedReturnControls.fullB ≠ HeadedReturnControls.noB
+HeadedReturnControls.return_not_unique : (Traceability.fold HeadedReturnControls.splitlift [0, 1]).edges
+      HeadedReturnControls.fullB =
+    true ∧
+  (Traceability.fold HeadedReturnControls.splitlift [0, 1]).edges HeadedReturnControls.noB = true ∧
+    HeadedReturnControls.fullB.head = HeadedReturnControls.noB.head ∧
+      HeadedReturnControls.fullB ≠ HeadedReturnControls.noB
+HeadedReturnControls.atmostone : Traceability.Graph Nat → Prop
+HeadedReturnControls.atmostone_singletons : ∀ (e : Nat),
+  HeadedReturnControls.atmostone (Traceability.fold Controls.ownlift [e])
+HeadedReturnControls.atmostone_not_lifted : ¬HeadedReturnControls.atmostone (Traceability.fold Controls.ownlift [0, 1])
 Incremental.Stage : Type
 Incremental.Scope : Type
 Incremental.TaskKey : Type

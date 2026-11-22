@@ -327,3 +327,18 @@ These were run in isolated copies to exercise the two corrected coverage gaps: a
 unprinted-choice: rejected, exit 1; RepositoryAudit.lean:9:0: error: Rejected: unprintedChoice depends on forbidden axiom Classical.choice | Rejected: kernel declaration audit failed
 example-escape: rejected, exit 1; Rejected: prohibited proof token 'axiom': examples/GateProbe.lean:1
 ```
+
+## Addendum — headed return, generic form (2026-11-22)
+
+`proof/HeadedReturn.lean` and `proof/HeadedReturnControls.lean` add to the repair above without changing it. The generic model can record a head with no derivation, or a derivation with no head, so a witnessed head alone returns nothing. The addendum names the per-event conditions under which it does and proves the return for every lifting that meets them.
+
+- `Headed` (each node an event records heads a derivation that event records), `Closed` (each derivation an event records has its head among that event's nodes), `Grounded` (each premise of a recorded derivation is among that event's nodes). Each is a condition on one event; none names the fold.
+- `returns_headed`: under `Headed`, a witnessed node returns to a present derivation at that head, and one event of the stream records both. The witnessed hypothesis is read first; the contribution is derived through `fold_nodes` and `fold_edges`.
+- `head_witnessed` (`Closed`), `returns_headed_iff` (both), `returned_premises_witnessed` (`Grounded`).
+- `headed_iff_singleton`: `Headed` is exactly the return on every one-event stream, so `returns_headed` is the carry-over of the one-event return to every stream, not a fresh property.
+- `unique_iff_contributed_unique`: one present derivation per head in the fold holds exactly when the whole stream records one derivation per head. Uniqueness is a stream premise and is not offered as a result.
+- `recordLift_headed`, `recordLift_closed`: the concrete recorder above meets both conditions, so `returns_recorded_head` is an instance of `returns_headed`.
+
+Controls. `nodeOnly_not_headed` and `edgeOnly_not_closed` tie the standing `head_without_derivation` and `derivation_without_head` to the named conditions. `witnessed_needed`: without a witnessed node the return fails even under `Headed`. `grounded_needed`: under `Headed` and `Closed` a present derivation can name an unwitnessed premise. `return_not_unique`: under `Headed`, `Closed`, `Grounded` and one derivation per head per event (`splitlift_*`), the fold of `[0, 1]` holds two different derivations at one head. `atmostone_singletons` with `atmostone_not_lifted`: a property true at every one-event fold can fail on a longer stream, so the carry-over is earned. Non-vacuity: `headlift_headed`, `headlift_closed`, `headlift_returns`.
+
+Cannot say, unchanged by the addendum: that a witnessed head determines one premise set; that real executions produce a headed, closed or grounded lifting.
