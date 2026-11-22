@@ -1,0 +1,103 @@
+{
+  "commit": "24a8490171c814b1f8771dd52aeeef19a3645f66",
+  "dirty": false,
+  "unsafe_runtime_declarations": 47,
+  "lean": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "lean_binary_sha256": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+  "files_checked": 21,
+  "proof_declarations_audited": 412,
+  "safe_declarations_audited": 868,
+  "allowed_standard_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "sorries": 0,
+  "custom_axioms": 0,
+  "source_escapes": 0,
+  "warnings_as_errors": true,
+  "clean_dependency_build": true,
+  "dependencies": [
+    {
+      "name": "software-optimality",
+      "commit": "ec1eadda0a29d1b254a98feb5ad24911a095c454",
+      "tree": "633cb9cf267744d9f6280c537abb113b5c215461"
+    },
+    {
+      "name": "software-is-quantifiable",
+      "commit": "d88acbdc3ba78fff994067d2c73bcc01622b3f61",
+      "tree": "803ec87bd775cbcca5ba016f3e71d45b3ec3294e"
+    }
+  ],
+  "sources": {
+    "Audit/InteractionControls.lean": "f83d4fc80cb3126d36d65b3f7b3813054da9787cbb0817290fb897e816cd768b",
+    "Audit/OneShotBoundary.lean": "9f97d1b63befb3932824715693912868f502d256c95bccd1a8db72af114f07e8",
+    "Implications.lean": "7bf6824498069397bb1a9631d3c0bf0cb094e15a0e1bcb7ca382de50d31cd76a",
+    "Main.lean": "b38a67703a68238f091c1c7fd702b662ca2e33e51a7db0641d5a556a169b912f",
+    "SoftwareIsComposable/Admission.lean": "3c71e1b810f9c74868a65ce8b37800df4668f424d130a23e700818945f1eaafe",
+    "SoftwareIsComposable/Axioms.lean": "3afc903f5ccc7fa701dd01821a59c80e0a15edcf3593cc2eb31f3042b474d8a0",
+    "SoftwareIsComposable/Bridge.lean": "f6da0b8e18ee563cda9eef7d9fb13c1e4ce90dedd1d7f939be61dee5aa21bd5d",
+    "SoftwareIsComposable/Composition.lean": "e6f251b5b2ec576208d2c67366462f2602e1588f73aba289a3009307483ff894",
+    "SoftwareIsComposable/Evidence.lean": "5b996f95eed650c6b146f38bbf4fc26a357ba1e838933055ff28a0367a8272ee",
+    "SoftwareIsComposable/Examples.lean": "a2e83a2e4076998892d4f47a620ee38f39bf73fd1dc8da8fd7ea91b7d61f3e27",
+    "SoftwareIsComposable/Finiteness.lean": "878439434b7ee5bc87a5f6c714fd15784cf27f503d6324dff0c49a3579e2a111",
+    "SoftwareIsComposable/Incremental.lean": "701ab8525fb4c1713ef0afe8d25ea0cd71b9782830bd91f00158e29017b872e6",
+    "SoftwareIsComposable/Interaction.lean": "c531fa1f7749cbc7616c73c8b4ee79b5a8e2727f6f05a12582faa841e6809b06",
+    "SoftwareIsComposable/InteractionModel.lean": "fbecd36e3864fc70591c251c7b0183ef3a6218ec0c23e6cfe6a2184ee064792d",
+    "SoftwareIsComposable/Legacy.lean": "729ab5c135081c92a1e21066b080bad239bf4c752dbf33c46b868a1ce0a74844",
+    "SoftwareIsComposable/Monotonicity.lean": "a03c145bc63d1d61c105f9a8bf520335854b732754f3bc839462c2826730c1b8",
+    "SoftwareIsComposable/PointwiseMonotonicity.lean": "308346042d92368fddc6a26e1f43a5a50189aa75f543028cc804d4cb5d5ba9d1",
+    "SoftwareIsComposable/Profile.lean": "152a3a0035bf5114c75f21ca5a6dc7d66b7a07abe7236b37cc0e8b73a3889fd0",
+    "SoftwareIsComposable.lean": "b5ec3e36f19a393530e019d837e8ea0773131207bdf6318ce19842dadd159bb0",
+    "examples/ReleasePartition.lean": "faf11cb587a567a83de2d16bebbe4e35980d9794d0082c62b1dcbaf575a2f6e0",
+    "examples/range-ledger/SignedStitch.lean": "d3fdf2e1c5a16ab26d8f3c30405f45b5d0aed34d62463b3ec0b04f5ac7a2ecb9"
+  },
+  "gate_inputs": {
+    "check.sh": "d4a16262232c26dd48191217c1113cbbeda7dbc8ea0826505ca1bf767d0f8acd",
+    "scripts/check.py": "8d5071d7ab59373c9ea0d68c1f8122d9dee6007d79381552fb64f2fc6bdc3210",
+    "lakefile.toml": "44a363604668c349c73d94d6b783b56c6de0fefeec15f25d36cb404ff7180e11",
+    "lake-manifest.json": "be560c9e22b323822e657bc338575be0ddb3f9af81e40f55a93c9f59a6482120",
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "controls/Admitted.lean.fail": "69954459b01bfcc1bfff5a158d441324baa64dc2779e58172119dda913795dce",
+    "controls/CharMask.lean.fail": "a155718e61944eda129a4da8aca2360e18322b1c71dd63dae4b796a48e3ee41e",
+    "controls/InterpolationMask.lean.fail": "d10f9c5c2b8d3337200f52782a63e20e81783c2f28b458e8d9d1ab499c8e131e",
+    "controls/README.md": "60a4d8f4756b0ae44eda903f35a28bb13ebf632a68c9edf307f535f22eab66e6",
+    "controls/RawMask.lean.fail": "65aa1f16cb9776413bca0bdef6a3f39542f416986828c682f563f6cfa174527b",
+    "controls/Worse.lean.fail": "031df7668f749ac2945d42cf8a8714038143833d2e803f91a8f41c4b68b962b0",
+    "examples/check.sh": "a988f0a1b75f796efe89508377bbf533d7f0ea3bb426c1a9be4d780469230755",
+    "examples/expected.txt": "7613fbda8b7b8dddfef4953193642f1220f7bf2f8a1d8d8029ab50a6b4b9b5bd",
+    "examples/new.csv": "c39cea6444735c432675c469fc2887f871850c5928489e05ecf0de90a77eafe1",
+    "examples/old.csv": "6bda3bdb192c205bc205881dc34a6bcd888b727b9fd37dab22d616d107169d80",
+    "examples/range-ledger/check.sh": "8c068a3edf21c29ffef682484efab3559e6feab22e65eacc838746ff1c409b2e",
+    "examples/range-ledger/mutation.patch": "5e736f2aaf50423d01a2a34c146d9e8f8834973034cb0a493ab38fe5008def8f",
+    "examples/range-ledger/verification.txt": "d4cc6ef9d37c4ee8e4f1940621264c9ea385942e1acf38fa2613539bed52f504",
+    "examples/verification.txt": "076c97d14688849f9c47b1d26cee2c4d4275ee66c233e56a535d32079c36d17e"
+  },
+  "trusted_hook_sources": {
+    "Implications.lean": "7bf6824498069397bb1a9631d3c0bf0cb094e15a0e1bcb7ca382de50d31cd76a",
+    "examples/ReleasePartition.lean": "faf11cb587a567a83de2d16bebbe4e35980d9794d0082c62b1dcbaf575a2f6e0",
+    "examples/range-ledger/SignedStitch.lean": "d3fdf2e1c5a16ab26d8f3c30405f45b5d0aed34d62463b3ec0b04f5ac7a2ecb9"
+  },
+  "legacy_source_sha256": "faf5b73b4348471db420b367b87f9f7cca3bc23e03287cb30d5e2b2137952a83",
+  "negative_controls": [
+    "admitted proof",
+    "admit spelling",
+    "unlisted custom axiom",
+    "nested metadata-name source",
+    "native decision",
+    "kernel bypass",
+    "warning bypass",
+    "character literal masking",
+    "raw string masking",
+    "interpolation masking",
+    "quoted identifier masking",
+    "elaboration hook",
+    "evaluation hook",
+    "source directory symlink",
+    "compiled custom axiom",
+    "imported custom axiom",
+    "warning",
+    "range-ledger mutation",
+    "worse release admission"
+  ]
+}

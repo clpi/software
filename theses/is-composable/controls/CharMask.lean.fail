@@ -1,0 +1,2 @@
+def quote : Char := '"'
+unsafe def hiddenEscape : Nat := 0

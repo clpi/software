@@ -1,5 +1,19 @@
 # Composition Model: Claims and Premises
 
+This document and the `PointwiseModel` / `InteractionModel` interfaces were
+preserved from concurrent main commit `7a408c7b752df6f47b9cf60ddbd89d4001b5e22a`.
+The fuller audited module is now also present exactly, up to its namespace,
+under `Legacy`. The recursive positive-interaction strengthening, exact uniform
+safety criterion, semantic rule simulation, independent controls and complete
+application-premise ledger are in [docs/composability-audit.md](docs/composability-audit.md).
+The one-step finite interface below remains distinct: no equivalence of its
+list evaluator with the recursive predicate closure is assumed.
+`Rule.requires` can also be empty, so the finite evaluator permits nullary
+effects without any selected component. The recursive binary closure requires
+seed observations. `Audit/OneShotBoundary.lean` preserves this distinction and
+the absence of recursive effect feedback as standing controls; a future bridge
+must explicitly encode or restrict these cases.
+
 ## The pointwise theorem
 
 At source commit [`de1b30716e2b758141d5940056f37cd678464032`](https://github.com/clpi/software-is-incrementally-safe/blob/de1b30716e2b758141d5940056f37cd678464032/SoftwareIsComposable.lean), `SoftwareIsComposable.incremental_monotone` states: for every release `R` and delta `d`, if each changed symbol's updated profile is below its old profile (`profileLE (d.update s) (R.behavior s)`), then the applied release is below the old release (`releaseLE (apply R d) R`). The same statement and proof are now landed here as `SoftwareIsComposable.PointwiseModel.incremental_monotone`; the namespace keeps it separate from this repository's existing `Release` type. Here `profileLE p q` means that every observation satisfying `p` also satisfies `q`; `releaseLE` applies that relation independently at every symbol. Unchanged symbols are equal by definition of `apply`. This proves pointwise set inclusion and nothing about new observations synthesized from two components acting together.

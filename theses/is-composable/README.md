@@ -1,12 +1,80 @@
 # software-is-composable
 
-Machine-checked incremental release admission for per-symbol behavior profiles. Lean 4.19.0. `./check.sh` scans every Lean source for `sorry`, `admit`, `axiom`, and `native_decide`, compiles every Lean file with warnings as errors, prints theorem axiom dependencies, runs negative controls, and runs the harness.
+Machine-checked statements about release admission and composition, with explicit
+model boundaries. Lean 4.19.0. This repository contains the finite per-symbol
+admission model, the exact audited subset/refinement module under `Legacy`, and
+a strengthened `Interaction` model in which individually safe components can
+generate an unsafe observation together.
+
+**The name is not an unconditional theorem about arbitrary software.** Read the
+[proves/cannot-say statement and premise ledger](docs/composability-audit.md),
+[independent counterexample review](docs/independent-interaction-review.md), and
+[verification receipt](docs/verification.md).
 
 ```sh
 ./check.sh
 ```
 
-The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the recorded run exits 0. Headline axioms are only `propext`, `Classical.choice`, and `Quot.sound`, or none. `sorryAx` does not appear.
+The gate discovers and freshly compiles every repository Lean source, including
+audit and example files, with warnings as errors. It rejects admitted proofs,
+custom logical axioms, source escapes and unapproved elaboration hooks, audits
+compiled axiom dependencies, and exercises standing negative controls plus the
+existing harness and examples. Standard Lean foundational axioms are reported
+separately from compiler-generated runtime implementation constants.
+The current run writes `.lake/all-files-gate/receipt.json` and adjacent logs.
+`CHECK.log` is a historical pre-audit transcript, not evidence for the new head.
+
+## Composition and emergent interaction
+
+`Legacy.incremental_monotone` proves pointwise subset refinement from the same
+condition on changed components. Its dependency composition only propagates
+observations already present in a component profile. `Interaction` adds one
+positive binary rule: two derivable observations may produce a third.
+
+The independent controls prove that two isolated safe component closures can
+jointly produce a forbidden `alarm`. Refinement monotonicity still holds for
+fixed rules and dependencies, and more generally when those relations shrink
+or their new constructors can be simulated in the old closure. Safety of all
+locally safe assignments holds exactly when the common allowed set is closed
+under the interaction rules (on a nonempty component domain). An already safe
+composed baseline can instead be preserved without that universal closure
+premise.
+
+| Claim | Theorem / standing control | Status |
+|---|---|---|
+| Legacy pointwise update refinement is exactly the changed-component hypothesis | `Interaction.incremental_monotone_iff` | PROVEN; local refinement remains a PREMISE |
+| Legacy composition cannot create observations without a component origin | `Interaction.legacy_has_origin` | PROVEN; model restriction |
+| No interaction rules recovers the exact legacy reachability relation | `Interaction.no_interaction_iff_legacy` | PROVEN |
+| Positive interactions preserve refinement of bases, rules and dependencies | `Interaction.reaches_refinement`, `incremental_interactions_monotone` | PROVEN |
+| New rules can be admitted if old derivations simulate them | `Interaction.reaches_simulation`, `safe_of_simulation` | PROVEN under explicit primitive simulation PREMISES |
+| All locally safe assignments compose safely exactly when the allowed set is interaction-closed | `Interaction.universal_safety_iff_closed` | PROVEN; specification closure remains a PREMISE |
+| Particular safe composed baselines stay safe under refinement without universal specification closure | `Interaction.safe_of_refinement`, `safe_of_incremental` | PROVEN |
+| Rechecking the change cone equals a full recheck in a fixed interaction context | `Interaction.incremental_recheck_iff` | PROVEN under safe baseline and fixed-context PREMISES |
+| Independently safe components always compose safely | `Audit/InteractionControls.lean` | DISPROVEN |
+| Local refinement suffices with arbitrary context changes or absence-sensitive interactions | `Audit/InteractionControls.lean` | DISPROVEN |
+| Real programs / the admission CLI implement these abstract interactions | P-MODEL-ADEQUACY, P-EXECUTABLE-BRIDGE | OPEN PREMISES |
+
+The new theorem's subset order and the finite model's qualified-behavior
+retention order below are different contracts. Neither is renamed into the
+other. The new interaction model is available through the stable import; the
+existing CSV admission harness does not evaluate it.
+
+### Preserved concurrent model
+
+While this audit change was being verified, `main` advanced to
+`7a408c7b752df6f47b9cf60ddbd89d4001b5e22a`, adding the `PointwiseModel` and
+finite `InteractionModel` interfaces. Both are preserved and covered by the
+exhaustive gate. `PointwiseModel.incremental_monotone` states the pointwise
+subset result. `InteractionModel.observations_mono` proves component-set
+inclusion for fixed local observations and a fixed list of positive rules;
+`individually_safe_components_compose_to_leak` supplies its finite counterexample.
+Its effects are appended once and do not feed further rules. The recursive
+`Interaction` model and constructor-simulation theorem extend the semantic
+analysis without silently changing that finite interface. See
+[MODEL-PREMISES.md](MODEL-PREMISES.md) for its separate scope.
+The finite evaluator also permits empty-premise effects; the binary closure
+does not bootstrap observations from empty seeds. Their boundary controls are
+in `Audit/OneShotBoundary.lean`.
 
 ## Stable import
 
@@ -17,20 +85,19 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 | `SymbolProfile`, `Release` | Per-symbol behaviors and cost bounds |
 | `releaseAdmitted`, `ReleaseAdmitted`, `releaseAdmitted_iff` | Step admission, Bool and Prop |
 | `releaseAdmitted_trans` | Admission composes along a chain |
-| `PointwiseModel.incremental_monotone` | Changed profiles shrink pointwise; the resulting release is below the old one |
+| `PointwiseModel.incremental_monotone` | Preserved concurrent pointwise subset interface |
+| `InteractionModel.observations_mono` | Finite one-step interactions are monotone in selected components |
+| `InteractionModel.inSpec_of_local_and_interaction_safe` | Finite spec-safety under local and triggered-effect safety premises |
 | `InteractionClosed`, `moduleAdmission_compose` | Module composition under the side condition |
-| `InteractionModel.observations_mono` | Local and positive-rule observations are monotone under component-set inclusion |
-| `InteractionModel.inSpec_of_local_and_interaction_safe` | Spec-safety with the explicit premise that every fired rule effect is allowed |
 | `evidence_remaining` | Independent prefix observations leave `2^free` candidates |
 | `symbolVerdict`, `symbolVerdicts` | Executable per-symbol verdict. `symbolVerdict_admitted_iff` proves the admitted case is `symbolAdmitted` |
 
-## Claims
+## Existing finite admission claims
 
 | Claim | Theorem | Status |
 |---|---|---|
 | Finite schedule space | `scheduleSpace_finite` | PROVEN |
 | Admission is the symbol-wise behavior and bound check | `releaseAdmitted_iff`, `symbolVerdict_admitted_iff` | PROVEN |
-| A changed profile shrinking pointwise implies release-level observation inclusion | `PointwiseModel.incremental_monotone` | PROVEN |
 | Qualified behaviors are kept on an admitted step | `qualifiedMono` | PROVEN |
 | That inclusion composes along admitted steps | `qualifiedTrans`, `releaseAdmitted_trans` | PROVEN |
 | Cost upper bounds do not regress, and the bound vector is not strictly Pareto-dominated | `costNoRegression`, `costTrans` | PROVEN |
@@ -45,13 +112,6 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 | Rechecking that affected set matches a full recheck when profiles outside it are unchanged | `incrementalRecheck_iff` | PROVEN |
 | Rechecking only the edited symbol matches a full recheck | `not_recheck_seed_only` | DISPROVEN |
 | The worked example's regressed symbol is refused | `worse_refused` | PROVEN |
-| Adding fixed positive interaction rules preserves observation inclusion | `InteractionModel.observations_mono` | PROVEN |
-| Individually in-spec components always compose to an in-spec result | `InteractionModel.individually_safe_components_compose_to_leak` | DISPROVEN |
-| Composed observations satisfy a spec when every local and triggered output is allowed | `InteractionModel.inSpec_of_local_and_interaction_safe` | PROVEN under its stated premises |
-
-## Composition-model limits
-
-The pointwise theorem proves inclusion of observations at each symbol; dependency reachability transports observations but does not synthesize new observations from a joint trigger. The legacy model therefore excludes emergent interactions by construction. The smallest extension and its counterexample are machine-checked in `SoftwareIsComposable/InteractionModel.lean`; the remaining assumptions are explicitly labeled in [`MODEL-PREMISES.md`](MODEL-PREMISES.md).
 
 software-is-quantifiable is required at `d88acbdc3ba78fff994067d2c73bcc01622b3f61`. software-optimality is required from git at `ec1eadda0a29d1b254a98feb5ad24911a095c454`; its default branch is `master`. That optimality commit requires quantifiable `f370992611d8c722e4897e67dbb8eaecf3d872ed`; the root requirement above selects `d88acbdc3ba78fff994067d2c73bcc01622b3f61`. `Qualification`, `ExecutableClosure`, `FiniteFrontier`, `FiniteQualification`, and `HypergraphIncremental` are that package's modules. The copy of `FiniteFrontier` previously kept in this repository was a prefix of the upstream file and declared nothing the upstream file does not declare.
 
@@ -77,8 +137,15 @@ Costs are space-separated `lo:hi` bounds. For each symbol in the old file it pri
 
 ## Implications
 
-`Implications.lean` writes each headline as `theorem from upstream declarations + local lemmas`. `./check.sh` runs it and records the lines in `CHECK.log`. The generator is the source of that list.
+`Implications.lean` writes each listed headline as `theorem from upstream
+declarations + local lemmas`. `./check.sh` runs it and records the generated
+report in `build/implications.md`, with checker output in
+`.lake/all-files-gate/implications.log`. The generator is the source of that
+list; `CHECK.log` remains historical.
 
 ## Controls
 
-`check.sh` rejects a scratch proof that uses `sorry`, then rejects a proof that the regressed example is `releaseAdmitted`, then accepts this tree.
+The gate keeps the prior admitted-proof and false-release controls, exercises
+all-file inventory and proof-escape refusals, and compiles the independent
+interaction controls in `Audit/InteractionControls.lean`. See
+[controls/README.md](controls/README.md) for the gate controls and trust boundary.

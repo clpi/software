@@ -1,0 +1,12 @@
+{
+  "commit": "24a8490171c814b1f8771dd52aeeef19a3645f66",
+  "tree": "745e4cac9c28e72f27bea1b83a2c6df227b65a86",
+  "legacy_original_git_blob": "251c0824e8bc48a82bc69a640cbd54d7aff86f63",
+  "legacy_original_sha256": "faf5b73b4348471db420b367b87f9f7cca3bc23e03287cb30d5e2b2137952a83",
+  "legacy_namespace_only_relocation": true,
+  "incoming_source_unchanged": {
+    "SoftwareIsComposable/PointwiseMonotonicity.lean": "308346042d92368fddc6a26e1f43a5a50189aa75f543028cc804d4cb5d5ba9d1",
+    "SoftwareIsComposable/InteractionModel.lean": "fbecd36e3864fc70591c251c7b0183ef3a6218ec0c23e6cfe6a2184ee064792d"
+  },
+  "incoming_boundary_source_sha256": "9f97d1b63befb3932824715693912868f502d256c95bccd1a8db72af114f07e8"
+}
