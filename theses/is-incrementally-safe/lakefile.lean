@@ -19,7 +19,8 @@ lean_lib «SoftwareIsIncrementallySafe»
 @[default_target]
 lean_lib «AuditDependencyModules» where
   srcDir := "audit"
-  roots := #[`DependencyModules, `RenameReorderAxioms]
+  roots := #[`DependencyModules, `RenameReorderAxioms, `FamilyAxioms, `OrderedIncrementAxioms,
+    `SubmittedTraceSys]
 
 @[default_target]
 lean_lib «NatReprExample» where
