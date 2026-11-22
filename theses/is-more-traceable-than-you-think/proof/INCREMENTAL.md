@@ -39,6 +39,10 @@ Interned task IDs and completed-row indices differ when work finishes out of ord
 
 [Provenance.lean](Provenance.lean) connects operational completion to the original fold and executable contributor search. The original `Derivation` uses a characteristic premise set. Its audit view therefore encodes distinct positional occurrences relative to the immutable task table, preserving original IDs and repeated positions without equating this set graph with the computation graph. No reachability equivalence between their encodings is claimed. Accepted publication derives membership and the recorded contribution; a conclusion-restating contribution premise is absent.
 
+`completed_return` derives the original task event, witnessed head, exact recorded derivation, and successful executable contributor from an accepted completion. `published_return` covers accepted publication schedules starting from empty. `decode_ordered` recovers the complete original prerequisite list, and `occurrence_position_injective` distinguishes repeated positions. This recording view is indexed by one finite task-table snapshot; reuse of its finite node type across extensions of that table is a separate, unproved obligation named `PROVENANCE_EXTENSION`. The cumulative runtime and proof-module extension laws do not depend on that snapshot encoding.
+
+The audit record stores its owner and premise positions; decoding original prerequisite IDs additionally requires the retained immutable task table. It is not a graph-only decoder and does not reverse the original source-information counterexample.
+
 ## Voice One — Real incremental compilation and reproof
 
 [Pipeline.lean](Pipeline.lean) specifies source operations, actual instructions, stack execution, and linked-row checking. The checker verifies exact emitted code, arity, and prior-row bounds. `checked_program_correct` proves successful source and target evaluation with the same complete result list for every input environment. Equality cannot hide two failures.
@@ -169,6 +173,17 @@ The generic engine accepts arbitrary callbacks. The reference language is finite
 
 ## Voice One — Proves at this revision
 
+The fresh source census is **284 written theorem declarations in 20 Lean files**. This includes **96 declarations in generated receipt sources**, rather than claiming 284 distinct general laws. The kernel census additionally includes generated/private Lean declarations: **628 theorem declarations**, all with dependencies contained in the original printed set **`{propext, Quot.sound}`**.
+
+| Source family | Written theorem declarations | Lean files |
+|---|---:|---:|
+| Prior repaired traceability, controls, and original examples | 56 | 5 |
+| Incremental, projection, provenance, compiler, evaluation, sharing, and family models | 114 | 7 |
+| New incremental and contradictory-capture controls | 15 | 2 |
+| Independent component example | 3 | 1 |
+| Generated cumulative receipt sources | 96 | 5 |
+| **Total** | **284** | **20** |
+
 1. The original contribution-premise defect remains removed, with the exact weaker general theorem and original counterexamples visible.
 2. Operational construction derives all-premise validity, stable history, exact local reuse, canonical cold replay equality, and cumulative batch composition.
 3. Complete exact keys prevent incompatible reuse; the model retains at most one successful publication per key.
@@ -191,6 +206,7 @@ The generic engine accepts arbitrary callbacks. The reference language is finite
 - That the journal is authenticated, multi-writer, distributed, or crash-atomic across every file and receipt append. Truncated history is refused; unfinished work can repeat.
 - That restart and kernel import read no old metadata. Those costs are explicit even when old source and proof terms are reused.
 - That the frozen witness builder, arbitrary software, or production Idol/Duo has been converted to this reference pipeline.
+- That the finite occurrence audit view has the same node type across task-table extensions, or that its set-graph reachability equals computation-graph reachability. `PROVENANCE_EXTENSION` remains separate from the proved cumulative execution/proof path.
 
 ## Voice One — Reproduction
 

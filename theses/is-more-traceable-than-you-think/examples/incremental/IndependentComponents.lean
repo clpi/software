@@ -15,7 +15,8 @@ theorem every_binary_composition (count : Nat) {selection : List Families.Compon
     (env : Pipeline.Environment) :
     ∃ values, Families.sourceTuple env selection = some values ∧
       Families.targetTuple env selection = some values ∧ values.length = count :=
-  Families.binary_component_family_correct zero one zero_checked one_checked count selected env
+  (Families.binary_component_family_correct zero one zero_checked one_checked count).2.2
+    selection selected env
 
 #print axioms zero_checked
 #print axioms one_checked
