@@ -28,6 +28,17 @@ dependencies, run the entire gate, and compared the source/input hashes.
 The resulting execution receipt is recorded here after that source freeze.
 The historical root `CHECK.log` remains explicitly historical.
 
+Concurrent main `7a408c7b752df6f47b9cf60ddbd89d4001b5e22a` was integrated before
+the final source freeze. Its two added proof modules were independently read.
+The independent checker added eight further standing controls in
+`Audit/OneShotBoundary.lean`, SHA-256
+`9f97d1b63befb3932824715693912868f502d256c95bccd1a8db72af114f07e8`, to distinguish
+nullary and nonrecursive finite evaluation from seeded recursive closure.
+They compile with warnings as errors and no custom axioms; five use standard
+`propext` / `Quot.sound`, while three need no axioms. Thus the combined 32
+independent controls are kernel checked; the original 24 are individually
+axiom-free.
+
 No hosted CI result is asserted by this document. The check runs and receipts
 are local kernel executions with the pinned Lean toolchain. The executable
 CSV harness is exercised for its existing contract; it is not an interaction

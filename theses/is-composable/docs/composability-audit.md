@@ -9,6 +9,20 @@ The repository had subsequently advanced to `main` at
 already contained a finite behavior-retention and cost-bound admission model,
 including a cross-module call counterexample. This change preserves it.
 
+During this work, `main` also advanced to
+`7a408c7b752df6f47b9cf60ddbd89d4001b5e22a`. Its pointwise compatibility module,
+finite one-step interaction model, counterexample, premise document, and
+additional implication/axiom reports are preserved in the integrated tree.
+Their sources are checked by the same exhaustive gate. The recursive closure
+theorems below do not silently reinterpret the finite model's component-list
+or one-step rule semantics. In particular, the finite `Rule.requires` list
+may be empty, enabling a nullary effect even with no selected components.
+The binary recursive closure cannot derive anything from empty seeds. Conversely,
+recursive outputs can trigger further rules, while the one-step evaluator's
+outputs cannot. `Audit/OneShotBoundary.lean` keeps these distinctions as
+independent standing controls. Neither model is claimed to be an unchanged
+encoding of the other.
+
 `SoftwareIsComposable/Legacy.lean` lands the audited module from
 `clpi/software-is-incrementally-safe`, branch `cursor/incremental-safety-0f5e`,
 at `de1b30716e2b758141d5940056f37cd678464032`, path
@@ -219,6 +233,7 @@ obligation; none is introduced as a Lean `axiom`.
 | P-FINITE-DECISION | OPEN application PREMISE for termination and cost of an algorithm: finite/effective state and rule representation plus verified closure evaluation. | Predicate-level theorems do not provide an algorithm or performance bound. |
 | P-PROPERTY-AND-ORDER | PREMISE of scope: observation allow-list safety and subset refinement are the claims being checked. | No inference to liveness, feature retention, hyperproperties, or performance. |
 | P-FINITE-MODULE-CLOSURE | Existing finite-model PREMISE: `InteractionClosed` says calls stay inside their module; cover and unique IDs also appear explicitly. | `moduleAdmission_compose`; existing cross-module counterexample retained. It is not a proof about the new join operator. |
+| P-ONE-SHOT-BRIDGE | OPEN integration PREMISE if the concurrent finite `InteractionModel` evaluator is claimed to implement recursive `Interaction.Reaches`. Its effects do not feed further rules, and its requirement lists may be empty; the binary closure requires seed derivations. | `Audit/OneShotBoundary.lean` demonstrates the nullary-effect and feedback differences. A bridge must restrict or encode these explicitly; no generic evaluator/recursive-closure equivalence is asserted. |
 
 The open application boundaries remain work orders. They are not closed by
 this landing, by a successful build, or by the repository's name.

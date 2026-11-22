@@ -80,6 +80,7 @@ def reportLine (env : Environment) (headline : Name) : String :=
 
 def headlines : List Name := [
   `SoftwareIsComposable.scheduleSpace_finite,
+  `SoftwareIsComposable.PointwiseModel.incremental_monotone,
   `SoftwareIsComposable.releaseAdmitted_iff,
   `SoftwareIsComposable.releaseAdmitted_trans,
   `SoftwareIsComposable.symbolVerdict_admitted_iff,
@@ -98,6 +99,9 @@ def headlines : List Name := [
   `SoftwareIsComposable.incrementalRecheck_iff,
   `SoftwareIsComposable.not_recheck_seed_only,
   `SoftwareIsComposable.worse_refused,
+  `SoftwareIsComposable.InteractionModel.observations_mono,
+  `SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe,
+  `SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak,
   `SoftwareIsComposable.Legacy.incremental_monotone,
   `SoftwareIsComposable.Legacy.reaches_monotone,
   `SoftwareIsComposable.Legacy.reaches_outside_stable,

@@ -1,74 +1,150 @@
-== control: admitted proof ==
-rejected by source guard
+== proof escape controls ==
+sorry: rejected
+admit: rejected
+axiom: rejected
+native_decide: rejected
+release source scan: clean
+== release tree ==
+ℹ [4/19] Replayed SoftwareIsQuantifiable.Finiteness
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Finiteness.lean:483:0: 'SoftwareIsQuantifiable.Finiteness.orderings_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Finiteness.lean:484:0: 'SoftwareIsQuantifiable.Finiteness.orderings_reference_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Finiteness.lean:485:0: 'SoftwareIsQuantifiable.Finiteness.orderings_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Finiteness.lean:486:0: 'SoftwareIsQuantifiable.Finiteness.combine_orderings' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [7/19] Replayed FiniteFrontier
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:105:0: 'FiniteFrontier.certificate_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:106:0: 'FiniteFrontier.certified_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:107:0: 'FiniteFrontier.certified_coverage' depends on axioms: [propext, Quot.sound]
+ℹ [10/19] Replayed FiniteQualification
+info: ././.lake/packages/software-optimality/././FiniteQualification.lean:33:0: 'FiniteQualification.candidates_length' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././FiniteQualification.lean:34:0: 'FiniteQualification.candidates_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteQualification.lean:35:0: 'FiniteQualification.qualify_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteQualification.lean:36:0: [[true, false, true]]
+ℹ [12/19] Replayed Qualification
+info: ././.lake/packages/software-optimality/././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [15/25] Replayed ExecutableClosure
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [16/25] Replayed HypergraphIncremental
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [18/25] Replayed SoftwareIsQuantifiable.Interface
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1112:0: 'SoftwareIsQuantifiable.Interface.noWorse_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1113:0: 'SoftwareIsQuantifiable.Interface.noWorse_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1114:0: 'SoftwareIsQuantifiable.Interface.noWorse_antisymm' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1115:0: 'SoftwareIsQuantifiable.Interface.not_dominates_self' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1116:0: 'SoftwareIsQuantifiable.Interface.dominates_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1117:0: 'SoftwareIsQuantifiable.Interface.not_dominates_from_measures' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1118:0: 'SoftwareIsQuantifiable.Interface.measuresLe_append_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1119:0: 'SoftwareIsQuantifiable.Interface.noWorse_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1120:0: 'SoftwareIsQuantifiable.Interface.dominates_append_of_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1121:0: 'SoftwareIsQuantifiable.Interface.not_noWorse_append_converse' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1122:0: 'SoftwareIsQuantifiable.Interface.releaseLe_trans' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1123:0: 'SoftwareIsQuantifiable.Interface.releaseLe_append' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1124:0: 'SoftwareIsQuantifiable.Interface.not_index_aligned_preorder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1125:0: 'SoftwareIsQuantifiable.Interface.duplicate_candidate_not_releaseLe' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1126:0: 'SoftwareIsQuantifiable.Interface.repeated_profile_not_releaseLe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1127:0: 'SoftwareIsQuantifiable.Interface.misaligned_addition_not_releaseLe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1128:0: 'SoftwareIsQuantifiable.Interface.not_axesLt_of_short_vector' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1129:0: 'SoftwareIsQuantifiable.Interface.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Interface.lean:1130:0: 'SoftwareIsQuantifiable.Interface.misaligned_not_on_frontier' depends on axioms: [propext, Quot.sound]
+ℹ [19/25] Replayed SoftwareIsQuantifiable.Pareto
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:488:0: false
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:638:0: 'SoftwareIsQuantifiable.Pareto.frontier_can_regress' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:639:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:640:0: 'SoftwareIsQuantifiable.Pareto.admitted_frontier_sound' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:641:0: 'SoftwareIsQuantifiable.Pareto.noQualifiedBehaviorLost_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:642:0: 'SoftwareIsQuantifiable.Pareto.omitted_qualified_behavior_refused' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:643:0: 'SoftwareIsQuantifiable.Pareto.empty_submission_refused_when_qualified' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:644:0: 'SoftwareIsQuantifiable.Pareto.acceptsRelease_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:645:0: 'SoftwareIsQuantifiable.Pareto.acceptsReplacement_iff' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:646:0: 'SoftwareIsQuantifiable.Pareto.replacement_no_regression' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:647:0: 'SoftwareIsQuantifiable.Pareto.separated_sum' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:648:0: 'SoftwareIsQuantifiable.Pareto.separated_parallel' depends on axioms: [propext]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:649:0: 'SoftwareIsQuantifiable.Pareto.not_scalarized' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:650:0: 'SoftwareIsQuantifiable.Pareto.scalar_optimum_undominated' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:651:0: 'SoftwareIsQuantifiable.Pareto.dominates_iff_interface' does not depend on any axioms
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:687:0: 'SoftwareIsQuantifiable.Pareto.separated_iff_all' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-quantifiable/././SoftwareIsQuantifiable/Pareto.lean:688:0: 'SoftwareIsQuantifiable.Pareto.replacement_iff_all' depends on axioms: [propext, Quot.sound]
+✔ [22/25] Built SoftwareIsComposable.PointwiseMonotonicity
+ℹ [23/25] Built SoftwareIsComposable.Axioms
+info: ././././SoftwareIsComposable/Axioms.lean:12:0: 'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:13:0: 'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:14:0: 'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:15:0: 'SoftwareIsComposable.symbolVerdict_admitted_iff' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:16:0: 'SoftwareIsComposable.qualifiedMono' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:17:0: 'SoftwareIsComposable.qualifiedTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:18:0: 'SoftwareIsComposable.costNoRegression' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:19:0: 'SoftwareIsComposable.costTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:20:0: 'SoftwareIsComposable.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:21:0: 'SoftwareIsComposable.moduleAdmission_compose' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:22:0: 'SoftwareIsComposable.moduleAdmission_counterexample' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:23:0: 'SoftwareIsComposable.evidence_remaining' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:24:0: 'SoftwareIsComposable.not_repeated_observation_shrinks' does not depend on any axioms
+info: ././././SoftwareIsComposable/Axioms.lean:25:0: 'SoftwareIsComposable.not_disqualification_empties' does not depend on any axioms
+info: ././././SoftwareIsComposable/Axioms.lean:26:0: 'SoftwareIsComposable.determined_of_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:27:0: 'SoftwareIsComposable.inClosure_iff_affected' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:28:0: 'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:29:0: 'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:30:0: 'SoftwareIsComposable.worse_refused' does not depend on any axioms
+info: ././././SoftwareIsComposable/Axioms.lean:31:0: 'SoftwareIsComposable.PointwiseModel.incremental_monotone' depends on axioms: [propext]
+info: ././././SoftwareIsComposable/Axioms.lean:32:0: 'SoftwareIsComposable.InteractionModel.observations_mono' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:33:0: 'SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:34:0: 'SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak' depends on axioms: [propext,
+ Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:35:0: 'SoftwareIsComposable.oneSymbol' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:36:0: 'SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:37:0: 'SoftwareIsComposable.not_context' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:38:0: 'SoftwareIsComposable.not_upper' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:39:0: 'SoftwareIsComposable.not_point' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:40:0: 'SoftwareIsComposable.not_id' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:41:0: 'SoftwareIsComposable.not_old_bounds' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:42:0: 'SoftwareIsComposable.not_new_bounds' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:43:0: 'SoftwareIsComposable.not_length' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:44:0: 'SoftwareIsComposable.not_old_list' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:45:0: 'SoftwareIsComposable.not_new_list' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:46:0: 'SoftwareIsComposable.refused' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareIsComposable/Axioms.lean:47:0: 'SoftwareIsComposable.nothing_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [24/25] Built SoftwareIsComposable
+Build completed successfully.
+== all Lean files ==
+18 Lean source files compiled with -DwarningAsError=true
 == control: worse release ==
 rejected
 build/WorseControl.lean:4:2: error: tactic 'decide' proved that the proposition
   SoftwareIsComposable.releaseAdmitted SoftwareIsComposable.worseOld SoftwareIsComposable.worseNew = true
 is false
-== release tree ==
-ℹ [7/19] Replayed FiniteFrontier
-info: ././././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
-info: ././././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
-info: ././././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
-info: ././././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
-ℹ [10/19] Replayed FiniteQualification
-info: ././././FiniteQualification.lean:33:0: 'FiniteQualification.candidates_length' depends on axioms: [propext]
-info: ././././FiniteQualification.lean:34:0: 'FiniteQualification.candidates_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././FiniteQualification.lean:35:0: 'FiniteQualification.qualify_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././FiniteQualification.lean:36:0: [[true, false, true]]
-ℹ [12/19] Replayed Qualification
-info: ././././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
-info: ././././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
-info: ././././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
-info: ././././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
-info: ././././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
-info: ././././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
-info: ././././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
-info: ././././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
-info: ././././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
-ℹ [13/19] Replayed ExecutableClosure
-info: ././././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
-info: ././././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
-info: ././././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
-info: ././././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
-ℹ [14/19] Replayed HypergraphIncremental
-info: ././././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
-info: ././././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
-info: ././././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
-ℹ [17/19] Replayed SoftwareIsComposable.Axioms
-info: ././././SoftwareIsComposable/Axioms.lean:9:0: 'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:10:0: 'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:11:0: 'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:12:0: 'SoftwareIsComposable.symbolVerdict_admitted_iff' depends on axioms: [propext]
-info: ././././SoftwareIsComposable/Axioms.lean:13:0: 'SoftwareIsComposable.qualifiedMono' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:14:0: 'SoftwareIsComposable.qualifiedTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:15:0: 'SoftwareIsComposable.costNoRegression' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:16:0: 'SoftwareIsComposable.costTrans' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:17:0: 'SoftwareIsComposable.not_per_execution' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:18:0: 'SoftwareIsComposable.moduleAdmission_compose' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:19:0: 'SoftwareIsComposable.moduleAdmission_counterexample' depends on axioms: [propext]
-info: ././././SoftwareIsComposable/Axioms.lean:20:0: 'SoftwareIsComposable.evidence_remaining' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:21:0: 'SoftwareIsComposable.not_repeated_observation_shrinks' does not depend on any axioms
-info: ././././SoftwareIsComposable/Axioms.lean:22:0: 'SoftwareIsComposable.not_disqualification_empties' does not depend on any axioms
-info: ././././SoftwareIsComposable/Axioms.lean:23:0: 'SoftwareIsComposable.determined_of_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:24:0: 'SoftwareIsComposable.inClosure_iff_affected' depends on axioms: [propext, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:25:0: 'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ././././SoftwareIsComposable/Axioms.lean:26:0: 'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
-info: ././././SoftwareIsComposable/Axioms.lean:27:0: 'SoftwareIsComposable.worse_refused' does not depend on any axioms
-Build completed successfully.
-== axioms ==
+== axiom dependencies ==
 'SoftwareIsComposable.scheduleSpace_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
 'SoftwareIsComposable.releaseAdmitted_iff' depends on axioms: [propext, Quot.sound]
 'SoftwareIsComposable.releaseAdmitted_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -88,11 +164,30 @@ Build completed successfully.
 'SoftwareIsComposable.incrementalRecheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
 'SoftwareIsComposable.not_recheck_seed_only' depends on axioms: [propext]
 'SoftwareIsComposable.worse_refused' does not depend on any axioms
+'SoftwareIsComposable.PointwiseModel.incremental_monotone' depends on axioms: [propext]
+'SoftwareIsComposable.InteractionModel.observations_mono' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak' depends on axioms: [propext,
+ Quot.sound]
+'SoftwareIsComposable.oneSymbol' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_context' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_upper' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_point' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_id' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_old_bounds' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_new_bounds' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_length' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_old_list' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.not_new_list' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.refused' depends on axioms: [propext, Quot.sound]
+'SoftwareIsComposable.nothing_below' depends on axioms: [propext, Classical.choice, Quot.sound]
 == harness ==
 1 ADMITTED
 7 REFUSED cost_regressed 0
-== implications ==
+== theorem implications ==
 SoftwareIsComposable.scheduleSpace_finite from SoftwareIsQuantifiable.Finiteness.Qualification, SoftwareIsQuantifiable.Finiteness.Schedule, SoftwareIsQuantifiable.Finiteness.Valid, SoftwareIsQuantifiable.Finiteness.valid_orderings_finite + none
+SoftwareIsComposable.PointwiseModel.incremental_monotone from none + SoftwareIsComposable.PointwiseModel.apply_changed, SoftwareIsComposable.PointwiseModel.apply_unchanged, SoftwareIsComposable.PointwiseModel.profileLE_refl
 SoftwareIsComposable.releaseAdmitted_iff from none + SoftwareIsComposable.symbolAdmitted_iff
 SoftwareIsComposable.releaseAdmitted_trans from none + SoftwareIsComposable.find?_pred, SoftwareIsComposable.mem_find?, SoftwareIsComposable.symbolAdmitted_trans
 SoftwareIsComposable.symbolVerdict_admitted_iff from none + none
@@ -111,3 +206,7 @@ SoftwareIsComposable.inClosure_iff_affected from HypergraphIncremental.Affected,
 SoftwareIsComposable.incrementalRecheck_iff from HypergraphIncremental.Affected, HypergraphIncremental.Hypergraph + SoftwareIsComposable.SymbolAdmitted.refl
 SoftwareIsComposable.not_recheck_seed_only from none + none
 SoftwareIsComposable.worse_refused from none + none
+SoftwareIsComposable.InteractionModel.observations_mono from none + SoftwareIsComposable.InteractionModel.interactionObservations_mono, SoftwareIsComposable.InteractionModel.localObservations_mono
+SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe from none + none
+SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak from none + none
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                checker passed

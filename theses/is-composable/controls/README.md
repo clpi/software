@@ -44,7 +44,7 @@ for raw strings with explicit hash delimiters. `InterpolationMask.lean.fail`
 contains a native proof decision inside a string interpolation; both the source
 scanner and transitive declaration audit must refuse that escape.
 
-Mandatory controls cover admitted proofs, orphan and nested custom axioms,
+Mandatory controls cover both admitted-proof spellings, orphan and nested custom axioms,
 native decisions, kernel-check and warning-option bypasses, character, raw-string, and
 quoted-identifier masking, unreviewed elaboration/evaluation hooks, source-directory symlinks, compiled custom axioms,
 transitive imported custom axioms, warnings, a false admission theorem, and the

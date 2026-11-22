@@ -59,6 +59,23 @@ retention order below are different contracts. Neither is renamed into the
 other. The new interaction model is available through the stable import; the
 existing CSV admission harness does not evaluate it.
 
+### Preserved concurrent model
+
+While this audit change was being verified, `main` advanced to
+`7a408c7b752df6f47b9cf60ddbd89d4001b5e22a`, adding the `PointwiseModel` and
+finite `InteractionModel` interfaces. Both are preserved and covered by the
+exhaustive gate. `PointwiseModel.incremental_monotone` states the pointwise
+subset result. `InteractionModel.observations_mono` proves component-set
+inclusion for fixed local observations and a fixed list of positive rules;
+`individually_safe_components_compose_to_leak` supplies its finite counterexample.
+Its effects are appended once and do not feed further rules. The recursive
+`Interaction` model and constructor-simulation theorem extend the semantic
+analysis without silently changing that finite interface. See
+[MODEL-PREMISES.md](MODEL-PREMISES.md) for its separate scope.
+The finite evaluator also permits empty-premise effects; the binary closure
+does not bootstrap observations from empty seeds. Their boundary controls are
+in `Audit/OneShotBoundary.lean`.
+
 ## Stable import
 
 `import SoftwareIsComposable`
@@ -68,6 +85,9 @@ existing CSV admission harness does not evaluate it.
 | `SymbolProfile`, `Release` | Per-symbol behaviors and cost bounds |
 | `releaseAdmitted`, `ReleaseAdmitted`, `releaseAdmitted_iff` | Step admission, Bool and Prop |
 | `releaseAdmitted_trans` | Admission composes along a chain |
+| `PointwiseModel.incremental_monotone` | Preserved concurrent pointwise subset interface |
+| `InteractionModel.observations_mono` | Finite one-step interactions are monotone in selected components |
+| `InteractionModel.inSpec_of_local_and_interaction_safe` | Finite spec-safety under local and triggered-effect safety premises |
 | `InteractionClosed`, `moduleAdmission_compose` | Module composition under the side condition |
 | `evidence_remaining` | Independent prefix observations leave `2^free` candidates |
 | `symbolVerdict`, `symbolVerdicts` | Executable per-symbol verdict. `symbolVerdict_admitted_iff` proves the admitted case is `symbolAdmitted` |

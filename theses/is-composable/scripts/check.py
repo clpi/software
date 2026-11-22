@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / '.lake/all-files-gate'
 FORBIDDEN = re.compile(r"(?<![\w'])(?:sorry|admit|axiom|sorryAx|native_decide|unsafe|unsafeCast|ofReduceBool|ofReduceNat|trustCompiler|implemented_by|extern|addDecl|addAndCompile|setEnv|modifyEnv|setOptions|withOptions|run_elab|run_meta|run_cmd)(?![\w'])")
 META_HOOKS = re.compile(r"(?<![\w'])(?:elab|macro|macro_rules|syntax|initialize|builtin_initialize|run_tac)(?![\w'])|#eval\b")
-TRUSTED_HOOK_SOURCES = {'Implications.lean': 'fed9a4c91d0e0f2688b0b05cb7f1bc7c813e86dfd9b78f04fd43087c235dbda8', 'examples/ReleasePartition.lean': 'faf11cb587a567a83de2d16bebbe4e35980d9794d0082c62b1dcbaf575a2f6e0', 'examples/range-ledger/SignedStitch.lean': 'd3fdf2e1c5a16ab26d8f3c30405f45b5d0aed34d62463b3ec0b04f5ac7a2ecb9'}
+TRUSTED_HOOK_SOURCES = {'Implications.lean': '7bf6824498069397bb1a9631d3c0bf0cb094e15a0e1bcb7ca382de50d31cd76a', 'examples/ReleasePartition.lean': 'faf11cb587a567a83de2d16bebbe4e35980d9794d0082c62b1dcbaf575a2f6e0', 'examples/range-ledger/SignedStitch.lean': 'd3fdf2e1c5a16ab26d8f3c30405f45b5d0aed34d62463b3ec0b04f5ac7a2ecb9'}
 SAFE_OPTIONS = {'autoImplicit', 'maxRecDepth', 'maxHeartbeats', 'pp.universes'}
 ALLOWED = ['propext', 'Classical.choice', 'Quot.sound']
 CHAR_LITERAL = re.compile(r"'(?:[^\\'\r\n]|\\(?:u\{[0-9a-fA-F]+\}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|[^\r\n]))'")
@@ -278,6 +278,7 @@ def main():
         except RuntimeError: pass
         else: raise RuntimeError('escape scanner accepted nested custom axiom')
         for label, source in {
+            'admit': 'example : False := by admit\n',
             'native-decide': 'example : True := by native_decide\n',
             'kernel-bypass': 'set_option debug.skipKernelTC true\n',
             'warning-bypass': 'set_option warningAsError false\n',
@@ -354,7 +355,7 @@ def main():
         'dependencies': dependencies, 'sources': hashes, 'gate_inputs': input_hashes,
         'trusted_hook_sources': TRUSTED_HOOK_SOURCES,
         'legacy_source_sha256': hashlib.sha256(original.encode()).hexdigest(),
-        'negative_controls': ['admitted proof', 'unlisted custom axiom', 'nested metadata-name source', 'native decision', 'kernel bypass', 'warning bypass', 'character literal masking', 'raw string masking', 'interpolation masking', 'quoted identifier masking', 'elaboration hook', 'evaluation hook', 'source directory symlink', 'compiled custom axiom', 'imported custom axiom', 'warning', 'range-ledger mutation', 'worse release admission'],
+        'negative_controls': ['admitted proof', 'admit spelling', 'unlisted custom axiom', 'nested metadata-name source', 'native decision', 'kernel bypass', 'warning bypass', 'character literal masking', 'raw string masking', 'interpolation masking', 'quoted identifier masking', 'elaboration hook', 'evaluation hook', 'source directory symlink', 'compiled custom axiom', 'imported custom axiom', 'warning', 'range-ledger mutation', 'worse release admission'],
     }
     (OUT / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     print(f'PASS: {len(files)} Lean files; {total} proof declarations; 0 sorries; 0 custom axioms; 0 source escapes; warnings as errors; all controls rejected', flush=True)
