@@ -97,7 +97,27 @@ def headlines : List Name := [
   `SoftwareIsComposable.inClosure_iff_affected,
   `SoftwareIsComposable.incrementalRecheck_iff,
   `SoftwareIsComposable.not_recheck_seed_only,
-  `SoftwareIsComposable.worse_refused
+  `SoftwareIsComposable.worse_refused,
+  `SoftwareIsComposable.Legacy.incremental_monotone,
+  `SoftwareIsComposable.Legacy.reaches_monotone,
+  `SoftwareIsComposable.Legacy.reaches_outside_stable,
+  `SoftwareIsComposable.Legacy.foldApply_eq_composeAll,
+  `SoftwareIsComposable.Interaction.incremental_monotone_iff,
+  `SoftwareIsComposable.Interaction.legacy_has_origin,
+  `SoftwareIsComposable.Interaction.legacy_embeds,
+  `SoftwareIsComposable.Interaction.no_interaction_iff_legacy,
+  `SoftwareIsComposable.Interaction.reaches_simulation,
+  `SoftwareIsComposable.Interaction.reaches_refinement,
+  `SoftwareIsComposable.Interaction.reaches_monotone,
+  `SoftwareIsComposable.Interaction.incremental_interactions_monotone,
+  `SoftwareIsComposable.Interaction.safe_of_closed,
+  `SoftwareIsComposable.Interaction.universal_safety_iff_closed,
+  `SoftwareIsComposable.Interaction.safe_of_simulation,
+  `SoftwareIsComposable.Interaction.safe_of_refinement,
+  `SoftwareIsComposable.Interaction.safe_of_incremental,
+  `SoftwareIsComposable.Interaction.reaches_transfer_outside,
+  `SoftwareIsComposable.Interaction.reaches_outside_stable,
+  `SoftwareIsComposable.Interaction.incremental_recheck_iff
 ]
 
 elab "write_implications " path:str : command => do

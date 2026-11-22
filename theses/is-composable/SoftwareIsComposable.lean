@@ -8,3 +8,5 @@ import SoftwareIsComposable.Incremental
 import SoftwareIsComposable.Examples
 import SoftwareIsComposable.Bridge
 import SoftwareIsComposable.Axioms
+import SoftwareIsComposable.Legacy
+import SoftwareIsComposable.Interaction
