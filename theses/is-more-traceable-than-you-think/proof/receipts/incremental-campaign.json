@@ -420,7 +420,7 @@
     "replayed_receipts": 3,
     "rows_checked_this_session": 23,
     "scope": {
-      "driver": "6e93d1d8809694a038a53d825ba393a35644aa7d6bf613712d4903ddff761203",
+      "driver": "58e61317885a24988b931415f3de0c8ca4c3c3ddecd77619b994f4352fad8ff9",
       "format": "lean-cumulative-integer-receipts-v1",
       "lean_binary": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
       "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
@@ -443,7 +443,7 @@
       "replayed_receipts": 0,
       "rows_checked_this_session": 34,
       "scope": {
-        "driver": "6e93d1d8809694a038a53d825ba393a35644aa7d6bf613712d4903ddff761203",
+        "driver": "58e61317885a24988b931415f3de0c8ca4c3c3ddecd77619b994f4352fad8ff9",
         "format": "lean-cumulative-integer-receipts-v1",
         "lean_binary": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
         "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
@@ -519,7 +519,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.351895892000016,
+      "cold_seconds": 4.324495988000081,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -591,7 +591,7 @@
         "total_value_proofs": 23
       },
       "new_compiler_rows": 23,
-      "seconds": 0.7846008879999999,
+      "seconds": 0.877728869999828,
       "step": "cold",
       "values": {
         "d20": 2097152,
@@ -622,7 +622,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.4738608210000166,
+      "cold_seconds": 3.867961214999923,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -674,7 +674,7 @@
         "total_value_proofs": 23
       },
       "new_compiler_rows": 0,
-      "seconds": 0.0006130840000651006,
+      "seconds": 0.0008422910000263073,
       "step": "warm",
       "values": {
         "d20": 2097152,
@@ -727,7 +727,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.925941507999937,
+      "cold_seconds": 3.8059070699998756,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -796,7 +796,7 @@
         "total_value_proofs": 44
       },
       "new_compiler_rows": 0,
-      "seconds": 0.4579024299999901,
+      "seconds": 0.6043736820001868,
       "step": "input_edit",
       "values": {
         "d20": 3145728,
@@ -839,7 +839,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.145418045000042,
+      "cold_seconds": 3.715503884999862,
       "cold_work": {
         "certificate": 126,
         "check": 126,
@@ -917,7 +917,7 @@
         "total_value_proofs": 55
       },
       "new_compiler_rows": 11,
-      "seconds": 0.4000771960000975,
+      "seconds": 0.44850589900011073,
       "step": "structural_edit",
       "values": {
         "d20": -1572864,
@@ -970,7 +970,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.1895078210000065,
+      "cold_seconds": 4.059699280000132,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -1028,7 +1028,7 @@
         "total_value_proofs": 55
       },
       "new_compiler_rows": 0,
-      "seconds": 0.00427326399994854,
+      "seconds": 0.009395681000114564,
       "step": "revert",
       "values": {
         "d20": 2097152,
@@ -1059,7 +1059,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.5677083929999753,
+      "cold_seconds": 3.9811870989999534,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -1114,12 +1114,12 @@
       "restart": {
         "kernel_new_lean_processes": 0,
         "kernel_replayed_receipts": 3,
-        "kernel_seconds": 0.06495850999999675,
+        "kernel_seconds": 0.05675990500003536,
         "replayed_events": 428,
         "scope": "one explicit restart replay; excluded from the following hot-operation delta",
-        "seconds": 0.037529453999923135
+        "seconds": 0.03749032000018815
       },
-      "seconds": 0.0004558960000622392,
+      "seconds": 0.0005012889998852188,
       "step": "restart",
       "values": {
         "d20": 2097152,
@@ -1174,7 +1174,7 @@
         "total_rows": 23,
         "total_value_proofs": 23
       },
-      "cold_seconds": 3.101718989999995,
+      "cold_seconds": 3.998856437000086,
       "cold_work": {
         "certificate": 128,
         "check": 128,
@@ -1246,7 +1246,7 @@
         "total_value_proofs": 78
       },
       "new_compiler_rows": 23,
-      "seconds": 0.6960230529999762,
+      "seconds": 0.819523836000144,
       "step": "scope_change",
       "values": {
         "d20": 2097152,

@@ -1,6 +1,6 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
 Incremental receipt directory: /workspace/scratch/8968f3d9c353/software-is-more-traceable-than-you-think/proof/receipts
-Incremental tests: 38/38 passed; OK
+Incremental tests: 42/42 passed; OK
 Full named test transcript: /workspace/scratch/8968f3d9c353/software-is-more-traceable-than-you-think/proof/receipts/incremental-tests.log
 Deterministic proof fixtures: 5/5 regenerated modules byte-identical
 cold: recompute=23 compile=23 certificate=23 check=23 execute=23; Lean rows=23 values=23 modules=1; d20=2097152 side_out=-7

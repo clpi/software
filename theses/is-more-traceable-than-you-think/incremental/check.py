@@ -21,7 +21,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parent.parent
 STAGES = ("recompute", "compile", "certificate", "check", "execute")
-EXPECTED_TESTS = 38
+EXPECTED_TESTS = 42
 EXPECTED_STEPS = (
     ("cold", 2097152, (23, 23, 23, 23, 23), 23, 23, 1),
     ("warm", 2097152, (0, 0, 0, 0, 0), 0, 0, 0),
@@ -141,7 +141,7 @@ def main():
                     "incremental test coverage changed or tests did not complete")
             passed = re.findall(r"^test\S+ \(.+\) \.\.\. ok$", tests.stdout, re.M)
             require(len(passed) == EXPECTED_TESTS and re.search(r"^OK$", tests.stdout, re.M),
-                    "all 38 named tests must pass without skips")
+                    f"all {EXPECTED_TESTS} named tests must pass without skips")
             emit(f"Incremental tests: {EXPECTED_TESTS}/{EXPECTED_TESTS} passed; OK")
             emit(f"Full named test transcript: {receipts / 'incremental-tests.log'}")
             from .demo import campaign

@@ -135,6 +135,7 @@ class PipelineTests(unittest.TestCase):
 
         program.definitions = LookupOnly(program.definitions)
         program.dependents = LookupOnly(program.dependents)
+        program.artifacts = LookupOnly(program.artifacts)
         program.edit("x", {"op": "input", "value": 9})
         self.assertEqual(program.run(["negative"])["negative"]["value"], -144)
         self.assertEqual(program.export_bridge(0, outputs=["negative"], include_environment=False)["environment"], None)
@@ -166,6 +167,39 @@ class PipelineTests(unittest.TestCase):
                 with make_engine(fresh + "/cold.jsonl") as engine:
                     cold = Program(engine, program.definitions).run(outputs)
                     self.assertEqual({name: cold[name]["executed"] for name in outputs}, expected)
+
+    def test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles(self):
+        depth = 1100
+        definitions = {
+            f"n{index}": ({"op": "input", "value": 7} if index == 0
+                          else {"op": "neg", "args": [f"n{index - 1}"]})
+            for index in range(depth, -1, -1)
+        }
+        output = f"n{depth}"
+        self.assertEqual(next(iter(definitions)), output)
+        program = Program(self.engine, definitions)
+        result = program.run([output])
+        self.assertEqual(result[output]["value"], 7)
+        self.assertEqual(result[output]["executed"], 7)
+        self.assertEqual(cold_oracle(program.definitions, [output]), {output: 7})
+
+        # Changing the root's prerequisite list forces another deep validation.
+        program.edit(output, {"op": "add", "args": [f"n{depth - 1}", f"n{depth - 2}"]})
+        result = program.run([output])
+        self.assertEqual(result[output]["value"], 0)
+        self.assertEqual(result[output]["executed"], 0)
+        self.assertEqual(cold_oracle(program.definitions, [output]), {output: 0})
+
+        before = self.engine.metrics()["events"]
+        with self.assertRaisesRegex(ValueError, "cyclic"):
+            program.edit("n0", {"op": "neg", "args": [output]})
+        self.assertEqual(program.definitions["n0"], {"op": "input", "value": 7})
+        self.assertEqual(self.engine.metrics()["events"], before)
+        self.assertEqual(program.run([output])[output]["executed"], 0)
+        cyclic = dict(program.definitions)
+        cyclic["n0"] = {"op": "neg", "args": [output]}
+        with self.assertRaisesRegex(ValueError, "cyclic"):
+            cold_oracle(cyclic, [output])
 
 
 if __name__ == "__main__":

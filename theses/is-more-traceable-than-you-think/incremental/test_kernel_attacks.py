@@ -120,6 +120,42 @@ class KernelAttacks(unittest.TestCase):
         self.assertEqual(self.session.execution_count, 0)
         self.assertEqual(self.session.certify(original)["new_rows"], 3)
 
+    def test_direct_scope_change_then_edit_rebinds_all_parents_before_kernel_extension(self):
+        self.session.certify(self.snapshot())
+        implementation = copy.deepcopy(self.engine.scope["implementation"])
+        revisions = (
+            (True, {"op": "mul", "args": ["x", "three"]}, 6),
+            (1.0, {"op": "mul", "args": ["x", "three"]}, 6),
+            ("new-contract", {"op": "add", "args": ["x", "x"]}, 4),
+        )
+        for label, definition, expected in revisions:
+            with self.subTest(scope=type(label).__name__):
+                before = copy.deepcopy(self.program.artifacts)
+                scope = copy.deepcopy(self.engine.scope)
+                scope["qualification"] = {"label": label}
+                if isinstance(label, str):
+                    scope.pop("implementation")
+                self.engine.set_scope(scope)
+                history = self.engine.path.read_bytes()
+                with self.assertRaisesRegex(ValueError, "cyclic"):
+                    self.program.edit("out", {"op": "add", "args": ["out", "x"]})
+                self.assertEqual(self.engine.path.read_bytes(), history)
+                self.assertEqual(self.program.artifacts, before)
+                planned = self.program.edit("out", definition)
+                self.assertEqual(planned["planned"], 3)
+                self.assertEqual(self.engine.scope["implementation"], implementation)
+                for name, bundle in self.program.artifacts.items():
+                    for stage, node in bundle.items():
+                        self.assertNotEqual(node, before[name][stage])
+                        self.assertEqual(canonical(self.engine.tasks[node].scope),
+                                         canonical(self.engine.scope))
+                self.assertEqual(self.program.run(["out", "three"])["out"]["executed"], expected)
+                accepted = self.session.certify(self.snapshot())
+                self.assertEqual(accepted["new_rows"], 3)
+                self.assertEqual(accepted["new_value_proofs"], 3)
+                self.assertEqual(accepted["new_modules"], 1)
+                self.assertEqual(self.session.certify(self.snapshot())["new_modules"], 0)
+
     def test_coherent_missing_joint_premise_is_rejected_by_lean(self):
         forged = copy.deepcopy(self.snapshot())
         row = next(row for row in forged["rows"] if row["operation"]["op"] == "add")
@@ -158,6 +194,28 @@ class KernelAttacks(unittest.TestCase):
         with self.assertRaisesRegex(KernelError, "historical|active scope"):
             self.session.certify(forged)
         self.assertEqual(self.session.count, 3)
+
+    def test_retained_observations_reject_bool_and_float_scope_relabeling(self):
+        revised = copy.deepcopy(self.engine.scope)
+        revised["qualification"] = {"label": 1}
+        self.program.change_scope(revised)
+        self.program.run(["out"])
+        self.session.certify(self.snapshot())
+        valid = self.snapshot()
+        before = (self.session.count, self.session.execution_count, self.session.lean_processes)
+        for replacement in (True, 1.0):
+            for relabel_observation in (False, True):
+                with self.subTest(scope=type(replacement).__name__, observation=relabel_observation):
+                    forged = copy.deepcopy(valid)
+                    forged["scope"]["qualification"]["label"] = replacement
+                    if relabel_observation:
+                        forged["observations"]["out"]["scope"]["qualification"]["label"] = replacement
+                    self.assertNotEqual(canonical(valid["scope"]), canonical(forged["scope"]))
+                    with self.assertRaisesRegex(KernelError, "scope|identity"):
+                        self.session.certify(forged)
+                    self.assertEqual((self.session.count, self.session.execution_count,
+                                      self.session.lean_processes), before)
+        self.assertEqual(self.session.certify(valid)["new_modules"], 0)
 
     def test_matching_fabricated_observations_do_not_become_value_proofs(self):
         forged = copy.deepcopy(self.snapshot())

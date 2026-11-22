@@ -1,12 +1,14 @@
 # Return proof repair: a two-voice review
 
+**Historical repair boundary:** This report records the return-proof repair at [2d35b503aa74b2ac2397d9cc6af0c4049c609b4e](https://github.com/clpi/software-is-more-traceable-than-you-think/tree/2d35b503aa74b2ac2397d9cc6af0c4049c609b4e). Its statements and controls remain in force. The later cumulative incremental extension and the complete current theorem census are recorded in [INCREMENTAL.md](INCREMENTAL.md).
+
 ## Result and evidence boundary
 
 The unrestricted strengthening is **false**. A witnessed head does not imply any derivation under the original arbitrary lifting. The old `returns_head` has been removed, including its conclusion-equivalent `contributed` premise and unused `_witnessed` premise. There is no compatibility theorem that preserves the circular statement under another name.
 
 This revision provides an unconditional theorem relating an executable contributor search to the fold, an explicitly **weaker** recorded-edge source-recovery theorem, and a separate head-recovery theorem for a concrete restricted recording construction. The latter uses its witnessed-head hypothesis. Ten standing counterexamples constrain the interpretation of these results.
 
-The mathematical claims in this report attach to the sources in this revision, with their exact inputs recorded in [SOURCE-SHA256.txt](SOURCE-SHA256.txt) and [CHECK.log](CHECK.log). The changed-source count is **56 explicit named theorems in five Lean files**, compared with 43 in four files at the baseline. The gate also audits generated/private theorem declarations; those are not counted as additional authored theorems.
+The mathematical claims in this report attach to the repair sources at that pin. Its [source identities](https://github.com/clpi/software-is-more-traceable-than-you-think/blob/2d35b503aa74b2ac2397d9cc6af0c4049c609b4e/proof/SOURCE-SHA256.txt) and [kernel audit](https://github.com/clpi/software-is-more-traceable-than-you-think/blob/2d35b503aa74b2ac2397d9cc6af0c4049c609b4e/proof/CHECK.log) record **56 explicit named theorems in five Lean files**, compared with 43 in four files at the original baseline. This is the historical repair count, not the count of the later expanded repository. The gate also audits generated/private theorem declarations; those are not counted as additional authored theorems.
 
 ## Voice One — Reproduce the audited pin and its dependencies
 
