@@ -1,31 +1,4 @@
-Statement enumeration: 48 statements
-  statement Traceability.Derivation
-  statement Traceability.Graph
-  statement Traceability.join
-  statement Traceability.empty
-  statement Traceability.fold
-  statement Traceability.Timed
-  statement Traceability.foldtimed
-  statement Traceability.bool_eq_of_agree
-  statement Traceability.graph_ext
-  statement Traceability.join_assoc
-  statement Traceability.join_comm
-  statement Traceability.join_idem
-  statement Traceability.join_empty_left
-  statement Traceability.join_empty_right
-  statement Traceability.fold_append
-  statement Traceability.fold_nodes
-  statement Traceability.fold_edges
-  statement Traceability.returns_head
-  statement Traceability.fold_ext
-  statement Traceability.fold_perm
-  statement Traceability.fold_append_self
-  statement Traceability.foldtimed_ext
-  statement Traceability.map_event
-  statement Traceability.foldtimed_retime
-  statement Traceability.retract_nodes
-  statement Traceability.retract_edges
-  statement Traceability.retract_eq
+Statement enumeration: 71 statements
   statement Controls.countjoin
   statement Controls.countsingle
   statement Controls.countfold
@@ -47,60 +20,57 @@ Statement enumeration: 48 statements
   statement Controls.residue_survivor_absent
   statement Controls.residue_present
   statement Controls.residue_claim_fails
+  statement ReturnControls.noPremises
+  statement ReturnControls.onePremise
+  statement ReturnControls.nodeOnly
+  statement ReturnControls.head_without_derivation
+  statement ReturnControls.head_only_claim_fails
+  statement ReturnControls.edgeOnly
+  statement ReturnControls.derivation_without_head
+  statement ReturnControls.edge_implies_head_claim_fails
+  statement ReturnControls.exactLift
+  statement ReturnControls.witnessed_head_does_not_select_premises
+  statement ReturnControls.finiteDerivationEq
+  statement ReturnControls.record
+  statement ReturnControls.same_head_distinct_recorded_premises
+  statement ReturnControls.aliasedLift
+  statement ReturnControls.contributor_refuses_missing_edge
+  statement ReturnControls.contributor_selection_is_order_sensitive
+  statement ReturnControls.source_from_fold_claim_fails
+  statement ReturnControls.time_from_fold_claim_fails
+  statement Traceability.Derivation
+  statement Traceability.Graph
+  statement Traceability.join
+  statement Traceability.empty
+  statement Traceability.fold
+  statement Traceability.Timed
+  statement Traceability.foldtimed
+  statement Traceability.bool_eq_of_agree
+  statement Traceability.graph_ext
+  statement Traceability.join_assoc
+  statement Traceability.join_comm
+  statement Traceability.join_idem
+  statement Traceability.join_empty_left
+  statement Traceability.join_empty_right
+  statement Traceability.fold_append
+  statement Traceability.fold_nodes
+  statement Traceability.fold_edges
+  statement Traceability.contributor
+  statement Traceability.contributor_isSome
+  statement Traceability.contributor_sound
+  statement Traceability.returns_recorded_edge_weaker
+  statement Traceability.recordLift
+  statement Traceability.returns_recorded_head
+  statement Traceability.fold_ext
+  statement Traceability.fold_perm
+  statement Traceability.fold_append_self
+  statement Traceability.foldtimed_ext
+  statement Traceability.map_event
+  statement Traceability.foldtimed_retime
+  statement Traceability.retract_nodes
+  statement Traceability.retract_edges
+  statement Traceability.retract_eq
 Printed statements (kernel checker output):
-Traceability.Derivation : Type → Type
-Traceability.Graph : Type → Type
-@Traceability.join : {Node : Type} → Traceability.Graph Node → Traceability.Graph Node → Traceability.Graph Node
-@Traceability.empty : {Node : Type} → Traceability.Graph Node
-@Traceability.fold : {Node Ev : Type} → (Ev → Traceability.Graph Node) → List Ev → Traceability.Graph Node
-Traceability.Timed : Type → Type → Type
-@Traceability.foldtimed : {Node Ev Time : Type} →
-  (Ev → Traceability.Graph Node) → List (Traceability.Timed Ev Time) → Traceability.Graph Node
-@Traceability.bool_eq_of_agree : ∀ {a b : Bool}, (a = true ↔ b = true) → a = b
-@Traceability.graph_ext : ∀ {Node : Type} {g h : Traceability.Graph Node},
-  (∀ (n : Node), g.nodes n = h.nodes n) → (∀ (d : Traceability.Derivation Node), g.edges d = h.edges d) → g = h
-@Traceability.join_assoc : ∀ {Node : Type} (a b c : Traceability.Graph Node),
-  Traceability.join (Traceability.join a b) c = Traceability.join a (Traceability.join b c)
-@Traceability.join_comm : ∀ {Node : Type} (a b : Traceability.Graph Node), Traceability.join a b = Traceability.join b a
-@Traceability.join_idem : ∀ {Node : Type} (a : Traceability.Graph Node), Traceability.join a a = a
-@Traceability.join_empty_left : ∀ {Node : Type} (a : Traceability.Graph Node),
-  Traceability.join Traceability.empty a = a
-@Traceability.join_empty_right : ∀ {Node : Type} (a : Traceability.Graph Node),
-  Traceability.join a Traceability.empty = a
-@Traceability.fold_append : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l₁ l₂ : List Ev),
-  Traceability.fold lift (l₁ ++ l₂) = Traceability.join (Traceability.fold lift l₁) (Traceability.fold lift l₂)
-@Traceability.fold_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev} {n : Node},
-  (Traceability.fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
-@Traceability.fold_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
-  {d : Traceability.Derivation Node}, (Traceability.fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
-@Traceability.returns_head : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
-  {d : Traceability.Derivation Node},
-  (Traceability.fold lift l).nodes d.head = true →
-    (∃ e, e ∈ l ∧ (lift e).edges d = true) → (Traceability.fold lift l).edges d = true
-@Traceability.fold_ext : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
-  (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → Traceability.fold lift l₁ = Traceability.fold lift l₂
-@Traceability.fold_perm : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
-  l₁.Perm l₂ → Traceability.fold lift l₁ = Traceability.fold lift l₂
-@Traceability.fold_append_self : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l : List Ev),
-  Traceability.fold lift (l ++ l) = Traceability.fold lift l
-@Traceability.foldtimed_ext : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node)
-  {l₁ l₂ : List (Traceability.Timed Ev Time)},
-  (∀ (e : Ev), e ∈ List.map Traceability.Timed.event l₁ ↔ e ∈ List.map Traceability.Timed.event l₂) →
-    Traceability.foldtimed lift l₁ = Traceability.foldtimed lift l₂
-@Traceability.map_event : ∀ {Ev Time : Type} (es : List Ev) (t : Ev → Time),
-  List.map Traceability.Timed.event (List.map (fun e => { event := e, time := t e }) es) = es
-@Traceability.foldtimed_retime : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node) (es : List Ev)
-  (f g : Ev → Time),
-  Traceability.foldtimed lift (List.map (fun e => { event := e, time := f e }) es) =
-    Traceability.foldtimed lift (List.map (fun e => { event := e, time := g e }) es)
-@Traceability.retract_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
-  {n : Node},
-  (Traceability.fold lift (List.filter keep l)).nodes n = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).nodes n = true
-@Traceability.retract_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
-  {d : Traceability.Derivation Node},
-  (Traceability.fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
-@Traceability.retract_eq : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l s : List Ev},
-  (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → Traceability.fold lift (List.filter keep l) = Traceability.fold lift s
 Controls.countjoin : (Nat → Nat) → (Nat → Nat) → Nat → Nat
 Controls.countsingle : Nat → Nat → Nat
 Controls.countfold : List Nat → Nat → Nat
@@ -130,6 +100,125 @@ Controls.residue_survivor_absent : (Traceability.fold Controls.ownlift
 Controls.residue_present : (Controls.residuefold Controls.ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true
 Controls.residue_claim_fails : Controls.residuefold Controls.ownlift (fun e => decide (e = 1)) [0, 1] ≠
   Traceability.fold Controls.ownlift (List.filter (fun e => decide (e = 1)) [0, 1])
+ReturnControls.noPremises : Traceability.Derivation Bool
+ReturnControls.onePremise : Traceability.Derivation Bool
+ReturnControls.nodeOnly : Unit → Traceability.Graph Bool
+ReturnControls.head_without_derivation : (Traceability.fold ReturnControls.nodeOnly [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  (Traceability.fold ReturnControls.nodeOnly [()]).edges ReturnControls.noPremises = false
+ReturnControls.head_only_claim_fails : ¬∀ (lift : Unit → Traceability.Graph Bool) (l : List Unit)
+    (d : Traceability.Derivation Bool),
+    (Traceability.fold lift l).nodes d.head = true → (Traceability.fold lift l).edges d = true
+ReturnControls.edgeOnly : Unit → Traceability.Graph Bool
+ReturnControls.derivation_without_head : (Traceability.fold ReturnControls.edgeOnly [()]).edges
+      ReturnControls.noPremises =
+    true ∧
+  (Traceability.fold ReturnControls.edgeOnly [()]).nodes ReturnControls.noPremises.head = false
+ReturnControls.edge_implies_head_claim_fails : ¬∀ (lift : Unit → Traceability.Graph Bool) (l : List Unit)
+    (d : Traceability.Derivation Bool),
+    (Traceability.fold lift l).edges d = true → (Traceability.fold lift l).nodes d.head = true
+ReturnControls.exactLift : Unit → Traceability.Graph Bool
+ReturnControls.witnessed_head_does_not_select_premises : (Traceability.fold ReturnControls.exactLift [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  ReturnControls.onePremise.head = ReturnControls.noPremises.head ∧
+    (Traceability.fold ReturnControls.exactLift [()]).edges ReturnControls.onePremise = true ∧
+      (Traceability.fold ReturnControls.exactLift [()]).edges ReturnControls.noPremises = false
+ReturnControls.finiteDerivationEq : (a b : Traceability.Derivation Bool) → Decidable (a = b)
+ReturnControls.record : Bool → Traceability.Derivation Bool
+ReturnControls.same_head_distinct_recorded_premises : (Traceability.fold (Traceability.recordLift ReturnControls.record)
+          [false, true]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  (Traceability.fold (Traceability.recordLift ReturnControls.record) [false, true]).edges ReturnControls.noPremises =
+      true ∧
+    (Traceability.fold (Traceability.recordLift ReturnControls.record) [false, true]).edges ReturnControls.onePremise =
+        true ∧
+      ReturnControls.noPremises.head = ReturnControls.onePremise.head ∧
+        ReturnControls.noPremises ≠ ReturnControls.onePremise
+ReturnControls.aliasedLift : Bool → Traceability.Graph Bool
+ReturnControls.contributor_refuses_missing_edge : (Traceability.fold ReturnControls.nodeOnly [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  Traceability.contributor ReturnControls.nodeOnly [()] ReturnControls.noPremises = none
+ReturnControls.contributor_selection_is_order_sensitive : Traceability.fold ReturnControls.aliasedLift [false, true] =
+    Traceability.fold ReturnControls.aliasedLift [true, false] ∧
+  Traceability.contributor ReturnControls.aliasedLift [false, true] ReturnControls.noPremises = some false ∧
+    Traceability.contributor ReturnControls.aliasedLift [true, false] ReturnControls.noPremises = some true
+ReturnControls.source_from_fold_claim_fails : ¬∃ decode,
+    ∀ (e : Bool), decode (Traceability.fold ReturnControls.aliasedLift [e]) = e
+ReturnControls.time_from_fold_claim_fails : ¬∃ decode,
+    ∀ (time : Nat), decode (Traceability.foldtimed ReturnControls.aliasedLift [{ event := false, time := time }]) = time
+Traceability.Derivation : Type → Type
+Traceability.Graph : Type → Type
+@Traceability.join : {Node : Type} → Traceability.Graph Node → Traceability.Graph Node → Traceability.Graph Node
+@Traceability.empty : {Node : Type} → Traceability.Graph Node
+@Traceability.fold : {Node Ev : Type} → (Ev → Traceability.Graph Node) → List Ev → Traceability.Graph Node
+Traceability.Timed : Type → Type → Type
+@Traceability.foldtimed : {Node Ev Time : Type} →
+  (Ev → Traceability.Graph Node) → List (Traceability.Timed Ev Time) → Traceability.Graph Node
+@Traceability.bool_eq_of_agree : ∀ {a b : Bool}, (a = true ↔ b = true) → a = b
+@Traceability.graph_ext : ∀ {Node : Type} {g h : Traceability.Graph Node},
+  (∀ (n : Node), g.nodes n = h.nodes n) → (∀ (d : Traceability.Derivation Node), g.edges d = h.edges d) → g = h
+@Traceability.join_assoc : ∀ {Node : Type} (a b c : Traceability.Graph Node),
+  Traceability.join (Traceability.join a b) c = Traceability.join a (Traceability.join b c)
+@Traceability.join_comm : ∀ {Node : Type} (a b : Traceability.Graph Node), Traceability.join a b = Traceability.join b a
+@Traceability.join_idem : ∀ {Node : Type} (a : Traceability.Graph Node), Traceability.join a a = a
+@Traceability.join_empty_left : ∀ {Node : Type} (a : Traceability.Graph Node),
+  Traceability.join Traceability.empty a = a
+@Traceability.join_empty_right : ∀ {Node : Type} (a : Traceability.Graph Node),
+  Traceability.join a Traceability.empty = a
+@Traceability.fold_append : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l₁ l₂ : List Ev),
+  Traceability.fold lift (l₁ ++ l₂) = Traceability.join (Traceability.fold lift l₁) (Traceability.fold lift l₂)
+@Traceability.fold_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev} {n : Node},
+  (Traceability.fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
+@Traceability.fold_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node}, (Traceability.fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
+@Traceability.contributor : {Node Ev : Type} →
+  (Ev → Traceability.Graph Node) → List Ev → Traceability.Derivation Node → Option Ev
+@Traceability.contributor_isSome : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l : List Ev)
+  (d : Traceability.Derivation Node), (Traceability.contributor lift l d).isSome = (Traceability.fold lift l).edges d
+@Traceability.contributor_sound : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node} {e : Ev},
+  Traceability.contributor lift l d = some e → e ∈ l ∧ (lift e).edges d = true
+@Traceability.returns_recorded_edge_weaker : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node},
+  (Traceability.fold lift l).edges d = true →
+    ∃ e, Traceability.contributor lift l d = some e ∧ e ∈ l ∧ (lift e).edges d = true
+@Traceability.recordLift : {Node Ev : Type} →
+  [inst : DecidableEq Node] →
+    [inst : DecidableEq (Traceability.Derivation Node)] →
+      (Ev → Traceability.Derivation Node) → Ev → Traceability.Graph Node
+@Traceability.returns_recorded_head : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node) {l : List Ev}
+  {n : Node},
+  (Traceability.fold (Traceability.recordLift record) l).nodes n = true →
+    ∃ e, e ∈ l ∧ (record e).head = n ∧ (Traceability.fold (Traceability.recordLift record) l).edges (record e) = true
+@Traceability.fold_ext : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
+  (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → Traceability.fold lift l₁ = Traceability.fold lift l₂
+@Traceability.fold_perm : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
+  l₁.Perm l₂ → Traceability.fold lift l₁ = Traceability.fold lift l₂
+@Traceability.fold_append_self : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l : List Ev),
+  Traceability.fold lift (l ++ l) = Traceability.fold lift l
+@Traceability.foldtimed_ext : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node)
+  {l₁ l₂ : List (Traceability.Timed Ev Time)},
+  (∀ (e : Ev), e ∈ List.map Traceability.Timed.event l₁ ↔ e ∈ List.map Traceability.Timed.event l₂) →
+    Traceability.foldtimed lift l₁ = Traceability.foldtimed lift l₂
+@Traceability.map_event : ∀ {Ev Time : Type} (es : List Ev) (t : Ev → Time),
+  List.map Traceability.Timed.event (List.map (fun e => { event := e, time := t e }) es) = es
+@Traceability.foldtimed_retime : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node) (es : List Ev)
+  (f g : Ev → Time),
+  Traceability.foldtimed lift (List.map (fun e => { event := e, time := f e }) es) =
+    Traceability.foldtimed lift (List.map (fun e => { event := e, time := g e }) es)
+@Traceability.retract_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
+  {n : Node},
+  (Traceability.fold lift (List.filter keep l)).nodes n = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).nodes n = true
+@Traceability.retract_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
+  {d : Traceability.Derivation Node},
+  (Traceability.fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
+@Traceability.retract_eq : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l s : List Ev},
+  (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → Traceability.fold lift (List.filter keep l) = Traceability.fold lift s
 Word list (52 words): linux, windows, macos, darwin, freebsd, openbsd, unix, posix, kernel, syscall, syscalls, operating, idol, zig, python, rust, java, javascript, typescript, haskell, ocaml, golang, swift, kotlin, scala, perl, ruby, lua, cpu, gpu, x86, arm64, socket, sockets, thread, threads, process, processes, pid, driver, drivers, hardware, bytecode, compiler, interpreter, shell, disk, heap, pointer, binary, executable, machine
 Hits: 0
 Platform audit: PASS

@@ -1,7 +1,42 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Repository Lean files: 5
+Source SHA256 manifest:
+fe061931308452e8c87b78de878836998a0d4c1e980be512d868de46bb1e253e  examples/InvoiceTrace.lean
+26dd45fee0c200cb22289b0542361e0f9ec4a5b04501617bba6aea49fab1e343  examples/check.sh
+427c43473afd8e5f40219cb855fa26bc5fbeb958dd4ae55f0e0bf31187911cb4  examples/range-ledger/BridgeRepair.lean
+b9ffc1494d3738ec02b937c73cc7c6f8f3f2b23c0d8a0cd2366ffe36390592b4  examples/range-ledger/check.sh
+006ed8da251dffe3949595c7675e748900f35b6e319b2a1aad1d8436b2245d74  examples/range-ledger/mutation.patch
+1a734740d0dc2ed022fb519287a5d1b7823036e3fab3cb1efe121078eec9db6a  proof/Controls.lean
+f3447646ddbc5b2233247977512ec6cad5b9bb8479e343aa92b79b446f624839  proof/ReturnControls.lean
+e5925124be9a604322ab8250cae5999be1bd5c2517818599a785df1e7f6b38a7  proof/Traceability.lean
+7be107a979e5e57817d4f5a710eca88a33d1db4d2b2a2206e4855ea6f5fcea1b  proof/audit.py
+5fb17ece37d1699c3f90ac6dfeb399f536ad65ffe22c339a0c7801e284c692b2  proof/check.sh
+55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  proof/lean-toolchain
+c44f6cb01e52a92face521a94f2e9ddcfc1a9ba9e16758cc1affcd6a8d0e4029  proof/platform-audit.py
+Compiled: examples/InvoiceTrace.lean
+(8,
+ [InvoiceTrace.Event.override, InvoiceTrace.Event.signature],
+ [InvoiceTrace.Event.quote, InvoiceTrace.Event.tax, InvoiceTrace.Event.currency])
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+Compiled: examples/range-ledger/BridgeRepair.lean
+(some 7, none)
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+Compiled: proof/Traceability.lean
 'Traceability.fold_nodes' depends on axioms: [propext]
 'Traceability.fold_edges' depends on axioms: [propext]
-'Traceability.returns_head' depends on axioms: [propext]
+'Traceability.contributor_isSome' depends on axioms: [propext, Quot.sound]
+'Traceability.contributor_sound' depends on axioms: [propext]
+'Traceability.returns_recorded_edge_weaker' depends on axioms: [propext, Quot.sound]
+'Traceability.returns_recorded_head' depends on axioms: [propext]
 'Traceability.fold_ext' depends on axioms: [propext, Quot.sound]
 'Traceability.fold_perm' depends on axioms: [propext, Quot.sound]
 'Traceability.fold_append_self' depends on axioms: [propext, Quot.sound]
@@ -35,8 +70,19 @@ Timed : Type → Type → Type
   (fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
 @fold_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
   (fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
-@returns_head : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
-  (fold lift l).nodes d.head = true → (∃ e, e ∈ l ∧ (lift e).edges d = true) → (fold lift l).edges d = true
+@contributor : {Node Ev : Type} → (Ev → Graph Node) → List Ev → Derivation Node → Option Ev
+@contributor_isSome : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l : List Ev) (d : Derivation Node),
+  (contributor lift l d).isSome = (fold lift l).edges d
+@contributor_sound : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node} {e : Ev},
+  contributor lift l d = some e → e ∈ l ∧ (lift e).edges d = true
+@returns_recorded_edge_weaker : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
+  (fold lift l).edges d = true → ∃ e, contributor lift l d = some e ∧ e ∈ l ∧ (lift e).edges d = true
+@recordLift : {Node Ev : Type} →
+  [inst : DecidableEq Node] → [inst : DecidableEq (Derivation Node)] → (Ev → Derivation Node) → Ev → Graph Node
+@returns_recorded_head : ∀ {Node Ev : Type} [inst : DecidableEq Node] [inst_1 : DecidableEq (Derivation Node)]
+  (record : Ev → Derivation Node) {l : List Ev} {n : Node},
+  (fold (recordLift record) l).nodes n = true →
+    ∃ e, e ∈ l ∧ (record e).head = n ∧ (fold (recordLift record) l).edges (record e) = true
 @fold_ext : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev},
   (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → fold lift l₁ = fold lift l₂
 @fold_perm : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev}, l₁.Perm l₂ → fold lift l₁ = fold lift l₂
@@ -54,6 +100,7 @@ Timed : Type → Type → Type
   (fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
 @retract_eq : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l s : List Ev},
   (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → fold lift (List.filter keep l) = fold lift s
+Compiled: proof/Controls.lean
 'Controls.count_once' does not depend on any axioms
 'Controls.count_twice' does not depend on any axioms
 'Controls.count_claim_fails' does not depend on any axioms
@@ -89,5 +136,173 @@ residue_survivor_absent : (fold ownlift (List.filter (fun e => decide (e = 1)) [
 residue_present : (residuefold ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true
 residue_claim_fails : residuefold ownlift (fun e => decide (e = 1)) [0, 1] ≠
   fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])
-Axiom subset check passed: printed axioms are a subset of {propext, Classical.choice, Quot.sound}
-Axioms printed: Quot.sound propext 
+Compiled: proof/ReturnControls.lean
+'ReturnControls.head_without_derivation' does not depend on any axioms
+'ReturnControls.head_only_claim_fails' does not depend on any axioms
+'ReturnControls.derivation_without_head' does not depend on any axioms
+'ReturnControls.edge_implies_head_claim_fails' does not depend on any axioms
+'ReturnControls.witnessed_head_does_not_select_premises' does not depend on any axioms
+'ReturnControls.finiteDerivationEq' depends on axioms: [Quot.sound]
+'ReturnControls.same_head_distinct_recorded_premises' depends on axioms: [Quot.sound]
+'ReturnControls.contributor_refuses_missing_edge' does not depend on any axioms
+'ReturnControls.contributor_selection_is_order_sensitive' does not depend on any axioms
+'ReturnControls.source_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.time_from_fold_claim_fails' does not depend on any axioms
+noPremises : Derivation Bool
+onePremise : Derivation Bool
+nodeOnly : Unit → Graph Bool
+head_without_derivation : (fold nodeOnly [()]).nodes noPremises.head = true ∧
+  (fold nodeOnly [()]).edges noPremises = false
+head_only_claim_fails : ¬∀ (lift : Unit → Graph Bool) (l : List Unit) (d : Derivation Bool),
+    (fold lift l).nodes d.head = true → (fold lift l).edges d = true
+edgeOnly : Unit → Graph Bool
+derivation_without_head : (fold edgeOnly [()]).edges noPremises = true ∧
+  (fold edgeOnly [()]).nodes noPremises.head = false
+edge_implies_head_claim_fails : ¬∀ (lift : Unit → Graph Bool) (l : List Unit) (d : Derivation Bool),
+    (fold lift l).edges d = true → (fold lift l).nodes d.head = true
+exactLift : Unit → Graph Bool
+witnessed_head_does_not_select_premises : (fold exactLift [()]).nodes noPremises.head = true ∧
+  onePremise.head = noPremises.head ∧
+    (fold exactLift [()]).edges onePremise = true ∧ (fold exactLift [()]).edges noPremises = false
+finiteDerivationEq : (a b : Derivation Bool) → Decidable (a = b)
+record : Bool → Derivation Bool
+same_head_distinct_recorded_premises : (fold (recordLift record) [false, true]).nodes noPremises.head = true ∧
+  (fold (recordLift record) [false, true]).edges noPremises = true ∧
+    (fold (recordLift record) [false, true]).edges onePremise = true ∧
+      noPremises.head = onePremise.head ∧ noPremises ≠ onePremise
+aliasedLift : Bool → Graph Bool
+contributor_refuses_missing_edge : (fold nodeOnly [()]).nodes noPremises.head = true ∧
+  contributor nodeOnly [()] noPremises = none
+contributor_selection_is_order_sensitive : fold aliasedLift [false, true] = fold aliasedLift [true, false] ∧
+  contributor aliasedLift [false, true] noPremises = some false ∧
+    contributor aliasedLift [true, false] noPremises = some true
+source_from_fold_claim_fails : ¬∃ decode, ∀ (e : Bool), decode (fold aliasedLift [e]) = e
+time_from_fold_claim_fails : ¬∃ decode,
+    ∀ (time : Nat), decode (foldtimed aliasedLift [{ event := false, time := time }]) = time
+'Controls.count_claim_fails' does not depend on any axioms
+'Controls.count_once' does not depend on any axioms
+'Controls.count_twice' does not depend on any axioms
+'Controls.first_claim_fails' depends on axioms: [propext]
+'Controls.grain_absent' depends on axioms: [propext]
+'Controls.grain_claim_fails' depends on axioms: [propext]
+'Controls.grain_coarse_present' depends on axioms: [propext]
+'Controls.prem_differ' depends on axioms: [propext]
+'Controls.residue_claim_fails' depends on axioms: [propext]
+'Controls.residue_present' depends on axioms: [propext]
+'Controls.residue_survivor_absent' depends on axioms: [propext]
+'Controls.swap_same_set' depends on axioms: [propext]
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+'ReturnControls.contributor_refuses_missing_edge' does not depend on any axioms
+'ReturnControls.contributor_selection_is_order_sensitive' does not depend on any axioms
+'ReturnControls.derivation_without_head' does not depend on any axioms
+'ReturnControls.edge_implies_head_claim_fails' does not depend on any axioms
+'ReturnControls.head_only_claim_fails' does not depend on any axioms
+'ReturnControls.head_without_derivation' does not depend on any axioms
+'ReturnControls.same_head_distinct_recorded_premises' depends on axioms: [Quot.sound]
+'ReturnControls.source_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.time_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.witnessed_head_does_not_select_premises' does not depend on any axioms
+'Traceability.bool_eq_of_agree' depends on axioms: [propext]
+'Traceability.contributor_isSome' depends on axioms: [propext, Quot.sound]
+'Traceability.contributor_sound' depends on axioms: [propext]
+'Traceability.fold_append' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append_self' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_edges' depends on axioms: [propext]
+'Traceability.fold_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_nodes' depends on axioms: [propext]
+'Traceability.fold_perm' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_retime' depends on axioms: [propext]
+'Traceability.graph_ext' depends on axioms: [Quot.sound]
+'Traceability.join_assoc' depends on axioms: [Quot.sound]
+'Traceability.join_comm' depends on axioms: [Quot.sound]
+'Traceability.join_empty_left' depends on axioms: [Quot.sound]
+'Traceability.join_empty_right' depends on axioms: [Quot.sound]
+'Traceability.join_idem' depends on axioms: [Quot.sound]
+'Traceability.map_event' depends on axioms: [propext]
+'Traceability.retract_edges' depends on axioms: [propext]
+'Traceability.retract_eq' depends on axioms: [propext, Quot.sound]
+'Traceability.retract_nodes' depends on axioms: [propext]
+'Traceability.returns_recorded_edge_weaker' depends on axioms: [propext, Quot.sound]
+'Traceability.returns_recorded_head' depends on axioms: [propext]
+'Controls.firstfold.eq_1' does not depend on any axioms
+'Controls.firstfold.eq_2' does not depend on any axioms
+'Controls.fullprem.eq_1' does not depend on any axioms
+'Controls.grainlift.eq_1' does not depend on any axioms
+'Controls.noprem.eq_1' does not depend on any axioms
+'Controls.ownlift.eq_1' does not depend on any axioms
+'InvoiceTrace.Event.ofNat_toCtorIdx' does not depend on any axioms
+'InvoiceTrace.Route.ofNat_toCtorIdx' does not depend on any axioms
+'InvoiceTrace.evidence.eq_1' does not depend on any axioms
+'InvoiceTrace.instDecidableEqEvent._proof_1' does not depend on any axioms
+'InvoiceTrace.instDecidableEqEvent._proof_2' does not depend on any axioms
+'InvoiceTrace.instDecidableEqRoute._proof_3' does not depend on any axioms
+'InvoiceTrace.instDecidableEqRoute._proof_4' does not depend on any axioms
+'InvoiceTrace.least_support._proof_5' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict._proof_5' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict._proof_6' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.supported.eq_1' does not depend on any axioms
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'ReturnControls.finiteDerivationEq._proof_1' depends on axioms: [Quot.sound]
+'ReturnControls.finiteDerivationEq._proof_2' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_3' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_4' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_5' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_6' does not depend on any axioms
+'Traceability.empty.eq_1' does not depend on any axioms
+'Traceability.fold.eq_1' does not depend on any axioms
+'Traceability.fold.eq_2' does not depend on any axioms
+'Traceability.recordLift.eq_1' does not depend on any axioms
+'InvoiceTrace.Event.currency.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.email.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.index.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.metrics.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.override.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.quote.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.signature.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.tax.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Route.overridePath.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Route.pricingPath.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ofNat_toCtorIdx' does not depend on any axioms
+'RangeLedger.BridgeRepair.ambiguity._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.ends._proof_3' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.instDecidableEqWire._proof_1' does not depend on any axioms
+'RangeLedger.BridgeRepair.instDecidableEqWire._proof_2' does not depend on any axioms
+'RangeLedger.BridgeRepair.returned_cut._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.returned_cut._proof_5' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.three_suffice._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_5' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_6' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_7' depends on axioms: [propext, Quot.sound]
+'Traceability.Derivation.mk.inj' does not depend on any axioms
+'Traceability.Derivation.mk.injEq' depends on axioms: [propext]
+'Traceability.Derivation.mk.sizeOf_spec' does not depend on any axioms
+'Traceability.Graph.mk.inj' does not depend on any axioms
+'Traceability.Graph.mk.injEq' depends on axioms: [propext]
+'Traceability.Graph.mk.sizeOf_spec' does not depend on any axioms
+'Traceability.Timed.mk.inj' does not depend on any axioms
+'Traceability.Timed.mk.injEq' depends on axioms: [propext]
+'Traceability.Timed.mk.sizeOf_spec' does not depend on any axioms
+'_private.Controls.0.Controls.countfold.match_1.eq_1' does not depend on any axioms
+'_private.Controls.0.Controls.countfold.match_1.eq_2' does not depend on any axioms
+'_private.Traceability.0.Traceability.fold.match_1.eq_1' does not depend on any axioms
+'_private.Traceability.0.Traceability.fold.match_1.eq_2' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ab.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ac.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ad.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.bc.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.bd.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.cd.sizeOf_spec' does not depend on any axioms
+Kernel theorem audit: 123 theorem declarations (including generated declarations)
+Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
+Axioms printed: [propext, Quot.sound]
+Gate passed: 5 Lean files, warnings as errors, fresh imports, no prohibited proof tokens

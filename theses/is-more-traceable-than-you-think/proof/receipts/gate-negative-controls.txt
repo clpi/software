@@ -1,0 +1,2 @@
+unprinted-choice: rejected, exit 1; RepositoryAudit.lean:9:0: error: Rejected: unprintedChoice depends on forbidden axiom Classical.choice | Rejected: kernel declaration audit failed
+example-escape: rejected, exit 1; Rejected: prohibited proof token 'axiom': examples/GateProbe.lean:1

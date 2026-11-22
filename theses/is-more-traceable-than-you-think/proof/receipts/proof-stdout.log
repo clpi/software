@@ -1,0 +1,13 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Repository Lean files: 5
+Compiled: examples/InvoiceTrace.lean
+Compiled: examples/range-ledger/BridgeRepair.lean
+Compiled: proof/Traceability.lean
+Compiled: proof/Controls.lean
+Compiled: proof/ReturnControls.lean
+Kernel theorem audit: 123 theorem declarations (including generated declarations)
+Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
+Axioms printed: [propext, Quot.sound]
+Gate passed: 5 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
+Full proof transcript: proof/CHECK.log
+Checked source hashes: proof/SOURCE-SHA256.txt
