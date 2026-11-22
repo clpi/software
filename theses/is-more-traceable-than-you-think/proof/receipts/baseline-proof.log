@@ -1,0 +1,93 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Traceability.fold_nodes' depends on axioms: [propext]
+'Traceability.fold_edges' depends on axioms: [propext]
+'Traceability.returns_head' depends on axioms: [propext]
+'Traceability.fold_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_perm' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append_self' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_retime' depends on axioms: [propext]
+'Traceability.retract_nodes' depends on axioms: [propext]
+'Traceability.retract_edges' depends on axioms: [propext]
+'Traceability.retract_eq' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append' depends on axioms: [propext, Quot.sound]
+'Traceability.join_assoc' depends on axioms: [Quot.sound]
+'Traceability.join_comm' depends on axioms: [Quot.sound]
+'Traceability.join_idem' depends on axioms: [Quot.sound]
+Derivation : Type → Type
+Graph : Type → Type
+@join : {Node : Type} → Graph Node → Graph Node → Graph Node
+@empty : {Node : Type} → Graph Node
+@fold : {Node Ev : Type} → (Ev → Graph Node) → List Ev → Graph Node
+Timed : Type → Type → Type
+@foldtimed : {Node Ev Time : Type} → (Ev → Graph Node) → List (Timed Ev Time) → Graph Node
+@bool_eq_of_agree : ∀ {a b : Bool}, (a = true ↔ b = true) → a = b
+@graph_ext : ∀ {Node : Type} {g h : Graph Node},
+  (∀ (n : Node), g.nodes n = h.nodes n) → (∀ (d : Derivation Node), g.edges d = h.edges d) → g = h
+@join_assoc : ∀ {Node : Type} (a b c : Graph Node), join (join a b) c = join a (join b c)
+@join_comm : ∀ {Node : Type} (a b : Graph Node), join a b = join b a
+@join_idem : ∀ {Node : Type} (a : Graph Node), join a a = a
+@join_empty_left : ∀ {Node : Type} (a : Graph Node), join empty a = a
+@join_empty_right : ∀ {Node : Type} (a : Graph Node), join a empty = a
+@fold_append : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l₁ l₂ : List Ev),
+  fold lift (l₁ ++ l₂) = join (fold lift l₁) (fold lift l₂)
+@fold_nodes : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {n : Node},
+  (fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
+@fold_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
+  (fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
+@returns_head : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
+  (fold lift l).nodes d.head = true → (∃ e, e ∈ l ∧ (lift e).edges d = true) → (fold lift l).edges d = true
+@fold_ext : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev},
+  (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → fold lift l₁ = fold lift l₂
+@fold_perm : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev}, l₁.Perm l₂ → fold lift l₁ = fold lift l₂
+@fold_append_self : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l : List Ev), fold lift (l ++ l) = fold lift l
+@foldtimed_ext : ∀ {Node Ev Time : Type} (lift : Ev → Graph Node) {l₁ l₂ : List (Timed Ev Time)},
+  (∀ (e : Ev), e ∈ List.map Timed.event l₁ ↔ e ∈ List.map Timed.event l₂) → foldtimed lift l₁ = foldtimed lift l₂
+@map_event : ∀ {Ev Time : Type} (es : List Ev) (t : Ev → Time),
+  List.map Timed.event (List.map (fun e => { event := e, time := t e }) es) = es
+@foldtimed_retime : ∀ {Node Ev Time : Type} (lift : Ev → Graph Node) (es : List Ev) (f g : Ev → Time),
+  foldtimed lift (List.map (fun e => { event := e, time := f e }) es) =
+    foldtimed lift (List.map (fun e => { event := e, time := g e }) es)
+@retract_nodes : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l : List Ev} {n : Node},
+  (fold lift (List.filter keep l)).nodes n = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).nodes n = true
+@retract_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l : List Ev} {d : Derivation Node},
+  (fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
+@retract_eq : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l s : List Ev},
+  (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → fold lift (List.filter keep l) = fold lift s
+'Controls.count_once' does not depend on any axioms
+'Controls.count_twice' does not depend on any axioms
+'Controls.count_claim_fails' does not depend on any axioms
+'Controls.swap_same_set' depends on axioms: [propext]
+'Controls.first_claim_fails' depends on axioms: [propext]
+'Controls.prem_differ' depends on axioms: [propext]
+'Controls.grain_absent' depends on axioms: [propext]
+'Controls.grain_coarse_present' depends on axioms: [propext]
+'Controls.grain_claim_fails' depends on axioms: [propext]
+'Controls.residue_survivor_absent' depends on axioms: [propext]
+'Controls.residue_present' depends on axioms: [propext]
+'Controls.residue_claim_fails' depends on axioms: [propext]
+countjoin : (Nat → Nat) → (Nat → Nat) → Nat → Nat
+countsingle : Nat → Nat → Nat
+countfold : List Nat → Nat → Nat
+count_once : countfold [0] 0 = 1
+count_twice : countfold ([0] ++ [0]) 0 = 2
+count_claim_fails : ¬∀ (l : List Nat), countfold (l ++ l) = countfold l
+firstfold : (Nat → Graph Nat) → List Nat → Graph Nat
+ownlift : Nat → Graph Nat
+swap_same_set : ∀ (x : Nat), x ∈ [0, 1] ↔ x ∈ [1, 0]
+first_claim_fails : ¬∀ (l₁ l₂ : List Nat), (∀ (x : Nat), x ∈ l₁ ↔ x ∈ l₂) → firstfold ownlift l₁ = firstfold ownlift l₂
+fullprem : Derivation Nat
+noprem : Derivation Nat
+prem_differ : fullprem ≠ noprem
+grainlift : Nat → Graph Nat
+grain_absent : (fold grainlift [0]).edges noprem = false
+grain_coarse_present : ∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = noprem.head
+grain_claim_fails : ¬∀ (d : Derivation Nat),
+    (∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = d.head) → (fold grainlift [0]).edges d = true
+residuefold : (Nat → Graph Nat) → (Nat → Bool) → List Nat → Graph Nat
+residue_survivor_absent : (fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])).nodes 0 = false
+residue_present : (residuefold ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true
+residue_claim_fails : residuefold ownlift (fun e => decide (e = 1)) [0, 1] ≠
+  fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])
+Axiom subset check passed: printed axioms are a subset of {propext, Classical.choice, Quot.sound}
+Axioms printed: Quot.sound propext 

@@ -17,9 +17,12 @@ import re
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
+
+from audit import compile_sources, run_lean
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MODULES = ["Traceability.lean", "Controls.lean"]
+MODULES = sorted(path.name for path in Path(HERE).glob("*.lean"))
 
 WORDS = [
     "linux", "windows", "macos", "darwin", "freebsd", "openbsd",
@@ -36,12 +39,12 @@ WORDS = [
 
 
 def statements(path):
-    """Names declared by theorem/def/structure/inductive at top
+    """Names declared by theorem/lemma/def/structure/inductive at top
     level of the module, with the module namespace."""
     text = open(path).read()
     ns = re.search(r"^namespace\s+(\w+)", text, re.M).group(1)
     names = re.findall(
-        r"^(?:theorem|def|structure|inductive)\s+(\w+)", text, re.M)
+        r"^(?:theorem|lemma|def|structure|inductive)\s+(\w+)", text, re.M)
     return ns, names
 
 
@@ -59,20 +62,13 @@ def main():
     for n in all_names:
         lines.append("  statement %s" % n)
     with tempfile.TemporaryDirectory() as td:
+        build = Path(td)
         genfile = os.path.join(td, "audit-print.lean")
         open(genfile, "w").write("\n".join(gen) + "\n")
-        env = dict(os.environ)
-        env["LEAN_PATH"] = HERE + ":" + env.get("LEAN_PATH", "")
-        # The modules' oleans must exist; build them if absent.
-        for mod in MODULES:
-            olean = os.path.join(HERE, mod[:-5] + ".olean")
-            if not os.path.exists(olean):
-                subprocess.run(
-                    [lean, "-DwarningAsError=true", "-o", olean,
-                     os.path.join(HERE, mod)],
-                    env=env, check=True, capture_output=True)
-        proc = subprocess.run([lean, genfile], env=env,
-                              capture_output=True, text=True)
+        # Compile from a fresh snapshot, including new control modules.
+        # Neither repository oleans nor an inherited LEAN_PATH are trusted.
+        compile_sources(lean, [Path(HERE) / mod for mod in MODULES], build, lambda _: None)
+        proc = run_lean(lean, ["-DwarningAsError=true", genfile], build)
     if proc.returncode != 0:
         lines.append("AUDIT TOOLING FAILURE")
         lines.append(proc.stdout)
@@ -100,4 +96,10 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except (OSError, RuntimeError, subprocess.SubprocessError) as error:
+        output = f"AUDIT TOOLING FAILURE\n{error}\nPlatform audit: FAIL\n"
+        Path(HERE, "PLATFORM-AUDIT.log").write_text(output)
+        print(output, end="")
+        sys.exit(1)

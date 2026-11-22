@@ -7,5 +7,12 @@ Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
 'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
 'InvoiceTrace.before_after' does not depend on any axioms
 'InvoiceTrace.route_is_needed' does not depend on any axioms
-
-Rejected control: omit the signature from an override trace (Lean exit 1).
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(some 7, none)
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+Rejected control: use the wrong middle bridge for the chain decoder.

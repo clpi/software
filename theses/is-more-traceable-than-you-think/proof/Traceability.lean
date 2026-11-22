@@ -1,11 +1,13 @@
 /-
   Platform independence of the historical witness hypergraph.
 
-  Every execution appends witnesses to an append-only ledger. The
-  historical witness hypergraph is the fold of the witness stream:
-  nodes for symbols and witnessed elements, hyperedges carrying a
-  full premise set to a conclusion. Witnesses carry exact time,
-  but the hypergraph is a function of the witness set alone.
+  Given a witness stream, its historical witness hypergraph is
+  the fold of that stream: nodes for witnessed elements and
+  hyperedges carrying a full recorded premise set to a head.
+  The timed fold ignores the separate Timed.time field; an event
+  and its lifting may still carry time data of their own.
+  No theorem here asserts that every execution emits a witness,
+  that recorded premises are true, or that time values are exact.
 
   The fold is quantified over arbitrary types for nodes, events
   and times, and over an arbitrary contribution assignment that
@@ -177,10 +179,9 @@ theorem fold_nodes {Node Ev : Type} (lift : Ev → Graph Node)
 
 /-- What the fold records on the derivation face is exactly what
     some event of the stream contributes: a derivation is present
-    in the folded hypergraph if and only if at least one event in
-    the stream contributes it, so the premise set of every
-    witnessed conclusion is read off the hypergraph exactly as
-    recorded, nothing added and nothing lost. -/
+    if and only if at least one event contributes that full record.
+    This says nothing about an arbitrary witnessed head having a
+    derivation: the node and edge faces are independent. -/
 theorem fold_edges {Node Ev : Type} (lift : Ev → Graph Node)
     {l : List Ev} {d : Derivation Node} :
     (fold lift l).edges d = true ↔
@@ -210,15 +211,76 @@ theorem fold_edges {Node Ev : Type} (lift : Ev → Graph Node)
       | head _ => exact Or.inl hce'
       | tail _ hmem => exact Or.inr (ih.mpr ⟨e', hmem, hce'⟩)
 
-/-- Every derivation that any event contributes and whose head is
-    a witnessed node of the folded hypergraph is present in the
-    folded hypergraph. -/
-theorem returns_head {Node Ev : Type} (lift : Ev → Graph Node)
+/-- Search the retained stream for the first event contributing
+    the exact queried derivation. No equality decision on events,
+    nodes, or derivations is needed: the supplied lifting already
+    provides the Boolean test. This search uses the stream, not
+    just its folded graph. -/
+def contributor {Node Ev : Type} (lift : Ev → Graph Node)
+    (l : List Ev) (d : Derivation Node) : Option Ev :=
+  l.find? (fun e => (lift e).edges d)
+
+/-- Unconditional agreement between executable source search and
+    the fold. A search cannot miss a recorded edge or invent one. -/
+theorem contributor_isSome {Node Ev : Type} (lift : Ev → Graph Node)
+    (l : List Ev) (d : Derivation Node) :
+    (contributor lift l d).isSome = (fold lift l).edges d := by
+  apply bool_eq_of_agree
+  unfold contributor
+  rw [List.find?_isSome, fold_edges]
+
+/-- A returned source is in the retained stream and contributes
+    the complete queried derivation, including its premise set. -/
+theorem contributor_sound {Node Ev : Type} (lift : Ev → Graph Node)
+    {l : List Ev} {d : Derivation Node} {e : Ev}
+    (found : contributor lift l d = some e) :
+    e ∈ l ∧ (lift e).edges d = true :=
+  ⟨List.mem_of_find?_eq_some found,
+    List.find?_some (p := fun event => (lift event).edges d) found⟩
+
+/-- The honest weaker replacement for the former returns_head:
+    a recorded edge has an executable source witness in the retained
+    stream. The contribution is derived, never assumed. The old
+    witnessed-head hypothesis is removed because it did no work.
+    A witnessed node alone cannot guarantee any derivation. -/
+theorem returns_recorded_edge_weaker {Node Ev : Type} (lift : Ev → Graph Node)
     {l : List Ev} {d : Derivation Node}
-    (_witnessed : (fold lift l).nodes d.head = true)
-    (contributed : ∃ e, e ∈ l ∧ (lift e).edges d = true) :
-    (fold lift l).edges d = true :=
-  (fold_edges lift).mpr contributed
+    (recorded : (fold lift l).edges d = true) :
+    ∃ e, contributor lift l d = some e ∧
+      e ∈ l ∧ (lift e).edges d = true := by
+  have present : (contributor lift l d).isSome = true :=
+    (contributor_isSome lift l d).trans recorded
+  obtain ⟨e, found⟩ := Option.isSome_iff_exists.mp present
+  exact ⟨e, found, contributor_sound lift found⟩
+
+/-- A restricted, derivation-bearing recording representation.
+    Each event stores one derivation and generates both its head
+    node and its exact edge. The required equality decisions are
+    explicit additional inputs; in particular, deciding equality
+    of arbitrary premise functions is not supplied by this model.
+    This construction is not a property of arbitrary liftings. -/
+def recordLift {Node Ev : Type} [DecidableEq Node]
+    [DecidableEq (Derivation Node)] (record : Ev → Derivation Node)
+    (e : Ev) : Graph Node :=
+  ⟨fun n => decide ((record e).head = n), fun d => decide (record e = d)⟩
+
+/-- For the restricted recorder, a witnessed head has some exact
+    stored derivation. The witnessed-head hypothesis is used to
+    find a source event; the matching edge then follows from the
+    construction. This selects an existing record, not an arbitrary
+    caller-chosen premise set, and proves no uniqueness or validity
+    of the recorded premises. -/
+theorem returns_recorded_head {Node Ev : Type} [DecidableEq Node]
+    [DecidableEq (Derivation Node)] (record : Ev → Derivation Node)
+    {l : List Ev} {n : Node}
+    (witnessed : (fold (recordLift record) l).nodes n = true) :
+    ∃ e, e ∈ l ∧ (record e).head = n ∧
+      (fold (recordLift record) l).edges (record e) = true := by
+  obtain ⟨e, member, head⟩ := (fold_nodes (recordLift record)).mp witnessed
+  refine ⟨e, member, ?_, ?_⟩
+  · simpa [recordLift] using head
+  · exact (fold_edges (recordLift record)).mpr
+      ⟨e, member, by simp [recordLift]⟩
 
 /-- **Order and duplication independence.** Two streams with the
     same membership have equal folds. The fold is a function of
@@ -349,7 +411,10 @@ theorem retract_eq {Node Ev : Type} (lift : Ev → Graph Node)
 
 #print axioms fold_nodes
 #print axioms fold_edges
-#print axioms returns_head
+#print axioms contributor_isSome
+#print axioms contributor_sound
+#print axioms returns_recorded_edge_weaker
+#print axioms returns_recorded_head
 #print axioms fold_ext
 #print axioms fold_perm
 #print axioms fold_append_self
@@ -383,7 +448,12 @@ theorem retract_eq {Node Ev : Type} (lift : Ev → Graph Node)
 #check @Traceability.fold_append
 #check @Traceability.fold_nodes
 #check @Traceability.fold_edges
-#check @Traceability.returns_head
+#check @Traceability.contributor
+#check @Traceability.contributor_isSome
+#check @Traceability.contributor_sound
+#check @Traceability.returns_recorded_edge_weaker
+#check @Traceability.recordLift
+#check @Traceability.returns_recorded_head
 #check @Traceability.fold_ext
 #check @Traceability.fold_perm
 #check @Traceability.fold_append_self
