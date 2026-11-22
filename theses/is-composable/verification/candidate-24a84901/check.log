@@ -1,0 +1,24 @@
+Checking 21 Lean files with Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+COMPILED SoftwareIsComposable/Legacy.lean
+COMPILED SoftwareIsComposable/Interaction.lean
+COMPILED Audit/InteractionControls.lean
+COMPILED SoftwareIsComposable/Profile.lean
+COMPILED SoftwareIsComposable/InteractionModel.lean
+COMPILED Audit/OneShotBoundary.lean
+COMPILED SoftwareIsComposable/PointwiseMonotonicity.lean
+COMPILED SoftwareIsComposable/Admission.lean
+COMPILED SoftwareIsComposable/Finiteness.lean
+COMPILED SoftwareIsComposable/Monotonicity.lean
+COMPILED SoftwareIsComposable/Composition.lean
+COMPILED SoftwareIsComposable/Evidence.lean
+COMPILED SoftwareIsComposable/Incremental.lean
+COMPILED SoftwareIsComposable/Examples.lean
+COMPILED SoftwareIsComposable/Bridge.lean
+COMPILED SoftwareIsComposable/Axioms.lean
+COMPILED SoftwareIsComposable.lean
+COMPILED Implications.lean
+COMPILED Main.lean
+COMPILED examples/ReleasePartition.lean
+COMPILED examples/range-ledger/SignedStitch.lean
+PASS: 21 Lean files; 412 proof declarations; 0 sorries; 0 custom axioms; 0 source escapes; warnings as errors; all controls rejected
+Receipt: /workspace/scratch/fd71d82d18da/independent-recheck-24a84901/.lake/all-files-gate/receipt.json

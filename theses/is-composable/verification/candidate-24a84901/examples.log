@@ -1,0 +1,10 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+([0, 1, 2, 3, 4], [0, 1, 2], true, false)
+'ReleasePartition.least_checkout_block' depends on axioms: [propext, Quot.sound]
+'ReleasePartition.preserves_linked_check' depends on axioms: [propext, Quot.sound]
+'ReleasePartition.before_after' does not depend on any axioms
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+some { start := 0, stop := 4096, value := 160 }
+'RangeLedger.SignedStitch.chain_valid' depends on axioms: [propext, Quot.sound]
+'RangeLedger.SignedStitch.before_after' does not depend on any axioms
+Rejected control: subtract an already oriented receipt.

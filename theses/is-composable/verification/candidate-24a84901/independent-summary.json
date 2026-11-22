@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "commit": "24a8490171c814b1f8771dd52aeeef19a3645f66",
+  "clean": true,
+  "same_source_and_gate_hashes_as_author": true,
+  "source_file_count": 21,
+  "gate_input_count": 19,
+  "proof_declarations_audited": 412,
+  "safe_declarations_audited": 868,
+  "custom_axioms": 0,
+  "unsafe_runtime_declarations": 47,
+  "negative_controls": 19,
+  "receipt_sha256": "ff2a77376a4e6e8adf071bceab3dc74f91f9423fca3c2a16dcc6b10d7ef9b472"
+}

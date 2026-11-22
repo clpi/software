@@ -1,0 +1,3 @@
+/tmp/lean-gate-controls-l1mnwvh4/Worse.lean:4:2: error: tactic 'decide' proved that the proposition
+  SoftwareIsComposable.releaseAdmitted SoftwareIsComposable.worseOld SoftwareIsComposable.worseNew = true
+is false

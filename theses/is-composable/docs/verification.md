@@ -1,5 +1,53 @@
 # Verification
 
+## Independently checked integrated proof pin
+
+Commit: `24a8490171c814b1f8771dd52aeeef19a3645f66`.
+Tree: `745e4cac9c28e72f27bea1b83a2c6df227b65a86`.
+
+A second reviewer cloned that exact commit into a clean checkout, cloned both
+dependencies independently without shared build caches, checked their exact
+pins, and ran the complete gate. Exit status: **0**. All 21 source hashes and
+all 19 gate-input hashes matched the author's run; dependency pins and the Lean
+binary hash matched too. The reviewer independently confirmed the commit/tree
+through GitHub and checked legacy source provenance.
+
+```
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+PASS: 21 Lean files; 412 proof declarations; 0 sorries; 0 custom axioms; 0 source escapes; warnings as errors; all controls rejected
+```
+
+The compiled audit covers **868 safe declarations**, including **412
+proposition-valued declarations**, rather than only handpicked headline
+theorems. All **19 negative controls** were refused. The three allowed logical
+foundations are `propext`, `Classical.choice`, and `Quot.sound`.
+
+The compiler also generated **47 unsafe runtime implementation constants**.
+They are enumerated separately in the axiom log, are not source-declared proof
+axioms, and none supports an audited safe declaration. The zero escape count
+is the source scan; it is not a claim that compiled IO/Repr code has no generated
+unsafe implementation constants.
+
+Complete execution evidence is committed under
+[`verification/candidate-24a84901`](../verification/candidate-24a84901):
+
+- [Gate stdout](../verification/candidate-24a84901/check.log)
+- [Machine receipt](../verification/candidate-24a84901/receipt.json)
+- [All safe declarations and their axiom dependencies](../verification/candidate-24a84901/axioms.log)
+- [Independent summary](../verification/candidate-24a84901/independent-summary.json)
+- [Source provenance](../verification/candidate-24a84901/independent-provenance.json)
+- Compilation, negative-control, dependency-build, harness and example logs.
+
+The machine receipt's SHA-256 is
+`ff2a77376a4e6e8adf071bceab3dc74f91f9423fca3c2a16dcc6b10d7ef9b472`.
+The evidence-recording commit changes only documentation and these execution
+records; the checked Lean sources and gate inputs remain byte-identical.
+The merged head requires a fresh independent run before closure; that exact
+merged-pin outcome is reported with the landing rather than retroactively
+changing this candidate receipt.
+
+## Reproduction and mathematical review
+
 The authoritative command is `./check.sh`, run with the exact `lean-toolchain`
 version. It discovers every Lean file and writes
 `.lake/all-files-gate/receipt.json`. The receipt binds all proof sources and
@@ -25,7 +73,6 @@ incrementally-safe `de1b30716e2b758141d5940056f37cd678464032`.
 An immutable commit is not considered independently checked until a second
 reviewer has exported that commit into a fresh checkout, rebuilt the pinned
 dependencies, run the entire gate, and compared the source/input hashes.
-The resulting execution receipt is recorded here after that source freeze.
 The historical root `CHECK.log` remains explicitly historical.
 
 Concurrent main `7a408c7b752df6f47b9cf60ddbd89d4001b5e22a` was integrated before
