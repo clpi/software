@@ -1,6 +1,6 @@
 # software-is-composable
 
-Machine-checked incremental release admission for per-symbol behavior profiles. Lean 4.19.0, core only. `./check.sh` refuses `sorry`, `admit`, `axiom`, and `native_decide`, treats warnings as errors, prints axiom dependencies, runs two negative controls, and runs the harness.
+Machine-checked incremental release admission for per-symbol behavior profiles. Lean 4.19.0. `./check.sh` scans every Lean source for `sorry`, `admit`, `axiom`, and `native_decide`, compiles every Lean file with warnings as errors, prints theorem axiom dependencies, runs negative controls, and runs the harness.
 
 ```sh
 ./check.sh
@@ -17,7 +17,10 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 | `SymbolProfile`, `Release` | Per-symbol behaviors and cost bounds |
 | `releaseAdmitted`, `ReleaseAdmitted`, `releaseAdmitted_iff` | Step admission, Bool and Prop |
 | `releaseAdmitted_trans` | Admission composes along a chain |
+| `PointwiseModel.incremental_monotone` | Changed profiles shrink pointwise; the resulting release is below the old one |
 | `InteractionClosed`, `moduleAdmission_compose` | Module composition under the side condition |
+| `InteractionModel.observations_mono` | Local and positive-rule observations are monotone under component-set inclusion |
+| `InteractionModel.inSpec_of_local_and_interaction_safe` | Spec-safety with the explicit premise that every fired rule effect is allowed |
 | `evidence_remaining` | Independent prefix observations leave `2^free` candidates |
 | `symbolVerdict`, `symbolVerdicts` | Executable per-symbol verdict. `symbolVerdict_admitted_iff` proves the admitted case is `symbolAdmitted` |
 
@@ -27,6 +30,7 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 |---|---|---|
 | Finite schedule space | `scheduleSpace_finite` | PROVEN |
 | Admission is the symbol-wise behavior and bound check | `releaseAdmitted_iff`, `symbolVerdict_admitted_iff` | PROVEN |
+| A changed profile shrinking pointwise implies release-level observation inclusion | `PointwiseModel.incremental_monotone` | PROVEN |
 | Qualified behaviors are kept on an admitted step | `qualifiedMono` | PROVEN |
 | That inclusion composes along admitted steps | `qualifiedTrans`, `releaseAdmitted_trans` | PROVEN |
 | Cost upper bounds do not regress, and the bound vector is not strictly Pareto-dominated | `costNoRegression`, `costTrans` | PROVEN |
@@ -41,6 +45,13 @@ The transcript is `CHECK.log`. On Lean 4.19.0 (commit `6caaee842e94`) the record
 | Rechecking that affected set matches a full recheck when profiles outside it are unchanged | `incrementalRecheck_iff` | PROVEN |
 | Rechecking only the edited symbol matches a full recheck | `not_recheck_seed_only` | DISPROVEN |
 | The worked example's regressed symbol is refused | `worse_refused` | PROVEN |
+| Adding fixed positive interaction rules preserves observation inclusion | `InteractionModel.observations_mono` | PROVEN |
+| Individually in-spec components always compose to an in-spec result | `InteractionModel.individually_safe_components_compose_to_leak` | DISPROVEN |
+| Composed observations satisfy a spec when every local and triggered output is allowed | `InteractionModel.inSpec_of_local_and_interaction_safe` | PROVEN under its stated premises |
+
+## Composition-model limits
+
+The pointwise theorem proves inclusion of observations at each symbol; dependency reachability transports observations but does not synthesize new observations from a joint trigger. The legacy model therefore excludes emergent interactions by construction. The smallest extension and its counterexample are machine-checked in `SoftwareIsComposable/InteractionModel.lean`; the remaining assumptions are explicitly labeled in [`MODEL-PREMISES.md`](MODEL-PREMISES.md).
 
 software-is-quantifiable is required at `d88acbdc3ba78fff994067d2c73bcc01622b3f61`. software-optimality is required from git at `ec1eadda0a29d1b254a98feb5ad24911a095c454`; its default branch is `master`. That optimality commit requires quantifiable `f370992611d8c722e4897e67dbb8eaecf3d872ed`; the root requirement above selects `d88acbdc3ba78fff994067d2c73bcc01622b3f61`. `Qualification`, `ExecutableClosure`, `FiniteFrontier`, `FiniteQualification`, and `HypergraphIncremental` are that package's modules. The copy of `FiniteFrontier` previously kept in this repository was a prefix of the upstream file and declared nothing the upstream file does not declare.
 

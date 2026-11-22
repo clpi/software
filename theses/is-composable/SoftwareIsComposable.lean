@@ -1,3 +1,4 @@
+import SoftwareIsComposable.PointwiseMonotonicity
 import SoftwareIsComposable.Profile
 import SoftwareIsComposable.Admission
 import SoftwareIsComposable.Finiteness
@@ -7,4 +8,5 @@ import SoftwareIsComposable.Evidence
 import SoftwareIsComposable.Incremental
 import SoftwareIsComposable.Examples
 import SoftwareIsComposable.Bridge
+import SoftwareIsComposable.InteractionModel
 import SoftwareIsComposable.Axioms

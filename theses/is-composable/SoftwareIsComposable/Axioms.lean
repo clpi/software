@@ -1,4 +1,5 @@
 import SoftwareIsComposable.Finiteness
+import SoftwareIsComposable.PointwiseMonotonicity
 import SoftwareIsComposable.Admission
 import SoftwareIsComposable.Monotonicity
 import SoftwareIsComposable.Composition
@@ -6,6 +7,7 @@ import SoftwareIsComposable.Evidence
 import SoftwareIsComposable.Incremental
 import SoftwareIsComposable.Examples
 import SoftwareIsComposable.Bridge
+import SoftwareIsComposable.InteractionModel
 
 #print axioms SoftwareIsComposable.scheduleSpace_finite
 #print axioms SoftwareIsComposable.releaseAdmitted_iff
@@ -26,6 +28,10 @@ import SoftwareIsComposable.Bridge
 #print axioms SoftwareIsComposable.incrementalRecheck_iff
 #print axioms SoftwareIsComposable.not_recheck_seed_only
 #print axioms SoftwareIsComposable.worse_refused
+#print axioms SoftwareIsComposable.PointwiseModel.incremental_monotone
+#print axioms SoftwareIsComposable.InteractionModel.observations_mono
+#print axioms SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe
+#print axioms SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak
 #print axioms SoftwareIsComposable.oneSymbol
 #print axioms SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease
 #print axioms SoftwareIsComposable.not_context
