@@ -1,5 +1,5 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
-Repository Lean files: 20
+Repository Lean files: 22
 Source SHA256 manifest:
 fe061931308452e8c87b78de878836998a0d4c1e980be512d868de46bb1e253e  examples/InvoiceTrace.lean
 61ff9699ed5bea4a4c8b81eddcfc98237496a49a87e319a644efdaf0266915bd  examples/check.sh
@@ -26,6 +26,8 @@ c4dfbd1e8d1f51d7767c537852f63c71a3b5ddd5d259f6ee422073282edaf70d  incremental/te
 e85b900f25bc3a551ed473d21ea5fc54246b6c2c8fb1deb6bffe2c6eaec82f12  proof/Evaluation.lean
 e343934e1486d6dc080d8d69777b5095b40f0f8f96519b1710c046fa2a28ca79  proof/EvaluationControls.lean
 6f8aac95eabc1560a304ab56db0bedd532f054ea34662ae0a6efb44dcac38b80  proof/Families.lean
+8dea5ba5c9003784a933b2e58e26d4696e38a96925013f98f2322113d8bb362a  proof/HeadedReturn.lean
+bf2be1760d3522987ff1e44afb4db5f762af6e4eff4a65eac71e4ff2bad0bc99  proof/HeadedReturnControls.lean
 f15ed735a8133b455e4d9b28564a1be4e930d4c9288a17691ebf3f4d1c3295cc  proof/Incremental.lean
 50a53feddd830992c11727d11bc56652c61639796b487fc6b33c96e289125a61  proof/IncrementalControls.lean
 6b141cb82c29e86e02a6f3eb5ba319bdcdaed893d6e4886eb396e0136913b94a  proof/Pipeline.lean
@@ -193,6 +195,7 @@ Compiled: proof/EvaluationControls.lean
 'EvaluationControls.conflicting_captures_have_no_global_environment' does not depend on any axioms
 'EvaluationControls.fabricated_captured_value_is_refused' depends on axioms: [propext]
 Compiled: proof/Families.lean
+Compiled: proof/HeadedReturn.lean
 Compiled: proof/IncrementalControls.lean
 Compiled: proof/Provenance.lean
 Compiled: proof/ReturnControls.lean
@@ -343,6 +346,7 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'IncrementalReceipt4.value_75_correct' depends on axioms: [propext]
 'IncrementalReceipt4.value_76_correct' depends on axioms: [propext]
 'IncrementalReceipt4.value_77_correct' depends on axioms: [propext]
+Compiled: proof/HeadedReturnControls.lean
 '_private.Incremental.0.Incremental.decEqScope._proof_10._@.Incremental._hyg.390' does not depend on any axioms
 '_private.Incremental.0.Incremental.decEqScope._proof_11._@.Incremental._hyg.390' does not depend on any axioms
 '_private.Incremental.0.Incremental.decEqScope._proof_3._@.Incremental._hyg.390' does not depend on any axioms
@@ -450,6 +454,29 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'Families.repeated_factor_count' depends on axioms: [propext]
 'Families.selected_length' depends on axioms: [propext, Quot.sound]
 'Families.selected_member' depends on axioms: [propext, Quot.sound]
+'HeadedReturn.head_witnessed' depends on axioms: [propext]
+'HeadedReturn.headed_iff_singleton' depends on axioms: [Quot.sound]
+'HeadedReturn.recordLift_closed' depends on axioms: [propext]
+'HeadedReturn.recordLift_headed' depends on axioms: [propext]
+'HeadedReturn.returned_premises_witnessed' depends on axioms: [propext]
+'HeadedReturn.returns_headed' depends on axioms: [propext]
+'HeadedReturn.returns_headed_iff' depends on axioms: [propext]
+'HeadedReturn.unique_iff_contributed_unique' depends on axioms: [propext]
+'HeadedReturnControls.atmostone_not_lifted' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.atmostone_singletons' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.edgeOnly_not_closed' does not depend on any axioms
+'HeadedReturnControls.fullB_ne_noB' depends on axioms: [propext]
+'HeadedReturnControls.grounded_needed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_closed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_headed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_returns' depends on axioms: [propext]
+'HeadedReturnControls.nodeOnly_not_headed' does not depend on any axioms
+'HeadedReturnControls.return_not_unique' depends on axioms: [propext]
+'HeadedReturnControls.splitlift_closed' does not depend on any axioms
+'HeadedReturnControls.splitlift_functional' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.splitlift_grounded' does not depend on any axioms
+'HeadedReturnControls.splitlift_headed' depends on axioms: [propext]
+'HeadedReturnControls.witnessed_needed' depends on axioms: [propext, Quot.sound]
 'Incremental.cumulative_contract' depends on axioms: [propext]
 'Incremental.cumulative_work' depends on axioms: [propext]
 'Incremental.dependency_rank' depends on axioms: [propext, Quot.sound]
@@ -721,6 +748,13 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'Families.targetComponent.eq_1' does not depend on any axioms
 'Families.targetTuple.eq_1' does not depend on any axioms
 'Families.targetTuple.eq_2' does not depend on any axioms
+'HeadedReturnControls.atmostone_not_lifted._proof_1' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.atmostone_singletons._proof_1' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.fullB.eq_1' does not depend on any axioms
+'HeadedReturnControls.headlift.eq_1' does not depend on any axioms
+'HeadedReturnControls.noB.eq_1' does not depend on any axioms
+'HeadedReturnControls.splitlift.eq_1' does not depend on any axioms
+'HeadedReturnControls.witnessed_needed._proof_1' depends on axioms: [propext, Quot.sound]
 'Incremental.Stage.ofNat_toCtorIdx' does not depend on any axioms
 'Incremental.ValidLog.brecOn' does not depend on any axioms
 'Incremental.instDecidableEqStage._proof_1' does not depend on any axioms
@@ -971,7 +1005,7 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'RangeLedger.BridgeRepair.Wire.bc.sizeOf_spec' does not depend on any axioms
 'RangeLedger.BridgeRepair.Wire.bd.sizeOf_spec' does not depend on any axioms
 'RangeLedger.BridgeRepair.Wire.cd.sizeOf_spec' does not depend on any axioms
-Kernel theorem audit: 628 theorem declarations (including generated declarations)
+Kernel theorem audit: 658 theorem declarations (including generated declarations)
 Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
 Axioms printed: [propext, Quot.sound]
-Gate passed: 20 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
+Gate passed: 22 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
