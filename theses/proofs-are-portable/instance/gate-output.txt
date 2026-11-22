@@ -1,0 +1,28 @@
+PASS: determinism
+  bundle digest: 7edff531331f587dd79029bfe0ece48ff331f3d1852166dd94b30b8ba424121e
+PASS: honest
+  subject: clpi/idol-eyes
+  earlier: d29300b68502af4c303e3a226477f5f6532d445f
+  later:   d7e7b009e735334bb2cbcff25db41320450ab051
+    coverage: improving (18 -> 23)
+    fidelity: improving (21 -> 126)
+    solvability: unmeasured
+    reconversibility: improving (0 -> 1)
+    reweightability: unmeasured
+    speed: unmeasured
+    setup: flat (2 -> 2)
+  blocking dimensions: solvability, reweightability, speed
+  recomputed reading: not certified
+  printed reading:    not certified
+  CONSISTENT
+  bundle digest: 7edff531331f587dd79029bfe0ece48ff331f3d1852166dd94b30b8ba424121e
+  ACCEPT: reading as issued: not certified
+PASS: flip (artifact)
+  REFUSED: artifact digest does not match the manifest
+PASS: flip (certificate)
+  REFUSED: certificate digest does not match the manifest
+PASS: transplant
+  REFUSED: carried artifact is not the certified artifact (digest differs from the anchored artifact digest)
+PASS: forged
+  REFUSED: carried certificate is not the issued certificate (digest differs from the anchored issued digest)
+GATE PASS
