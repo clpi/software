@@ -16,6 +16,22 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - name: Require access to the private pinned prerequisite
+        env:
+          FAMILY_READ_TOKEN: ${{ secrets.FAMILY_READ_TOKEN }}
+        run: |
+          if [ -z "$FAMILY_READ_TOKEN" ]; then
+            echo "::error::Configure FAMILY_READ_TOKEN with read access to clpi/software-is-composable"
+            exit 1
+          fi
+      - name: Check out the private prerequisite at its audited pin
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: clpi/software-is-composable
+          ref: 033c12c01299a9b28983bee410c230641adc7d1e
+          path: .lake/packages/software-is-composable
+          token: ${{ secrets.FAMILY_READ_TOKEN }}
+          persist-credentials: false
       - name: Install the declared Lean toolchain
         uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
         with:

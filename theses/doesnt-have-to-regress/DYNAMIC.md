@@ -290,8 +290,14 @@ Custom proof axioms, admitted proofs and authored escape mechanisms remain
 forbidden. Standard foundational axioms and compiler-generated nonlogical
 runtime declarations are counted separately.
 
-The pinned GitHub Actions workflow invokes this same gate on pushes and pull
-requests with no reused build cache, and retains its logs and source receipt.
+The pinned GitHub Actions workflow is configured to invoke this same gate on
+pushes and pull requests with no reused build cache, and to retain its logs and
+source receipt. The composable prerequisite is private, so hosted execution
+requires a `FAMILY_READ_TOKEN` secret with read access to that repository;
+the workflow explicitly checks out its immutable pin with that credential.
+The public prerequisite is fetched by the gate. Runner availability and this
+credential are operational prerequisites, not Lean theorems or assumed CI
+success. A workflow that never starts its steps is not a passing gate.
 Repository-level branch protection and any external deployment system must
 actually require the check; a workflow file alone cannot impose that policy.
 
