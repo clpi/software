@@ -1,0 +1,25 @@
+name: gate
+on:
+  push:
+    branches: [master]
+  pull_request:
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read access to private sibling repositories
+        env:
+          TOKEN: ${{ secrets.GATE_READ_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "GATE_READ_TOKEN is not set; software-is-composable is private and lake cannot fetch it"
+            exit 1
+          fi
+          git config --global url."https://x-access-token:${TOKEN}@github.com/".insteadOf "https://github.com/"
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Gate
+        run: sh gate/check.sh

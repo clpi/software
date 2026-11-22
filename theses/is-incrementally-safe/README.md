@@ -2,6 +2,8 @@
 
 Lean `leanprover/lean4:v4.19.0`. `lake build` uses `-DwarningAsError=true`.
 
+`gate/check.sh` is the check gate: it builds, compiles every tracked `.lean` file with warnings as errors, walks every declaration for axioms (only `propext`, `Quot.sound`, `Classical.choice` allowed; no declared axioms, no unsafe or opaque declarations) and runs an escape scan. `LIMITS.md` says what the theorems below do not prove; read it with the table.
+
 Pins in `lake-manifest.json`, one revision each:
 
 - `software-is-quantifiable` `f370992611d8c722e4897e67dbb8eaecf3d872ed`
@@ -10,7 +12,7 @@ Pins in `lake-manifest.json`, one revision each:
 
 Composable `dce6564b` and optimality `16a6c690` require the same quantifiable and optimality revisions as the root manifest. `Release` is `SoftwareIsComposable.Release`. `releaseLe` is `SoftwareIsQuantifiable.Interface.releaseLe`. The code cone is `SoftwareIsComposable.InClosure` and `HypergraphIncremental.Affected` (`coneExec_iff_affected`). The ordered-increment cone is `HypergraphIncremental.Affected` over `OrderedIncrement.depGraph`. The C6 profile is `SoftwareIsQuantifiable.Pareto.profileOf` of `outputPoint`, and `outputPoint_eq_iff` shows `outputPoint` keeps the output set. `audit/DependencyModules.lean` proves the removed local cones equivalent to these.
 
-`audit/Counterexamples.lean` is Chris's file, sha256 `3a70977a33e3d28f2cf617214e83363e4cb7298df19418180b226b6384553927`, red commit `677941a67a14066c5319923278ab02803d3da11b`. It is not a default target.
+`audit/Counterexamples.lean` is Chris's file, sha256 `3a70977a33e3d28f2cf617214e83363e4cb7298df19418180b226b6384553927`, red commit `677941a67a14066c5319923278ab02803d3da11b`. It is not a default target. `gate/check.sh` requires it to stay red and unchanged (`gate/expected-red.txt`).
 
 `SpecAuthority` is the spec writer's trust: executable allow and label maps, plus the proofs that those maps agree with the propositions and that the trace predicate is prefix-closed. The checker does not derive that trust.
 

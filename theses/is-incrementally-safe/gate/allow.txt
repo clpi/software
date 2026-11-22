@@ -1,0 +1,3 @@
+# file | token | reason. Each entry must match at least once or the scan fails.
+Family/Examples/Protocol.lean | set_option | linter.unnecessarySimpa false on one theorem: `cases s <;> simpa ... using h` needs `h` in some cases only. Turns off a style linter, not a kernel check.
+gate/Axioms.lean | run_cmd | the gate's own environment walk; runs at elaboration, proves nothing.
