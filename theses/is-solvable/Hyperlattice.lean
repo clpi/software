@@ -1,18 +1,19 @@
 import Std
 import Qualification
+import HypergraphIncremental
+import ClosureStrength
 
 namespace Hyperlattice
-universe u v
-variable {A : Type u}
+universe v
+variable {A : Type}
 
-/-- The sole authority: scoped support atoms and certified conjunctive hyperedges. -/
-structure Graph (A : Type u) where
-  roots : A → Prop
-  edges : List A → A → Prop
+/-- The sole authority: scoped support atoms and certified conjunctive hyperedges.
+    This is software-optimality's `HypergraphIncremental.Hypergraph`, not a copy of it. -/
+abbrev Graph (A : Type) := HypergraphIncremental.Hypergraph A
 
 def join (g h : Graph A) : Graph A :=
   ⟨fun a => g.roots a ∨ h.roots a, fun ps a => g.edges ps a ∨ h.edges ps a⟩
-def Knowledge (g : Graph A) : A → Prop := Qualification.Derives g.roots g.edges
+def Knowledge (g : Graph A) : A → Prop := HypergraphIncremental.derives g
 def Extends (g h : Graph A) : Prop :=
   (∀ a, g.roots a → h.roots a) ∧ (∀ ps a, g.edges ps a → h.edges ps a)
 def Same (g h : Graph A) : Prop :=
@@ -39,16 +40,8 @@ theorem duplicate (g : Graph A) : Same (join g g) g :=
 def saturate (g : Graph A) : Graph A := ⟨Knowledge g, g.edges⟩
 /-- Saturated caches are views. Joining them requires reclosure for cross-source rules. -/
 theorem compounding (g h : Graph A) (a : A) :
-    Knowledge (join g h) a ↔ Knowledge (join (saturate g) (saturate h)) a := by
-  constructor
-  · apply Qualification.monotone _ (fun _ _ h => h) a
-    intro x hx
-    exact hx.elim (fun h => Or.inl (.root h)) (fun h => Or.inr (.root h))
-  · apply Qualification.least _ (Qualification.closed _ _) a
-    intro x hx
-    exact hx.elim
-      (knowledge_monotone (join_extends g h) x)
-      (knowledge_monotone ⟨fun _ h => Or.inr h, fun _ _ h => Or.inr h⟩ x)
+    Knowledge (join g h) a ↔ Knowledge (join (saturate g) (saturate h)) a :=
+  ClosureStrength.compounding_sources g.roots h.roots g.edges h.edges a
 
 /-- A newly appended batch already justified by the old graph adds no knowledge. -/
 theorem redundant {g w : Graph A}
@@ -148,7 +141,7 @@ def live (g : Graph A) (dead : A → Prop) (deadEdge : List A → A → Prop) : 
   ⟨fun a => g.roots a ∧ ¬ dead a, fun ps a => g.edges ps a ∧ ¬ deadEdge ps a⟩
 theorem live_supported (g : Graph A) (dead : A → Prop) (de : List A → A → Prop) :
     ∀ a, Knowledge (live g dead de) a → Knowledge g a :=
-  knowledge_monotone ⟨fun _ h => h.1, fun _ _ h => h.1⟩
+  Qualification.withdrawal_no_new_support g.roots dead g.edges de
 
 /-- Qualification exposes both polarities; conflict is not silently resolved. -/
 def color (positive negative : Bool) : Nat :=

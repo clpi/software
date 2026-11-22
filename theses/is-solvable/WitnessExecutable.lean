@@ -29,21 +29,32 @@ theorem classifier_exact (U : List A) (b : Batch A)
   simp only [classify, List.contains_iff]
   exact ExecutableClosure.close_exact U b.roots b.edges roots heads a
 
+theorem classify_iff (U : List A) (b : Batch A) (a : A) :
+    classify U b a = true ↔ a ∈ ExecutableClosure.close U b.roots b.edges := by
+  simp only [classify, List.contains_iff]
+
+/-- Appending can only grow the executable closure. No domain premise is needed. -/
+theorem classify_append_mono (U : List A) (b w : Batch A) :
+    ∀ a, classify U b a = true → classify U (append b w) a = true := fun a h =>
+  (classify_iff U _ a).mpr (ClosureStrength.close_monotone U _ _ _ _
+    (fun _ h => List.mem_append_left _ h) (fun _ _ h => List.mem_append_left _ h) a
+    ((classify_iff U b a).mp h))
+
+/-- Every resolution coordinate is nondecreasing under append, with no premises.
+    This dominates `append_resolution`, which is re-derived from it. -/
+theorem append_resolution_free {Axis : Type} (U : List A) (b w : Batch A)
+    (probes : Axis → List A) : ∀ i,
+    resolution probes (classify U b) i ≤ resolution probes (classify U (append b w)) i :=
+  fun _ => count_monotone _ _ _ (fun x _ => classify_append_mono U b w x)
+
 /-- Executable quantities link to graph semantics, including newly admitted rules. -/
 theorem append_resolution {Axis : Type} (U : List A) (b w : Batch A)
-    (roots : ∀ a, a ∈ (append b w).roots → a ∈ U)
-    (heads : ∀ ps a, (ps,a) ∈ (append b w).edges → a ∈ U)
+    (_roots : ∀ a, a ∈ (append b w).roots → a ∈ U)
+    (_heads : ∀ ps a, (ps,a) ∈ (append b w).edges → a ∈ U)
     (probes : Axis → List A) : ∀ i,
     resolution probes (classify U b) i ≤
-      resolution probes (classify U (append b w)) i := by
-  have rb : ∀ a, a ∈ b.roots → a ∈ U :=
-    fun a h => roots a (List.mem_append_left _ h)
-  have hb : ∀ ps a, (ps,a) ∈ b.edges → a ∈ U :=
-    fun ps a h => heads ps a (List.mem_append_left _ h)
-  exact expansion_vector
-    ⟨fun _ h => List.mem_append_left _ h, fun _ _ h => List.mem_append_left _ h⟩
-    _ _ (classifier_exact U b rb hb)
-    (classifier_exact U (append b w) roots heads) probes
+      resolution probes (classify U (append b w)) i :=
+  append_resolution_free U b w probes
 
 /-- A configuration catalogue is all subsets of resolved atoms; qualification may filter it.
     Count is of list entries; no-duplicate input makes those entries distinct subsets. -/
@@ -83,15 +94,14 @@ theorem classified_count (U : List A) (b : Batch A) :
     simp [List.contains_iff, hx]
 
 /-- Exact combinatorial multiplier: duplicates have delta 0 and factor 1.
-    This counts catalogue entries, before the feasibility/qualification filter. -/
-theorem catalogue_compounding (U : List A) (b w : Batch A)
-    (roots : ∀ a, a ∈ (append b w).roots → a ∈ U)
-    (heads : ∀ ps a, (ps,a) ∈ (append b w).edges → a ∈ U) :
+    This counts catalogue entries, before the feasibility/qualification filter.
+    No premises: it dominates `catalogue_compounding`, which is re-derived from it. -/
+theorem catalogue_compounding_free (U : List A) (b w : Batch A) :
     (configurations U (append b w)).length = (configurations U b).length *
       2 ^ ((ExecutableClosure.close U (append b w).roots (append b w).edges).length -
         (ExecutableClosure.close U b.roots b.edges).length) := by
-  have hm := append_resolution U b w roots heads (fun _ : Unit => U) ()
-  change Hyperlattice.count (classify U b) U ≤ Hyperlattice.count (classify U (append b w)) U at hm
+  have hm : Hyperlattice.count (classify U b) U ≤ Hyperlattice.count (classify U (append b w)) U :=
+    count_monotone _ _ _ (fun x _ => classify_append_mono U b w x)
   rw [classified_count, classified_count] at hm
   rw [configuration_count, configuration_count]
   have he : (ExecutableClosure.close U b.roots b.edges).length +
@@ -99,6 +109,14 @@ theorem catalogue_compounding (U : List A) (b w : Batch A)
        (ExecutableClosure.close U b.roots b.edges).length) =
        (ExecutableClosure.close U (append b w).roots (append b w).edges).length := by omega
   exact (Nat.pow_add 2 _ _).symm.trans (congrArg (fun n => 2 ^ n) he) |>.symm
+
+theorem catalogue_compounding (U : List A) (b w : Batch A)
+    (_roots : ∀ a, a ∈ (append b w).roots → a ∈ U)
+    (_heads : ∀ ps a, (ps,a) ∈ (append b w).edges → a ∈ U) :
+    (configurations U (append b w)).length = (configurations U b).length *
+      2 ^ ((ExecutableClosure.close U (append b w).roots (append b w).edges).length -
+        (ExecutableClosure.close U b.roots b.edges).length) :=
+  catalogue_compounding_free U b w
 
 /-- An arbitrary total Boolean gate can be exhaustively and exactly selected. -/
 def qualified (U : List A) (b : Batch A) (gate : List A → Bool) :=
@@ -128,6 +146,9 @@ theorem projection_supported (b : Batch A) (dead : A → Bool)
   exact ⟨fun _ h => (List.mem_filter.mp h).1, fun _ _ h => (List.mem_filter.mp h).1⟩
 
 #print axioms append_resolution
+#print axioms append_resolution_free
+#print axioms classify_append_mono
+#print axioms catalogue_compounding_free
 #print axioms classifier_exact
 #print axioms configuration_count
 #print axioms catalogue_compounding

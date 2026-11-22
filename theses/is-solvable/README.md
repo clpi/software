@@ -4,6 +4,19 @@ A Lean 4.19 reference formalization of **witness-compounding search and resoluti
 
 The authoritative object is a scoped behavioral hypergraph. Its admitted witness atoms are roots; its finite-premise transfer/composition certificates are hyperedges. Saturation, qualification colors, incidence/interaction matrices, and finite candidate catalogues are derived views. A Merkle commitment can identify this object; hashing is not itself a proof of semantic equivalence.
 
+## What this repository claims, and what it imports
+
+The closure core is imported from `clpi/software-optimality` at the pin in `lakefile.lean`: `Qualification` (least-closure semantics, soundness, withdrawal), `ExecutableClosure` (the exhaustive evaluator and `close_exact`), `HypergraphIncremental` (the authority hypergraph) and `ClosureStrength` (per-source compounding and premise-free executable monotonicity). Computability and exactness of the closure is `close_exact`, an imported result, not a claim of this repository. `Graph` here is that repository's `Hypergraph`, by definition.
+
+The claim this repository adds is **append accounting**, in `Pareto.lean`:
+
+- `resolution_strict_iff_close` (no premises): on append, a probe-count coordinate rises exactly when some probe on that axis enters the executable closure.
+- `resolution_append_iff`: with roots and rule heads in the universe, the same in terms of derivability. `resolution_exact` adds that the coordinate never decreases (`append_resolution_free`, no premises).
+- `catalogue_compounding_free` (no premises): catalogue length after append is length before times 2^Δk.
+- `redundant_iff`: an append adds no knowledge exactly when its roots are already derivable and its rules are closed over the old knowledge.
+
+Each headline is Pareto optimal within its variant lattice: its conclusion is an equivalence or an exact equation, and each premise it keeps is shown necessary by a kernel-checked counterexample (`roots_premise_needed`, `heads_premise_needed`, `redundant_needs_roots`, `redundant_needs_edges`, `expansion_needs_extension`, `expansion_needs_old_exact`, `expansion_needs_new_exact`, `inexact_classifier_can_drop`). Older statements that carried premises they did not need (`append_resolution`, `catalogue_compounding`) are kept and re-derived from the premise-free forms. Scope: premise subsets and conclusion forms of each stated theorem, not every possible theorem.
+
 ## Checked result
 
 For graphs `G` and newly admitted batch `W`, write `K(G)` for the least finite-derivation closure. The implementation proves:
@@ -37,13 +50,13 @@ Positive and negative support are independent. The four color codes are unknown=
 
 ## Files and proof evidence
 
-- `Qualification.lean`: existing closure/soundness core reused from `clpi/software-optimality`.
-- `ExecutableClosure.lean`: existing exhaustive closure evaluator and `close_exact` bridge, reused from that project.
+- `Qualification`, `ExecutableClosure`, `HypergraphIncremental`, `ClosureStrength`: imported from `clpi/software-optimality` (no local copies).
 - `Hyperlattice.lean`: authority joins, semantic compounding, numeric resolution vector and strict/zero gain laws.
 - `WitnessExecutable.lean`: executable batches/classifiers, append-to-vector bridge, catalogue/qualification and matrix views, live filtering.
+- `Pareto.lean`: the headline accounting theorems and the controls showing each kept premise is necessary.
 - `WitnessTests.lean`: kernel-checked concrete controls for synergy, duplicates, redundancy, rule-only novelty, negative evidence, cycles, withdrawals, surviving alternate origins, malformed domains, and empty qualification.
 
-Run `LEAN=/path/to/lean ./check.sh`. No Mathlib or external Lean dependency is required. `lean-toolchain` pins 4.19.0. Checks fail on warnings and proof escapes. `#print axioms` exposes ordinary Lean foundational dependencies (`propext`, `Quot.sound`, and classical choice in the reference completeness proof); there are no custom axioms or admitted theorems.
+Run `LAKE=/path/to/lake ./check.sh` (Lean 4.19.0's `lake`; it fetches software-optimality at the pinned commit). No Mathlib is required. `lean-toolchain` pins 4.19.0. Checks fail on warnings and proof escapes. `#print axioms` exposes ordinary Lean foundational dependencies (`propext`, `Quot.sound`, and classical choice in the reference completeness proof); there are no custom axioms or admitted theorems.
 
 ## Engineering consequences
 
