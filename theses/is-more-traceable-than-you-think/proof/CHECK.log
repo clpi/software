@@ -1,5 +1,5 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
-Repository Lean files: 20
+Repository Lean files: 22
 Source SHA256 manifest:
 fe061931308452e8c87b78de878836998a0d4c1e980be512d868de46bb1e253e  examples/InvoiceTrace.lean
 61ff9699ed5bea4a4c8b81eddcfc98237496a49a87e319a644efdaf0266915bd  examples/check.sh
@@ -28,6 +28,8 @@ e343934e1486d6dc080d8d69777b5095b40f0f8f96519b1710c046fa2a28ca79  proof/Evaluati
 6f8aac95eabc1560a304ab56db0bedd532f054ea34662ae0a6efb44dcac38b80  proof/Families.lean
 f15ed735a8133b455e4d9b28564a1be4e930d4c9288a17691ebf3f4d1c3295cc  proof/Incremental.lean
 50a53feddd830992c11727d11bc56652c61639796b487fc6b33c96e289125a61  proof/IncrementalControls.lean
+d7fd19d4d6a45f66d1f660d14206281b11403499a2a80bba2fc7b6ff91a72acc  proof/Mediation.lean
+88b0f0556619968e340521ffc70f61fc58040e6a545edf5f9c0ee5bf8f0a8c4d  proof/MediationControls.lean
 6b141cb82c29e86e02a6f3eb5ba319bdcdaed893d6e4886eb396e0136913b94a  proof/Pipeline.lean
 d87214c241bd1294393e04a5716c3752a05289b88af91ce2fe7a8e7587f355fc  proof/Projection.lean
 3a07e11e4d02a35115c77451d811f2c2cc3201cb7bdabfd1d6edb54c0a83e291  proof/Provenance.lean
@@ -56,6 +58,8 @@ Compiled: examples/range-ledger/BridgeRepair.lean
 'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
 'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
 Compiled: proof/Incremental.lean
+Compiled: proof/Mediation.lean
+Compiled: proof/MediationControls.lean
 Compiled: proof/Pipeline.lean
 'Pipeline.compile_correct' does not depend on any axioms
 'Pipeline.gather_resolve' depends on axioms: [propext]
@@ -355,6 +359,14 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 '_private.Incremental.0.Incremental.decEqTaskKey._proof_12._@.Incremental._hyg.1106' does not depend on any axioms
 '_private.Incremental.0.Incremental.decEqTaskKey._proof_13._@.Incremental._hyg.1106' does not depend on any axioms
 '_private.Incremental.0.Incremental.decEqTaskKey._proof_14._@.Incremental._hyg.1106' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqRule._proof_6._@.Mediation._hyg.544' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqRule._proof_7._@.Mediation._hyg.544' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqRule._proof_8._@.Mediation._hyg.544' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqSensor._proof_1._@.Mediation._hyg.41' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqSensor._proof_2._@.Mediation._hyg.41' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqSensor._proof_3._@.Mediation._hyg.41' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqSensor._proof_4._@.Mediation._hyg.41' does not depend on any axioms
+'_private.Mediation.0.Mediation.decEqSensor._proof_5._@.Mediation._hyg.41' does not depend on any axioms
 '_private.Pipeline.0.Pipeline.decEqInstruction._proof_19._@.Pipeline._hyg.791' does not depend on any axioms
 '_private.Pipeline.0.Pipeline.decEqInstruction._proof_20._@.Pipeline._hyg.791' does not depend on any axioms
 '_private.Pipeline.0.Pipeline.decEqInstruction._proof_21._@.Pipeline._hyg.791' does not depend on any axioms
@@ -598,6 +610,28 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
 'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
 'InvoiceTrace.route_is_needed' does not depend on any axioms
+'Mediation.closure_observed' does not depend on any axioms
+'Mediation.external_lift' does not depend on any axioms
+'Mediation.observed_append' does not depend on any axioms
+'Mediation.observed_of_path' does not depend on any axioms
+'Mediation.path_append' does not depend on any axioms
+'Mediation.path_trans' does not depend on any axioms
+'Mediation.reverse_along_path' does not depend on any axioms
+'Mediation.reverse_complete' does not depend on any axioms
+'Mediation.reverse_exact' does not depend on any axioms
+'Mediation.reverse_sound' does not depend on any axioms
+'Mediation.target_coverage' does not depend on any axioms
+'Mediation.transport_path' does not depend on any axioms
+'MediationControls.absent_link' depends on axioms: [propext]
+'MediationControls.absent_sensor_control' depends on axioms: [propext]
+'MediationControls.broken_control' depends on axioms: [propext]
+'MediationControls.covered' depends on axioms: [propext]
+'MediationControls.empty_arcs_no_path' does not depend on any axioms
+'MediationControls.misleading_control' depends on axioms: [propext]
+'MediationControls.not_ready_no_coverage' depends on axioms: [propext]
+'MediationControls.nullary_not_automatic' depends on axioms: [propext]
+'MediationControls.target_membership_does_not_follow_from_closure' does not depend on any axioms
+'MediationControls.two_step' depends on axioms: [propext]
 'Pipeline.certify_extension' depends on axioms: [propext]
 'Pipeline.checkRow_exact' depends on axioms: [propext, Quot.sound]
 'Pipeline.check_append' depends on axioms: [propext]
@@ -750,6 +784,16 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'InvoiceTrace.preserves_verdict._proof_5' depends on axioms: [propext, Quot.sound]
 'InvoiceTrace.preserves_verdict._proof_6' depends on axioms: [propext, Quot.sound]
 'InvoiceTrace.supported.eq_1' does not depend on any axioms
+'Mediation.Closure.brecOn' does not depend on any axioms
+'Mediation.Edge.eq_1' does not depend on any axioms
+'MediationControls.absent.eq_1' depends on axioms: [propext]
+'MediationControls.broken.eq_1' depends on axioms: [propext]
+'MediationControls.first.eq_1' depends on axioms: [propext]
+'MediationControls.full.eq_1' depends on axioms: [propext]
+'MediationControls.lamp._proof_1' depends on axioms: [propext]
+'MediationControls.lamp.eq_1' depends on axioms: [propext]
+'MediationControls.misleading.eq_1' depends on axioms: [propext]
+'MediationControls.second.eq_1' depends on axioms: [propext]
 'Pipeline.arity.eq_1' does not depend on any axioms
 'Pipeline.arity.eq_2' does not depend on any axioms
 'Pipeline.arity.eq_3' does not depend on any axioms
@@ -871,6 +915,16 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'InvoiceTrace.Event.tax.sizeOf_spec' does not depend on any axioms
 'InvoiceTrace.Route.overridePath.sizeOf_spec' does not depend on any axioms
 'InvoiceTrace.Route.pricingPath.sizeOf_spec' does not depend on any axioms
+'Mediation.Graph.mk.inj' does not depend on any axioms
+'Mediation.Graph.mk.injEq' depends on axioms: [propext]
+'Mediation.Graph.mk.sizeOf_spec' does not depend on any axioms
+'Mediation.Rule.mk.inj' does not depend on any axioms
+'Mediation.Rule.mk.injEq' depends on axioms: [propext]
+'Mediation.Rule.mk.sizeOf_spec' does not depend on any axioms
+'Mediation.Sensor.mk.inj' does not depend on any axioms
+'Mediation.Sensor.mk.injEq' depends on axioms: [propext]
+'Mediation.Sensor.mk.sizeOf_spec' does not depend on any axioms
+'Mediation.Sensor.ready.eq_1' does not depend on any axioms
 'Pipeline.Instruction.add.sizeOf_spec' does not depend on any axioms
 'Pipeline.Instruction.input.inj' does not depend on any axioms
 'Pipeline.Instruction.input.injEq' depends on axioms: [propext]
@@ -971,7 +1025,7 @@ Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
 'RangeLedger.BridgeRepair.Wire.bc.sizeOf_spec' does not depend on any axioms
 'RangeLedger.BridgeRepair.Wire.bd.sizeOf_spec' does not depend on any axioms
 'RangeLedger.BridgeRepair.Wire.cd.sizeOf_spec' does not depend on any axioms
-Kernel theorem audit: 628 theorem declarations (including generated declarations)
+Kernel theorem audit: 678 theorem declarations (including generated declarations)
 Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
 Axioms printed: [propext, Quot.sound]
-Gate passed: 20 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
+Gate passed: 22 Lean files, warnings as errors, fresh imports, no prohibited proof tokens
