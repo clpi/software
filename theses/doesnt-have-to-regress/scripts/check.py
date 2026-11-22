@@ -133,11 +133,12 @@ def run(args, log, env=None, fail=False):
     return done.stdout
 
 
-def audit_source(modules):
+def audit_source(modules, allow_empty=False):
     imports = '\n'.join('import ' + n for n in modules)
     own = ', '.join('`' + n for n in modules)
     allowed = ', '.join('`' + n for n in ALLOWED)
     report = '  for line in SoftwareDoesntRegress.implicationLines env do\n    IO.println line\n' if 'SoftwareDoesntRegress.Implications' in modules else ''
+    nonempty = '' if allow_empty else '  if count == 0 then throwError "empty proof audit"\n'
     return imports + '\nimport Lean\n' + f'''
 open Lean Elab Command
 elab "audit_all_repository_proofs" : command => do
@@ -176,7 +177,7 @@ elab "audit_all_repository_proofs" : command => do
             throwError "prohibited transitive axiom {{ax}} in {{name}}"
         count := count + 1
         IO.println s!"AUDITED {{name}} AXIOMS {{axioms}}"
-  if count == 0 then throwError "empty proof audit"
+{nonempty.rstrip()}
   IO.println s!"AUDIT_TOTAL {{count}}"
   IO.println s!"GENERATED_UNSAFE_RUNTIME_TOTAL {{runtimeCount}}"
 {report}audit_all_repository_proofs
@@ -191,6 +192,8 @@ def main():
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     for path in files: scan(path)
     inputs = ['check.sh', 'scripts/check.py', 'lakefile.toml', 'lake-manifest.json', 'lean-toolchain', 'examples/stream.json', 'examples/stream.expected', 'examples/check.sh', 'examples/replay.py', 'examples/range-ledger/check.sh', 'examples/range-ledger/replay.py', 'examples/range-ledger/mutation.patch', 'controls/QuotedEscape.lean.fail', 'controls/GeneratedEscape.lean.fail', 'controls/SpoofedRuntime.lean.fail']
+    dynamic_inputs = sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'examples').glob('dynamic-*') if p.is_file())
+    inputs += ['examples/check_dynamic.py', '.github/workflows/check.yml'] + dynamic_inputs
     input_hashes = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in inputs}
     if OUT.exists(): shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
@@ -243,10 +246,34 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         run([lean, '-DwarningAsError=true', '-o', str(target), str(source)], f'compile-{index:03}.log', env)
         print('COMPILED ' + str(source.relative_to(ROOT)), flush=True)
-    audit = OUT / 'AxiomAudit.lean'
-    audit.write_text(audit_source([module(p) for p in files]))
-    audited = run([lean, '-DwarningAsError=true', str(audit)], 'axioms.log', env)
-    total = int(re.search(r'AUDIT_TOTAL (\d+)', audited).group(1))
+    # Different executables each declare a global `main`; Lean cannot import
+    # both in one environment. Partition only their audit imports, never the
+    # source inventory. Each repository module is audited exactly once for
+    # its own declarations; transitive proof axioms are still checked.
+    modules = [module(p) for p in files]
+    entries = [entry.get('root', entry['name']) for entry in lake_config.get('lean_exe', [])]
+    if len(entries) != len(set(entries)) or any(entry not in modules for entry in entries):
+        raise RuntimeError('executable roots must be distinct inventoried Lean modules')
+    groups = [('libraries', [name for name in modules if name not in entries])]
+    groups += [(entry, [entry]) for entry in sorted(entries)]
+    flattened = [name for _, names in groups for name in names]
+    if sorted(flattened) != sorted(modules) or len(flattened) != len(set(flattened)):
+        raise RuntimeError('proof-audit partition omitted or duplicated a source module')
+    checker_hashes, audit_groups, audit_logs = {}, [], []
+    total, runtime_total = 0, 0
+    for index, (label, names) in enumerate(groups):
+        audit = OUT / f'AxiomAudit{index}.lean'
+        audit.write_text(audit_source(names, allow_empty=label != 'libraries'))
+        checker_hashes[audit.name] = hashlib.sha256(audit.read_bytes()).hexdigest()
+        audited = run([lean, '-DwarningAsError=true', str(audit)], f'axioms-{index}.log', env)
+        count = int(re.search(r'^AUDIT_TOTAL (\d+)', audited, re.M).group(1))
+        runtime_count = int(re.search(r'^GENERATED_UNSAFE_RUNTIME_TOTAL (\d+)', audited, re.M).group(1))
+        total += count
+        runtime_total += runtime_count
+        audit_groups.append({'label': label, 'modules': names, 'proof_declarations': count,
+                             'generated_unsafe_runtime_declarations': runtime_count})
+        audit_logs.append(f'GROUP {label}\n' + audited)
+    (OUT / 'axioms.log').write_text('\n'.join(audit_logs))
     with tempfile.TemporaryDirectory(prefix='lean-gate-controls-') as temporary:
         temporary = Path(temporary)
         fixture = temporary / 'Admitted.lean'
@@ -343,6 +370,9 @@ def main():
     actual = run([str(ROOT / '.lake/build/bin/gate'), 'examples/stream.json'], 'gate-stream.log', env)
     if actual != (ROOT / 'examples/stream.expected').read_text():
         raise RuntimeError('gate executable output differs from expected stream')
+    dynamic_output = run([sys.executable, 'examples/check_dynamic.py'], 'dynamic-controls.log', env)
+    if 'DYNAMIC_CONTROLS_PASS' not in dynamic_output:
+        raise RuntimeError('dynamic command-stream controls did not report completion')
     with tempfile.TemporaryDirectory(prefix='regress-parser-controls-') as temporary:
         temporary = Path(temporary)
         refused_inputs = {
@@ -388,15 +418,19 @@ def main():
         raise RuntimeError('Lean sources changed while checking')
     if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in input_hashes.items()):
         raise RuntimeError('gate configuration changed while checking')
+    if sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'examples').glob('dynamic-*') if p.is_file()) != dynamic_inputs:
+        raise RuntimeError('dynamic scenario inventory changed while checking')
     receipt = {
         'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() if (ROOT / '.git').exists() else None,
         'dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], text=True)) if (ROOT / '.git').exists() else None,
         'source_proof_escapes': 0,
-        'generated_checker_sha256': hashlib.sha256(audit.read_bytes()).hexdigest(),
-        'generated_unsafe_runtime_declarations': int(re.search(r'GENERATED_UNSAFE_RUNTIME_TOTAL (\d+)', audited).group(1)),
+        'generated_checker_sha256': hashlib.sha256(json.dumps(checker_hashes, sort_keys=True).encode()).hexdigest(),
+        'generated_checkers': checker_hashes, 'audit_groups': audit_groups,
+        'generated_unsafe_runtime_declarations': runtime_total,
         'lean': version, 'files_checked': len(files), 'proof_declarations_audited': total,
         'allowed_standard_axioms': ALLOWED, 'custom_proof_axioms': 0, 'warnings_as_errors': True,
         'dependencies': dependencies, 'sources': hashes, 'gate_inputs': input_hashes,
+        'dynamic_controls': dynamic_output.strip().splitlines(),
         'negative_controls': ['admitted proof', 'unlisted custom axiom', 'nested metadata-name source', 'native decision', 'kernel bypass', 'warning bypass', 'source directory symlink', 'compiled custom axiom', 'imported custom axiom', 'warning', 'partial definition', 'unsafe definition', 'extern', 'implemented_by', 'sorry', 'range-ledger mutation', 'false acceptance', 'malformed parser input', 'truncated parser input', 'trailing parser input', 'parser fuel exhaustion', 'quote-literal unsafe concealment', 'raw-string unsafe concealment', 'command-synthesized unsafe declaration', 'spoofed compiler runtime name', 'duplicate object keys', 'trailing commas', 'leading-zero numbers', 'raw string controls', 'unsupported JSON escapes'],
     }
     (OUT / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

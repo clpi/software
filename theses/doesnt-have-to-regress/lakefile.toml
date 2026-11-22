@@ -1,5 +1,5 @@
 name = "«software-doesnt-have-to-regress»"
-defaultTargets = ["SoftwareDoesntRegress", "gate", "Audit"]
+defaultTargets = ["SoftwareDoesntRegress", "gate", "Audit", "Dynamic", "dynamic"]
 
 [leanOptions]
 warningAsError = true
@@ -24,3 +24,15 @@ roots = ["Audit.Contract", "Audit.Readings"]
 [[lean_exe]]
 name = "gate"
 root = "GateExe"
+
+[[lean_lib]]
+name = "GateParser"
+roots = ["GateExe.Parser"]
+
+[[lean_lib]]
+name = "Dynamic"
+roots = ["Dynamic.Incremental", "Dynamic.Greedy", "Dynamic.Evolution", "Dynamic.Engine", "Dynamic.History", "Dynamic.HistoryControls", "Dynamic.GreedyControls", "Dynamic.IndependentControls"]
+
+[[lean_exe]]
+name = "dynamic"
+root = "DynamicCli"
