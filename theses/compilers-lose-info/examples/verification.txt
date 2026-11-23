@@ -1,0 +1,8 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+[(100, false, false), (100, false, true), (100, true, false), (100, true, true)]
+'FoldedQuote.loss' does not depend on any axioms
+'FoldedQuote.one_bit_impossible' depends on axioms: [propext]
+'FoldedQuote.two_bits_suffice' does not depend on any axioms
+'FoldedQuote.four_origins' does not depend on any axioms
+
+Rejected control: discard the independently chosen shipping origin (Lean exit 1).

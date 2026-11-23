@@ -1,0 +1,11 @@
+--- LinearProvenance.lean
++++ LinearProvenance.lean
+@@ -9,7 +9,7 @@
+ def coeff (i : Nat) : Expr → Int
+   | .read j => if i = j then 1 else 0
+   | .add a b => coeff i a + coeff i b
+-  | .neg a => -(coeff i a)
++  | .neg a => coeff i a
+ def bump (p : Nat → Int) (i : Nat) (v : Int) := fun j => p j + (if i = j then v else 0)
+ theorem derivative (p : Nat → Int) (i : Nat) (v : Int) (e : Expr) :
+     eval (bump p i v) e = eval p e + coeff i e * v := by

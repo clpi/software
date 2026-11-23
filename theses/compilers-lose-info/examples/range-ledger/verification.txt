@@ -1,0 +1,6 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'RangeLedger.LinearProvenance.derivative' depends on axioms: [propext, Quot.sound]
+'RangeLedger.LinearProvenance.normalize' depends on axioms: [propext, Quot.sound]
+'RangeLedger.LinearProvenance.necessary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RangeLedger.LinearProvenance.coefficients' does not depend on any axioms
+Rejected control: lose the sign of a derivative.

@@ -1,0 +1,14 @@
+'CompilersLoseInfo.no_recovery_of_loss' does not depend on any axioms
+'CompilersLoseInfo.forget_not_injective_on_quotient' depends on axioms: [propext, Quot.sound]
+'CompilersLoseInfo.forget_no_recovery' depends on axioms: [propext, Quot.sound]
+'CompilersLoseInfo.carry_recovers' does not depend on any axioms
+'CompilersLoseInfo.carry_recoverable' does not depend on any axioms
+'CompilersLoseInfo.cone_exact' does not depend on any axioms
+'CompilersLoseInfo.reaches_merge' does not depend on any axioms
+'CompilersLoseInfo.topology_join_commutes' depends on axioms: [propext, Quot.sound]
+'CompilersLoseInfo.carry_eq_iff_qual_eq' does not depend on any axioms
+'CompilersLoseInfo.merge_least' does not depend on any axioms
+'CompilersLoseInfo.no_recovery_of_factor' does not depend on any axioms
+'CompilersLoseInfo.foreign_no_recovery' depends on axioms: [propext, Quot.sound]
+'CompilersLoseInfo.certification_from_artifact' does not depend on any axioms
+'CompilersLoseInfo.cone_from_artifact' does not depend on any axioms
