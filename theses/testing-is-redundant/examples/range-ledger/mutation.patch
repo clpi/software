@@ -1,0 +1,11 @@
+--- IntervalBasis.lean
++++ IntervalBasis.lean
+@@ -4,7 +4,7 @@
+ abbrev Answer := Nat → Nat → Int
+ -- Domain is nonempty half-open intervals inside [0,n].
+ def additive (f : Answer) := ∀ a b c, a < b → b < c → f a c = f a b + f b c
+-def singletons (n : Nat) (f g : Answer) := ∀ i < n, f i (i+1) = g i (i+1)
++def singletons (n : Nat) (f g : Answer) := ∀ i, i+1 < n → f i (i+1) = g i (i+1)
+ 
+ theorem all_queries {f g : Answer} (hf : additive f) (hg : additive g)
+     (basis : singletons n f g) (a d : Nat) (bound : a + d + 1 ≤ n) :

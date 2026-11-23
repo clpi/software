@@ -1,0 +1,8 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(256, [127, 128])
+'QuotaBoundary.two_determine_all' depends on axioms: [propext, Quot.sound]
+'QuotaBoundary.suite_preserves_acceptance' depends on axioms: [propext, Quot.sound]
+'QuotaBoundary.required_boundaries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuotaBoundary.shape_matters' does not depend on any axioms
+
+Rejected control: skip the first rejected load (Lean exit 1).
