@@ -1,0 +1,11 @@
+--- OverlapPlan.lean
++++ OverlapPlan.lean
+@@ -8,7 +8,7 @@
+   | left => p 3072 - p 0
+   | overlap => p 3072 - p 1024
+   | right => p 4096 - p 1024
+-def solve (x y z : Int) := x-y+z
++def solve (x y z : Int) := x+y+z
+ 
+ theorem reconstruction (p : World) :
+     solve (read p left) (read p overlap) (read p right) = p 4096 - p 0 := by

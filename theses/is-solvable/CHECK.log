@@ -1,0 +1,86 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+ℹ [3/12] Replayed Qualification
+info: ././.lake/packages/software-optimality/././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [4/12] Replayed FiniteFrontier
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:105:0: 'FiniteFrontier.certificate_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:106:0: 'FiniteFrontier.certified_frontier' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././FiniteFrontier.lean:107:0: 'FiniteFrontier.certified_coverage' depends on axioms: [propext, Quot.sound]
+ℹ [5/12] Replayed ExecutableClosure
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [6/12] Replayed HypergraphIncremental
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-optimality/././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [7/12] Replayed ClosureStrength
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:200:0: 'ClosureStrength.compounding_family' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:201:0: 'ClosureStrength.compounding_sources' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:202:0: 'ClosureStrength.derives_congr' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:203:0: 'ClosureStrength.sources_of_family' does not depend on any axioms
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:204:0: 'ClosureStrength.compounding_of_sources' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:205:0: 'ClosureStrength.union_without_reclosure_fails' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:206:0: 'ClosureStrength.per_source_input_differs' depends on axioms: [propext]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:207:0: 'ClosureStrength.close_monotone' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:208:0: 'ClosureStrength.executable_monotone_of_free' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:209:0: 'ClosureStrength.close_order_independent_free' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:210:0: 'ClosureStrength.close_exact_needs_roots' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:211:0: 'ClosureStrength.close_exact_needs_heads' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-optimality/././ClosureStrength.lean:212:0: 'ClosureStrength.close_monotone_strict' depends on axioms: [propext, Quot.sound]
+ℹ [8/12] Replayed Hyperlattice
+info: ././././Hyperlattice.lean:150:0: 'Hyperlattice.compounding' does not depend on any axioms
+info: ././././Hyperlattice.lean:151:0: 'Hyperlattice.expansion_vector' depends on axioms: [propext, Quot.sound]
+info: ././././Hyperlattice.lean:152:0: 'Hyperlattice.strict_expansion' depends on axioms: [propext, Quot.sound]
+info: ././././Hyperlattice.lean:153:0: 'Hyperlattice.redundant' does not depend on any axioms
+ℹ [9/12] Replayed WitnessExecutable
+info: ././././WitnessExecutable.lean:148:0: 'WitnessExecutable.append_resolution' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessExecutable.lean:149:0: 'WitnessExecutable.append_resolution_free' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessExecutable.lean:150:0: 'WitnessExecutable.classify_append_mono' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessExecutable.lean:151:0: 'WitnessExecutable.catalogue_compounding_free' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessExecutable.lean:152:0: 'WitnessExecutable.classifier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././WitnessExecutable.lean:153:0: 'WitnessExecutable.configuration_count' depends on axioms: [propext]
+info: ././././WitnessExecutable.lean:154:0: 'WitnessExecutable.catalogue_compounding' depends on axioms: [propext, Quot.sound]
+info: ././././WitnessExecutable.lean:155:0: 'WitnessExecutable.qualification_exact' depends on axioms: [propext]
+info: ././././WitnessExecutable.lean:156:0: 'WitnessExecutable.projection_supported' depends on axioms: [propext]
+ℹ [11/12] Replayed Pareto
+info: ././././Pareto.lean:219:0: 'Pareto.resolution_strict_iff_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Pareto.lean:220:0: 'Pareto.resolution_append_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Pareto.lean:221:0: 'Pareto.resolution_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././Pareto.lean:222:0: 'Pareto.roots_premise_needed' depends on axioms: [propext, Quot.sound]
+info: ././././Pareto.lean:223:0: 'Pareto.heads_premise_needed' depends on axioms: [propext, Quot.sound]
+info: ././././Pareto.lean:224:0: 'Pareto.inexact_classifier_can_drop' does not depend on any axioms
+info: ././././Pareto.lean:225:0: 'Pareto.redundant_iff' does not depend on any axioms
+info: ././././Pareto.lean:226:0: 'Pareto.redundant_needs_edges' depends on axioms: [propext]
+info: ././././Pareto.lean:227:0: 'Pareto.redundant_needs_roots' does not depend on any axioms
+info: ././././Pareto.lean:228:0: 'Pareto.expansion_needs_extension' depends on axioms: [propext, Quot.sound]
+info: ././././Pareto.lean:229:0: 'Pareto.expansion_needs_old_exact' does not depend on any axioms
+info: ././././Pareto.lean:230:0: 'Pareto.expansion_needs_new_exact' depends on axioms: [propext, Quot.sound]
+info: ././././Pareto.lean:231:0: 'Pareto.graph_is_optimality_hypergraph' does not depend on any axioms
+info: ././././Pareto.lean:232:0: 'Pareto.knowledge_is_derives' does not depend on any axioms
+Build completed successfully.
+PASS: four Lean modules on the imported optimality core; kernel checks, executable guards and Pareto controls.
