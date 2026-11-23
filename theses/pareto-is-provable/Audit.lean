@@ -1,0 +1,73 @@
+import Pareto
+import Tests
+import Second
+import Tests2
+
+#print axioms three.finiteness
+#print axioms one.enumeration
+#print axioms one.unique
+#print axioms two.ledger
+#print axioms four.change
+#print axioms five.declared
+#print axioms five.timing
+#print axioms six.binding
+#print axioms seven.receipted
+#print axioms eight.fixed
+#print axioms eight.versioned
+#print axioms eight.invalidated
+#print axioms nine.pairwise
+#print axioms nine.crossiff
+#print axioms nine.agree
+#print axioms fourteen.locality
+#print axioms tests.agree
+#print axioms tests.equal
+#print axioms tests.single
+#print axioms tests.space
+#print axioms tests.logtest
+#print axioms tests.bind
+#print axioms tests.gap
+#print axioms tests.touch
+
+#print axioms core.anyfalse
+#print axioms core.anyeq
+#print axioms core.frontiff
+#print axioms core.goodstep
+#print axioms core.beatsstep
+#print axioms core.coverstep
+#print axioms core.edgestep
+#print axioms core.verdictself
+#print axioms core.zipdiag
+#print axioms core.beatself
+#print axioms core.verdictstep
+#print axioms core.countle
+#print axioms core.countpos
+#print axioms core.countlt
+#print axioms ten.sound
+#print axioms eleven.complete
+#print axioms eleven.closed
+#print axioms twelve.equal
+#print axioms thirteen.optimal
+#print axioms fifteen.scope
+#print axioms fifteen.swapnone
+#print axioms fifteen.kept
+#print axioms sixteen.member
+#print axioms sixteen.carry
+#print axioms sixteen.refusal
+#print axioms seventeen.findmem
+#print axioms seventeen.findnone
+#print axioms seventeen.joinstep
+#print axioms seventeen.dropstep
+#print axioms seventeen.uniqjoin
+#print axioms seventeen.uniqdrop
+#print axioms seventeen.equal
+#print axioms eighteen.binding
+#print axioms eighteen.changed
+#print axioms twenty.scope
+#print axioms twenty.keptiff
+#print axioms twenty.partition
+#print axioms checks.checker
+#print axioms checks.touch
+#print axioms checks.carry
+#print axioms checks.walk
+#print axioms checks.tuple
+#print axioms checks.reopen
