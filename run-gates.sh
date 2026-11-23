@@ -6,6 +6,10 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 fails=0
+if [ $# -eq 0 ]; then
+  python3 consolidation/check-copies.py . > /dev/null; rc=$?; printf 'shared\tconsolidation/check-copies.py\t%s\n' $rc; [ $rc -ne 0 ] && fails=$((fails+1))
+  bash shared/core/check.sh > /dev/null 2>&1; rc=$?; printf 'shared\tshared/core/check.sh\t%s\n' $rc; [ $rc -ne 0 ] && fails=$((fails+1))
+fi
 while IFS=$'\t' read -r name gate; do
   [ $# -gt 0 ] && ! printf '%s\n' "$@" | grep -qx "$name" && continue
   root="theses/$name"

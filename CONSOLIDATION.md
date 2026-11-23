@@ -35,27 +35,46 @@ Byte-level duplication is small. Structural duplication is large.
 ```
 theses/<name>/        each old repo, verbatim, full history (name = repo minus "software-")
 consolidation/        build.sh, verify.py, compare-gates.sh, repin.py, manifest, maps, overlap tables
-run-gates.sh          runs every gate of every thesis
+run-gates.sh          runs every gate: copies check, shared core and bridges, every thesis
+shared/               one copy of each reconciled file; shared/core is the canonical Lean library
+CONCEPTS.md           concept index: canonical definition, every variant, its bridge or why it differs
 lean-toolchain        v4.19.0, same as every thesis
 ```
 
-Stage 1 (this repo) moves nothing between theses and edits no file under `theses/`.
+Stage 1 (the commit tagged `import`) moves nothing between theses and edits no file under `theses/`.
 Each old repo maps to exactly one directory, so every old path `repo:path` is
 `theses/<name>/path`.
 
-Stage 2, each its own reviewed change, each with old-vs-new gate receipts:
-1. Repin Lake requires to this repo with `repin.py` (same pinned trees, new URL plus `subDir`).
-   Tested locally on all 9 Lake projects that require a sibling (8 theses plus
-   doesnt-need-review/statement): all build, every dependency resolved from this repo at the
-   rewritten pin, zero clones from GitHub.
-2. `shared/incremental/` holds the one `gate.py`, `frontier.py`, `fuzz_s1.py`; the four theses
-   keep their adapters and call the shared gate.
-3. `shared/lean/check.sh` replaces the 8 identical `proof/check.sh`; the 4 variants stay until
-   their differences are folded in as options.
-4. `Qualification.lean`, `Redundancy.lean`, `Canon.lean`, the composable `Legacy` copy and the
-   certificate checker each kept once, imported where copied.
-5. Concept unification (`Derives`, `Dominates`, `Closed`, ...) only with an equivalence theorem
-   per variant; a variant that is not equivalent stays and is named for what it is.
+Stage 2, reconciliation (done on this branch, after the import commit tagged `import`):
+
+1. Identical copies: 12 files stored once under `shared/` (plus the root `lean-toolchain`);
+   107 old paths are symlinks to them and still read the same bytes. Three Lean copy groups
+   (`Qualification.lean` x3, `Redundancy.lean` x2, `Canon.lean` x2) stay as files because Lake
+   refuses a module whose real path is outside its package; `consolidation/check-copies.py`
+   fails if any copy drifts. `consolidation/reconcile-audit.py REPO import HEAD` proves every
+   imported file is unchanged or reads identical bytes through its link: 1,476 unchanged,
+   107 linked, 0 problems.
+2. One canonical concept each: `shared/core` (Lake package `software-core`) defines
+   `Derives`, `Closed`, `NoWorse`, `Dominates` once. 11 bridges, 16 theorems, prove each
+   thesis's own definition equivalent, compiled from the thesis's own source
+   (see `CONCEPTS.md`). Variants that are a different concept are listed with the reason.
+   Controls: a false bridge (Dominates iff NoWorse) and a mutated thesis definition both make
+   `shared/core/check.sh` exit 1.
+3. One version per Lean dependency: tried and reverted. Path requires made 8 of 9 dependents
+   build at current heads, but the theses' own gates require immutable Git pins
+   (is-composable, is-incrementally-certifiable), audited pins (doesnt-have-to-regress, whose
+   Readings audit proves a flaw the current is-quantifiable fixes) and `--wfail` (optimality,
+   which rejects warnings in the current is-quantifiable head). It needs a hosted immutable home
+   for the pins; `consolidation/repin.py` then keeps every pin exact (tested on all 9).
+
+Not done: repointing theses at `SoftwareCore` and deleting their own definitions. The bridges
+make that safe, but each repoint rewrites that thesis's proofs and gate, so it is per-thesis work.
+
+Reduction (import commit vs this branch, theses/ + shared/): stored files 1,583 to 1,505;
+duplicate stored copies 140 to 45 (the rest are .gitignore, empty files, the 3 guarded Lean
+groups and duplicates inside one thesis); 13 distinct definitions of 4 concepts now proven equal
+to 4 canonical ones. Bytes fall only 0.3% (41.26 MB to 41.12 MB): the theses were mostly
+distinct work, not copies.
 
 ## History
 

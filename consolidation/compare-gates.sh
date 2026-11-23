@@ -12,10 +12,13 @@ one_repo() {
   o="$OUT/runs/old/$name"; n="$OUT/runs/new/$name"
   rm -rf "$o" "$n"; mkdir -p "$(dirname "$o")" "$(dirname "$n")"
   git clone -q "$SRC/software-$name" "$o"
-  git clone -q --no-checkout "$MONO" "$n" && git -C "$n" sparse-checkout set --no-cone "/theses/$name/" "/lean-toolchain" >/dev/null && git -C "$n" checkout -q main
+  git clone -q "$MONO" "$n"   # full checkout: theses link to shared/ and require sibling theses by path
   grep -P "^$name\t" "$GATES" | cut -f2 | while read g; do
     for side in old new; do
       if [ $side = old ]; then root=$o; else root=$n/theses/$name; fi
+      # Before the new repo exists on GitHub, MONO_URL (e.g. https://github.com/clpi/software)
+      # can be redirected to the local repo for the new side only.
+      if [ $side = new ] && [ -n "${MONO_URL:-}" ]; then export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0="url.file://$MONO.insteadOf" GIT_CONFIG_VALUE_0="$MONO_URL"; else unset GIT_CONFIG_COUNT GIT_CONFIG_KEY_0 GIT_CONFIG_VALUE_0; fi
       repo=$([ $side = old ] && echo $o || echo $n)
       start=$(date +%s)
       case "$g" in
