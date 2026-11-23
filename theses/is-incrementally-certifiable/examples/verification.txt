@@ -1,0 +1,12 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(2047, 11)
+'MerkleRepair.build_cost' depends on axioms: [propext, Quot.sound]
+'MerkleRepair.repair_trace' depends on axioms: [propext]
+'MerkleRepair.clean_equivalence' depends on axioms: [propext]
+'MerkleRepair.levels_exact' depends on axioms: [propext]
+'MerkleRepair.least_receipts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MerkleRepair.before_after' does not depend on any axioms
+'MerkleRepair.leaf_only_fails' depends on axioms: [propext, Quot.sound]
+1024 single-leaf edits | 2047 -> 11 SHA-256 calls per edit | every cached digest matched
+
+Rejected control: retain the stale left subtree after an edit (Lean exit 1).

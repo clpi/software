@@ -1,0 +1,6 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+[(64, 128), (192, 256)]
+'RangeLedger.CertificateReuse.exact_reuse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RangeLedger.CertificateReuse.minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RangeLedger.CertificateReuse.affected' does not depend on any axioms
+Rejected control: invalidate in just one direction.

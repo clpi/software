@@ -1,0 +1,29 @@
+name = "software-is-incrementally-certifiable"
+defaultTargets = ["IncrementalCert"]
+moreLeanArgs = ["-DwarningAsError=true"]
+
+[[require]]
+name = "software-is-composable"
+git = "https://github.com/clpi/software-is-composable"
+rev = "476059c25b93679919238ae4293c6b0b4befe486"
+
+[[require]]
+name = "software-optimality"
+git = "https://github.com/clpi/software-optimality"
+rev = "b52c3170a6e108345bd5ada44ca7355dae55b395"
+
+[[lean_lib]]
+name = "Legacy"
+roots = ["Legacy.SoftwareIsComposable", "Legacy.SoftwareIsIncrementallyCertifiable"]
+
+[[lean_lib]]
+name = "Audit"
+roots = ["Audit.Refusals", "Audit.DuetControls"]
+
+[[lean_lib]]
+name = "Evidence"
+roots = ["Audit.Counterexamples"]
+
+[[lean_lib]]
+name = "IncrementalCert"
+roots = ["IncrementalCert"]
