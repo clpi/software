@@ -1,0 +1,132 @@
+{
+  "contract": {
+    "context": 0,
+    "keys": [
+      0
+    ],
+    "cells": [
+      {
+        "key": 0,
+        "required": [
+          0
+        ],
+        "allowed": [
+          0
+        ]
+      }
+    ]
+  },
+  "initial": {
+    "id": 0,
+    "context": 0,
+    "cells": [
+      {
+        "key": 0,
+        "offered": [
+          0
+        ],
+        "possible": [
+          0
+        ],
+        "cost": [
+          10,
+          10
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "op": "strengthen",
+      "event": 1,
+      "contract": {
+        "context": 0,
+        "keys": [
+          0
+        ],
+        "cells": [
+          {
+            "key": 0,
+            "required": [
+              0,
+              1
+            ],
+            "allowed": [
+              0
+            ]
+          }
+        ]
+      },
+      "candidate": {
+        "id": 1,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0
+            ],
+            "possible": [
+              0
+            ],
+            "cost": [
+              9,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "arrive",
+      "event": 2,
+      "releases": [
+        {
+          "id": 2,
+          "context": 0,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                9,
+                11
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "reconsider",
+      "event": 3
+    },
+    {
+      "op": "query",
+      "candidate": {
+        "id": 1,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0
+            ],
+            "possible": [
+              0
+            ],
+            "cost": [
+              9,
+              10
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

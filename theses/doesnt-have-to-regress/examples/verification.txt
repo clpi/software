@@ -1,0 +1,17 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(4096, 64)
+'LogBatching.contents' depends on axioms: [propext, Quot.sound]
+'LogBatching.fits' depends on axioms: [propext, Quot.sound]
+'LogBatching.minimum_writes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LogBatching.before_after' depends on axioms: [propext, Classical.choice, Quot.sound]
+0 records | 0 -> 0 writes | 0 identical bytes
+1 records | 1 -> 1 writes | 4 identical bytes
+63 records | 63 -> 1 writes | 252 identical bytes
+64 records | 64 -> 1 writes | 256 identical bytes
+65 records | 65 -> 2 writes | 260 identical bytes
+127 records | 127 -> 2 writes | 508 identical bytes
+128 records | 128 -> 2 writes | 512 identical bytes
+129 records | 129 -> 3 writes | 516 identical bytes
+4096 records | 4096 -> 64 writes | 16384 identical bytes
+
+Rejected control: drop one record at the batch boundary (Lean exit 1).

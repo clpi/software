@@ -1,0 +1,73 @@
+{
+  "contract": {
+    "context": 0,
+    "keys": [
+      0
+    ],
+    "cells": [
+      {
+        "key": 0,
+        "required": [
+          0
+        ],
+        "allowed": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "initial": {
+    "id": 0,
+    "context": 0,
+    "cells": [
+      {
+        "key": 0,
+        "offered": [
+          0
+        ],
+        "possible": [
+          0
+        ],
+        "cost": [
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "op": "context",
+      "event": 1,
+      "context": 1,
+      "initial": 0,
+      "releases": [
+        {
+          "id": 0,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                2,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "undo",
+      "event": 2,
+      "source": 1
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+unsafe def pretend._cstage1 : Nat := 0
+theorem ordinary : True := True.intro

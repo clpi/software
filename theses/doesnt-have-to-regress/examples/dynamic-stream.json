@@ -1,0 +1,347 @@
+{
+  "contract": {
+    "context": 0,
+    "keys": [
+      0
+    ],
+    "cells": [
+      {
+        "key": 0,
+        "required": [
+          0
+        ],
+        "allowed": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "initial": {
+    "id": 0,
+    "context": 0,
+    "cells": [
+      {
+        "key": 0,
+        "offered": [
+          0
+        ],
+        "possible": [
+          0
+        ],
+        "cost": [
+          10,
+          10
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "op": "query",
+      "candidate": {
+        "id": 0,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0
+            ],
+            "possible": [
+              0
+            ],
+            "cost": [
+              10,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "query",
+      "candidate": {
+        "id": 1,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0
+            ],
+            "possible": [
+              0
+            ],
+            "cost": [
+              9,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "query",
+      "candidate": {
+        "id": 1,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0
+            ],
+            "possible": [
+              0
+            ],
+            "cost": [
+              9,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "arrive",
+      "event": 100,
+      "releases": [
+        {
+          "id": 1,
+          "context": 0,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                9,
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "arrive",
+      "event": 101,
+      "releases": [
+        {
+          "id": 2,
+          "context": 0,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                8,
+                11
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "reconsider",
+      "event": 102
+    },
+    {
+      "op": "strengthen",
+      "event": 103,
+      "contract": {
+        "context": 0,
+        "keys": [
+          0
+        ],
+        "cells": [
+          {
+            "key": 0,
+            "required": [
+              0,
+              1
+            ],
+            "allowed": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "candidate": {
+        "id": 3,
+        "context": 0,
+        "cells": [
+          {
+            "key": 0,
+            "offered": [
+              0,
+              1
+            ],
+            "possible": [
+              0,
+              1
+            ],
+            "cost": [
+              8,
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "undo",
+      "event": 109,
+      "source": 103
+    },
+    {
+      "op": "rollback",
+      "event": 104,
+      "release": 1
+    },
+    {
+      "op": "rollback",
+      "event": 104,
+      "release": 1
+    },
+    {
+      "op": "rollback",
+      "event": 104,
+      "release": 0
+    },
+    {
+      "op": "strengthen",
+      "event": 105,
+      "contract": {
+        "context": 0,
+        "keys": [
+          0
+        ],
+        "cells": [
+          {
+            "key": 0,
+            "required": [
+              0
+            ],
+            "allowed": [
+              0,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "context",
+      "event": 106,
+      "context": 1,
+      "initial": 3,
+      "releases": [
+        {
+          "id": 0,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                200,
+                200
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                150,
+                150
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0,
+                1
+              ],
+              "possible": [
+                0
+              ],
+              "cost": [
+                90,
+                90
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "context": 1,
+          "cells": [
+            {
+              "key": 0,
+              "offered": [
+                0,
+                1
+              ],
+              "possible": [
+                0,
+                1
+              ],
+              "cost": [
+                100,
+                100
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "op": "rollback",
+      "event": 107,
+      "release": 3
+    },
+    {
+      "op": "reconsider",
+      "event": 108
+    },
+    {
+      "op": "reconsider",
+      "event": 108
+    }
+  ]
+}

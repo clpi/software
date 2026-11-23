@@ -1,0 +1,11 @@
+--- AccumulatorBudget.lean
++++ AccumulatorBudget.lean
+@@ -19,7 +19,7 @@
+     have t := ih (fun v hv => bounded v (by simp [hv]))
+     simp only [List.sum_cons,List.length_cons]; omega
+ 
+-theorem lane_exact (xs : List Nat) (bounded : bytesOK xs) (cap : xs.length ≤ 257) :
++theorem lane_exact (xs : List Nat) (bounded : bytesOK xs) (cap : xs.length ≤ 258) :
+     lane xs = xs.sum := by
+   have b := sum_bound xs bounded
+   exact Nat.mod_eq_of_lt (by omega)

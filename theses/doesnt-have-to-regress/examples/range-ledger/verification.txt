@@ -1,0 +1,7 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'RangeLedger.AccumulatorBudget.lane_exact' depends on axioms: [propext, Quot.sound]
+'RangeLedger.AccumulatorBudget.combine' depends on axioms: [propext, Quot.sound]
+'RangeLedger.AccumulatorBudget.cap_tight' does not depend on any axioms
+'RangeLedger.AccumulatorBudget.flush_lower' depends on axioms: [propext, Quot.sound]
+Rejected control: permit overflow at 258 maximum-valued bytes.
+48 bounded lane checks; 4096 bytes: 64 -> 16 flushes; unsafe 258-byte lane wraps to 254

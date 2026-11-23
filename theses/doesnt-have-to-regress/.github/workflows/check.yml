@@ -1,0 +1,53 @@
+name: All Lean files and dynamic controls
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Require access to the private pinned prerequisite
+        env:
+          FAMILY_READ_TOKEN: ${{ secrets.FAMILY_READ_TOKEN }}
+        run: |
+          if [ -z "$FAMILY_READ_TOKEN" ]; then
+            echo "::error::Configure FAMILY_READ_TOKEN with read access to clpi/software-is-composable"
+            exit 1
+          fi
+      - name: Check out the private prerequisite at its audited pin
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: clpi/software-is-composable
+          ref: 033c12c01299a9b28983bee410c230641adc7d1e
+          path: .lake/packages/software-is-composable
+          token: ${{ secrets.FAMILY_READ_TOKEN }}
+          persist-credentials: false
+      - name: Install the declared Lean toolchain
+        uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          auto-config: "false"
+          build: "false"
+          test: "false"
+          lint: "false"
+          use-github-cache: "false"
+          use-mathlib-cache: "false"
+      - name: Recheck every source and standing control
+        run: ./check.sh
+      - name: Retain the exact source receipt and gate logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gate-evidence-${{ github.sha }}
+          path: .lake/all-files-gate/
+          include-hidden-files: true
+          if-no-files-found: error

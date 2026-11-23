@@ -1,0 +1,38 @@
+name = "«software-doesnt-have-to-regress»"
+defaultTargets = ["SoftwareDoesntRegress", "gate", "Audit", "Dynamic", "dynamic"]
+
+[leanOptions]
+warningAsError = true
+
+[[require]]
+name = "«software-is-composable»"
+git = "https://github.com/clpi/software-is-composable"
+rev = "033c12c01299a9b28983bee410c230641adc7d1e"
+
+[[require]]
+name = "«software-is-quantifiable»"
+git = "https://github.com/clpi/software-is-quantifiable"
+rev = "a21c7c56fa028f32014dd795b35b14f688e8fdf1"
+
+[[lean_lib]]
+name = "SoftwareDoesntRegress"
+
+[[lean_lib]]
+name = "Audit"
+roots = ["Audit.Contract", "Audit.ContractControls", "Audit.Projection", "Audit.Readings", "Audit.Definitional.Readings", "Audit.Definitional.Survivor", "Audit.Definitional.Necessity"]
+
+[[lean_exe]]
+name = "gate"
+root = "GateExe"
+
+[[lean_lib]]
+name = "GateParser"
+roots = ["GateExe.Parser"]
+
+[[lean_lib]]
+name = "Dynamic"
+roots = ["Dynamic.Incremental", "Dynamic.Greedy", "Dynamic.Evolution", "Dynamic.Engine", "Dynamic.History", "Dynamic.HistoryControls", "Dynamic.GreedyControls", "Dynamic.IndependentControls"]
+
+[[lean_exe]]
+name = "dynamic"
+root = "DynamicCli"
