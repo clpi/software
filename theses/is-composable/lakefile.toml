@@ -4,13 +4,11 @@ moreLeanArgs = ["-DwarningAsError=true"]
 
 [[require]]
 name = "software-is-quantifiable"
-git = "https://github.com/clpi/software-is-quantifiable"
-rev = "d88acbdc3ba78fff994067d2c73bcc01622b3f61"
+path = "../is-quantifiable"
 
 [[require]]
 name = "software-optimality"
-git = "https://github.com/clpi/software-optimality"
-rev = "ec1eadda0a29d1b254a98feb5ad24911a095c454"
+path = "../optimality"
 
 [[lean_lib]]
 name = "SoftwareIsComposable"

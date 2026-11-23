@@ -1,25 +1,32 @@
-{"version": "1.1.0",
+{
+ "version": "1.1.0",
  "packagesDir": ".lake/packages",
- "packages":
- [{"url": "https://github.com/clpi/software-is-quantifiable",
+ "packages": [
+  {
+   "url": "https://github.com/clpi/software",
    "type": "git",
-   "subDir": null,
+   "subDir": "theses/is-quantifiable",
    "scope": "",
-   "rev": "a21c7c56fa028f32014dd795b35b14f688e8fdf1",
-   "name": "«software-is-quantifiable»",
+   "rev": "d2773d4ad9b8f728af9249175af284f2fd43a0fb",
+   "name": "\u00absoftware-is-quantifiable\u00bb",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "a21c7c56fa028f32014dd795b35b14f688e8fdf1",
+   "inputRev": "d2773d4ad9b8f728af9249175af284f2fd43a0fb",
    "inherited": false,
-   "configFile": "lakefile.lean"},
-  {"url": "https://github.com/clpi/software-is-composable",
+   "configFile": "lakefile.lean"
+  },
+  {
+   "url": "https://github.com/clpi/software",
    "type": "git",
-   "subDir": null,
+   "subDir": "theses/is-composable",
    "scope": "",
-   "rev": "033c12c01299a9b28983bee410c230641adc7d1e",
-   "name": "«software-is-composable»",
+   "rev": "459bb489fc91bac722cebf2d4dba59518c73a425",
+   "name": "\u00absoftware-is-composable\u00bb",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "033c12c01299a9b28983bee410c230641adc7d1e",
+   "inputRev": "459bb489fc91bac722cebf2d4dba59518c73a425",
    "inherited": false,
-   "configFile": "lakefile.lean"}],
- "name": "«software-doesnt-have-to-regress»",
- "lakeDir": ".lake"}
+   "configFile": "lakefile.lean"
+  }
+ ],
+ "name": "\u00absoftware-doesnt-have-to-regress\u00bb",
+ "lakeDir": ".lake"
+}

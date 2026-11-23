@@ -5,8 +5,7 @@ package «software-optimality» where
   version := v!"0.1.0"
   moreLeanArgs := #["-DwarningAsError=true"]
 
-require «software-is-quantifiable» from git
-  "https://github.com/clpi/software-is-quantifiable" @ "d88acbdc3ba78fff994067d2c73bcc01622b3f61"
+require «software-is-quantifiable» from "../is-quantifiable"
 
 @[default_target]
 lean_lib SoftwareOptimality where
