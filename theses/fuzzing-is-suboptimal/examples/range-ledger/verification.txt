@@ -1,0 +1,9 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(2145, 11)
+'RangeLedger.IntervalCampaign.representable' depends on axioms: [propext, Quot.sound]
+'RangeLedger.IntervalCampaign.round_trip' depends on axioms: [propext, Quot.sound]
+'RangeLedger.IntervalCampaign.legal_representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RangeLedger.IntervalCampaign.minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RangeLedger.IntervalCampaign.boundary' does not depend on any axioms
+Rejected control: drop routes ending in the fourth bank.
+2145 -> 11 intervals; all 11 executed routes retained

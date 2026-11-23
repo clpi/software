@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")/.."
+lean_bin=${LEAN:-lean}
+build=$(mktemp -d)
+trap 'rm -rf "$build"' EXIT
+export LEAN_PATH="$build"
+"$lean_bin" -DwarningAsError=true -o "$build/Fuzzing.olean" "Fuzzing.lean" >/dev/null
+"$lean_bin" -DwarningAsError=true -o "$build/Certificate.olean" "Certificate.lean" >/dev/null
+"$lean_bin" --version
+"$lean_bin" -DwarningAsError=true examples/FrameCampaign.lean
+sh examples/range-ledger/check.sh
