@@ -1,0 +1,267 @@
+/-
+  Claim 5 — Coverage universality (spec §19).
+
+  Coverage of real executions is a platform premise. The legacy Witnessed
+  predicate tests only an ID. The recorded and missing functions below
+  require membership in an actual ledger and a supplied validator.
+-/
+
+namespace SoftwareIsQuantifiable
+namespace Coverage
+
+/-- An execution handle. The independently supplied roster determines
+    which handles name actual executions in this qualification. -/
+structure Execution where
+  /-- An opaque identity for the execution. -/
+  id : Nat
+
+/-- A boundary witness: a record, made at the platform boundary,
+    of one execution. -/
+structure Witness where
+  /-- The execution this witness records. -/
+  exec : Nat
+  /-- The boundary events observed, as a count at the finest grain
+      the platform affords (process lifecycle, syscall stream). -/
+  events : Nat
+
+/-- The witness value names the execution; this association alone does
+    not establish that the witness was recorded or validated. -/
+def Witnessed (e : Execution) (w : Witness) : Prop :=
+  w.exec = e.id
+
+/-- Each result refers to a record actually present in this ledger. The caller
+    supplies the evidence validator and the independently specified roster. -/
+def recorded (valid : Witness → Bool) (ledger : List Witness) (e : Execution) : Bool :=
+  ledger.any (fun w => valid w && decide (w.exec = e.id))
+
+/-- Privilege rank. A smaller rank sits below a larger rank. -/
+abbrev Privilege := Nat
+
+/-- Checkable sensor relation: the sensor's privilege rank is strictly
+    below the observed software's rank. -/
+def sensorSitsBelow (sensor observed : Privilege) : Bool :=
+  decide (sensor < observed)
+
+/-- The platform premise, named as spec §19.4 names its assumptions.
+    Each field is an assumption. Nothing in this structure is derived.
+
+    * `sensorBelow` is `sensorSitsBelow sensorPrivilege observedPrivilege = true`,
+      a comparison of the two named ranks, not an arbitrary proposition.
+    * `ledgerAppendOnly` is the append-only assumption, supplied with its proof.
+    * `mediated` is the assumption that every roster execution has a
+      validated ledger record. -/
+structure PlatformPremise (valid : Witness → Bool) (ledger : List Witness)
+    (roster : List Execution) where
+  /-- Privilege rank of the sensor. -/
+  sensorPrivilege : Privilege
+  /-- Privilege rank of the observed software. -/
+  observedPrivilege : Privilege
+  /-- The sensor relation holds for these two ranks. -/
+  sensorBelow : sensorSitsBelow sensorPrivilege observedPrivilege = true
+  /-- The ledger is append-only from below. -/
+  ledgerAppendOnly : Prop
+  /-- The named append-only condition holds. -/
+  ledgerAppendOnlyHolds : ledgerAppendOnly
+  /-- Assumption: every named execution has a validated ledger record. -/
+  mediated : ∀ e ∈ roster, recorded valid ledger e = true
+
+/-- Assumption, not a derived theorem. `coverage P` is `P.mediated`. -/
+abbrev coverage {valid : Witness → Bool} {ledger : List Witness}
+    {roster : List Execution} (P : PlatformPremise valid ledger roster) :
+    ∀ e ∈ roster, recorded valid ledger e = true :=
+  P.mediated
+
+/-- Coverage fails exactly when a named actual execution lacks a validated
+    ledger record. An unrecorded handle outside the roster is not a counterexample. -/
+theorem coverage_iff (valid : Witness → Bool) (ledger : List Witness)
+    (roster : List Execution) :
+    (∀ e ∈ roster, recorded valid ledger e = true) ↔
+    ¬ ∃ e, e ∈ roster ∧ recorded valid ledger e = false := by
+  constructor
+  · intro h hex
+    obtain ⟨e, he, missing⟩ := hex
+    have present := h e he
+    simp [present] at missing
+  · intro h e he
+    cases hr : recorded valid ledger e with
+    | false => exact False.elim (h ⟨e, he, hr⟩)
+    | true => rfl
+
+/-- Constructing a matching record requires only the execution ID. -/
+theorem unrestricted_witness (e : Execution) : ∃ w, Witnessed e w :=
+  ⟨⟨e.id, 0⟩, rfl⟩
+
+theorem recorded_exact (valid : Witness → Bool) (ledger : List Witness) (e : Execution) :
+    recorded valid ledger e = true ↔ ∃ w ∈ ledger, valid w = true ∧ Witnessed e w := by
+  simp [recorded, Witnessed, List.any_eq_true]
+
+def missing (valid : Witness → Bool) (ledger : List Witness) (roster : List Execution) :=
+  roster.filter (fun e => !recorded valid ledger e)
+
+theorem missing_exact (valid : Witness → Bool) (ledger : List Witness)
+    (roster : List Execution) (e : Execution) :
+    e ∈ missing valid ledger roster ↔
+      e ∈ roster ∧ ¬ ∃ w ∈ ledger, valid w = true ∧ Witnessed e w := by
+  simp [missing, List.mem_filter, ← recorded_exact]
+
+theorem recorded_append (valid : Witness → Bool) (left right : List Witness) (e : Execution) :
+    recorded valid (left ++ right) e = (recorded valid left e || recorded valid right e) := by
+  simp [recorded]
+
+theorem missing_append (valid : Witness → Bool) (left right : List Witness)
+    (roster : List Execution) (e : Execution) :
+    e ∈ missing valid (left ++ right) roster ↔
+      e ∈ missing valid left roster ∧ e ∈ missing valid right roster := by
+  simp only [missing, List.mem_filter, Bool.not_eq_true', recorded_append,
+    Bool.or_eq_false_iff]
+  exact ⟨fun ⟨hr, hl, hd⟩ => ⟨⟨hr, hl⟩, hr, hd⟩,
+    fun ⟨⟨hr, hl⟩, _, hd⟩ => ⟨hr, hl, hd⟩⟩
+
+/-- An empty ledger leaves every named execution uncovered, even though
+    unrestricted_witness holds for each one. -/
+theorem missing_empty (valid : Witness → Bool) (roster : List Execution) :
+    missing valid [] roster = roster := by simp [missing, recorded]
+
+/-- The existing missing-roster checker is exactly the coverage obligation;
+    there is no separate coverage evaluator or witness-membership model. -/
+theorem coverage_missing_iff (valid : Witness → Bool) (ledger : List Witness)
+    (roster : List Execution) :
+    (∀ e ∈ roster, recorded valid ledger e = true) ↔
+      missing valid ledger roster = [] := by
+  constructor
+  · intro covered
+    cases hm : missing valid ledger roster with
+    | nil => rfl
+    | cons e rest =>
+      have he : e ∈ missing valid ledger roster := by
+        rw [hm]
+        exact List.Mem.head _
+      obtain ⟨actual, absent⟩ := (missing_exact valid ledger roster e).mp he
+      exact False.elim (absent ((recorded_exact valid ledger e).mp (covered e actual)))
+  · intro empty e actual
+    cases hr : recorded valid ledger e with
+    | true => rfl
+    | false =>
+      have he : e ∈ missing valid ledger roster := by
+        simp [missing, List.mem_filter, actual, hr]
+      rw [empty] at he
+      exact nomatch he
+
+/-- Empty actual domains have vacuous coverage, including with an empty
+    ledger. Merely constructible execution handles do not change the roster. -/
+theorem empty_roster_covered (valid : Witness → Bool) (ledger : List Witness) :
+    ∀ e ∈ ([] : List Execution), recorded valid ledger e = true := by
+  intro _ h
+  exact nomatch h
+
+/-- A nonempty actual roster cannot be mediated by an empty ledger. -/
+theorem empty_ledger_has_no_platform_premise (valid : Witness → Bool)
+    (roster : List Execution) (nonempty : roster ≠ []) :
+    ¬ Nonempty (PlatformPremise valid [] roster) := by
+  intro h
+  obtain ⟨P⟩ := h
+  apply nonempty
+  simpa only [missing_empty] using (coverage_missing_iff valid [] roster).mp (coverage P)
+
+#guard !recorded (fun w => decide (w.events > 0)) [⟨3, 0⟩, ⟨4, 1⟩] ⟨3⟩
+#guard recorded (fun w => decide (w.events > 0)) [⟨3, 1⟩] ⟨3⟩
+
+#print axioms recorded_exact
+#print axioms missing_exact
+#print axioms missing_append
+#print axioms missing_empty
+#print axioms coverage_missing_iff
+#print axioms empty_roster_covered
+#print axioms empty_ledger_has_no_platform_premise
+#print axioms unrestricted_witness
+
+/-- A successful audit covers actual execution handles when the independently
+    supplied manifest contains exactly those handles. Distinct physical
+    occurrences need distinct admitted handles; multiplicity is not checked. -/
+theorem audit_complete (occurred : Execution → Prop) (valid : Witness → Bool)
+    (ledger : List Witness) (roster : List Execution) (manifest : ∀ e, occurred e ↔ e ∈ roster) :
+    missing valid ledger roster = [] ↔ ∀ e, occurred e → recorded valid ledger e = true := by
+  rw [← coverage_missing_iff]
+  simp only [manifest]
+
+/-- Project one named scope before invoking the existing ID-based checker.
+    A record for the same local ID in a different scope cannot supply evidence.
+    Scope labels and their binding to witnesses need independent authentication;
+    filtering caller-supplied labels does not establish that binding. -/
+def inScope (scope : Nat) (rows : List (Nat × Witness)) : List Witness :=
+  (rows.filter (fun row => decide (row.1 = scope))).map Prod.snd
+
+theorem scoped_recorded_exact (scope : Nat) (rows : List (Nat × Witness))
+    (valid : Witness → Bool) (e : Execution) :
+    recorded valid (inScope scope rows) e = true ↔
+      ∃ w, (scope,w) ∈ rows ∧ valid w = true ∧ Witnessed e w := by
+  rw [recorded_exact]
+  simp only [inScope,List.mem_map,List.mem_filter,decide_eq_true_eq]
+  constructor
+  · rintro ⟨w,⟨⟨s,v⟩,⟨hm,rfl⟩,rfl⟩,hv,he⟩
+    exact ⟨v,hm,hv,he⟩
+  · rintro ⟨w,hm,hv,he⟩
+    exact ⟨w,⟨(scope,w),⟨hm,rfl⟩,rfl⟩,hv,he⟩
+
+/-- Audit a mixed-scope roster without erasing its scope coordinates. Each
+    entry uses the existing ledger checker after scope projection. The supplied
+    validator may enforce different witness policies in different scopes. -/
+def scopedMissing (valid : Nat → Witness → Bool) (rows : List (Nat × Witness))
+    (roster : List (Nat × Execution)) : List (Nat × Execution) :=
+  roster.filter (fun entry =>
+    !recorded (valid entry.1) (inScope entry.1 rows) entry.2)
+
+theorem scoped_missing_exact (valid : Nat → Witness → Bool)
+    (rows : List (Nat × Witness)) (roster : List (Nat × Execution))
+    (scope : Nat) (e : Execution) :
+    (scope, e) ∈ scopedMissing valid rows roster ↔
+      (scope, e) ∈ roster ∧
+        ¬ ∃ w, (scope, w) ∈ rows ∧ valid scope w = true ∧ Witnessed e w := by
+  simp [scopedMissing, List.mem_filter, ← scoped_recorded_exact]
+
+theorem scoped_coverage_missing_iff (valid : Nat → Witness → Bool)
+    (rows : List (Nat × Witness)) (roster : List (Nat × Execution)) :
+    (∀ entry ∈ roster,
+      recorded (valid entry.1) (inScope entry.1 rows) entry.2 = true) ↔
+      scopedMissing valid rows roster = [] := by
+  simp [scopedMissing, List.filter_eq_nil_iff]
+
+/-- Completeness for independently named scope-and-handle pairs. Neither
+    physical occurrence uniqueness nor authentication follows from this
+    manifest premise or from caller-supplied scope labels. -/
+theorem scoped_audit_complete (occurred : Nat × Execution → Prop)
+    (valid : Nat → Witness → Bool) (rows : List (Nat × Witness))
+    (roster : List (Nat × Execution))
+    (manifest : ∀ entry, occurred entry ↔ entry ∈ roster) :
+    scopedMissing valid rows roster = [] ↔
+      ∀ entry, occurred entry →
+        recorded (valid entry.1) (inScope entry.1 rows) entry.2 = true := by
+  rw [← scoped_coverage_missing_iff]
+  simp only [manifest]
+
+/-- The existing platform premise specialized to one scope projection. There
+    is no second platform authority: the fields and assumptions are exactly
+    those of PlatformPremise on the projected ledger. -/
+abbrev ScopedPlatformPremise (scope : Nat) (valid : Nat → Witness → Bool)
+    (rows : List (Nat × Witness)) (roster : List Execution) :=
+  PlatformPremise (valid scope) (inScope scope rows) roster
+
+theorem scoped_platform_coverage {scope : Nat} {valid : Nat → Witness → Bool}
+    {rows : List (Nat × Witness)} {roster : List Execution}
+    (P : ScopedPlatformPremise scope valid rows roster) :
+    ∀ e ∈ roster, ∃ w,
+      (scope, w) ∈ rows ∧ valid scope w = true ∧ Witnessed e w := by
+  intro e he
+  exact (scoped_recorded_exact scope rows (valid scope) e).mp (coverage P e he)
+
+#guard !recorded (fun _ => true) (inScope 1 [(2,⟨7,1⟩)]) ⟨7⟩
+#guard recorded (fun _ => true) (inScope 2 [(2,⟨7,1⟩)]) ⟨7⟩
+
+#print axioms audit_complete
+#print axioms scoped_recorded_exact
+#print axioms scoped_missing_exact
+#print axioms scoped_coverage_missing_iff
+#print axioms scoped_audit_complete
+#print axioms scoped_platform_coverage
+end Coverage
+end SoftwareIsQuantifiable
