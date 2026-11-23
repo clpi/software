@@ -1,0 +1,10 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'PolicyMigration.all_rows_exact' depends on axioms: [propext, Quot.sound]
+'PolicyMigration.necessary_replacements' depends on axioms: [propext]
+([true, false, true, false], [true, true, true, false], [false, true, false, false])
+'PolicyMigration.frame' depends on axioms: [propext]
+'PolicyMigration.same_as_clean' depends on axioms: [propext, Quot.sound]
+'PolicyMigration.before_after' does not depend on any axioms
+'PolicyMigration.value_only_is_unsafe' does not depend on any axioms
+
+Rejected control: reuse a value across a rule-only edit (Lean exit 1).

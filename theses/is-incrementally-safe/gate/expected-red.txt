@@ -1,0 +1,2 @@
+# file | sha256 | reason. These files must FAIL to compile and must keep this exact content.
+audit/Counterexamples.lean | 3a70977a33e3d28f2cf617214e83363e4cb7298df19418180b226b6384553927 | Chris's audit counterexamples against de1b307, kept unchanged as the record of the red state (red commit 677941a). They refer to SoftwareIsIncrementallyCertifiable and ExecDelta, which master no longer has. C1 to C6 are restated against current definitions in SoftwareIsIncrementallySafe/Check.lean and Model.lean.
