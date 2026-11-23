@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Prove the consolidated repo loses nothing from the old clpi/software-* repos.
 
-Usage: verify.py SRC_DIR MONO_REPO MAPS_DIR [--manifest OUT.tsv]
+Usage: verify.py SRC_DIR MONO_REPO MAPS_DIR [--manifest OUT.tsv] [--ref import]
 
 SRC_DIR   one full clone per old repo (all remote branches, PR heads under refs/pr/*, tags)
 MONO_REPO the consolidated git repo built by build.sh
@@ -28,7 +28,9 @@ def git(repo, *a, check=True):
 
 SRC, MONO, MAPS = sys.argv[1:4]
 manifest = sys.argv[sys.argv.index('--manifest') + 1] if '--manifest' in sys.argv else None
-ALLOWED_TOP = {'theses', 'README.md', 'CONSOLIDATION.md', 'lean-toolchain', 'consolidation', '.gitignore', 'run-gates.sh'}
+# The import snapshot: the commit tagged `import` once reconcile commits sit on main.
+REF = sys.argv[sys.argv.index('--ref') + 1] if '--ref' in sys.argv else 'main'
+ALLOWED_TOP = {'theses', 'shared', 'CONCEPTS.md', 'README.md', 'CONSOLIDATION.md', 'lean-toolchain', 'consolidation', '.gitignore', 'run-gates.sh'}
 fail = collections.Counter(); ok = collections.Counter()
 def bad(kind, msg):
     fail[kind] += 1
@@ -93,14 +95,14 @@ for d in dirs:
     # 3. main tree
     defb, defsha = imports[name]
     old_tree = git(src, 'rev-parse', defsha + '^{tree}').strip()
-    new_tree = git(MONO, 'rev-parse', f'main:theses/{name}', check=False).strip()
+    new_tree = git(MONO, 'rev-parse', f'{REF}:theses/{name}', check=False).strip()
     if old_tree != new_tree: bad('main-tree', name)
     else: ok['main-trees'] += 1
     # 5. inventory at default HEAD, re-derived from MONO bytes
     for line in git(src, 'ls-tree', '-r', defsha).splitlines():
         meta, path = line.split('\t', 1); mode, typ, blob = meta.split()
         npath = f'theses/{name}/{path}'
-        nblob = git(MONO, 'rev-parse', f'main:{npath}', check=False).strip()
+        nblob = git(MONO, 'rev-parse', f'{REF}:{npath}', check=False).strip()
         if nblob != blob: bad('file', f'{name}:{path}'); continue
         ok['files'] += 1
         kind = 'gate' if GATE.search(path) else 'receipt' if RECEIPT.search(path) else 'file'
@@ -112,7 +114,7 @@ for d in dirs:
                 inv.append((name, path, npath, blob, m.group(1), m.group(2))); ok['theorems'] += 1
         if kind != 'file': ok[kind + 's'] += 1
 # 4. nothing extra at top
-for line in git(MONO, 'ls-tree', 'main').splitlines():
+for line in git(MONO, 'ls-tree', REF).splitlines():
     top = line.split('\t', 1)[1]
     if top not in ALLOWED_TOP: bad('top-level', top)
     elif top != 'theses': ok['top-level-added'] += 1
