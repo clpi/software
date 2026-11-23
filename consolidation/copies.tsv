@@ -1,0 +1,4 @@
+blob	paths_that_must_stay_identical
+a63283d34211fe6c4e3fc21c201be10ce91bebfa	theses/benchmarking-is-redundant-and-suboptimal/Qualification.lean theses/optimality/Qualification.lean theses/testing-is-redundant/Qualification.lean
+39cdb37e27f150446c0490a7ca825ce55514e886	theses/benchmarking-is-redundant-and-suboptimal/Redundancy.lean theses/testing-is-redundant/Redundancy.lean
+ea2e7c80604a997dcae1ff5165f0886a2f5322b0	theses/frontier-is-solvable/Canon.lean theses/redundant-compute-expands/proof/Canon.lean
