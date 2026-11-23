@@ -4,11 +4,13 @@ moreLeanArgs = ["-DwarningAsError=true"]
 
 [[require]]
 name = "software-is-composable"
-path = "../is-composable"
+git = "https://github.com/clpi/software-is-composable"
+rev = "476059c25b93679919238ae4293c6b0b4befe486"
 
 [[require]]
 name = "software-optimality"
-path = "../optimality"
+git = "https://github.com/clpi/software-optimality"
+rev = "b52c3170a6e108345bd5ada44ca7355dae55b395"
 
 [[lean_lib]]
 name = "Legacy"

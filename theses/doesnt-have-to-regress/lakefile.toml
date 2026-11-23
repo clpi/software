@@ -6,14 +6,13 @@ warningAsError = true
 
 [[require]]
 name = "«software-is-composable»"
-git = "https://github.com/clpi/software"
-rev = "459bb489fc91bac722cebf2d4dba59518c73a425"
-subDir = "theses/is-composable"
+git = "https://github.com/clpi/software-is-composable"
+rev = "033c12c01299a9b28983bee410c230641adc7d1e"
 
 [[require]]
 name = "«software-is-quantifiable»"
-git = "https://github.com/clpi/software"
-rev = "d2773d4ad9b8f728af9249175af284f2fd43a0fb"
+git = "https://github.com/clpi/software-is-quantifiable"
+rev = "a21c7c56fa028f32014dd795b35b14f688e8fdf1"
 
 [[lean_lib]]
 name = "SoftwareDoesntRegress"
@@ -37,5 +36,3 @@ roots = ["Dynamic.Incremental", "Dynamic.Greedy", "Dynamic.Evolution", "Dynamic.
 [[lean_exe]]
 name = "dynamic"
 root = "DynamicCli"
-subDir = "theses/is-quantifiable"
-
