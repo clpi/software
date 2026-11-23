@@ -1,0 +1,11 @@
+--- SignedStitch.lean
++++ SignedStitch.lean
+@@ -11,7 +11,7 @@
+ def valid (p : Nat → Int) (r : Receipt) := r.value = p r.stop - p r.start
+ def rev (r : Receipt) : Receipt := ⟨r.stop,r.start,-r.value⟩
+ def stitch (a b : Receipt) : Option Receipt :=
+-  if a.stop = b.start then some ⟨a.start,b.stop,a.value+b.value⟩ else none
++  if a.stop = b.start then some ⟨a.start,b.stop,a.value-b.value⟩ else none
+ 
+ theorem reverse_valid (h : valid p r) : valid p (rev r) := by
+   simp [valid,rev] at *; omega

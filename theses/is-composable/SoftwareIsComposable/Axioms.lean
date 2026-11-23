@@ -1,0 +1,47 @@
+import SoftwareIsComposable.Finiteness
+import SoftwareIsComposable.PointwiseMonotonicity
+import SoftwareIsComposable.Admission
+import SoftwareIsComposable.Monotonicity
+import SoftwareIsComposable.Composition
+import SoftwareIsComposable.Evidence
+import SoftwareIsComposable.Incremental
+import SoftwareIsComposable.Examples
+import SoftwareIsComposable.Bridge
+import SoftwareIsComposable.InteractionModel
+
+#print axioms SoftwareIsComposable.scheduleSpace_finite
+#print axioms SoftwareIsComposable.releaseAdmitted_iff
+#print axioms SoftwareIsComposable.releaseAdmitted_trans
+#print axioms SoftwareIsComposable.symbolVerdict_admitted_iff
+#print axioms SoftwareIsComposable.qualifiedMono
+#print axioms SoftwareIsComposable.qualifiedTrans
+#print axioms SoftwareIsComposable.costNoRegression
+#print axioms SoftwareIsComposable.costTrans
+#print axioms SoftwareIsComposable.not_per_execution
+#print axioms SoftwareIsComposable.moduleAdmission_compose
+#print axioms SoftwareIsComposable.moduleAdmission_counterexample
+#print axioms SoftwareIsComposable.evidence_remaining
+#print axioms SoftwareIsComposable.not_repeated_observation_shrinks
+#print axioms SoftwareIsComposable.not_disqualification_empties
+#print axioms SoftwareIsComposable.determined_of_coverage
+#print axioms SoftwareIsComposable.inClosure_iff_affected
+#print axioms SoftwareIsComposable.incrementalRecheck_iff
+#print axioms SoftwareIsComposable.not_recheck_seed_only
+#print axioms SoftwareIsComposable.worse_refused
+#print axioms SoftwareIsComposable.PointwiseModel.incremental_monotone
+#print axioms SoftwareIsComposable.InteractionModel.observations_mono
+#print axioms SoftwareIsComposable.InteractionModel.inSpec_of_local_and_interaction_safe
+#print axioms SoftwareIsComposable.InteractionModel.individually_safe_components_compose_to_leak
+#print axioms SoftwareIsComposable.oneSymbol
+#print axioms SoftwareIsComposable.not_bare_releaseAdmitted_acceptsRelease
+#print axioms SoftwareIsComposable.not_context
+#print axioms SoftwareIsComposable.not_upper
+#print axioms SoftwareIsComposable.not_point
+#print axioms SoftwareIsComposable.not_id
+#print axioms SoftwareIsComposable.not_old_bounds
+#print axioms SoftwareIsComposable.not_new_bounds
+#print axioms SoftwareIsComposable.not_length
+#print axioms SoftwareIsComposable.not_old_list
+#print axioms SoftwareIsComposable.not_new_list
+#print axioms SoftwareIsComposable.refused
+#print axioms SoftwareIsComposable.nothing_below

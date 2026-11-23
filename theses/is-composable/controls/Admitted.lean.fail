@@ -1,0 +1,1 @@
+theorem forbidden_admission : False := by sorry

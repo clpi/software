@@ -1,0 +1,4 @@
+import SoftwareIsComposable.Examples
+theorem worse_is_admitted :
+    SoftwareIsComposable.releaseAdmitted SoftwareIsComposable.worseOld SoftwareIsComposable.worseNew = true := by
+  decide

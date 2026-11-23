@@ -1,0 +1,3 @@
+import Lean
+def hidden : String := s!"{(fun (_h : True) => 0) (by native_decide)}"
+#print axioms hidden

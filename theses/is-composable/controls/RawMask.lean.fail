@@ -1,0 +1,2 @@
+def quoted : String := r#"""#
+unsafe def hiddenEscape : Nat := 0

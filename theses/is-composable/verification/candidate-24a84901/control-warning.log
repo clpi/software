@@ -1,0 +1,2 @@
+/tmp/lean-gate-controls-l1mnwvh4/Warning.lean:1:9: error: unused variable `unused`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
