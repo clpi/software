@@ -1,0 +1,1011 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Repository Lean files: 22
+Source SHA256 manifest:
+fe061931308452e8c87b78de878836998a0d4c1e980be512d868de46bb1e253e  examples/InvoiceTrace.lean
+61ff9699ed5bea4a4c8b81eddcfc98237496a49a87e319a644efdaf0266915bd  examples/check.sh
+21bcb445759c596fc81c31a4e05e3c57e6ff0f1c97247c49eefcd884d8df5a8f  examples/incremental/IndependentComponents.lean
+3d77dd388ddc3237de5ed3c990e500731dc83d8440a710c10ef34d3f0530bead  examples/incremental/check.sh
+5e883fdbe8a691dfcfe7278acdeb08af712ba4a268b84341ea356213a29d4dad  examples/incremental/receipts/IncrementalReceipt0.lean
+c55433f1ac48697919c1a7bea34d8f884041d6d90880df2de71ebc4ab411f8ce  examples/incremental/receipts/IncrementalReceipt1.lean
+e3028814e4fc683755b723ade3d78f86bd8d91f28423ed8451e7a82356ac8394  examples/incremental/receipts/IncrementalReceipt2.lean
+5f6815abc26ca7eeae9668a36a4c87b2e17c81d06c9715d81450e770a9c4499e  examples/incremental/receipts/IncrementalReceipt3.lean
+37a407b3f56ce36fbd214ce6374acd1857cf0c56b5039edcf53c0870b790f7cc  examples/incremental/receipts/IncrementalReceipt4.lean
+427c43473afd8e5f40219cb855fa26bc5fbeb958dd4ae55f0e0bf31187911cb4  examples/range-ledger/BridgeRepair.lean
+b9ffc1494d3738ec02b937c73cc7c6f8f3f2b23c0d8a0cd2366ffe36390592b4  examples/range-ledger/check.sh
+006ed8da251dffe3949595c7675e748900f35b6e319b2a1aad1d8436b2245d74  examples/range-ledger/mutation.patch
+feb808178c7fbd019dda61087b6609c06d79fd7a3872b8448e77fbdfa58cf2ab  incremental/__init__.py
+4f0e99b8f1865e970daaca244e62d92905c426140c482e16257579d392313db9  incremental/check.py
+c5907768628a6a4695be03d9a2522f0bf19a88e1353d76eca464836b4d8ee72d  incremental/demo.py
+8cde0f580c83748e649f40bb2656c6d3d605f6072714234e1865248a74ee6702  incremental/engine.py
+58e61317885a24988b931415f3de0c8ca4c3c3ddecd77619b994f4352fad8ff9  incremental/lean.py
+300adea3ca9ea7aba0f0446e5e813dc44055a8addc82c5d98b3b4067da63ff5a  incremental/pipeline.py
+5066134fe15aec8bb1dabd822c3ad055df1bc439b4dd8bbdc6cd875590abb116  incremental/test_adversarial.py
+5c3ff9d7c3c8afe7300e31e4cc9ce403c545c784264fbd4f7a778aabe8891cfe  incremental/test_kernel_attacks.py
+c4dfbd1e8d1f51d7767c537852f63c71a3b5ddd5d259f6ee422073282edaf70d  incremental/test_runtime.py
+1a734740d0dc2ed022fb519287a5d1b7823036e3fab3cb1efe121078eec9db6a  proof/Controls.lean
+e85b900f25bc3a551ed473d21ea5fc54246b6c2c8fb1deb6bffe2c6eaec82f12  proof/Evaluation.lean
+e343934e1486d6dc080d8d69777b5095b40f0f8f96519b1710c046fa2a28ca79  proof/EvaluationControls.lean
+6f8aac95eabc1560a304ab56db0bedd532f054ea34662ae0a6efb44dcac38b80  proof/Families.lean
+8dea5ba5c9003784a933b2e58e26d4696e38a96925013f98f2322113d8bb362a  proof/HeadedReturn.lean
+bf2be1760d3522987ff1e44afb4db5f762af6e4eff4a65eac71e4ff2bad0bc99  proof/HeadedReturnControls.lean
+f15ed735a8133b455e4d9b28564a1be4e930d4c9288a17691ebf3f4d1c3295cc  proof/Incremental.lean
+50a53feddd830992c11727d11bc56652c61639796b487fc6b33c96e289125a61  proof/IncrementalControls.lean
+6b141cb82c29e86e02a6f3eb5ba319bdcdaed893d6e4886eb396e0136913b94a  proof/Pipeline.lean
+d87214c241bd1294393e04a5716c3752a05289b88af91ce2fe7a8e7587f355fc  proof/Projection.lean
+3a07e11e4d02a35115c77451d811f2c2cc3201cb7bdabfd1d6edb54c0a83e291  proof/Provenance.lean
+f3447646ddbc5b2233247977512ec6cad5b9bb8479e343aa92b79b446f624839  proof/ReturnControls.lean
+50a06887a109e52959564063e862403a61557250d31f3d808631c5df6a0da8a5  proof/Sharing.lean
+e5925124be9a604322ab8250cae5999be1bd5c2517818599a785df1e7f6b38a7  proof/Traceability.lean
+382acba046a71b18639e2d9768ae19988640533d3d0a5a012c0771e6cbe07630  proof/audit.py
+5fb17ece37d1699c3f90ac6dfeb399f536ad65ffe22c339a0c7801e284c692b2  proof/check.sh
+55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  proof/lean-toolchain
+c44f6cb01e52a92face521a94f2e9ddcfc1a9ba9e16758cc1affcd6a8d0e4029  proof/platform-audit.py
+Compiled: examples/InvoiceTrace.lean
+(8,
+ [InvoiceTrace.Event.override, InvoiceTrace.Event.signature],
+ [InvoiceTrace.Event.quote, InvoiceTrace.Event.tax, InvoiceTrace.Event.currency])
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+Compiled: examples/range-ledger/BridgeRepair.lean
+(some 7, none)
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+Compiled: proof/Incremental.lean
+Compiled: proof/Pipeline.lean
+'Pipeline.compile_correct' does not depend on any axioms
+'Pipeline.gather_resolve' depends on axioms: [propext]
+'Pipeline.checkRow_exact' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_row_correct' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_semantics' depends on axioms: [propext, Quot.sound]
+'Pipeline.check_append' depends on axioms: [propext]
+'Pipeline.certify_extension' depends on axioms: [propext]
+'Pipeline.extension_length' depends on axioms: [propext]
+'Pipeline.checked_all_prior' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_arity' depends on axioms: [propext, Quot.sound]
+'Pipeline.gather_ready' depends on axioms: [propext]
+'Pipeline.interpret_ready' depends on axioms: [propext]
+'Pipeline.checked_source_success' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_program_correct' depends on axioms: [propext, Quot.sound]
+Compiled: proof/Projection.lean
+Compiled: proof/Sharing.lean
+Compiled: proof/Traceability.lean
+'Traceability.fold_nodes' depends on axioms: [propext]
+'Traceability.fold_edges' depends on axioms: [propext]
+'Traceability.contributor_isSome' depends on axioms: [propext, Quot.sound]
+'Traceability.contributor_sound' depends on axioms: [propext]
+'Traceability.returns_recorded_edge_weaker' depends on axioms: [propext, Quot.sound]
+'Traceability.returns_recorded_head' depends on axioms: [propext]
+'Traceability.fold_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_perm' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append_self' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_retime' depends on axioms: [propext]
+'Traceability.retract_nodes' depends on axioms: [propext]
+'Traceability.retract_edges' depends on axioms: [propext]
+'Traceability.retract_eq' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append' depends on axioms: [propext, Quot.sound]
+'Traceability.join_assoc' depends on axioms: [Quot.sound]
+'Traceability.join_comm' depends on axioms: [Quot.sound]
+'Traceability.join_idem' depends on axioms: [Quot.sound]
+Derivation : Type → Type
+Graph : Type → Type
+@join : {Node : Type} → Graph Node → Graph Node → Graph Node
+@empty : {Node : Type} → Graph Node
+@fold : {Node Ev : Type} → (Ev → Graph Node) → List Ev → Graph Node
+Timed : Type → Type → Type
+@foldtimed : {Node Ev Time : Type} → (Ev → Graph Node) → List (Timed Ev Time) → Graph Node
+@bool_eq_of_agree : ∀ {a b : Bool}, (a = true ↔ b = true) → a = b
+@graph_ext : ∀ {Node : Type} {g h : Graph Node},
+  (∀ (n : Node), g.nodes n = h.nodes n) → (∀ (d : Derivation Node), g.edges d = h.edges d) → g = h
+@join_assoc : ∀ {Node : Type} (a b c : Graph Node), join (join a b) c = join a (join b c)
+@join_comm : ∀ {Node : Type} (a b : Graph Node), join a b = join b a
+@join_idem : ∀ {Node : Type} (a : Graph Node), join a a = a
+@join_empty_left : ∀ {Node : Type} (a : Graph Node), join empty a = a
+@join_empty_right : ∀ {Node : Type} (a : Graph Node), join a empty = a
+@fold_append : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l₁ l₂ : List Ev),
+  fold lift (l₁ ++ l₂) = join (fold lift l₁) (fold lift l₂)
+@fold_nodes : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {n : Node},
+  (fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
+@fold_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
+  (fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
+@contributor : {Node Ev : Type} → (Ev → Graph Node) → List Ev → Derivation Node → Option Ev
+@contributor_isSome : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l : List Ev) (d : Derivation Node),
+  (contributor lift l d).isSome = (fold lift l).edges d
+@contributor_sound : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node} {e : Ev},
+  contributor lift l d = some e → e ∈ l ∧ (lift e).edges d = true
+@returns_recorded_edge_weaker : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l : List Ev} {d : Derivation Node},
+  (fold lift l).edges d = true → ∃ e, contributor lift l d = some e ∧ e ∈ l ∧ (lift e).edges d = true
+@recordLift : {Node Ev : Type} →
+  [inst : DecidableEq Node] → [inst : DecidableEq (Derivation Node)] → (Ev → Derivation Node) → Ev → Graph Node
+@returns_recorded_head : ∀ {Node Ev : Type} [inst : DecidableEq Node] [inst_1 : DecidableEq (Derivation Node)]
+  (record : Ev → Derivation Node) {l : List Ev} {n : Node},
+  (fold (recordLift record) l).nodes n = true →
+    ∃ e, e ∈ l ∧ (record e).head = n ∧ (fold (recordLift record) l).edges (record e) = true
+@fold_ext : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev},
+  (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → fold lift l₁ = fold lift l₂
+@fold_perm : ∀ {Node Ev : Type} (lift : Ev → Graph Node) {l₁ l₂ : List Ev}, l₁.Perm l₂ → fold lift l₁ = fold lift l₂
+@fold_append_self : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (l : List Ev), fold lift (l ++ l) = fold lift l
+@foldtimed_ext : ∀ {Node Ev Time : Type} (lift : Ev → Graph Node) {l₁ l₂ : List (Timed Ev Time)},
+  (∀ (e : Ev), e ∈ List.map Timed.event l₁ ↔ e ∈ List.map Timed.event l₂) → foldtimed lift l₁ = foldtimed lift l₂
+@map_event : ∀ {Ev Time : Type} (es : List Ev) (t : Ev → Time),
+  List.map Timed.event (List.map (fun e => { event := e, time := t e }) es) = es
+@foldtimed_retime : ∀ {Node Ev Time : Type} (lift : Ev → Graph Node) (es : List Ev) (f g : Ev → Time),
+  foldtimed lift (List.map (fun e => { event := e, time := f e }) es) =
+    foldtimed lift (List.map (fun e => { event := e, time := g e }) es)
+@retract_nodes : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l : List Ev} {n : Node},
+  (fold lift (List.filter keep l)).nodes n = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).nodes n = true
+@retract_edges : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l : List Ev} {d : Derivation Node},
+  (fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
+@retract_eq : ∀ {Node Ev : Type} (lift : Ev → Graph Node) (keep : Ev → Bool) {l s : List Ev},
+  (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → fold lift (List.filter keep l) = fold lift s
+Compiled: proof/Controls.lean
+'Controls.count_once' does not depend on any axioms
+'Controls.count_twice' does not depend on any axioms
+'Controls.count_claim_fails' does not depend on any axioms
+'Controls.swap_same_set' depends on axioms: [propext]
+'Controls.first_claim_fails' depends on axioms: [propext]
+'Controls.prem_differ' depends on axioms: [propext]
+'Controls.grain_absent' depends on axioms: [propext]
+'Controls.grain_coarse_present' depends on axioms: [propext]
+'Controls.grain_claim_fails' depends on axioms: [propext]
+'Controls.residue_survivor_absent' depends on axioms: [propext]
+'Controls.residue_present' depends on axioms: [propext]
+'Controls.residue_claim_fails' depends on axioms: [propext]
+countjoin : (Nat → Nat) → (Nat → Nat) → Nat → Nat
+countsingle : Nat → Nat → Nat
+countfold : List Nat → Nat → Nat
+count_once : countfold [0] 0 = 1
+count_twice : countfold ([0] ++ [0]) 0 = 2
+count_claim_fails : ¬∀ (l : List Nat), countfold (l ++ l) = countfold l
+firstfold : (Nat → Graph Nat) → List Nat → Graph Nat
+ownlift : Nat → Graph Nat
+swap_same_set : ∀ (x : Nat), x ∈ [0, 1] ↔ x ∈ [1, 0]
+first_claim_fails : ¬∀ (l₁ l₂ : List Nat), (∀ (x : Nat), x ∈ l₁ ↔ x ∈ l₂) → firstfold ownlift l₁ = firstfold ownlift l₂
+fullprem : Derivation Nat
+noprem : Derivation Nat
+prem_differ : fullprem ≠ noprem
+grainlift : Nat → Graph Nat
+grain_absent : (fold grainlift [0]).edges noprem = false
+grain_coarse_present : ∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = noprem.head
+grain_claim_fails : ¬∀ (d : Derivation Nat),
+    (∃ d', (fold grainlift [0]).edges d' = true ∧ d'.head = d.head) → (fold grainlift [0]).edges d = true
+residuefold : (Nat → Graph Nat) → (Nat → Bool) → List Nat → Graph Nat
+residue_survivor_absent : (fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])).nodes 0 = false
+residue_present : (residuefold ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true
+residue_claim_fails : residuefold ownlift (fun e => decide (e = 1)) [0, 1] ≠
+  fold ownlift (List.filter (fun e => decide (e = 1)) [0, 1])
+Compiled: proof/Evaluation.lean
+'Evaluation.literal_correct' does not depend on any axioms
+'Evaluation.input_correct' depends on axioms: [propext]
+'Evaluation.add_correct' does not depend on any axioms
+'Evaluation.mul_correct' does not depend on any axioms
+'Evaluation.neg_correct' does not depend on any axioms
+'Evaluation.correct_unique_value' does not depend on any axioms
+'Evaluation.agrees_source' does not depend on any axioms
+'Evaluation.agrees_correct' does not depend on any axioms
+Compiled: proof/EvaluationControls.lean
+'EvaluationControls.conflicting_captures_have_captured_correctness' depends on axioms: [propext]
+'EvaluationControls.conflicting_captures_have_no_global_environment' does not depend on any axioms
+'EvaluationControls.fabricated_captured_value_is_refused' depends on axioms: [propext]
+Compiled: proof/Families.lean
+Compiled: proof/HeadedReturn.lean
+Compiled: proof/IncrementalControls.lean
+Compiled: proof/Provenance.lean
+Compiled: proof/ReturnControls.lean
+'ReturnControls.head_without_derivation' does not depend on any axioms
+'ReturnControls.head_only_claim_fails' does not depend on any axioms
+'ReturnControls.derivation_without_head' does not depend on any axioms
+'ReturnControls.edge_implies_head_claim_fails' does not depend on any axioms
+'ReturnControls.witnessed_head_does_not_select_premises' does not depend on any axioms
+'ReturnControls.finiteDerivationEq' depends on axioms: [Quot.sound]
+'ReturnControls.same_head_distinct_recorded_premises' depends on axioms: [Quot.sound]
+'ReturnControls.contributor_refuses_missing_edge' does not depend on any axioms
+'ReturnControls.contributor_selection_is_order_sensitive' does not depend on any axioms
+'ReturnControls.source_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.time_from_fold_claim_fails' does not depend on any axioms
+noPremises : Derivation Bool
+onePremise : Derivation Bool
+nodeOnly : Unit → Graph Bool
+head_without_derivation : (fold nodeOnly [()]).nodes noPremises.head = true ∧
+  (fold nodeOnly [()]).edges noPremises = false
+head_only_claim_fails : ¬∀ (lift : Unit → Graph Bool) (l : List Unit) (d : Derivation Bool),
+    (fold lift l).nodes d.head = true → (fold lift l).edges d = true
+edgeOnly : Unit → Graph Bool
+derivation_without_head : (fold edgeOnly [()]).edges noPremises = true ∧
+  (fold edgeOnly [()]).nodes noPremises.head = false
+edge_implies_head_claim_fails : ¬∀ (lift : Unit → Graph Bool) (l : List Unit) (d : Derivation Bool),
+    (fold lift l).edges d = true → (fold lift l).nodes d.head = true
+exactLift : Unit → Graph Bool
+witnessed_head_does_not_select_premises : (fold exactLift [()]).nodes noPremises.head = true ∧
+  onePremise.head = noPremises.head ∧
+    (fold exactLift [()]).edges onePremise = true ∧ (fold exactLift [()]).edges noPremises = false
+finiteDerivationEq : (a b : Derivation Bool) → Decidable (a = b)
+record : Bool → Derivation Bool
+same_head_distinct_recorded_premises : (fold (recordLift record) [false, true]).nodes noPremises.head = true ∧
+  (fold (recordLift record) [false, true]).edges noPremises = true ∧
+    (fold (recordLift record) [false, true]).edges onePremise = true ∧
+      noPremises.head = onePremise.head ∧ noPremises ≠ onePremise
+aliasedLift : Bool → Graph Bool
+contributor_refuses_missing_edge : (fold nodeOnly [()]).nodes noPremises.head = true ∧
+  contributor nodeOnly [()] noPremises = none
+contributor_selection_is_order_sensitive : fold aliasedLift [false, true] = fold aliasedLift [true, false] ∧
+  contributor aliasedLift [false, true] noPremises = some false ∧
+    contributor aliasedLift [true, false] noPremises = some true
+source_from_fold_claim_fails : ¬∃ decode, ∀ (e : Bool), decode (fold aliasedLift [e]) = e
+time_from_fold_claim_fails : ¬∃ decode,
+    ∀ (time : Nat), decode (foldtimed aliasedLift [{ event := false, time := time }]) = time
+Compiled: examples/incremental/IndependentComponents.lean
+'IndependentComponents.zero_checked' does not depend on any axioms
+'IndependentComponents.one_checked' does not depend on any axioms
+'IndependentComponents.every_binary_composition' depends on axioms: [propext, Quot.sound]
+Compiled: examples/incremental/receipts/IncrementalReceipt0.lean
+'IncrementalReceipt0.history_length' does not depend on any axioms
+'IncrementalReceipt0.certified' does not depend on any axioms
+'IncrementalReceipt0.semantics' depends on axioms: [propext, Quot.sound]
+Compiled: examples/incremental/receipts/IncrementalReceipt1.lean
+'IncrementalReceipt1.history_length' depends on axioms: [propext]
+'IncrementalReceipt1.certified' depends on axioms: [propext]
+'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt1.delta_checked' does not depend on any axioms
+'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]
+Compiled: examples/incremental/receipts/IncrementalReceipt2.lean
+'IncrementalReceipt2.history_length' depends on axioms: [propext]
+'IncrementalReceipt2.certified' depends on axioms: [propext]
+'IncrementalReceipt2.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt2.value_23_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_24_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_25_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_26_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_27_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_28_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_29_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_30_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_31_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_32_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_33_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_34_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_35_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_36_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_37_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_38_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_39_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_40_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_41_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_42_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_43_correct' depends on axioms: [propext]
+Compiled: examples/incremental/receipts/IncrementalReceipt3.lean
+'IncrementalReceipt3.history_length' depends on axioms: [propext]
+'IncrementalReceipt3.certified' depends on axioms: [propext]
+'IncrementalReceipt3.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt3.delta_checked' does not depend on any axioms
+'IncrementalReceipt3.value_44_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_45_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_46_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_47_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_48_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_49_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_50_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_51_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_52_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_53_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_54_correct' depends on axioms: [propext]
+Compiled: examples/incremental/receipts/IncrementalReceipt4.lean
+'IncrementalReceipt4.history_length' depends on axioms: [propext]
+'IncrementalReceipt4.certified' depends on axioms: [propext]
+'IncrementalReceipt4.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt4.delta_checked' does not depend on any axioms
+'IncrementalReceipt4.value_55_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_56_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_57_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_58_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_59_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_60_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_61_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_62_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_63_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_64_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_65_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_66_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_67_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_68_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_69_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_70_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_71_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_72_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_73_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_74_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_75_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_76_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_77_correct' depends on axioms: [propext]
+Compiled: proof/HeadedReturnControls.lean
+'_private.Incremental.0.Incremental.decEqScope._proof_10._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_11._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_3._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_4._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_5._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_6._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_7._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_8._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqScope._proof_9._@.Incremental._hyg.390' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqTaskKey._proof_12._@.Incremental._hyg.1106' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqTaskKey._proof_13._@.Incremental._hyg.1106' does not depend on any axioms
+'_private.Incremental.0.Incremental.decEqTaskKey._proof_14._@.Incremental._hyg.1106' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_19._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_20._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_21._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_22._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_23._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_24._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_25._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_26._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_27._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_28._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_29._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_30._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_31._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_32._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_33._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_34._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_35._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_36._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_37._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_38._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_39._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_40._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_41._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_42._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_43._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_44._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_45._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_46._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_47._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqInstruction._proof_48._@.Pipeline._hyg.791' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_1._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_10._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_11._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_12._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_13._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_14._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_15._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_16._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_17._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_18._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_2._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_3._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_4._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_5._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_6._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_7._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_8._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqOperation._proof_9._@.Pipeline._hyg.24' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqRow._proof_49._@.Pipeline._hyg.2493' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqRow._proof_50._@.Pipeline._hyg.2493' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqRow._proof_51._@.Pipeline._hyg.2493' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.decEqRow._proof_52._@.Pipeline._hyg.2493' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.reprOperation.match_1.eq_1._@.Pipeline._hyg.561' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.reprOperation.match_1.eq_2._@.Pipeline._hyg.561' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.reprOperation.match_1.eq_3._@.Pipeline._hyg.561' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.reprOperation.match_1.eq_4._@.Pipeline._hyg.561' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.reprOperation.match_1.eq_5._@.Pipeline._hyg.561' does not depend on any axioms
+'Controls.count_claim_fails' does not depend on any axioms
+'Controls.count_once' does not depend on any axioms
+'Controls.count_twice' does not depend on any axioms
+'Controls.first_claim_fails' depends on axioms: [propext]
+'Controls.grain_absent' depends on axioms: [propext]
+'Controls.grain_claim_fails' depends on axioms: [propext]
+'Controls.grain_coarse_present' depends on axioms: [propext]
+'Controls.prem_differ' depends on axioms: [propext]
+'Controls.residue_claim_fails' depends on axioms: [propext]
+'Controls.residue_present' depends on axioms: [propext]
+'Controls.residue_survivor_absent' depends on axioms: [propext]
+'Controls.swap_same_set' depends on axioms: [propext]
+'Evaluation.add_correct' does not depend on any axioms
+'Evaluation.agrees_correct' does not depend on any axioms
+'Evaluation.agrees_source' does not depend on any axioms
+'Evaluation.correct_unique_value' does not depend on any axioms
+'Evaluation.input_correct' depends on axioms: [propext]
+'Evaluation.literal_correct' does not depend on any axioms
+'Evaluation.mul_correct' does not depend on any axioms
+'Evaluation.neg_correct' does not depend on any axioms
+'EvaluationControls.conflicting_captures_have_captured_correctness' depends on axioms: [propext]
+'EvaluationControls.conflicting_captures_have_no_global_environment' does not depend on any axioms
+'EvaluationControls.fabricated_captured_value_is_refused' depends on axioms: [propext]
+'Families.assignment_count_exact' depends on axioms: [propext, Quot.sound]
+'Families.binaryTuples_assignments' depends on axioms: [propext]
+'Families.binaryTuples_nodup' depends on axioms: [propext, Quot.sound]
+'Families.binary_assignment_count' depends on axioms: [propext, Quot.sound]
+'Families.binary_compact_distinct' depends on axioms: [propext, Quot.sound]
+'Families.binary_component_family_correct' depends on axioms: [propext, Quot.sound]
+'Families.binary_stored_references' depends on axioms: [propext, Quot.sound]
+'Families.checked_component_correct' depends on axioms: [propext, Quot.sound]
+'Families.every_selection_correct' depends on axioms: [propext, Quot.sound]
+'Families.flatMap_constant_length' depends on axioms: [propext, Quot.sound]
+'Families.independent_tuple_correct' depends on axioms: [propext, Quot.sound]
+'Families.prefix_preserves_nodup' depends on axioms: [propext, Quot.sound]
+'Families.repeated_factor_count' depends on axioms: [propext]
+'Families.selected_length' depends on axioms: [propext, Quot.sound]
+'Families.selected_member' depends on axioms: [propext, Quot.sound]
+'HeadedReturn.head_witnessed' depends on axioms: [propext]
+'HeadedReturn.headed_iff_singleton' depends on axioms: [Quot.sound]
+'HeadedReturn.recordLift_closed' depends on axioms: [propext]
+'HeadedReturn.recordLift_headed' depends on axioms: [propext]
+'HeadedReturn.returned_premises_witnessed' depends on axioms: [propext]
+'HeadedReturn.returns_headed' depends on axioms: [propext]
+'HeadedReturn.returns_headed_iff' depends on axioms: [propext]
+'HeadedReturn.unique_iff_contributed_unique' depends on axioms: [propext]
+'HeadedReturnControls.atmostone_not_lifted' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.atmostone_singletons' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.edgeOnly_not_closed' does not depend on any axioms
+'HeadedReturnControls.fullB_ne_noB' depends on axioms: [propext]
+'HeadedReturnControls.grounded_needed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_closed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_headed' depends on axioms: [propext]
+'HeadedReturnControls.headlift_returns' depends on axioms: [propext]
+'HeadedReturnControls.nodeOnly_not_headed' does not depend on any axioms
+'HeadedReturnControls.return_not_unique' depends on axioms: [propext]
+'HeadedReturnControls.splitlift_closed' does not depend on any axioms
+'HeadedReturnControls.splitlift_functional' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.splitlift_grounded' does not depend on any axioms
+'HeadedReturnControls.splitlift_headed' depends on axioms: [propext]
+'HeadedReturnControls.witnessed_needed' depends on axioms: [propext, Quot.sound]
+'Incremental.cumulative_contract' depends on axioms: [propext]
+'Incremental.cumulative_work' depends on axioms: [propext]
+'Incremental.dependency_rank' depends on axioms: [propext, Quot.sound]
+'Incremental.fresh_key_zero_work' depends on axioms: [propext, Quot.sound]
+'Incremental.hit_zero_work' depends on axioms: [propext]
+'Incremental.keyWork_append' depends on axioms: [propext]
+'Incremental.keyWork_singleton' depends on axioms: [propext]
+'Incremental.key_work_at_most_one' depends on axioms: [propext, Quot.sound]
+'Incremental.lookup_none' depends on axioms: [propext, Quot.sound]
+'Incremental.lookup_sound' depends on axioms: [propext]
+'Incremental.miss_one_work' depends on axioms: [propext]
+'Incremental.no_self_support' depends on axioms: [propext, Quot.sound]
+'Incremental.rebuild_append' does not depend on any axioms
+'Incremental.resolve_all_prior' depends on axioms: [propext, Quot.sound]
+'Incremental.resolve_append' depends on axioms: [propext]
+'Incremental.resolve_length' depends on axioms: [propext]
+'Incremental.resolve_member' depends on axioms: [propext]
+'Incremental.reuse_agrees_with_fresh' depends on axioms: [propext]
+'Incremental.row_stable' depends on axioms: [propext]
+'Incremental.run_append' does not depend on any axioms
+'Incremental.run_cold_exact' depends on axioms: [propext]
+'Incremental.run_preserves_prefix' depends on axioms: [propext]
+'Incremental.run_valid' depends on axioms: [propext]
+'Incremental.stageWork_append' depends on axioms: [propext]
+'Incremental.step_hit' depends on axioms: [propext]
+'Incremental.step_preserves_prefix' depends on axioms: [propext]
+'Incremental.step_valid' depends on axioms: [propext]
+'Incremental.valid_backward' depends on axioms: [propext, Quot.sound]
+'Incremental.valid_rebuild_exact' depends on axioms: [propext]
+'Incremental.valid_sound' depends on axioms: [propext]
+'Incremental.valid_unique_keys' depends on axioms: [propext, Quot.sound]
+'Incremental.work_append' depends on axioms: [propext]
+'IncrementalControls.all_premises_are_required' does not depend on any axioms
+'IncrementalControls.completion_order_is_not_original_task_order' does not depend on any axioms
+'IncrementalControls.fabricated_cached_value_is_not_a_valid_log' depends on axioms: [propext]
+'IncrementalControls.old_history_survives_a_new_version' does not depend on any axioms
+'IncrementalControls.omitted_scope_coordinates_would_alias_distinct_tasks' does not depend on any axioms
+'IncrementalControls.ordered_premises_change_the_result' does not depend on any axioms
+'IncrementalControls.repeated_positions_are_not_duplicate_publications' does not depend on any axioms
+'IncrementalControls.repeated_requests_keep_three_rows' does not depend on any axioms
+'IncrementalControls.same_premises_are_not_a_complete_cache_key' does not depend on any axioms
+'IncrementalControls.seed_rows_are_valid' depends on axioms: [propext]
+'IncrementalControls.self_support_is_refused' does not depend on any axioms
+'IncrementalControls.sparse_completion_preserves_real_premises' does not depend on any axioms
+'IncrementalReceipt0.certified' does not depend on any axioms
+'IncrementalReceipt0.history_length' does not depend on any axioms
+'IncrementalReceipt0.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt1.certified' depends on axioms: [propext]
+'IncrementalReceipt1.delta_checked' does not depend on any axioms
+'IncrementalReceipt1.history_length' depends on axioms: [propext]
+'IncrementalReceipt1.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt1.value_0_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_10_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_11_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_12_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_13_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_14_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_15_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_16_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_17_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_18_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_19_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_1_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_20_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_21_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_22_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_2_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_3_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_4_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_5_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_6_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_7_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_8_correct' depends on axioms: [propext]
+'IncrementalReceipt1.value_9_correct' depends on axioms: [propext]
+'IncrementalReceipt2.certified' depends on axioms: [propext]
+'IncrementalReceipt2.history_length' depends on axioms: [propext]
+'IncrementalReceipt2.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt2.value_23_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_24_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_25_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_26_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_27_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_28_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_29_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_30_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_31_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_32_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_33_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_34_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_35_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_36_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_37_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_38_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_39_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_40_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_41_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_42_correct' depends on axioms: [propext]
+'IncrementalReceipt2.value_43_correct' depends on axioms: [propext]
+'IncrementalReceipt3.certified' depends on axioms: [propext]
+'IncrementalReceipt3.delta_checked' does not depend on any axioms
+'IncrementalReceipt3.history_length' depends on axioms: [propext]
+'IncrementalReceipt3.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt3.value_44_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_45_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_46_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_47_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_48_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_49_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_50_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_51_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_52_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_53_correct' depends on axioms: [propext]
+'IncrementalReceipt3.value_54_correct' depends on axioms: [propext]
+'IncrementalReceipt4.certified' depends on axioms: [propext]
+'IncrementalReceipt4.delta_checked' does not depend on any axioms
+'IncrementalReceipt4.history_length' depends on axioms: [propext]
+'IncrementalReceipt4.semantics' depends on axioms: [propext, Quot.sound]
+'IncrementalReceipt4.value_55_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_56_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_57_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_58_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_59_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_60_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_61_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_62_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_63_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_64_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_65_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_66_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_67_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_68_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_69_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_70_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_71_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_72_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_73_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_74_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_75_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_76_correct' depends on axioms: [propext]
+'IncrementalReceipt4.value_77_correct' depends on axioms: [propext]
+'IndependentComponents.every_binary_composition' depends on axioms: [propext, Quot.sound]
+'IndependentComponents.one_checked' does not depend on any axioms
+'IndependentComponents.zero_checked' does not depend on any axioms
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+'Pipeline.certify_extension' depends on axioms: [propext]
+'Pipeline.checkRow_exact' depends on axioms: [propext, Quot.sound]
+'Pipeline.check_append' depends on axioms: [propext]
+'Pipeline.checked_all_prior' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_arity' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_program_correct' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_row_correct' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_semantics' depends on axioms: [propext, Quot.sound]
+'Pipeline.checked_source_success' depends on axioms: [propext, Quot.sound]
+'Pipeline.compile_correct' does not depend on any axioms
+'Pipeline.extension_length' depends on axioms: [propext]
+'Pipeline.gather_ready' depends on axioms: [propext]
+'Pipeline.gather_resolve' depends on axioms: [propext]
+'Pipeline.interpret_ready' depends on axioms: [propext]
+'Projection.complete_length' depends on axioms: [propext]
+'Projection.complete_origins_unique' depends on axioms: [propext, Quot.sound]
+'Projection.complete_publishes_result' depends on axioms: [propext]
+'Projection.complete_spec' depends on axioms: [propext]
+'Projection.complete_uses_original_dependencies' depends on axioms: [propext]
+'Projection.complete_valid' depends on axioms: [propext]
+'Projection.position_append' depends on axioms: [propext]
+'Projection.position_exists' depends on axioms: [propext]
+'Projection.position_injective' depends on axioms: [propext]
+'Projection.position_new' depends on axioms: [propext]
+'Projection.position_none' depends on axioms: [propext]
+'Projection.position_sound' depends on axioms: [propext]
+'Projection.projected_cold_exact' depends on axioms: [propext]
+'Projection.publish_length' depends on axioms: [propext]
+'Projection.publish_valid' depends on axioms: [propext]
+'Projection.remap_append' depends on axioms: [propext]
+'Projection.remap_injective' depends on axioms: [propext]
+'Projection.remap_length' depends on axioms: [propext]
+'Projection.remapped_keys_reflect_equality' depends on axioms: [propext]
+'Projection.resolve_remap' depends on axioms: [propext]
+'Provenance.capacity_bounds' depends on axioms: [propext, Quot.sound]
+'Provenance.completed_return' depends on axioms: [propext, Quot.sound]
+'Provenance.decode_ordered' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence_decode' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence_position_injective' depends on axioms: [propext, Quot.sound]
+'Provenance.publish_origins' depends on axioms: [propext]
+'Provenance.published_return' depends on axioms: [propext, Quot.sound]
+'Provenance.published_tasks_exist' depends on axioms: [propext]
+'Provenance.record_premises_exact' depends on axioms: [propext, Quot.sound]
+'Provenance.retained_return' depends on axioms: [propext, Quot.sound]
+'Provenance.witness_member' depends on axioms: [propext, Quot.sound]
+'ReturnControls.contributor_refuses_missing_edge' does not depend on any axioms
+'ReturnControls.contributor_selection_is_order_sensitive' does not depend on any axioms
+'ReturnControls.derivation_without_head' does not depend on any axioms
+'ReturnControls.edge_implies_head_claim_fails' does not depend on any axioms
+'ReturnControls.head_only_claim_fails' does not depend on any axioms
+'ReturnControls.head_without_derivation' does not depend on any axioms
+'ReturnControls.same_head_distinct_recorded_premises' depends on axioms: [Quot.sound]
+'ReturnControls.source_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.time_from_fold_claim_fails' does not depend on any axioms
+'ReturnControls.witnessed_head_does_not_select_premises' does not depend on any axioms
+'Sharing.cache_length' depends on axioms: [propext]
+'Sharing.cache_row' depends on axioms: [propext]
+'Sharing.cache_succ' depends on axioms: [propext]
+'Sharing.diamond_compression' depends on axioms: [propext, Quot.sound]
+'Sharing.diamond_valid' depends on axioms: [propext, Quot.sound]
+'Sharing.key_fresh' depends on axioms: [propext, Quot.sound]
+'Sharing.requests_succ' depends on axioms: [propext]
+'Sharing.resolve_children' depends on axioms: [propext]
+'Sharing.run_diamond' depends on axioms: [propext, Quot.sound]
+'Sharing.stageWork_diamond' depends on axioms: [propext]
+'Sharing.step_succ' depends on axioms: [propext, Quot.sound]
+'Sharing.unfolded_calls' depends on axioms: [propext, Quot.sound]
+'Sharing.unfolded_value' depends on axioms: [propext]
+'Sharing.work_diamond' depends on axioms: [propext]
+'Traceability.bool_eq_of_agree' depends on axioms: [propext]
+'Traceability.contributor_isSome' depends on axioms: [propext, Quot.sound]
+'Traceability.contributor_sound' depends on axioms: [propext]
+'Traceability.fold_append' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_append_self' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_edges' depends on axioms: [propext]
+'Traceability.fold_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.fold_nodes' depends on axioms: [propext]
+'Traceability.fold_perm' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_ext' depends on axioms: [propext, Quot.sound]
+'Traceability.foldtimed_retime' depends on axioms: [propext]
+'Traceability.graph_ext' depends on axioms: [Quot.sound]
+'Traceability.join_assoc' depends on axioms: [Quot.sound]
+'Traceability.join_comm' depends on axioms: [Quot.sound]
+'Traceability.join_empty_left' depends on axioms: [Quot.sound]
+'Traceability.join_empty_right' depends on axioms: [Quot.sound]
+'Traceability.join_idem' depends on axioms: [Quot.sound]
+'Traceability.map_event' depends on axioms: [propext]
+'Traceability.retract_edges' depends on axioms: [propext]
+'Traceability.retract_eq' depends on axioms: [propext, Quot.sound]
+'Traceability.retract_nodes' depends on axioms: [propext]
+'Traceability.returns_recorded_edge_weaker' depends on axioms: [propext, Quot.sound]
+'Traceability.returns_recorded_head' depends on axioms: [propext]
+'Controls.firstfold.eq_1' does not depend on any axioms
+'Controls.firstfold.eq_2' does not depend on any axioms
+'Controls.fullprem.eq_1' does not depend on any axioms
+'Controls.grainlift.eq_1' does not depend on any axioms
+'Controls.noprem.eq_1' does not depend on any axioms
+'Controls.ownlift.eq_1' does not depend on any axioms
+'Evaluation.capturedEnvironment.eq_1' does not depend on any axioms
+'Evaluation.target.eq_1' does not depend on any axioms
+'Evaluation.target.eq_2' does not depend on any axioms
+'Evaluation.target.eq_3' does not depend on any axioms
+'Evaluation.target.eq_4' does not depend on any axioms
+'Evaluation.target.eq_5' does not depend on any axioms
+'Families.assignmentCount.eq_1' does not depend on any axioms
+'Families.assignmentCount.eq_2' does not depend on any axioms
+'Families.assignmentCount.eq_def' does not depend on any axioms
+'Families.assignments.eq_1' does not depend on any axioms
+'Families.assignments.eq_2' does not depend on any axioms
+'Families.assignments.eq_def' does not depend on any axioms
+'Families.binaryTuples.eq_1' does not depend on any axioms
+'Families.binaryTuples.eq_2' does not depend on any axioms
+'Families.binary_stored_references._proof_1' depends on axioms: [propext, Quot.sound]
+'Families.checked.eq_1' does not depend on any axioms
+'Families.flatMap_constant_length._proof_1' depends on axioms: [propext, Quot.sound]
+'Families.sourceComponent.eq_1' does not depend on any axioms
+'Families.sourceTuple.eq_1' does not depend on any axioms
+'Families.sourceTuple.eq_2' does not depend on any axioms
+'Families.storedReferences.eq_1' does not depend on any axioms
+'Families.storedReferences.eq_2' does not depend on any axioms
+'Families.targetComponent.eq_1' does not depend on any axioms
+'Families.targetTuple.eq_1' does not depend on any axioms
+'Families.targetTuple.eq_2' does not depend on any axioms
+'HeadedReturnControls.atmostone_not_lifted._proof_1' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.atmostone_singletons._proof_1' depends on axioms: [propext, Quot.sound]
+'HeadedReturnControls.fullB.eq_1' does not depend on any axioms
+'HeadedReturnControls.headlift.eq_1' does not depend on any axioms
+'HeadedReturnControls.noB.eq_1' does not depend on any axioms
+'HeadedReturnControls.splitlift.eq_1' does not depend on any axioms
+'HeadedReturnControls.witnessed_needed._proof_1' depends on axioms: [propext, Quot.sound]
+'Incremental.Stage.ofNat_toCtorIdx' does not depend on any axioms
+'Incremental.ValidLog.brecOn' does not depend on any axioms
+'Incremental.instDecidableEqStage._proof_1' does not depend on any axioms
+'Incremental.instDecidableEqStage._proof_2' does not depend on any axioms
+'Incremental.keyWork.eq_1' does not depend on any axioms
+'Incremental.lookup.eq_1' does not depend on any axioms
+'Incremental.lookup_none._proof_15' depends on axioms: [propext, Quot.sound]
+'Incremental.lookup_none._proof_16' depends on axioms: [propext]
+'Incremental.rebuild.eq_1' does not depend on any axioms
+'Incremental.rebuild.eq_2' does not depend on any axioms
+'Incremental.resolve.eq_1' does not depend on any axioms
+'Incremental.resolve.eq_2' does not depend on any axioms
+'Incremental.run.eq_1' does not depend on any axioms
+'Incremental.run.eq_2' does not depend on any axioms
+'Incremental.stageWork.eq_1' does not depend on any axioms
+'Incremental.step.eq_1' does not depend on any axioms
+'Incremental.valid_backward._proof_15' depends on axioms: [propext, Quot.sound]
+'Incremental.work.eq_1' does not depend on any axioms
+'InvoiceTrace.Event.ofNat_toCtorIdx' does not depend on any axioms
+'InvoiceTrace.Route.ofNat_toCtorIdx' does not depend on any axioms
+'InvoiceTrace.evidence.eq_1' does not depend on any axioms
+'InvoiceTrace.instDecidableEqEvent._proof_1' does not depend on any axioms
+'InvoiceTrace.instDecidableEqEvent._proof_2' does not depend on any axioms
+'InvoiceTrace.instDecidableEqRoute._proof_3' does not depend on any axioms
+'InvoiceTrace.instDecidableEqRoute._proof_4' does not depend on any axioms
+'InvoiceTrace.least_support._proof_5' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict._proof_5' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict._proof_6' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.supported.eq_1' does not depend on any axioms
+'Pipeline.arity.eq_1' does not depend on any axioms
+'Pipeline.arity.eq_2' does not depend on any axioms
+'Pipeline.arity.eq_3' does not depend on any axioms
+'Pipeline.arity.eq_4' does not depend on any axioms
+'Pipeline.arity.eq_5' does not depend on any axioms
+'Pipeline.check.eq_1' does not depend on any axioms
+'Pipeline.check.eq_2' does not depend on any axioms
+'Pipeline.checkRow.eq_1' does not depend on any axioms
+'Pipeline.checkRow_exact._proof_53' depends on axioms: [propext, Quot.sound]
+'Pipeline.checkRow_exact._proof_54' depends on axioms: [propext]
+'Pipeline.gather.eq_1' does not depend on any axioms
+'Pipeline.gather.eq_2' does not depend on any axioms
+'Pipeline.interpret.eq_1' does not depend on any axioms
+'Pipeline.interpret.eq_2' does not depend on any axioms
+'Pipeline.interpret.eq_3' does not depend on any axioms
+'Pipeline.interpret.eq_4' does not depend on any axioms
+'Pipeline.interpret.eq_5' does not depend on any axioms
+'Pipeline.interpret.eq_6' does not depend on any axioms
+'Pipeline.source.eq_1' does not depend on any axioms
+'Pipeline.source.eq_2' does not depend on any axioms
+'Pipeline.sourceStep.eq_1' does not depend on any axioms
+'Pipeline.target.eq_1' does not depend on any axioms
+'Pipeline.target.eq_2' does not depend on any axioms
+'Pipeline.targetStep.eq_1' does not depend on any axioms
+'Projection.complete.eq_1' does not depend on any axioms
+'Projection.gatherOrigins.eq_1' does not depend on any axioms
+'Projection.gatherOrigins.eq_2' does not depend on any axioms
+'Projection.position.eq_1' does not depend on any axioms
+'Projection.position.eq_2' does not depend on any axioms
+'Projection.publish.eq_1' does not depend on any axioms
+'Projection.publish.eq_2' does not depend on any axioms
+'Projection.readOrigin.eq_1' does not depend on any axioms
+'Projection.remap.eq_1' does not depend on any axioms
+'Projection.remap.eq_2' does not depend on any axioms
+'Provenance.capacity_bounds._proof_1' depends on axioms: [propext, Quot.sound]
+'Provenance.decode._proof_8' depends on axioms: [propext]
+'Provenance.finiteDerivationEq._proof_1' depends on axioms: [propext, Quot.sound]
+'Provenance.finiteDerivationEq._proof_2' does not depend on any axioms
+'Provenance.finiteDerivationEq._proof_3' does not depend on any axioms
+'Provenance.head._proof_4' does not depend on any axioms
+'Provenance.lift.eq_1' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence._proof_5' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence._proof_6' depends on axioms: [propext]
+'Provenance.occurrence._proof_7' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence_decode._proof_9' depends on axioms: [propext, Quot.sound]
+'Provenance.occurrence_position_injective._proof_9' depends on axioms: [propext, Quot.sound]
+'Provenance.record.eq_1' depends on axioms: [propext]
+'Provenance.record_premises_exact._proof_10' depends on axioms: [propext, Quot.sound]
+'Provenance.record_premises_exact._proof_9' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'ReturnControls.finiteDerivationEq._proof_1' depends on axioms: [Quot.sound]
+'ReturnControls.finiteDerivationEq._proof_2' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_3' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_4' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_5' does not depend on any axioms
+'ReturnControls.finiteDerivationEq._proof_6' does not depend on any axioms
+'Sharing.cache.eq_1' does not depend on any axioms
+'Sharing.key.eq_1' does not depend on any axioms
+'Sharing.key.eq_2' does not depend on any axioms
+'Sharing.key_fresh._proof_1' depends on axioms: [propext, Quot.sound]
+'Sharing.requests.eq_1' does not depend on any axioms
+'Sharing.row.eq_1' does not depend on any axioms
+'Sharing.scope.eq_1' does not depend on any axioms
+'Sharing.unfolded.eq_1' does not depend on any axioms
+'Sharing.unfolded.eq_2' does not depend on any axioms
+'Sharing.unfolded_calls._proof_1' depends on axioms: [propext, Quot.sound]
+'Sharing.unfolded_calls._proof_2' depends on axioms: [propext, Quot.sound]
+'Sharing.value.eq_1' does not depend on any axioms
+'Sharing.value.eq_2' does not depend on any axioms
+'Traceability.empty.eq_1' does not depend on any axioms
+'Traceability.fold.eq_1' does not depend on any axioms
+'Traceability.fold.eq_2' does not depend on any axioms
+'Traceability.recordLift.eq_1' does not depend on any axioms
+'Evaluation.Tree.add.inj' does not depend on any axioms
+'Evaluation.Tree.add.injEq' depends on axioms: [propext]
+'Evaluation.Tree.add.sizeOf_spec' does not depend on any axioms
+'Evaluation.Tree.input.inj' does not depend on any axioms
+'Evaluation.Tree.input.injEq' depends on axioms: [propext]
+'Evaluation.Tree.input.sizeOf_spec' does not depend on any axioms
+'Evaluation.Tree.literal.inj' does not depend on any axioms
+'Evaluation.Tree.literal.injEq' depends on axioms: [propext]
+'Evaluation.Tree.literal.sizeOf_spec' does not depend on any axioms
+'Evaluation.Tree.mul.inj' does not depend on any axioms
+'Evaluation.Tree.mul.injEq' depends on axioms: [propext]
+'Evaluation.Tree.mul.sizeOf_spec' does not depend on any axioms
+'Evaluation.Tree.neg.inj' does not depend on any axioms
+'Evaluation.Tree.neg.injEq' depends on axioms: [propext]
+'Evaluation.Tree.neg.sizeOf_spec' does not depend on any axioms
+'Families.Component.mk.inj' does not depend on any axioms
+'Families.Component.mk.injEq' depends on axioms: [propext]
+'Families.Component.mk.sizeOf_spec' does not depend on any axioms
+'Incremental.Entry.mk.inj' does not depend on any axioms
+'Incremental.Entry.mk.injEq' depends on axioms: [propext]
+'Incremental.Entry.mk.sizeOf_spec' does not depend on any axioms
+'Incremental.Scope.mk.inj' does not depend on any axioms
+'Incremental.Scope.mk.injEq' depends on axioms: [propext]
+'Incremental.Scope.mk.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.certification.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.compilation.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.evaluation.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.execution.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.factoring.sizeOf_spec' does not depend on any axioms
+'Incremental.Stage.proving.sizeOf_spec' does not depend on any axioms
+'Incremental.TaskKey.mk.inj' does not depend on any axioms
+'Incremental.TaskKey.mk.injEq' depends on axioms: [propext]
+'Incremental.TaskKey.mk.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.currency.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.email.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.index.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.metrics.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.override.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.quote.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.signature.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Event.tax.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Route.overridePath.sizeOf_spec' does not depend on any axioms
+'InvoiceTrace.Route.pricingPath.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.add.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.input.inj' does not depend on any axioms
+'Pipeline.Instruction.input.injEq' depends on axioms: [propext]
+'Pipeline.Instruction.input.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.mul.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.neg.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.push.inj' does not depend on any axioms
+'Pipeline.Instruction.push.injEq' depends on axioms: [propext]
+'Pipeline.Instruction.push.sizeOf_spec' does not depend on any axioms
+'Pipeline.Instruction.read.inj' does not depend on any axioms
+'Pipeline.Instruction.read.injEq' depends on axioms: [propext]
+'Pipeline.Instruction.read.sizeOf_spec' does not depend on any axioms
+'Pipeline.Operation.add.sizeOf_spec' does not depend on any axioms
+'Pipeline.Operation.input.inj' does not depend on any axioms
+'Pipeline.Operation.input.injEq' depends on axioms: [propext]
+'Pipeline.Operation.input.sizeOf_spec' does not depend on any axioms
+'Pipeline.Operation.literal.inj' does not depend on any axioms
+'Pipeline.Operation.literal.injEq' depends on axioms: [propext]
+'Pipeline.Operation.literal.sizeOf_spec' does not depend on any axioms
+'Pipeline.Operation.mul.sizeOf_spec' does not depend on any axioms
+'Pipeline.Operation.neg.sizeOf_spec' does not depend on any axioms
+'Pipeline.Row.mk.inj' does not depend on any axioms
+'Pipeline.Row.mk.injEq' depends on axioms: [propext]
+'Pipeline.Row.mk.sizeOf_spec' does not depend on any axioms
+'Projection.State.mk.inj' does not depend on any axioms
+'Projection.State.mk.injEq' depends on axioms: [propext]
+'Projection.State.mk.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ofNat_toCtorIdx' does not depend on any axioms
+'RangeLedger.BridgeRepair.ambiguity._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.ends._proof_3' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.instDecidableEqWire._proof_1' does not depend on any axioms
+'RangeLedger.BridgeRepair.instDecidableEqWire._proof_2' does not depend on any axioms
+'RangeLedger.BridgeRepair.returned_cut._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.returned_cut._proof_5' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.three_suffice._proof_4' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_5' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_6' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice._proof_7' depends on axioms: [propext, Quot.sound]
+'Traceability.Derivation.mk.inj' does not depend on any axioms
+'Traceability.Derivation.mk.injEq' depends on axioms: [propext]
+'Traceability.Derivation.mk.sizeOf_spec' does not depend on any axioms
+'Traceability.Graph.mk.inj' does not depend on any axioms
+'Traceability.Graph.mk.injEq' depends on axioms: [propext]
+'Traceability.Graph.mk.sizeOf_spec' does not depend on any axioms
+'Traceability.Timed.mk.inj' does not depend on any axioms
+'Traceability.Timed.mk.injEq' depends on axioms: [propext]
+'Traceability.Timed.mk.sizeOf_spec' does not depend on any axioms
+'_private.Controls.0.Controls.countfold.match_1.eq_1' does not depend on any axioms
+'_private.Controls.0.Controls.countfold.match_1.eq_2' does not depend on any axioms
+'_private.Evaluation.0.Evaluation.source.match_1.eq_1' does not depend on any axioms
+'_private.Evaluation.0.Evaluation.source.match_1.eq_2' does not depend on any axioms
+'_private.Evaluation.0.Evaluation.source.match_1.eq_3' does not depend on any axioms
+'_private.Evaluation.0.Evaluation.source.match_1.eq_4' does not depend on any axioms
+'_private.Evaluation.0.Evaluation.source.match_1.eq_5' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_1' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_2' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_3' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_4' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_5' does not depend on any axioms
+'_private.Evaluation.0.Pipeline.interpret.match_1.eq_6' does not depend on any axioms
+'_private.Families.0.Families.assignments.match_1.eq_1' does not depend on any axioms
+'_private.Families.0.Families.assignments.match_1.eq_2' does not depend on any axioms
+'_private.Families.0.Families.binaryTuples.match_1.eq_1' does not depend on any axioms
+'_private.Families.0.Families.binaryTuples.match_1.eq_2' does not depend on any axioms
+'_private.Families.0.Families.sourceTuple.match_1.eq_1' does not depend on any axioms
+'_private.Families.0.Families.sourceTuple.match_1.eq_2' does not depend on any axioms
+'_private.Incremental.0.Incremental.resolve.match_2.eq_1' does not depend on any axioms
+'_private.Incremental.0.Incremental.resolve.match_2.eq_2' does not depend on any axioms
+'_private.Incremental.0.Incremental.run.match_1.eq_1' does not depend on any axioms
+'_private.Incremental.0.Incremental.run.match_1.eq_2' does not depend on any axioms
+'_private.Pipeline.0.Incremental.resolve.match_1.eq_1' does not depend on any axioms
+'_private.Pipeline.0.Incremental.resolve.match_1.eq_2' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.check.match_1.eq_1' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.check.match_1.eq_2' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.gather.match_1.eq_1' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.gather.match_1.eq_2' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.gather.match_2.eq_1' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.gather.match_2.eq_2' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.source.match_1.eq_1' does not depend on any axioms
+'_private.Pipeline.0.Pipeline.source.match_1.eq_2' does not depend on any axioms
+'_private.Projection.0.Incremental.resolve.match_1.eq_1' does not depend on any axioms
+'_private.Projection.0.Incremental.resolve.match_1.eq_2' does not depend on any axioms
+'_private.Projection.0.Option.getD.match_1.eq_1' does not depend on any axioms
+'_private.Projection.0.Option.getD.match_1.eq_2' does not depend on any axioms
+'_private.Projection.0.Projection.gatherOrigins.match_1.eq_1' does not depend on any axioms
+'_private.Projection.0.Projection.gatherOrigins.match_1.eq_2' does not depend on any axioms
+'_private.Projection.0.Projection.position.match_1.eq_1' does not depend on any axioms
+'_private.Projection.0.Projection.position.match_1.eq_2' does not depend on any axioms
+'_private.Projection.0.Projection.remap.match_2.eq_1' does not depend on any axioms
+'_private.Projection.0.Projection.remap.match_2.eq_2' does not depend on any axioms
+'_private.Sharing.0.Sharing.key.match_1.eq_1' does not depend on any axioms
+'_private.Sharing.0.Sharing.key.match_1.eq_2' does not depend on any axioms
+'_private.Traceability.0.Traceability.fold.match_1.eq_1' does not depend on any axioms
+'_private.Traceability.0.Traceability.fold.match_1.eq_2' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ab.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ac.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.ad.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.bc.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.bd.sizeOf_spec' does not depend on any axioms
+'RangeLedger.BridgeRepair.Wire.cd.sizeOf_spec' does not depend on any axioms
+Kernel theorem audit: 658 theorem declarations (including generated declarations)
+Axiom subset check passed: every repository theorem uses only [propext, Quot.sound]
+Axioms printed: [propext, Quot.sound]
+Gate passed: 22 Lean files, warnings as errors, fresh imports, no prohibited proof tokens

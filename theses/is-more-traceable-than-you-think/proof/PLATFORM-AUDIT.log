@@ -1,0 +1,1132 @@
+Statement enumeration: 320 statements
+  statement Controls.countjoin
+  statement Controls.countsingle
+  statement Controls.countfold
+  statement Controls.count_once
+  statement Controls.count_twice
+  statement Controls.count_claim_fails
+  statement Controls.firstfold
+  statement Controls.ownlift
+  statement Controls.swap_same_set
+  statement Controls.first_claim_fails
+  statement Controls.fullprem
+  statement Controls.noprem
+  statement Controls.prem_differ
+  statement Controls.grainlift
+  statement Controls.grain_absent
+  statement Controls.grain_coarse_present
+  statement Controls.grain_claim_fails
+  statement Controls.residuefold
+  statement Controls.residue_survivor_absent
+  statement Controls.residue_present
+  statement Controls.residue_claim_fails
+  statement Evaluation.Tree
+  statement Evaluation.source
+  statement Evaluation.zero
+  statement Evaluation.capturedEnvironment
+  statement Evaluation.target
+  statement Evaluation.Correct
+  statement Evaluation.literal_correct
+  statement Evaluation.input_correct
+  statement Evaluation.add_correct
+  statement Evaluation.mul_correct
+  statement Evaluation.neg_correct
+  statement Evaluation.correct_unique_value
+  statement Evaluation.Agrees
+  statement Evaluation.globalSource
+  statement Evaluation.agrees_source
+  statement Evaluation.agrees_correct
+  statement EvaluationControls.capturedOne
+  statement EvaluationControls.capturedTwo
+  statement EvaluationControls.conflictingCaptures
+  statement EvaluationControls.conflicting_captures_have_captured_correctness
+  statement EvaluationControls.conflicting_captures_have_no_global_environment
+  statement EvaluationControls.fabricated_captured_value_is_refused
+  statement Families.Component
+  statement Families.checked
+  statement Families.sourceComponent
+  statement Families.targetComponent
+  statement Families.sourceTuple
+  statement Families.targetTuple
+  statement Families.assignments
+  statement Families.assignmentCount
+  statement Families.storedReferences
+  statement Families.binaryTuples
+  statement Families.checked_component_correct
+  statement Families.independent_tuple_correct
+  statement Families.flatMap_constant_length
+  statement Families.assignment_count_exact
+  statement Families.selected_length
+  statement Families.selected_member
+  statement Families.every_selection_correct
+  statement Families.repeated_factor_count
+  statement Families.binary_assignment_count
+  statement Families.binary_stored_references
+  statement Families.binaryTuples_assignments
+  statement Families.prefix_preserves_nodup
+  statement Families.binaryTuples_nodup
+  statement Families.binary_compact_distinct
+  statement Families.binary_component_family_correct
+  statement HeadedReturn.Headed
+  statement HeadedReturn.Closed
+  statement HeadedReturn.Grounded
+  statement HeadedReturn.returns_headed
+  statement HeadedReturn.head_witnessed
+  statement HeadedReturn.returns_headed_iff
+  statement HeadedReturn.returned_premises_witnessed
+  statement HeadedReturn.headed_iff_singleton
+  statement HeadedReturn.unique_iff_contributed_unique
+  statement HeadedReturn.recordLift_headed
+  statement HeadedReturn.recordLift_closed
+  statement HeadedReturnControls.nodeOnly_not_headed
+  statement HeadedReturnControls.edgeOnly_not_closed
+  statement HeadedReturnControls.headlift
+  statement HeadedReturnControls.headlift_headed
+  statement HeadedReturnControls.headlift_closed
+  statement HeadedReturnControls.headlift_returns
+  statement HeadedReturnControls.witnessed_needed
+  statement HeadedReturnControls.grounded_needed
+  statement HeadedReturnControls.fullB
+  statement HeadedReturnControls.noB
+  statement HeadedReturnControls.splitlift
+  statement HeadedReturnControls.splitlift_headed
+  statement HeadedReturnControls.splitlift_closed
+  statement HeadedReturnControls.splitlift_grounded
+  statement HeadedReturnControls.splitlift_functional
+  statement HeadedReturnControls.fullB_ne_noB
+  statement HeadedReturnControls.return_not_unique
+  statement HeadedReturnControls.atmostone
+  statement HeadedReturnControls.atmostone_singletons
+  statement HeadedReturnControls.atmostone_not_lifted
+  statement Incremental.Stage
+  statement Incremental.Scope
+  statement Incremental.TaskKey
+  statement Incremental.Entry
+  statement Incremental.resolve
+  statement Incremental.lookup
+  statement Incremental.step
+  statement Incremental.run
+  statement Incremental.rebuild
+  statement Incremental.ValidLog
+  statement Incremental.Sound
+  statement Incremental.row_stable
+  statement Incremental.resolve_append
+  statement Incremental.resolve_all_prior
+  statement Incremental.lookup_sound
+  statement Incremental.lookup_none
+  statement Incremental.step_hit
+  statement Incremental.step_valid
+  statement Incremental.run_valid
+  statement Incremental.valid_sound
+  statement Incremental.reuse_agrees_with_fresh
+  statement Incremental.run_append
+  statement Incremental.rebuild_append
+  statement Incremental.valid_rebuild_exact
+  statement Incremental.run_cold_exact
+  statement Incremental.step_preserves_prefix
+  statement Incremental.run_preserves_prefix
+  statement Incremental.valid_unique_keys
+  statement Incremental.work
+  statement Incremental.stageWork
+  statement Incremental.work_append
+  statement Incremental.stageWork_append
+  statement Incremental.cumulative_work
+  statement Incremental.hit_zero_work
+  statement Incremental.miss_one_work
+  statement Incremental.resolve_member
+  statement Incremental.resolve_length
+  statement Incremental.cumulative_contract
+  statement Incremental.valid_backward
+  statement Incremental.Depends
+  statement Incremental.dependency_rank
+  statement Incremental.no_self_support
+  statement Incremental.keyWork
+  statement Incremental.keyWork_append
+  statement Incremental.keyWork_singleton
+  statement Incremental.fresh_key_zero_work
+  statement Incremental.key_work_at_most_one
+  statement IncrementalControls.baseScope
+  statement IncrementalControls.leaf
+  statement IncrementalControls.joint
+  statement IncrementalControls.ordered
+  statement IncrementalControls.operation
+  statement IncrementalControls.initialRows
+  statement IncrementalControls.seeds
+  statement IncrementalControls.composed
+  statement IncrementalControls.seed_rows_are_valid
+  statement IncrementalControls.all_premises_are_required
+  statement IncrementalControls.self_support_is_refused
+  statement IncrementalControls.ordered_premises_change_the_result
+  statement IncrementalControls.repeated_positions_are_not_duplicate_publications
+  statement IncrementalControls.changedScopes
+  statement IncrementalControls.omitted_scope_coordinates_would_alias_distinct_tasks
+  statement IncrementalControls.nextVersion
+  statement IncrementalControls.same_premises_are_not_a_complete_cache_key
+  statement IncrementalControls.revised
+  statement IncrementalControls.old_history_survives_a_new_version
+  statement IncrementalControls.repeated_requests_keep_three_rows
+  statement IncrementalControls.forged
+  statement IncrementalControls.fabricated_cached_value_is_not_a_valid_log
+  statement IncrementalControls.pendingTasks
+  statement IncrementalControls.projected
+  statement IncrementalControls.sparse_completion_preserves_real_premises
+  statement IncrementalControls.completion_order_is_not_original_task_order
+  statement Pipeline.Operation
+  statement Pipeline.Instruction
+  statement Pipeline.arity
+  statement Pipeline.interpret
+  statement Pipeline.compile
+  statement Pipeline.runStack
+  statement Pipeline.single
+  statement Pipeline.execute
+  statement Pipeline.compile_correct
+  statement Pipeline.Row
+  statement Pipeline.gather
+  statement Pipeline.gather_resolve
+  statement Pipeline.checkRow
+  statement Pipeline.check
+  statement Pipeline.checkRow_exact
+  statement Pipeline.sourceStep
+  statement Pipeline.targetStep
+  statement Pipeline.source
+  statement Pipeline.target
+  statement Pipeline.checked_row_correct
+  statement Pipeline.checked_semantics
+  statement Pipeline.check_append
+  statement Pipeline.certify_extension
+  statement Pipeline.extension_length
+  statement Pipeline.checked_all_prior
+  statement Pipeline.checked_arity
+  statement Pipeline.gather_ready
+  statement Pipeline.interpret_ready
+  statement Pipeline.checked_source_success
+  statement Pipeline.checked_program_correct
+  statement Projection.position
+  statement Projection.remap
+  statement Projection.readOrigin
+  statement Projection.gatherOrigins
+  statement Projection.position_sound
+  statement Projection.position_injective
+  statement Projection.position_append
+  statement Projection.remap_append
+  statement Projection.resolve_remap
+  statement Projection.remap_length
+  statement Projection.remap_injective
+  statement Projection.remapped_keys_reflect_equality
+  statement Projection.position_exists
+  statement Projection.position_none
+  statement Projection.position_new
+  statement Projection.State
+  statement Projection.empty
+  statement Projection.complete
+  statement Projection.publish
+  statement Projection.complete_spec
+  statement Projection.complete_uses_original_dependencies
+  statement Projection.complete_valid
+  statement Projection.complete_length
+  statement Projection.complete_origins_unique
+  statement Projection.complete_publishes_result
+  statement Projection.publish_valid
+  statement Projection.publish_length
+  statement Projection.projected_cold_exact
+  statement Provenance.capacity
+  statement Provenance.capacity_bounds
+  statement Provenance.finiteDerivationEq
+  statement Provenance.head
+  statement Provenance.occurrence
+  statement Provenance.decode
+  statement Provenance.record
+  statement Provenance.lift
+  statement Provenance.witnesses
+  statement Provenance.occurrence_decode
+  statement Provenance.decode_ordered
+  statement Provenance.occurrence_position_injective
+  statement Provenance.record_premises_exact
+  statement Provenance.witness_member
+  statement Provenance.retained_return
+  statement Provenance.completed_return
+  statement Provenance.publish_origins
+  statement Provenance.published_tasks_exist
+  statement Provenance.published_return
+  statement ReturnControls.noPremises
+  statement ReturnControls.onePremise
+  statement ReturnControls.nodeOnly
+  statement ReturnControls.head_without_derivation
+  statement ReturnControls.head_only_claim_fails
+  statement ReturnControls.edgeOnly
+  statement ReturnControls.derivation_without_head
+  statement ReturnControls.edge_implies_head_claim_fails
+  statement ReturnControls.exactLift
+  statement ReturnControls.witnessed_head_does_not_select_premises
+  statement ReturnControls.finiteDerivationEq
+  statement ReturnControls.record
+  statement ReturnControls.same_head_distinct_recorded_premises
+  statement ReturnControls.aliasedLift
+  statement ReturnControls.contributor_refuses_missing_edge
+  statement ReturnControls.contributor_selection_is_order_sensitive
+  statement ReturnControls.source_from_fold_claim_fails
+  statement ReturnControls.time_from_fold_claim_fails
+  statement Sharing.scope
+  statement Sharing.key
+  statement Sharing.value
+  statement Sharing.row
+  statement Sharing.cache
+  statement Sharing.requests
+  statement Sharing.unfolded
+  statement Sharing.cache_succ
+  statement Sharing.cache_length
+  statement Sharing.cache_row
+  statement Sharing.requests_succ
+  statement Sharing.key_fresh
+  statement Sharing.resolve_children
+  statement Sharing.step_succ
+  statement Sharing.run_diamond
+  statement Sharing.diamond_valid
+  statement Sharing.work_diamond
+  statement Sharing.stageWork_diamond
+  statement Sharing.unfolded_value
+  statement Sharing.unfolded_calls
+  statement Sharing.diamond_compression
+  statement Traceability.Derivation
+  statement Traceability.Graph
+  statement Traceability.join
+  statement Traceability.empty
+  statement Traceability.fold
+  statement Traceability.Timed
+  statement Traceability.foldtimed
+  statement Traceability.bool_eq_of_agree
+  statement Traceability.graph_ext
+  statement Traceability.join_assoc
+  statement Traceability.join_comm
+  statement Traceability.join_idem
+  statement Traceability.join_empty_left
+  statement Traceability.join_empty_right
+  statement Traceability.fold_append
+  statement Traceability.fold_nodes
+  statement Traceability.fold_edges
+  statement Traceability.contributor
+  statement Traceability.contributor_isSome
+  statement Traceability.contributor_sound
+  statement Traceability.returns_recorded_edge_weaker
+  statement Traceability.recordLift
+  statement Traceability.returns_recorded_head
+  statement Traceability.fold_ext
+  statement Traceability.fold_perm
+  statement Traceability.fold_append_self
+  statement Traceability.foldtimed_ext
+  statement Traceability.map_event
+  statement Traceability.foldtimed_retime
+  statement Traceability.retract_nodes
+  statement Traceability.retract_edges
+  statement Traceability.retract_eq
+Printed statements (kernel checker output):
+Controls.countjoin : (Nat → Nat) → (Nat → Nat) → Nat → Nat
+Controls.countsingle : Nat → Nat → Nat
+Controls.countfold : List Nat → Nat → Nat
+Controls.count_once : Controls.countfold [0] 0 = 1
+Controls.count_twice : Controls.countfold ([0] ++ [0]) 0 = 2
+Controls.count_claim_fails : ¬∀ (l : List Nat), Controls.countfold (l ++ l) = Controls.countfold l
+Controls.firstfold : (Nat → Traceability.Graph Nat) → List Nat → Traceability.Graph Nat
+Controls.ownlift : Nat → Traceability.Graph Nat
+Controls.swap_same_set : ∀ (x : Nat), x ∈ [0, 1] ↔ x ∈ [1, 0]
+Controls.first_claim_fails : ¬∀ (l₁ l₂ : List Nat),
+    (∀ (x : Nat), x ∈ l₁ ↔ x ∈ l₂) → Controls.firstfold Controls.ownlift l₁ = Controls.firstfold Controls.ownlift l₂
+Controls.fullprem : Traceability.Derivation Nat
+Controls.noprem : Traceability.Derivation Nat
+Controls.prem_differ : Controls.fullprem ≠ Controls.noprem
+Controls.grainlift : Nat → Traceability.Graph Nat
+Controls.grain_absent : (Traceability.fold Controls.grainlift [0]).edges Controls.noprem = false
+Controls.grain_coarse_present : ∃ d',
+  (Traceability.fold Controls.grainlift [0]).edges d' = true ∧ d'.head = Controls.noprem.head
+Controls.grain_claim_fails : ¬∀ (d : Traceability.Derivation Nat),
+    (∃ d', (Traceability.fold Controls.grainlift [0]).edges d' = true ∧ d'.head = d.head) →
+      (Traceability.fold Controls.grainlift [0]).edges d = true
+Controls.residuefold : (Nat → Traceability.Graph Nat) → (Nat → Bool) → List Nat → Traceability.Graph Nat
+Controls.residue_survivor_absent : (Traceability.fold Controls.ownlift
+        (List.filter (fun e => decide (e = 1)) [0, 1])).nodes
+    0 =
+  false
+Controls.residue_present : (Controls.residuefold Controls.ownlift (fun e => decide (e = 1)) [0, 1]).nodes 0 = true
+Controls.residue_claim_fails : Controls.residuefold Controls.ownlift (fun e => decide (e = 1)) [0, 1] ≠
+  Traceability.fold Controls.ownlift (List.filter (fun e => decide (e = 1)) [0, 1])
+Evaluation.Tree : Type
+Evaluation.source : Evaluation.Tree → Int
+Evaluation.zero : Pipeline.Environment
+Evaluation.capturedEnvironment : String → Int → Pipeline.Environment
+Evaluation.target : Evaluation.Tree → Option Int
+Evaluation.Correct : Evaluation.Tree → Int → Prop
+@Evaluation.literal_correct : ∀ {value result : Int} {code : List Pipeline.Instruction},
+  code = Pipeline.compile (Pipeline.Operation.literal value) →
+    value = result → Evaluation.Correct (Evaluation.Tree.literal value code) result
+@Evaluation.input_correct : ∀ {name : String} {captured result : Int} {code : List Pipeline.Instruction},
+  code = Pipeline.compile (Pipeline.Operation.input name) →
+    captured = result → Evaluation.Correct (Evaluation.Tree.input name captured code) result
+@Evaluation.add_correct : ∀ {left right : Evaluation.Tree} {a b result : Int} {code : List Pipeline.Instruction},
+  Evaluation.Correct left a →
+    Evaluation.Correct right b →
+      code = Pipeline.compile Pipeline.Operation.add → a + b = result → Evaluation.Correct (left.add right code) result
+@Evaluation.mul_correct : ∀ {left right : Evaluation.Tree} {a b result : Int} {code : List Pipeline.Instruction},
+  Evaluation.Correct left a →
+    Evaluation.Correct right b →
+      code = Pipeline.compile Pipeline.Operation.mul → a * b = result → Evaluation.Correct (left.mul right code) result
+@Evaluation.neg_correct : ∀ {child : Evaluation.Tree} {value result : Int} {code : List Pipeline.Instruction},
+  Evaluation.Correct child value →
+    code = Pipeline.compile Pipeline.Operation.neg → -value = result → Evaluation.Correct (child.neg code) result
+@Evaluation.correct_unique_value : ∀ {tree : Evaluation.Tree} {first second : Int},
+  Evaluation.Correct tree first → Evaluation.Correct tree second → first = second
+Evaluation.Agrees : Pipeline.Environment → Evaluation.Tree → Prop
+Evaluation.globalSource : Pipeline.Environment → Evaluation.Tree → Int
+Evaluation.agrees_source : ∀ (env : Pipeline.Environment) (tree : Evaluation.Tree),
+  Evaluation.Agrees env tree → Evaluation.globalSource env tree = Evaluation.source tree
+@Evaluation.agrees_correct : ∀ {env : Pipeline.Environment} {tree : Evaluation.Tree} {result : Int},
+  Evaluation.Agrees env tree →
+    Evaluation.Correct tree result → Evaluation.globalSource env tree = result ∧ Evaluation.target tree = some result
+EvaluationControls.capturedOne : Evaluation.Tree
+EvaluationControls.capturedTwo : Evaluation.Tree
+EvaluationControls.conflictingCaptures : Evaluation.Tree
+EvaluationControls.conflicting_captures_have_captured_correctness : Evaluation.Correct
+  EvaluationControls.conflictingCaptures 3
+EvaluationControls.conflicting_captures_have_no_global_environment : ∀ (env : Pipeline.Environment),
+  ¬Evaluation.Agrees env EvaluationControls.conflictingCaptures
+EvaluationControls.fabricated_captured_value_is_refused : ¬Evaluation.Correct EvaluationControls.conflictingCaptures 999
+Families.Component : Type
+Families.checked : Families.Component → Bool
+Families.sourceComponent : Pipeline.Environment → Families.Component → Option Int
+Families.targetComponent : Pipeline.Environment → Families.Component → Option Int
+Families.sourceTuple : Pipeline.Environment → List Families.Component → Option (List Int)
+Families.targetTuple : Pipeline.Environment → List Families.Component → Option (List Int)
+@Families.assignments : {α : Type} → List (List α) → List (List α)
+@Families.assignmentCount : {α : Type} → List (List α) → Nat
+@Families.storedReferences : {α : Type} → List (List α) → Nat
+Families.binaryTuples : Nat → List (List Bool)
+@Families.checked_component_correct : ∀ {component : Families.Component},
+  Families.checked component = true →
+    ∀ (env : Pipeline.Environment),
+      ∃ value, Families.sourceComponent env component = some value ∧ Families.targetComponent env component = some value
+@Families.independent_tuple_correct : ∀ {components : List Families.Component},
+  (∀ (component : Families.Component), component ∈ components → Families.checked component = true) →
+    ∀ (env : Pipeline.Environment),
+      ∃ values,
+        Families.sourceTuple env components = some values ∧
+          Families.targetTuple env components = some values ∧ values.length = components.length
+@Families.flatMap_constant_length : ∀ {α β : Type} (items : List α) (f : α → List β) (count : Nat),
+  (∀ (item : α), item ∈ items → (f item).length = count) → (List.flatMap f items).length = items.length * count
+@Families.assignment_count_exact : ∀ {α : Type} (factors : List (List α)),
+  (Families.assignments factors).length = Families.assignmentCount factors
+@Families.selected_length : ∀ {α : Type} {factors : List (List α)} {selected : List α},
+  selected ∈ Families.assignments factors → selected.length = factors.length
+@Families.selected_member : ∀ {α : Type} {factors : List (List α)} {selected : List α},
+  selected ∈ Families.assignments factors →
+    ∀ {item : α}, item ∈ selected → ∃ alternatives, alternatives ∈ factors ∧ item ∈ alternatives
+@Families.every_selection_correct : ∀ {factors : List (List Families.Component)},
+  (∀ (alternatives : List Families.Component),
+      alternatives ∈ factors →
+        ∀ (component : Families.Component), component ∈ alternatives → Families.checked component = true) →
+    ∀ {selected : List Families.Component},
+      selected ∈ Families.assignments factors →
+        ∀ (env : Pipeline.Environment),
+          ∃ values,
+            Families.sourceTuple env selected = some values ∧
+              Families.targetTuple env selected = some values ∧ values.length = factors.length
+@Families.repeated_factor_count : ∀ {α : Type} (alternatives : List α) (count : Nat),
+  Families.assignmentCount (List.replicate count alternatives) = alternatives.length ^ count
+@Families.binary_assignment_count : ∀ {α : Type} (left right : α) (count : Nat),
+  (Families.assignments (List.replicate count [left, right])).length = 2 ^ count
+@Families.binary_stored_references : ∀ {α : Type} (left right : α) (count : Nat),
+  Families.storedReferences (List.replicate count [left, right]) = 2 * count
+Families.binaryTuples_assignments : ∀ (count : Nat),
+  Families.binaryTuples count = Families.assignments (List.replicate count [false, true])
+@Families.prefix_preserves_nodup : ∀ {α : Type} (item : α) {tuples : List (List α)},
+  tuples.Nodup → (List.map (fun x => item :: x) tuples).Nodup
+Families.binaryTuples_nodup : ∀ (count : Nat), (Families.binaryTuples count).Nodup
+Families.binary_compact_distinct : ∀ (count : Nat),
+  (Families.binaryTuples count).Nodup ∧
+    (Families.binaryTuples count).length = 2 ^ count ∧
+      Families.storedReferences (List.replicate count [false, true]) = 2 * count
+Families.binary_component_family_correct : ∀ (left right : Families.Component),
+  Families.checked left = true →
+    Families.checked right = true →
+      ∀ (count : Nat),
+        (Families.assignments (List.replicate count [left, right])).length = 2 ^ count ∧
+          Families.storedReferences (List.replicate count [left, right]) = 2 * count ∧
+            ∀ (selected : List Families.Component),
+              selected ∈ Families.assignments (List.replicate count [left, right]) →
+                ∀ (env : Pipeline.Environment),
+                  ∃ values,
+                    Families.sourceTuple env selected = some values ∧
+                      Families.targetTuple env selected = some values ∧ values.length = count
+@HeadedReturn.Headed : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.Closed : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.Grounded : {Node Ev : Type} → (Ev → Traceability.Graph Node) → Prop
+@HeadedReturn.returns_headed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift →
+    ∀ {l : List Ev} {n : Node},
+      (Traceability.fold lift l).nodes n = true →
+        ∃ d,
+          (Traceability.fold lift l).edges d = true ∧
+            d.head = n ∧ ∃ e, e ∈ l ∧ (lift e).nodes n = true ∧ (lift e).edges d = true
+@HeadedReturn.head_witnessed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Closed lift →
+    ∀ {l : List Ev} {d : Traceability.Derivation Node},
+      (Traceability.fold lift l).edges d = true → (Traceability.fold lift l).nodes d.head = true
+@HeadedReturn.returns_headed_iff : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift →
+    HeadedReturn.Closed lift →
+      ∀ {l : List Ev} {n : Node},
+        (Traceability.fold lift l).nodes n = true ↔ ∃ d, (Traceability.fold lift l).edges d = true ∧ d.head = n
+@HeadedReturn.returned_premises_witnessed : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Grounded lift →
+    ∀ {l : List Ev} {d : Traceability.Derivation Node} {m : Node},
+      (Traceability.fold lift l).edges d = true → d.premises m = true → (Traceability.fold lift l).nodes m = true
+@HeadedReturn.headed_iff_singleton : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node),
+  HeadedReturn.Headed lift ↔
+    ∀ (e : Ev) (n : Node),
+      (Traceability.fold lift [e]).nodes n = true → ∃ d, (Traceability.fold lift [e]).edges d = true ∧ d.head = n
+@HeadedReturn.unique_iff_contributed_unique : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev},
+  (∀ (d d' : Traceability.Derivation Node),
+      (Traceability.fold lift l).edges d = true →
+        (Traceability.fold lift l).edges d' = true → d.head = d'.head → d = d') ↔
+    ∀ (e e' : Ev) (d d' : Traceability.Derivation Node),
+      e ∈ l → e' ∈ l → (lift e).edges d = true → (lift e').edges d' = true → d.head = d'.head → d = d'
+@HeadedReturn.recordLift_headed : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node),
+  HeadedReturn.Headed (Traceability.recordLift record)
+@HeadedReturn.recordLift_closed : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node),
+  HeadedReturn.Closed (Traceability.recordLift record)
+HeadedReturnControls.nodeOnly_not_headed : ¬HeadedReturn.Headed ReturnControls.nodeOnly
+HeadedReturnControls.edgeOnly_not_closed : ¬HeadedReturn.Closed ReturnControls.edgeOnly
+HeadedReturnControls.headlift : Nat → Traceability.Graph Nat
+HeadedReturnControls.headlift_headed : HeadedReturn.Headed HeadedReturnControls.headlift
+HeadedReturnControls.headlift_closed : HeadedReturn.Closed HeadedReturnControls.headlift
+HeadedReturnControls.headlift_returns : ∃ d,
+  (Traceability.fold HeadedReturnControls.headlift [0, 1]).edges d = true ∧
+    d.head = 1 ∧
+      ∃ e,
+        e ∈ [0, 1] ∧ (HeadedReturnControls.headlift e).nodes 1 = true ∧ (HeadedReturnControls.headlift e).edges d = true
+HeadedReturnControls.witnessed_needed : ¬∀ (n : Nat),
+    ∃ d, (Traceability.fold HeadedReturnControls.headlift [0]).edges d = true ∧ d.head = n
+HeadedReturnControls.grounded_needed : ¬∀ (d : Traceability.Derivation Nat) (m : Nat),
+    (Traceability.fold HeadedReturnControls.headlift [0]).edges d = true →
+      d.premises m = true → (Traceability.fold HeadedReturnControls.headlift [0]).nodes m = true
+HeadedReturnControls.fullB : Traceability.Derivation Bool
+HeadedReturnControls.noB : Traceability.Derivation Bool
+HeadedReturnControls.splitlift : Nat → Traceability.Graph Bool
+HeadedReturnControls.splitlift_headed : HeadedReturn.Headed HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_closed : HeadedReturn.Closed HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_grounded : HeadedReturn.Grounded HeadedReturnControls.splitlift
+HeadedReturnControls.splitlift_functional : ∀ (e : Nat) (d d' : Traceability.Derivation Bool),
+  (HeadedReturnControls.splitlift e).edges d = true →
+    (HeadedReturnControls.splitlift e).edges d' = true → d.head = d'.head → d = d'
+HeadedReturnControls.fullB_ne_noB : HeadedReturnControls.fullB ≠ HeadedReturnControls.noB
+HeadedReturnControls.return_not_unique : (Traceability.fold HeadedReturnControls.splitlift [0, 1]).edges
+      HeadedReturnControls.fullB =
+    true ∧
+  (Traceability.fold HeadedReturnControls.splitlift [0, 1]).edges HeadedReturnControls.noB = true ∧
+    HeadedReturnControls.fullB.head = HeadedReturnControls.noB.head ∧
+      HeadedReturnControls.fullB ≠ HeadedReturnControls.noB
+HeadedReturnControls.atmostone : Traceability.Graph Nat → Prop
+HeadedReturnControls.atmostone_singletons : ∀ (e : Nat),
+  HeadedReturnControls.atmostone (Traceability.fold Controls.ownlift [e])
+HeadedReturnControls.atmostone_not_lifted : ¬HeadedReturnControls.atmostone (Traceability.fold Controls.ownlift [0, 1])
+Incremental.Stage : Type
+Incremental.Scope : Type
+Incremental.TaskKey : Type
+Incremental.Entry : Type → Type
+@Incremental.resolve : {Value : Type} → Incremental.Cache Value → List Nat → Option (List Value)
+@Incremental.lookup : {Value : Type} → Incremental.Cache Value → Incremental.TaskKey → Option (Incremental.Entry Value)
+@Incremental.step : {Value : Type} →
+  (Incremental.Scope → List Value → Value) →
+    Incremental.Cache Value → Incremental.TaskKey → Option (Incremental.Cache Value)
+@Incremental.run : {Value : Type} →
+  (Incremental.Scope → List Value → Value) →
+    Incremental.Cache Value → List Incremental.TaskKey → Option (Incremental.Cache Value)
+@Incremental.rebuild : {Value : Type} →
+  (Incremental.Scope → List Value → Value) →
+    Incremental.Cache Value → List Incremental.TaskKey → Option (Incremental.Cache Value)
+@Incremental.ValidLog : {Value : Type} → (Incremental.Scope → List Value → Value) → Incremental.Cache Value → Prop
+@Incremental.Sound : {Value : Type} → (Incremental.Scope → List Value → Value) → Incremental.Cache Value → Prop
+@Incremental.row_stable : ∀ {Value : Type} {cache : Incremental.Cache Value} {index : Nat}
+  {entry : Incremental.Entry Value},
+  cache[index]? = some entry → ∀ (more : Incremental.Cache Value), (cache ++ more)[index]? = some entry
+@Incremental.resolve_append : ∀ {Value : Type} {cache : Incremental.Cache Value} {premises : List Nat}
+  {values : List Value},
+  Incremental.resolve cache premises = some values →
+    ∀ (more : Incremental.Cache Value), Incremental.resolve (cache ++ more) premises = some values
+@Incremental.resolve_all_prior : ∀ {Value : Type} {cache : Incremental.Cache Value} {premises : List Nat}
+  {values : List Value},
+  Incremental.resolve cache premises = some values → ∀ (index : Nat), index ∈ premises → index < List.length cache
+@Incremental.lookup_sound : ∀ {Value : Type} {cache : Incremental.Cache Value} {key : Incremental.TaskKey}
+  {entry : Incremental.Entry Value}, Incremental.lookup cache key = some entry → entry ∈ cache ∧ entry.key = key
+@Incremental.lookup_none : ∀ {Value : Type} {cache : Incremental.Cache Value} {key : Incremental.TaskKey},
+  Incremental.lookup cache key = none ↔ ∀ (entry : Incremental.Entry Value), entry ∈ cache → entry.key ≠ key
+@Incremental.step_hit : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) {cache : Incremental.Cache Value}
+  {key : Incremental.TaskKey} {entry : Incremental.Entry Value},
+  Incremental.lookup cache key = some entry → Incremental.step op cache key = some cache
+@Incremental.step_valid : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache next : Incremental.Cache Value} {key : Incremental.TaskKey},
+  Incremental.ValidLog op cache → Incremental.step op cache key = some next → Incremental.ValidLog op next
+@Incremental.run_valid : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache next : Incremental.Cache Value} {requests : List Incremental.TaskKey},
+  Incremental.ValidLog op cache → Incremental.run op cache requests = some next → Incremental.ValidLog op next
+@Incremental.valid_sound : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value}, Incremental.ValidLog op cache → Incremental.Sound op cache
+@Incremental.reuse_agrees_with_fresh : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache : Incremental.Cache Value} {key : Incremental.TaskKey} {entry : Incremental.Entry Value},
+  Incremental.ValidLog op cache →
+    Incremental.lookup cache key = some entry →
+      ∃ values,
+        Incremental.resolve cache key.premises = some values ∧
+          entry.value = op key.scope values ∧ Incremental.step op cache key = some cache
+@Incremental.run_append : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (cache : Incremental.Cache Value) (left right : List Incremental.TaskKey),
+  Incremental.run op cache (left ++ right) =
+    (Incremental.run op cache left).bind fun next => Incremental.run op next right
+@Incremental.rebuild_append : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (cache : Incremental.Cache Value) (left right : List Incremental.TaskKey),
+  Incremental.rebuild op cache (left ++ right) =
+    (Incremental.rebuild op cache left).bind fun next => Incremental.rebuild op next right
+@Incremental.valid_rebuild_exact : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value},
+  Incremental.ValidLog op cache → Incremental.rebuild op [] (List.map Incremental.Entry.key cache) = some cache
+@Incremental.run_cold_exact : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {requests : List Incremental.TaskKey} {cache : Incremental.Cache Value},
+  Incremental.run op [] requests = some cache →
+    Incremental.rebuild op [] (List.map Incremental.Entry.key cache) = some cache
+@Incremental.step_preserves_prefix : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache next : Incremental.Cache Value} {key : Incremental.TaskKey},
+  Incremental.step op cache key = some next → ∃ more, next = cache ++ more
+@Incremental.run_preserves_prefix : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache next : Incremental.Cache Value} {requests : List Incremental.TaskKey},
+  Incremental.run op cache requests = some next → ∃ more, next = cache ++ more
+@Incremental.valid_unique_keys : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value}, Incremental.ValidLog op cache → (List.map Incremental.Entry.key cache).Nodup
+@Incremental.work : {Value : Type} → Incremental.Cache Value → Nat
+@Incremental.stageWork : {Value : Type} → Incremental.Stage → Incremental.Cache Value → Nat
+@Incremental.work_append : ∀ {Value : Type} (cache more : Incremental.Cache Value),
+  Incremental.work (cache ++ more) = Incremental.work cache + Incremental.work more
+@Incremental.stageWork_append : ∀ {Value : Type} (stage : Incremental.Stage) (cache more : Incremental.Cache Value),
+  Incremental.stageWork stage (cache ++ more) = Incremental.stageWork stage cache + Incremental.stageWork stage more
+@Incremental.cumulative_work : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache next : Incremental.Cache Value} {requests : List Incremental.TaskKey},
+  Incremental.run op cache requests = some next →
+    ∃ more,
+      next = cache ++ more ∧
+        Incremental.work next = Incremental.work cache + Incremental.work more ∧
+          ∀ (stage : Incremental.Stage),
+            Incremental.stageWork stage next = Incremental.stageWork stage cache + Incremental.stageWork stage more
+@Incremental.hit_zero_work : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache : Incremental.Cache Value} {key : Incremental.TaskKey} {entry : Incremental.Entry Value},
+  Incremental.lookup cache key = some entry →
+    Incremental.step op cache key = some cache ∧ Incremental.work cache - Incremental.work cache = 0
+@Incremental.miss_one_work : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  {cache : Incremental.Cache Value} {key : Incremental.TaskKey} {values : List Value},
+  Incremental.lookup cache key = none →
+    Incremental.resolve cache key.premises = some values →
+      Incremental.step op cache key = some (cache ++ [{ key := key, value := op key.scope values }]) ∧
+        Incremental.work (cache ++ [{ key := key, value := op key.scope values }]) = Incremental.work cache + 1
+@Incremental.resolve_member : ∀ {Value : Type} {cache : Incremental.Cache Value} {premises : List Nat}
+  {values : List Value},
+  Incremental.resolve cache premises = some values →
+    ∀ {value : Value},
+      value ∈ values → ∃ index, index ∈ premises ∧ ∃ entry, cache[index]? = some entry ∧ entry.value = value
+@Incremental.resolve_length : ∀ {Value : Type} {cache : Incremental.Cache Value} {premises : List Nat}
+  {values : List Value}, Incremental.resolve cache premises = some values → values.length = premises.length
+@Incremental.cumulative_contract : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value} {P : Value → Prop},
+  (∀ (scope : Incremental.Scope) (values : List Value),
+      (∀ (value : Value), value ∈ values → P value) → P (op scope values)) →
+    ∀ {cache : Incremental.Cache Value},
+      Incremental.ValidLog op cache → ∀ (entry : Incremental.Entry Value), entry ∈ cache → P entry.value
+@Incremental.valid_backward : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value},
+  Incremental.ValidLog op cache →
+    ∀ {index : Nat} {entry : Incremental.Entry Value},
+      cache[index]? = some entry → ∀ (premise : Nat), premise ∈ entry.key.premises → premise < index
+@Incremental.Depends : {Value : Type} → Incremental.Cache Value → Nat → Nat → Prop
+@Incremental.dependency_rank : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value},
+  Incremental.ValidLog op cache → ∀ {parent child : Nat}, Incremental.Depends cache parent child → child < parent
+@Incremental.no_self_support : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value},
+  Incremental.ValidLog op cache → ∀ (index : Nat), ¬Incremental.Depends cache index index
+@Incremental.keyWork : {Value : Type} → Incremental.TaskKey → Incremental.Cache Value → Nat
+@Incremental.keyWork_append : ∀ {Value : Type} (key : Incremental.TaskKey) (cache more : Incremental.Cache Value),
+  Incremental.keyWork key (cache ++ more) = Incremental.keyWork key cache + Incremental.keyWork key more
+@Incremental.keyWork_singleton : ∀ {Value : Type} (key : Incremental.TaskKey) (entry : Incremental.Entry Value),
+  Incremental.keyWork key [entry] = if entry.key = key then 1 else 0
+@Incremental.fresh_key_zero_work : ∀ {Value : Type} {key : Incremental.TaskKey} {cache : Incremental.Cache Value},
+  Incremental.lookup cache key = none → Incremental.keyWork key cache = 0
+@Incremental.key_work_at_most_one : ∀ {Value : Type} {op : Incremental.Scope → List Value → Value}
+  {cache : Incremental.Cache Value},
+  Incremental.ValidLog op cache → ∀ (key : Incremental.TaskKey), Incremental.keyWork key cache ≤ 1
+IncrementalControls.baseScope : Incremental.Scope
+IncrementalControls.leaf : Nat → Incremental.TaskKey
+IncrementalControls.joint : List Nat → Incremental.TaskKey
+IncrementalControls.ordered : List Nat → Incremental.TaskKey
+IncrementalControls.operation : Incremental.Scope → List Nat → Nat
+IncrementalControls.initialRows : Incremental.Cache Nat
+IncrementalControls.seeds : Incremental.Cache Nat
+IncrementalControls.composed : Incremental.Cache Nat
+IncrementalControls.seed_rows_are_valid : Incremental.ValidLog IncrementalControls.operation IncrementalControls.seeds
+IncrementalControls.all_premises_are_required : Incremental.step IncrementalControls.operation
+      IncrementalControls.initialRows (IncrementalControls.joint [0, 1]) =
+    none ∧
+  Incremental.step IncrementalControls.operation IncrementalControls.seeds (IncrementalControls.joint [0, 1]) =
+    some IncrementalControls.composed
+IncrementalControls.self_support_is_refused : Incremental.step IncrementalControls.operation []
+      (IncrementalControls.joint [0]) =
+    none ∧
+  Incremental.step IncrementalControls.operation IncrementalControls.initialRows (IncrementalControls.joint [1]) = none
+IncrementalControls.ordered_premises_change_the_result : Incremental.step IncrementalControls.operation
+      IncrementalControls.seeds (IncrementalControls.ordered [0, 1]) =
+    some (IncrementalControls.seeds ++ [{ key := IncrementalControls.ordered [0, 1], value := 23 }]) ∧
+  Incremental.step IncrementalControls.operation IncrementalControls.seeds (IncrementalControls.ordered [1, 0]) =
+    some (IncrementalControls.seeds ++ [{ key := IncrementalControls.ordered [1, 0], value := 32 }])
+IncrementalControls.repeated_positions_are_not_duplicate_publications : Incremental.step IncrementalControls.operation
+      IncrementalControls.initialRows (IncrementalControls.joint [0, 0]) =
+    some (IncrementalControls.initialRows ++ [{ key := IncrementalControls.joint [0, 0], value := 4 }]) ∧
+  List.length IncrementalControls.initialRows = 1
+IncrementalControls.changedScopes : List Incremental.Scope
+IncrementalControls.omitted_scope_coordinates_would_alias_distinct_tasks : List.map
+    (fun scope => Incremental.lookup IncrementalControls.initialRows { scope := scope, premises := [] })
+    IncrementalControls.changedScopes =
+  List.replicate 8 none
+IncrementalControls.nextVersion : Incremental.TaskKey
+IncrementalControls.same_premises_are_not_a_complete_cache_key : (IncrementalControls.leaf 2).premises =
+    IncrementalControls.nextVersion.premises ∧
+  IncrementalControls.operation (IncrementalControls.leaf 2).scope [] = 2 ∧
+    IncrementalControls.operation IncrementalControls.nextVersion.scope [] = 3 ∧
+      Incremental.lookup IncrementalControls.initialRows IncrementalControls.nextVersion = none
+IncrementalControls.revised : Incremental.Cache Nat
+IncrementalControls.old_history_survives_a_new_version : Incremental.step IncrementalControls.operation
+      IncrementalControls.initialRows IncrementalControls.nextVersion =
+    some IncrementalControls.revised ∧
+  Incremental.lookup IncrementalControls.revised (IncrementalControls.leaf 2) =
+      some { key := IncrementalControls.leaf 2, value := 2 } ∧
+    Incremental.lookup IncrementalControls.revised IncrementalControls.nextVersion =
+      some { key := IncrementalControls.nextVersion, value := 3 }
+IncrementalControls.repeated_requests_keep_three_rows : Incremental.run IncrementalControls.operation []
+      [IncrementalControls.leaf 2, IncrementalControls.leaf 3, IncrementalControls.joint [0, 1],
+        IncrementalControls.leaf 2, IncrementalControls.joint [0, 1], IncrementalControls.leaf 3] =
+    some IncrementalControls.composed ∧
+  List.length IncrementalControls.composed = 3
+IncrementalControls.forged : Incremental.Cache Nat
+IncrementalControls.fabricated_cached_value_is_not_a_valid_log : ¬Incremental.ValidLog IncrementalControls.operation
+    IncrementalControls.forged
+IncrementalControls.pendingTasks : List Incremental.TaskKey
+IncrementalControls.projected : Projection.State Nat
+IncrementalControls.sparse_completion_preserves_real_premises : Projection.publish IncrementalControls.operation
+      IncrementalControls.pendingTasks Projection.empty [1, 2] =
+    some IncrementalControls.projected ∧
+  Projection.remap IncrementalControls.projected.origins [1, 1] = some [0, 0]
+IncrementalControls.completion_order_is_not_original_task_order : Projection.complete IncrementalControls.operation
+      IncrementalControls.pendingTasks IncrementalControls.projected 0 =
+    some
+      { origins := [1, 2, 0],
+        rows := IncrementalControls.projected.rows ++ [{ key := IncrementalControls.leaf 9, value := 9 }] } ∧
+  Projection.complete IncrementalControls.operation IncrementalControls.pendingTasks IncrementalControls.projected 2 =
+      none ∧
+    Projection.complete IncrementalControls.operation IncrementalControls.pendingTasks Projection.empty 2 = none
+Pipeline.Operation : Type
+Pipeline.Instruction : Type
+Pipeline.arity : Pipeline.Operation → Nat
+Pipeline.interpret : Pipeline.Environment → Pipeline.Operation → List Int → Option Int
+Pipeline.compile : Pipeline.Operation → List Pipeline.Instruction
+Pipeline.runStack : Pipeline.Environment → List Int → List Pipeline.Instruction → List Int → Option (List Int)
+Pipeline.single : List Int → Option Int
+Pipeline.execute : Pipeline.Environment → List Int → List Pipeline.Instruction → Option Int
+Pipeline.compile_correct : ∀ (env : Pipeline.Environment) (op : Pipeline.Operation) (args : List Int),
+  Pipeline.execute env args (Pipeline.compile op) = Pipeline.interpret env op args
+Pipeline.Row : Type
+Pipeline.gather : List Int → List Nat → Option (List Int)
+Pipeline.gather_resolve : ∀ (cache : Incremental.Cache Int) (premises : List Nat),
+  Pipeline.gather (List.map Incremental.Entry.value cache) premises = Incremental.resolve cache premises
+Pipeline.checkRow : Nat → Pipeline.Row → Bool
+Pipeline.check : Nat → List Pipeline.Row → Bool
+Pipeline.checkRow_exact : ∀ (available : Nat) (row : Pipeline.Row),
+  Pipeline.checkRow available row = true ↔
+    row.code = Pipeline.compile row.operation ∧
+      row.premises.length = Pipeline.arity row.operation ∧ ∀ (index : Nat), index ∈ row.premises → index < available
+Pipeline.sourceStep : Pipeline.Environment → List Int → Pipeline.Row → Option Int
+Pipeline.targetStep : Pipeline.Environment → List Int → Pipeline.Row → Option Int
+Pipeline.source : Pipeline.Environment → List Int → List Pipeline.Row → Option (List Int)
+Pipeline.target : Pipeline.Environment → List Int → List Pipeline.Row → Option (List Int)
+@Pipeline.checked_row_correct : ∀ {available : Nat} {row : Pipeline.Row},
+  Pipeline.checkRow available row = true →
+    ∀ (env : Pipeline.Environment) (values : List Int),
+      Pipeline.targetStep env values row = Pipeline.sourceStep env values row
+@Pipeline.checked_semantics : ∀ {available : Nat} {rows : List Pipeline.Row},
+  Pipeline.check available rows = true →
+    ∀ (env : Pipeline.Environment) (values : List Int),
+      Pipeline.target env values rows = Pipeline.source env values rows
+Pipeline.check_append : ∀ (available : Nat) (before after : List Pipeline.Row),
+  Pipeline.check available (before ++ after) =
+    (Pipeline.check available before && Pipeline.check (available + before.length) after)
+@Pipeline.certify_extension : ∀ {before after : List Pipeline.Row} {count : Nat},
+  Pipeline.check 0 before = true →
+    before.length = count → Pipeline.check count after = true → Pipeline.check 0 (before ++ after) = true
+@Pipeline.extension_length : ∀ {before after : List Pipeline.Row} {count extra : Nat},
+  before.length = count → after.length = extra → (before ++ after).length = count + extra
+@Pipeline.checked_all_prior : ∀ {available : Nat} {row : Pipeline.Row},
+  Pipeline.checkRow available row = true → ∀ (index : Nat), index ∈ row.premises → index < available
+@Pipeline.checked_arity : ∀ {available : Nat} {row : Pipeline.Row},
+  Pipeline.checkRow available row = true → row.premises.length = Pipeline.arity row.operation
+Pipeline.gather_ready : ∀ (values : List Int) (premises : List Nat),
+  (∀ (index : Nat), index ∈ premises → index < values.length) →
+    ∃ args, Pipeline.gather values premises = some args ∧ args.length = premises.length
+Pipeline.interpret_ready : ∀ (env : Pipeline.Environment) (op : Pipeline.Operation) (args : List Int),
+  args.length = Pipeline.arity op → ∃ value, Pipeline.interpret env op args = some value
+@Pipeline.checked_source_success : ∀ {available : Nat} {rows : List Pipeline.Row},
+  Pipeline.check available rows = true →
+    ∀ (env : Pipeline.Environment) (values : List Int),
+      values.length = available →
+        ∃ result, Pipeline.source env values rows = some result ∧ result.length = values.length + rows.length
+@Pipeline.checked_program_correct : ∀ {rows : List Pipeline.Row},
+  Pipeline.check 0 rows = true →
+    ∀ (env : Pipeline.Environment),
+      ∃ result,
+        Pipeline.source env [] rows = some result ∧
+          Pipeline.target env [] rows = some result ∧ result.length = rows.length
+Projection.position : List Nat → Nat → Option Nat
+Projection.remap : List Nat → List Nat → Option (List Nat)
+@Projection.readOrigin : {Value : Type} → List Nat → Incremental.Cache Value → Nat → Option Value
+@Projection.gatherOrigins : {Value : Type} → List Nat → Incremental.Cache Value → List Nat → Option (List Value)
+@Projection.position_sound : ∀ {origins : List Nat} {task index : Nat},
+  Projection.position origins task = some index → origins[index]? = some task
+@Projection.position_injective : ∀ {origins : List Nat} {left right index : Nat},
+  Projection.position origins left = some index → Projection.position origins right = some index → left = right
+@Projection.position_append : ∀ {origins : List Nat} {task index : Nat},
+  Projection.position origins task = some index →
+    ∀ (more : List Nat), Projection.position (origins ++ more) task = some index
+@Projection.remap_append : ∀ {origins tasks indices : List Nat},
+  Projection.remap origins tasks = some indices →
+    ∀ (more : List Nat), Projection.remap (origins ++ more) tasks = some indices
+@Projection.resolve_remap : ∀ {Value : Type} (origins : List Nat) (rows : Incremental.Cache Value)
+  {tasks indices : List Nat},
+  Projection.remap origins tasks = some indices →
+    Projection.gatherOrigins origins rows tasks = Incremental.resolve rows indices
+@Projection.remap_length : ∀ {origins tasks indices : List Nat},
+  Projection.remap origins tasks = some indices → indices.length = tasks.length
+@Projection.remap_injective : ∀ {origins left right indices : List Nat},
+  Projection.remap origins left = some indices → Projection.remap origins right = some indices → left = right
+@Projection.remapped_keys_reflect_equality : ∀ {origins : List Nat} {left right : Incremental.TaskKey}
+  {leftRefs rightRefs : List Nat},
+  Projection.remap origins left.premises = some leftRefs →
+    Projection.remap origins right.premises = some rightRefs →
+      { scope := left.scope, premises := leftRefs } = { scope := right.scope, premises := rightRefs } → left = right
+@Projection.position_exists : ∀ {origins : List Nat} {task : Nat},
+  task ∈ origins → ∃ index, Projection.position origins task = some index
+@Projection.position_none : ∀ {origins : List Nat} {task : Nat},
+  Projection.position origins task = none ↔ ¬task ∈ origins
+@Projection.position_new : ∀ {origins : List Nat} {task : Nat},
+  Projection.position origins task = none → Projection.position (origins ++ [task]) task = some origins.length
+Projection.State : Type → Type
+@Projection.empty : {Value : Type} → Projection.State Value
+@Projection.complete : {Value : Type} →
+  (Incremental.Scope → List Value → Value) →
+    List Incremental.TaskKey → Projection.State Value → Nat → Option (Projection.State Value)
+@Projection.publish : {Value : Type} →
+  (Incremental.Scope → List Value → Value) →
+    List Incremental.TaskKey → Projection.State Value → List Nat → Option (Projection.State Value)
+@Projection.complete_spec : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  Projection.complete op tasks state task = some next →
+    ∃ key refs values,
+      tasks[task]? = some key ∧
+        Projection.position state.origins task = none ∧
+          Projection.remap state.origins key.premises = some refs ∧
+            Incremental.lookup state.rows { scope := key.scope, premises := refs } = none ∧
+              Incremental.resolve state.rows refs = some values ∧
+                next =
+                  { origins := state.origins ++ [task],
+                    rows :=
+                      state.rows ++
+                        [{ key := { scope := key.scope, premises := refs }, value := op key.scope values }] }
+@Projection.complete_uses_original_dependencies : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  Projection.complete op tasks state task = some next →
+    ∃ key refs values,
+      tasks[task]? = some key ∧
+        Projection.remap state.origins key.premises = some refs ∧
+          Projection.gatherOrigins state.origins state.rows key.premises = some values ∧
+            next.rows =
+              state.rows ++ [{ key := { scope := key.scope, premises := refs }, value := op key.scope values }]
+@Projection.complete_valid : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  Incremental.ValidLog op state.rows →
+    Projection.complete op tasks state task = some next → Incremental.ValidLog op next.rows
+@Projection.complete_length : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  state.origins.length = List.length state.rows →
+    Projection.complete op tasks state task = some next → next.origins.length = List.length next.rows
+@Projection.complete_origins_unique : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  state.origins.Nodup → Projection.complete op tasks state task = some next → next.origins.Nodup
+@Projection.complete_publishes_result : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  state.origins.length = List.length state.rows →
+    Projection.complete op tasks state task = some next →
+      ∃ key values,
+        tasks[task]? = some key ∧
+          Projection.gatherOrigins state.origins state.rows key.premises = some values ∧
+            Projection.readOrigin next.origins next.rows task = some (op key.scope values)
+@Projection.publish_valid : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {order : List Nat},
+  Incremental.ValidLog op state.rows →
+    Projection.publish op tasks state order = some next → Incremental.ValidLog op next.rows
+@Projection.publish_length : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {order : List Nat},
+  state.origins.length = List.length state.rows →
+    Projection.publish op tasks state order = some next → next.origins.length = List.length next.rows
+@Projection.projected_cold_exact : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {next : Projection.State Value} {order : List Nat},
+  Projection.publish op tasks Projection.empty order = some next →
+    Incremental.rebuild op [] (List.map Incremental.Entry.key next.rows) = some next.rows
+Provenance.capacity : List Incremental.TaskKey → Nat
+@Provenance.capacity_bounds : ∀ {tasks : List Incremental.TaskKey} {key : Incremental.TaskKey},
+  key ∈ tasks → key.premises.length ≤ Provenance.capacity tasks
+Provenance.finiteDerivationEq : (owners slots : Nat) → DecidableEq (Traceability.Derivation (Fin owners × Fin slots))
+Provenance.head : (tasks : List Incremental.TaskKey) → Provenance.Event tasks → Provenance.Node tasks
+Provenance.occurrence : (tasks : List Incremental.TaskKey) →
+  (event : Provenance.Event tasks) → Fin tasks[↑event].premises.length → Provenance.Node tasks
+Provenance.decode : (tasks : List Incremental.TaskKey) → Provenance.Node tasks → Option Nat
+Provenance.record : (tasks : List Incremental.TaskKey) →
+  Provenance.Event tasks → Traceability.Derivation (Provenance.Node tasks)
+Provenance.lift : (tasks : List Incremental.TaskKey) →
+  Provenance.Event tasks → Traceability.Graph (Provenance.Node tasks)
+Provenance.witnesses : (tasks : List Incremental.TaskKey) → List Nat → List (Provenance.Event tasks)
+Provenance.occurrence_decode : ∀ (tasks : List Incremental.TaskKey) (event : Provenance.Event tasks)
+  (position : Fin tasks[↑event].premises.length),
+  Provenance.decode tasks (Provenance.occurrence tasks event position) = some tasks[↑event].premises[↑position]
+Provenance.decode_ordered : ∀ (tasks : List Incremental.TaskKey) (event : Provenance.Event tasks),
+  List.map (Provenance.decode tasks) (List.ofFn (Provenance.occurrence tasks event)) =
+    List.map some tasks[↑event].premises
+Provenance.occurrence_position_injective : ∀ (tasks : List Incremental.TaskKey) (event : Provenance.Event tasks)
+  {left right : Fin tasks[↑event].premises.length},
+  Provenance.occurrence tasks event left = Provenance.occurrence tasks event right → left = right
+Provenance.record_premises_exact : ∀ (tasks : List Incremental.TaskKey) (event : Provenance.Event tasks)
+  (node : Provenance.Node tasks),
+  (Provenance.record tasks event).premises node = true ↔ ∃ position, node = Provenance.occurrence tasks event position
+Provenance.witness_member : ∀ (tasks : List Incremental.TaskKey) (origins : List Nat) (event : Provenance.Event tasks),
+  ↑event ∈ origins → event ∈ Provenance.witnesses tasks origins
+Provenance.retained_return : ∀ (tasks : List Incremental.TaskKey) (origins : List Nat) (event : Provenance.Event tasks),
+  event ∈ Provenance.witnesses tasks origins →
+    (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks origins)).nodes
+          (Provenance.head tasks event) =
+        true ∧
+      (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks origins)).edges
+            (Provenance.record tasks event) =
+          true ∧
+        Traceability.contributor (Provenance.lift tasks) (Provenance.witnesses tasks origins)
+            (Provenance.record tasks event) =
+          some event
+@Provenance.completed_return : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {task : Nat},
+  Projection.complete op tasks state task = some next →
+    ∃ event,
+      ↑event = task ∧
+        event ∈ Provenance.witnesses tasks next.origins ∧
+          (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)).nodes
+                (Provenance.head tasks event) =
+              true ∧
+            (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)).edges
+                  (Provenance.record tasks event) =
+                true ∧
+              Traceability.contributor (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)
+                  (Provenance.record tasks event) =
+                some event
+@Provenance.publish_origins : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {order : List Nat},
+  Projection.publish op tasks state order = some next → next.origins = state.origins ++ order
+@Provenance.published_tasks_exist : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {state next : Projection.State Value} {order : List Nat},
+  Projection.publish op tasks state order = some next → ∀ (task : Nat), task ∈ order → ∃ key, tasks[task]? = some key
+@Provenance.published_return : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (tasks : List Incremental.TaskKey) {next : Projection.State Value} {order : List Nat},
+  Projection.publish op tasks Projection.empty order = some next →
+    ∀ {task : Nat},
+      task ∈ order →
+        ∃ event,
+          ↑event = task ∧
+            event ∈ Provenance.witnesses tasks next.origins ∧
+              (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)).nodes
+                    (Provenance.head tasks event) =
+                  true ∧
+                (Traceability.fold (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)).edges
+                      (Provenance.record tasks event) =
+                    true ∧
+                  Traceability.contributor (Provenance.lift tasks) (Provenance.witnesses tasks next.origins)
+                      (Provenance.record tasks event) =
+                    some event
+ReturnControls.noPremises : Traceability.Derivation Bool
+ReturnControls.onePremise : Traceability.Derivation Bool
+ReturnControls.nodeOnly : Unit → Traceability.Graph Bool
+ReturnControls.head_without_derivation : (Traceability.fold ReturnControls.nodeOnly [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  (Traceability.fold ReturnControls.nodeOnly [()]).edges ReturnControls.noPremises = false
+ReturnControls.head_only_claim_fails : ¬∀ (lift : Unit → Traceability.Graph Bool) (l : List Unit)
+    (d : Traceability.Derivation Bool),
+    (Traceability.fold lift l).nodes d.head = true → (Traceability.fold lift l).edges d = true
+ReturnControls.edgeOnly : Unit → Traceability.Graph Bool
+ReturnControls.derivation_without_head : (Traceability.fold ReturnControls.edgeOnly [()]).edges
+      ReturnControls.noPremises =
+    true ∧
+  (Traceability.fold ReturnControls.edgeOnly [()]).nodes ReturnControls.noPremises.head = false
+ReturnControls.edge_implies_head_claim_fails : ¬∀ (lift : Unit → Traceability.Graph Bool) (l : List Unit)
+    (d : Traceability.Derivation Bool),
+    (Traceability.fold lift l).edges d = true → (Traceability.fold lift l).nodes d.head = true
+ReturnControls.exactLift : Unit → Traceability.Graph Bool
+ReturnControls.witnessed_head_does_not_select_premises : (Traceability.fold ReturnControls.exactLift [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  ReturnControls.onePremise.head = ReturnControls.noPremises.head ∧
+    (Traceability.fold ReturnControls.exactLift [()]).edges ReturnControls.onePremise = true ∧
+      (Traceability.fold ReturnControls.exactLift [()]).edges ReturnControls.noPremises = false
+ReturnControls.finiteDerivationEq : (a b : Traceability.Derivation Bool) → Decidable (a = b)
+ReturnControls.record : Bool → Traceability.Derivation Bool
+ReturnControls.same_head_distinct_recorded_premises : (Traceability.fold (Traceability.recordLift ReturnControls.record)
+          [false, true]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  (Traceability.fold (Traceability.recordLift ReturnControls.record) [false, true]).edges ReturnControls.noPremises =
+      true ∧
+    (Traceability.fold (Traceability.recordLift ReturnControls.record) [false, true]).edges ReturnControls.onePremise =
+        true ∧
+      ReturnControls.noPremises.head = ReturnControls.onePremise.head ∧
+        ReturnControls.noPremises ≠ ReturnControls.onePremise
+ReturnControls.aliasedLift : Bool → Traceability.Graph Bool
+ReturnControls.contributor_refuses_missing_edge : (Traceability.fold ReturnControls.nodeOnly [()]).nodes
+      ReturnControls.noPremises.head =
+    true ∧
+  Traceability.contributor ReturnControls.nodeOnly [()] ReturnControls.noPremises = none
+ReturnControls.contributor_selection_is_order_sensitive : Traceability.fold ReturnControls.aliasedLift [false, true] =
+    Traceability.fold ReturnControls.aliasedLift [true, false] ∧
+  Traceability.contributor ReturnControls.aliasedLift [false, true] ReturnControls.noPremises = some false ∧
+    Traceability.contributor ReturnControls.aliasedLift [true, false] ReturnControls.noPremises = some true
+ReturnControls.source_from_fold_claim_fails : ¬∃ decode,
+    ∀ (e : Bool), decode (Traceability.fold ReturnControls.aliasedLift [e]) = e
+ReturnControls.time_from_fold_claim_fails : ¬∃ decode,
+    ∀ (time : Nat), decode (Traceability.foldtimed ReturnControls.aliasedLift [{ event := false, time := time }]) = time
+Sharing.scope : Incremental.Stage → Nat → Incremental.Scope
+Sharing.key : Incremental.Stage → Nat → Incremental.TaskKey
+@Sharing.value : {Value : Type} → (Incremental.Scope → List Value → Value) → Incremental.Stage → Nat → Value
+@Sharing.row : {Value : Type} →
+  (Incremental.Scope → List Value → Value) → Incremental.Stage → Nat → Incremental.Entry Value
+@Sharing.cache : {Value : Type} →
+  (Incremental.Scope → List Value → Value) → Incremental.Stage → Nat → Incremental.Cache Value
+Sharing.requests : Incremental.Stage → Nat → List Incremental.TaskKey
+@Sharing.unfolded : {Value : Type} → (Incremental.Scope → List Value → Value) → Incremental.Stage → Nat → Value × Nat
+@Sharing.cache_succ : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Sharing.cache op stage (count + 1) = Sharing.cache op stage count ++ [Sharing.row op stage count]
+@Sharing.cache_length : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), List.length (Sharing.cache op stage count) = count
+@Sharing.cache_row : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  {index count : Nat}, index < count → (Sharing.cache op stage count)[index]? = some (Sharing.row op stage index)
+Sharing.requests_succ : ∀ (stage : Incremental.Stage) (count : Nat),
+  Sharing.requests stage (count + 1) = Sharing.requests stage count ++ [Sharing.key stage count]
+@Sharing.key_fresh : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Incremental.lookup (Sharing.cache op stage count) (Sharing.key stage count) = none
+@Sharing.resolve_children : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat),
+  Incremental.resolve (Sharing.cache op stage count) (Sharing.key stage count).premises =
+    some
+      (match count with
+      | 0 => []
+      | n.succ => [Sharing.value op stage n, Sharing.value op stage n])
+@Sharing.step_succ : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat),
+  Incremental.step op (Sharing.cache op stage count) (Sharing.key stage count) =
+    some (Sharing.cache op stage (count + 1))
+@Sharing.run_diamond : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Incremental.run op [] (Sharing.requests stage count) = some (Sharing.cache op stage count)
+@Sharing.diamond_valid : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Incremental.ValidLog op (Sharing.cache op stage count)
+@Sharing.work_diamond : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Incremental.work (Sharing.cache op stage count) = count
+@Sharing.stageWork_diamond : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (count : Nat), Incremental.stageWork stage (Sharing.cache op stage count) = count
+@Sharing.unfolded_value : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (depth : Nat), (Sharing.unfolded op stage depth).fst = Sharing.value op stage depth
+@Sharing.unfolded_calls : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value) (stage : Incremental.Stage)
+  (depth : Nat), (Sharing.unfolded op stage depth).snd = 2 ^ (depth + 1) - 1
+@Sharing.diamond_compression : ∀ {Value : Type} (op : Incremental.Scope → List Value → Value)
+  (stage : Incremental.Stage) (depth : Nat),
+  Incremental.run op [] (Sharing.requests stage (depth + 1)) = some (Sharing.cache op stage (depth + 1)) ∧
+    Incremental.work (Sharing.cache op stage (depth + 1)) = depth + 1 ∧
+      Incremental.stageWork stage (Sharing.cache op stage (depth + 1)) = depth + 1 ∧
+        (Sharing.cache op stage (depth + 1))[depth]? =
+            some { key := Sharing.key stage depth, value := (Sharing.unfolded op stage depth).fst } ∧
+          (Sharing.unfolded op stage depth).snd = 2 ^ (depth + 1) - 1
+Traceability.Derivation : Type → Type
+Traceability.Graph : Type → Type
+@Traceability.join : {Node : Type} → Traceability.Graph Node → Traceability.Graph Node → Traceability.Graph Node
+@Traceability.empty : {Node : Type} → Traceability.Graph Node
+@Traceability.fold : {Node Ev : Type} → (Ev → Traceability.Graph Node) → List Ev → Traceability.Graph Node
+Traceability.Timed : Type → Type → Type
+@Traceability.foldtimed : {Node Ev Time : Type} →
+  (Ev → Traceability.Graph Node) → List (Traceability.Timed Ev Time) → Traceability.Graph Node
+@Traceability.bool_eq_of_agree : ∀ {a b : Bool}, (a = true ↔ b = true) → a = b
+@Traceability.graph_ext : ∀ {Node : Type} {g h : Traceability.Graph Node},
+  (∀ (n : Node), g.nodes n = h.nodes n) → (∀ (d : Traceability.Derivation Node), g.edges d = h.edges d) → g = h
+@Traceability.join_assoc : ∀ {Node : Type} (a b c : Traceability.Graph Node),
+  Traceability.join (Traceability.join a b) c = Traceability.join a (Traceability.join b c)
+@Traceability.join_comm : ∀ {Node : Type} (a b : Traceability.Graph Node), Traceability.join a b = Traceability.join b a
+@Traceability.join_idem : ∀ {Node : Type} (a : Traceability.Graph Node), Traceability.join a a = a
+@Traceability.join_empty_left : ∀ {Node : Type} (a : Traceability.Graph Node),
+  Traceability.join Traceability.empty a = a
+@Traceability.join_empty_right : ∀ {Node : Type} (a : Traceability.Graph Node),
+  Traceability.join a Traceability.empty = a
+@Traceability.fold_append : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l₁ l₂ : List Ev),
+  Traceability.fold lift (l₁ ++ l₂) = Traceability.join (Traceability.fold lift l₁) (Traceability.fold lift l₂)
+@Traceability.fold_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev} {n : Node},
+  (Traceability.fold lift l).nodes n = true ↔ ∃ e, e ∈ l ∧ (lift e).nodes n = true
+@Traceability.fold_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node}, (Traceability.fold lift l).edges d = true ↔ ∃ e, e ∈ l ∧ (lift e).edges d = true
+@Traceability.contributor : {Node Ev : Type} →
+  (Ev → Traceability.Graph Node) → List Ev → Traceability.Derivation Node → Option Ev
+@Traceability.contributor_isSome : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l : List Ev)
+  (d : Traceability.Derivation Node), (Traceability.contributor lift l d).isSome = (Traceability.fold lift l).edges d
+@Traceability.contributor_sound : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node} {e : Ev},
+  Traceability.contributor lift l d = some e → e ∈ l ∧ (lift e).edges d = true
+@Traceability.returns_recorded_edge_weaker : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l : List Ev}
+  {d : Traceability.Derivation Node},
+  (Traceability.fold lift l).edges d = true →
+    ∃ e, Traceability.contributor lift l d = some e ∧ e ∈ l ∧ (lift e).edges d = true
+@Traceability.recordLift : {Node Ev : Type} →
+  [inst : DecidableEq Node] →
+    [inst : DecidableEq (Traceability.Derivation Node)] →
+      (Ev → Traceability.Derivation Node) → Ev → Traceability.Graph Node
+@Traceability.returns_recorded_head : ∀ {Node Ev : Type} [inst : DecidableEq Node]
+  [inst_1 : DecidableEq (Traceability.Derivation Node)] (record : Ev → Traceability.Derivation Node) {l : List Ev}
+  {n : Node},
+  (Traceability.fold (Traceability.recordLift record) l).nodes n = true →
+    ∃ e, e ∈ l ∧ (record e).head = n ∧ (Traceability.fold (Traceability.recordLift record) l).edges (record e) = true
+@Traceability.fold_ext : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
+  (∀ (e : Ev), e ∈ l₁ ↔ e ∈ l₂) → Traceability.fold lift l₁ = Traceability.fold lift l₂
+@Traceability.fold_perm : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) {l₁ l₂ : List Ev},
+  l₁.Perm l₂ → Traceability.fold lift l₁ = Traceability.fold lift l₂
+@Traceability.fold_append_self : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (l : List Ev),
+  Traceability.fold lift (l ++ l) = Traceability.fold lift l
+@Traceability.foldtimed_ext : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node)
+  {l₁ l₂ : List (Traceability.Timed Ev Time)},
+  (∀ (e : Ev), e ∈ List.map Traceability.Timed.event l₁ ↔ e ∈ List.map Traceability.Timed.event l₂) →
+    Traceability.foldtimed lift l₁ = Traceability.foldtimed lift l₂
+@Traceability.map_event : ∀ {Ev Time : Type} (es : List Ev) (t : Ev → Time),
+  List.map Traceability.Timed.event (List.map (fun e => { event := e, time := t e }) es) = es
+@Traceability.foldtimed_retime : ∀ {Node Ev Time : Type} (lift : Ev → Traceability.Graph Node) (es : List Ev)
+  (f g : Ev → Time),
+  Traceability.foldtimed lift (List.map (fun e => { event := e, time := f e }) es) =
+    Traceability.foldtimed lift (List.map (fun e => { event := e, time := g e }) es)
+@Traceability.retract_nodes : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
+  {n : Node},
+  (Traceability.fold lift (List.filter keep l)).nodes n = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).nodes n = true
+@Traceability.retract_edges : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l : List Ev}
+  {d : Traceability.Derivation Node},
+  (Traceability.fold lift (List.filter keep l)).edges d = true ↔ ∃ e, e ∈ l ∧ keep e = true ∧ (lift e).edges d = true
+@Traceability.retract_eq : ∀ {Node Ev : Type} (lift : Ev → Traceability.Graph Node) (keep : Ev → Bool) {l s : List Ev},
+  (∀ (e : Ev), e ∈ s ↔ e ∈ l ∧ keep e = true) → Traceability.fold lift (List.filter keep l) = Traceability.fold lift s
+Word list (52 words): linux, windows, macos, darwin, freebsd, openbsd, unix, posix, kernel, syscall, syscalls, operating, idol, zig, python, rust, java, javascript, typescript, haskell, ocaml, golang, swift, kotlin, scala, perl, ruby, lua, cpu, gpu, x86, arm64, socket, sockets, thread, threads, process, processes, pid, driver, drivers, hardware, bytecode, compiler, interpreter, shell, disk, heap, pointer, binary, executable, machine
+Hits: 0
+Platform audit: PASS

@@ -1,0 +1,18 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(8,
+ [InvoiceTrace.Event.override, InvoiceTrace.Event.signature],
+ [InvoiceTrace.Event.quote, InvoiceTrace.Event.tax, InvoiceTrace.Event.currency])
+'InvoiceTrace.extraction_exact' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.preserves_verdict' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.least_support' depends on axioms: [propext, Quot.sound]
+'InvoiceTrace.before_after' does not depend on any axioms
+'InvoiceTrace.route_is_needed' does not depend on any axioms
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(some 7, none)
+'RangeLedger.BridgeRepair.returned_cut' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.cut_distinguishes' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.two_never_enough' depends on axioms: [propext]
+'RangeLedger.BridgeRepair.ambiguity' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.three_suffice' depends on axioms: [propext, Quot.sound]
+'RangeLedger.BridgeRepair.bad_three' depends on axioms: [propext]
+Rejected control: use the wrong middle bridge for the chain decoder.

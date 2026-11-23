@@ -1,0 +1,10 @@
+Base commit: 8f6a128069d0e68e97c4a69d78689c84350b0d2f
+Git blob hashes for the exact baseline proof/gate inputs:
+61e424d64f08cbedeaad69afc5725d0b6d8cdbe4  examples/InvoiceTrace.lean
+937939f5e8073baa47626bbab228432e5cd5911e  examples/check.sh
+4393581e59332714d19d04e3d70ec39a3e2b6c89  examples/range-ledger/BridgeRepair.lean
+8438d8aefbf27f5a900311b8525a76873c10e842  examples/range-ledger/check.sh
+d072af538fd99881d1548ba370accb33dc3ff51c  proof/Controls.lean
+1c01b59146181cd43164e0b3057a473154f0f94b  proof/Traceability.lean
+2cec37452b64272dd494828ed1f447fe6fdd84ba  proof/check.sh
+7aca1d8a939cc24c413eddd793671cdce7070b74  proof/lean-toolchain

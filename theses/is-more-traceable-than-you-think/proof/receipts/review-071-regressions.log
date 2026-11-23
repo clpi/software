@@ -1,0 +1,176 @@
+Negative regression discrimination against runtime/driver pin:
+071c806c2ecb74ed85850cf04b8da1cd87998f52
+
+Fixture: incremental/{__init__,engine,pipeline,lean}.py read by git show
+from the pin above; the three new working-tree test modules and unchanged
+proof/{Incremental,Pipeline,Evaluation}.lean copied into an otherwise empty
+temporary directory. No journals, receipts, caches, or compiled Lean objects
+were reused. LEAN selected Lean4.19.0 explicitly.
+
+Command: python3 -m unittest
+  incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+  incremental.test_runtime.PipelineTests.test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles
+  incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling
+  -v
+Exit status: 1 (expected negative control)
+The positive current-source suite is separately recorded in incremental-tests.log.
+
+test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) ... 
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='unresolved') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='change_scope') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='run') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='startup') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='unresolved') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='change_scope') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='run') ... FAIL
+  test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='startup') ... FAIL
+test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles (incremental.test_runtime.PipelineTests.test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles) ... ERROR
+test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) ... 
+  test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='bool', observation=False) ... FAIL
+  test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='bool', observation=True) ... FAIL
+  test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='float', observation=False) ... FAIL
+  test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='float', observation=True) ... FAIL
+
+======================================================================
+ERROR: test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles (incremental.test_runtime.PipelineTests.test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_runtime.py", line 179, in test_deep_reversed_chain_accepts_valid_edits_and_still_refuses_cycles
+    program = Program(self.engine, definitions)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 327, in __init__
+    self.apply(definitions)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 359, in apply
+    self._validate_changes(changes, candidate)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 350, in _validate_changes
+    visit(name)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 344, in visit
+    visit(argument)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 344, in visit
+    visit(argument)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 344, in visit
+    visit(argument)
+  [Previous line repeated 979 more times]
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/pipeline.py", line 343, in visit
+    for argument in candidate[name].get("args", []):
+                    ~~~~~~~~~^^^^^^
+RecursionError: maximum recursion depth exceeded
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='unresolved')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 269, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    with self.assertRaisesRegex(ValueError, "historical"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='change_scope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 286, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, program, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='run')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 291, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, program, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='bool', path='startup')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 296, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, restored, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='unresolved')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 269, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    with self.assertRaisesRegex(ValueError, "historical"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='change_scope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 286, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, program, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='run')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 291, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, program, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_scope_identity_distinguishes_bool_int_and_float_across_current_views (incremental.test_adversarial.PipelineAttacks.test_scope_identity_distinguishes_bool_int_and_float_across_current_views) (scope='float', path='startup')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 296, in test_scope_identity_distinguishes_bool_int_and_float_across_current_views
+    check_current(engine, restored, previous, replacement)
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_adversarial.py", line 255, in check_current
+    self.assertNotEqual(node, previous[stage])
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='bool', observation=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_kernel_attacks.py", line 178, in test_retained_observations_reject_bool_and_float_scope_relabeling
+    with self.assertRaisesRegex(KernelError, "scope|identity"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: KernelError not raised
+
+======================================================================
+FAIL: test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='bool', observation=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_kernel_attacks.py", line 178, in test_retained_observations_reject_bool_and_float_scope_relabeling
+    with self.assertRaisesRegex(KernelError, "scope|identity"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: KernelError not raised
+
+======================================================================
+FAIL: test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='float', observation=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_kernel_attacks.py", line 178, in test_retained_observations_reject_bool_and_float_scope_relabeling
+    with self.assertRaisesRegex(KernelError, "scope|identity"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: KernelError not raised
+
+======================================================================
+FAIL: test_retained_observations_reject_bool_and_float_scope_relabeling (incremental.test_kernel_attacks.KernelAttacks.test_retained_observations_reject_bool_and_float_scope_relabeling) (scope='float', observation=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/traceability-regression-baseline-juusktbc/incremental/test_kernel_attacks.py", line 178, in test_retained_observations_reject_bool_and_float_scope_relabeling
+    with self.assertRaisesRegex(KernelError, "scope|identity"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: KernelError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.250s
+
+FAILED (failures=12, errors=1)
