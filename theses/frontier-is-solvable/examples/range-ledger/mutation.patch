@@ -1,0 +1,11 @@
+--- TileFrontier.lean
++++ TileFrontier.lean
+@@ -20,7 +20,7 @@
+     have rhs := Nat.mul_lt_mul_of_pos_left short rp
+     omega
+ 
+-theorem minimax (r s : Nat) (h : legal r s) : 64 ≤ max r s := by
++theorem minimax (r s : Nat) (h : legal r s) : 65 ≤ max r s := by
+   unfold legal at h
+   apply Classical.byContradiction; intro low
+   have hr := Nat.le_max_left r s
