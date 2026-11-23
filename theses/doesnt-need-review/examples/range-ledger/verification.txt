@@ -1,0 +1,6 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'RangeLedger.NullableAggregate.summary' depends on axioms: [propext, Quot.sound]
+'RangeLedger.NullableAggregate.one_bit_necessary' does not depend on any axioms
+'RangeLedger.NullableAggregate.merge' depends on axioms: [propext, Quot.sound]
+Rejected control: require every row to be non-NULL.
+SQLite 3.53.1: 7737 split/merge comparisons matched native SUM

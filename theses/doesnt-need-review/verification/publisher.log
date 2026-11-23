@@ -1,0 +1,471 @@
+library gate
+library gate clean
+build
+ℹ [14/23] Replayed Qualification
+info: ././.lake/packages/software-is-composable/././Qualification.lean:104:0: 'Qualification.least' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:105:0: 'Qualification.monotone' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:106:0: 'Qualification.idempotent' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:107:0: 'Qualification.compounding' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:108:0: 'Qualification.order_independent' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:109:0: 'Qualification.soundness' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:110:0: 'Qualification.withdrawal_no_new_support' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:111:0: 'Qualification.surviving_subsystem' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././Qualification.lean:112:0: 'Qualification.no_bootstrap' does not depend on any axioms
+ℹ [15/23] Replayed FiniteFrontier
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:43:0: 'FiniteFrontier.frontier_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:44:0: 'FiniteFrontier.pareto_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:45:0: 'FiniteFrontier.conflict_exact' does not depend on any axioms
+info: ././.lake/packages/software-is-composable/././FiniteFrontier.lean:46:0: 'FiniteFrontier.unknown_exact' does not depend on any axioms
+ℹ [16/23] Replayed ExecutableClosure
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:198:0: 'ExecutableClosure.boundedOK_exact' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:199:0: 'ExecutableClosure.checkedClose_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:200:0: 'ExecutableClosure.checkedClose_rejects' depends on axioms: [propext, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:205:0: 'ExecutableClosure.subsets_count' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:206:0: 'ExecutableClosure.executable_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:207:0: 'ExecutableClosure.close_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:208:0: 'ExecutableClosure.close_is_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:209:0: 'ExecutableClosure.close_contains_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:210:0: 'ExecutableClosure.close_order_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././ExecutableClosure.lean:211:0: [0, 1, 2, 3]
+ℹ [17/23] Replayed HypergraphIncremental
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:301:0: 'HypergraphIncremental.matrix_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:302:0: 'HypergraphIncremental.matrix_bit_update_exact' depends on axioms: [propext]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:303:0: 'HypergraphIncremental.executable_full_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:304:0: 'HypergraphIncremental.qualified_frontier_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:305:0: 'HypergraphIncremental.unaffected_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:306:0: 'HypergraphIncremental.incremental_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:307:0: 'HypergraphIncremental.retracted_cycles_do_not_bootstrap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:308:0: 'HypergraphIncremental.patchedInteraction_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././.lake/packages/software-is-composable/././HypergraphIncremental.lean:309:0: 'HypergraphIncremental.incrementalFrontier_exact' depends on axioms: [propext, Quot.sound]
+ℹ [21/23] Replayed SoftwareDoesntNeedReview.Audit
+info: ././././SoftwareDoesntNeedReview/Audit.lean:9:0: 'SoftwareDoesntNeedReview.RubberStamp.zero_information' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:10:0: 'SoftwareDoesntNeedReview.RubberStamp.veto_empties' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:11:0: 'SoftwareDoesntNeedReview.RubberStamp.agrees_or_pure_veto' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:12:0: 'SoftwareDoesntNeedReview.RubberStamp.constant_reject_is_veto' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:13:0: 'SoftwareDoesntNeedReview.RubberStamp.guarded_independent_of_approval' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:14:0: 'SoftwareDoesntNeedReview.profile_space_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:15:0: 'SoftwareDoesntNeedReview.decided_on_finite_space' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:16:0: 'SoftwareDoesntNeedReview.profile_criterion_mechanizable' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:17:0: 'SoftwareDoesntNeedReview.Mechanize.semantic_not_total_axis' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:18:0: 'SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:19:0: 'SoftwareDoesntNeedReview.Mechanize.approx_gap_named' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:20:0: 'SoftwareDoesntNeedReview.Chain.Certifiable.extensive' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:21:0: 'SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:22:0: 'SoftwareDoesntNeedReview.Chain.Regress.regress_equiv' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:23:0: 'SoftwareDoesntNeedReview.Chain.Safe.safe_equiv' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:24:0: 'SoftwareDoesntNeedReview.Replacement.process_monotone' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:25:0: 'SoftwareDoesntNeedReview.Replacement.process_terminates' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:26:0: 'SoftwareDoesntNeedReview.Replacement.criterion_never_lost' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:27:0: 'SoftwareDoesntNeedReview.Boundary.boundary_missed_by_certifier' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:28:0: 'SoftwareDoesntNeedReview.Boundary.boundary_legacy_witness_insufficient' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:29:0: 'SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:30:0: 'SoftwareDoesntNeedReview.Boundary.outside_not_through_facts' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:31:0: 'SoftwareDoesntNeedReview.Boundary.redundant_under_premises' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:32:0: 'SoftwareDoesntNeedReview.Boundary.redundant_on_unicodeBad' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:33:0: 'SoftwareDoesntNeedReview.Boundary.empty_release_not_observed' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:34:0: 'SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:35:0: 'SoftwareDoesntNeedReview.Controls.control_before_misses' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:36:0: 'SoftwareDoesntNeedReview.Controls.control_predicate_catches' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:37:0: 'SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:38:0: 'SoftwareDoesntNeedReview.Controls.control_human_regression_refused' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:39:0: 'SoftwareDoesntNeedReview.Controls.control_human_regression_equiv' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:40:0: 'SoftwareDoesntNeedReview.Controls.safety_equiv' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:41:0: 'SoftwareDoesntNeedReview.Controls.control_incomplete_passes' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:42:0: 'SoftwareDoesntNeedReview.Controls.safety_refused_by_name' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:43:0: 'SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected' depends on axioms: [propext, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:44:0: 'SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:45:0: 'SoftwareDoesntNeedReview.Narrow.narrow_rubber' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:46:0: 'SoftwareDoesntNeedReview.Narrow.sound_needs_premises' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:47:0: 'SoftwareDoesntNeedReview.SpecBoundary.mco_boundary' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:48:0: 'SoftwareDoesntNeedReview.SpecBoundary.mco_rule_invalid' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:49:0: 'SoftwareDoesntNeedReview.SpecBoundary.mcas_boundary' does not depend on any axioms
+info: ././././SoftwareDoesntNeedReview/Audit.lean:50:0: 'SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:51:0: 'SoftwareDoesntNeedReview.SpecBoundary.mcas_rule_invalid' depends on axioms: [propext]
+info: ././././SoftwareDoesntNeedReview/Audit.lean:52:0: 'SoftwareDoesntNeedReview.Chain.Quantifiable.coverage' does not depend on any axioms
+Build completed successfully.
+axiom audit
+'SoftwareDoesntNeedReview.RubberStamp.zero_information' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.RubberStamp.veto_empties' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.RubberStamp.agrees_or_pure_veto' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.RubberStamp.constant_reject_is_veto' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.RubberStamp.guarded_independent_of_approval' does not depend on any axioms
+'SoftwareDoesntNeedReview.profile_space_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareDoesntNeedReview.decided_on_finite_space' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareDoesntNeedReview.profile_criterion_mechanizable' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Mechanize.semantic_not_total_axis' does not depend on any axioms
+'SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap' does not depend on any axioms
+'SoftwareDoesntNeedReview.Mechanize.approx_gap_named' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Chain.Certifiable.extensive' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv' depends on axioms: [propext, Quot.sound]
+'SoftwareDoesntNeedReview.Chain.Regress.regress_equiv' depends on axioms: [propext, Quot.sound]
+'SoftwareDoesntNeedReview.Chain.Safe.safe_equiv' depends on axioms: [propext, Quot.sound]
+'SoftwareDoesntNeedReview.Replacement.process_monotone' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Replacement.process_terminates' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Replacement.criterion_never_lost' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.boundary_missed_by_certifier' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.boundary_legacy_witness_insufficient' does not depend on any axioms
+'SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.outside_not_through_facts' does not depend on any axioms
+'SoftwareDoesntNeedReview.Boundary.redundant_under_premises' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.redundant_on_unicodeBad' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.empty_release_not_observed' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified' depends on axioms: [propext, Quot.sound]
+'SoftwareDoesntNeedReview.Controls.control_before_misses' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.control_predicate_catches' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.control_human_regression_refused' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.control_human_regression_equiv' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.safety_equiv' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.control_incomplete_passes' does not depend on any axioms
+'SoftwareDoesntNeedReview.Controls.safety_refused_by_name' does not depend on any axioms
+'SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected' depends on axioms: [propext, Quot.sound]
+'SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareDoesntNeedReview.Narrow.narrow_rubber' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SoftwareDoesntNeedReview.Narrow.sound_needs_premises' does not depend on any axioms
+'SoftwareDoesntNeedReview.SpecBoundary.mco_boundary' does not depend on any axioms
+'SoftwareDoesntNeedReview.SpecBoundary.mco_rule_invalid' does not depend on any axioms
+'SoftwareDoesntNeedReview.SpecBoundary.mcas_boundary' does not depend on any axioms
+'SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.SpecBoundary.mcas_rule_invalid' depends on axioms: [propext]
+'SoftwareDoesntNeedReview.Chain.Quantifiable.coverage' does not depend on any axioms
+axiom audit clean
+upstream dependencies
+THEOREM SoftwareDoesntNeedReview.RubberStamp.zero_information
+DEP none
+THEOREM SoftwareDoesntNeedReview.RubberStamp.veto_empties
+DEP none
+THEOREM SoftwareDoesntNeedReview.RubberStamp.agrees_or_pure_veto
+DEP none
+THEOREM SoftwareDoesntNeedReview.RubberStamp.constant_reject_is_veto
+DEP none
+THEOREM SoftwareDoesntNeedReview.RubberStamp.guarded_independent_of_approval
+DEP SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded
+DEP SoftwareDoesntNeedReview.Chain.Optimality.noWorse
+THEOREM SoftwareDoesntNeedReview.profile_space_finite
+DEP none
+THEOREM SoftwareDoesntNeedReview.decided_on_finite_space
+DEP none
+THEOREM SoftwareDoesntNeedReview.profile_criterion_mechanizable
+DEP none
+THEOREM SoftwareDoesntNeedReview.Mechanize.semantic_not_total_axis
+DEP none
+THEOREM SoftwareDoesntNeedReview.Mechanize.semantic_stays_premise
+DEP none
+THEOREM SoftwareDoesntNeedReview.Mechanize.approx_keeps_gap
+DEP none
+THEOREM SoftwareDoesntNeedReview.Mechanize.approx_gap_named
+DEP none
+THEOREM SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+DEP SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+THEOREM SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv
+DEP SoftwareDoesntNeedReview.Chain.Certifiable.extensive_equiv
+DEP SoftwareDoesntNeedReview.Chain.Certifiable.growBehaviors
+DEP SoftwareIsComposable.SymbolAdmitted
+DEP SoftwareIsComposable.SymbolAdmitted.costHi
+DEP SoftwareIsComposable.SymbolAdmitted.costLen
+DEP SoftwareIsComposable.SymbolAdmitted.keeps
+DEP SoftwareIsComposable.SymbolAdmitted.mk
+DEP SoftwareIsComposable.SymbolAdmitted.sameId
+DEP SoftwareIsComposable.SymbolAdmitted.validNew
+DEP SoftwareIsComposable.SymbolAdmitted.validOld
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.behaviors
+DEP SoftwareIsComposable.SymbolProfile.costs
+DEP SoftwareIsComposable.SymbolProfile.id
+DEP SoftwareIsComposable.SymbolProfile.mk
+DEP SoftwareIsComposable.symbolAdmitted
+DEP SoftwareIsComposable.symbolAdmitted_iff
+THEOREM SoftwareDoesntNeedReview.Chain.Regress.regress_equiv
+DEP SoftwareDoesntNeedReview.Chain.Regress.behaviorRegressed
+DEP SoftwareDoesntNeedReview.Chain.Regress.costHeld
+DEP SoftwareDoesntNeedReview.Chain.Regress.costRegressed
+DEP SoftwareDoesntNeedReview.Chain.Regress.preserved
+DEP SoftwareDoesntNeedReview.Chain.Regress.regress_equiv
+DEP SoftwareIsComposable.Bounds
+DEP SoftwareIsComposable.Bounds.hi
+DEP SoftwareIsComposable.Bounds.lo
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.behaviors
+DEP SoftwareIsComposable.SymbolProfile.costs
+DEP SoftwareIsComposable.SymbolProfile.id
+DEP SoftwareIsComposable.symbolAdmitted
+THEOREM SoftwareDoesntNeedReview.Chain.Safe.safe_equiv
+DEP SoftwareDoesntNeedReview.Chain.Regress.preserved
+DEP SoftwareDoesntNeedReview.Chain.Safe.preserved
+DEP SoftwareDoesntNeedReview.Chain.Safe.safe_equiv
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.behaviors
+DEP SoftwareIsComposable.accepts
+THEOREM SoftwareDoesntNeedReview.Replacement.process_monotone
+DEP SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+THEOREM SoftwareDoesntNeedReview.Replacement.process_terminates
+DEP none
+THEOREM SoftwareDoesntNeedReview.Replacement.criterion_never_lost
+DEP SoftwareDoesntNeedReview.Chain.Certifiable.extensive
+THEOREM SoftwareDoesntNeedReview.Boundary.boundary_missed_by_certifier
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.casesOn
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusion
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusionType
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.rec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.events
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.instDecidableEqExecution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.missing
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+THEOREM SoftwareDoesntNeedReview.Boundary.boundary_legacy_witness_insufficient
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.events
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witnessed
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness
+THEOREM SoftwareDoesntNeedReview.Boundary.boundary_roster_not_mediated
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.casesOn
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusion
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusionType
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.rec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.events
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.instDecidableEqExecution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+THEOREM SoftwareDoesntNeedReview.Boundary.boundary_no_platform_premise
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.casesOn
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusion
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.noConfusionType
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.rec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise.mediated
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.events
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.coverage
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.instDecidableEqExecution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+THEOREM SoftwareDoesntNeedReview.Boundary.residual_unwatched_cell
+DEP none
+THEOREM SoftwareDoesntNeedReview.Boundary.outside_not_through_facts
+DEP none
+THEOREM SoftwareDoesntNeedReview.Boundary.bad_cell_not_qualified
+DEP SoftwareIsComposable.SymbolAdmitted
+DEP SoftwareIsComposable.SymbolAdmitted.keeps
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.behaviors
+DEP SoftwareIsComposable.symbolAdmitted
+DEP SoftwareIsComposable.symbolAdmitted_iff
+THEOREM SoftwareDoesntNeedReview.Boundary.redundant_under_premises
+DEP none
+THEOREM SoftwareDoesntNeedReview.Boundary.redundant_on_unicodeBad
+DEP none
+THEOREM SoftwareDoesntNeedReview.Boundary.empty_release_not_observed
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_before_misses
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_predicate_catches
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_after_refuses_by_name
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_predicate_is_finite_table
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_human_approves
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.control_human_regression_refused
+DEP SoftwareDoesntNeedReview.Chain.Regress.regressed
+DEP SoftwareDoesntNeedReview.Chain.Regress.regressed.match_1
+DEP SoftwareDoesntNeedReview.Chain.Regress.verdict
+DEP SoftwareDoesntNeedReview.Chain.Regress.verdict.match_1
+THEOREM SoftwareDoesntNeedReview.Controls.control_human_regression_equiv
+DEP SoftwareDoesntNeedReview.Chain.Regress.regressed
+DEP SoftwareDoesntNeedReview.Chain.Regress.regressed.match_1
+DEP SoftwareDoesntNeedReview.Chain.Regress.verdict
+DEP SoftwareDoesntNeedReview.Chain.Regress.verdict.match_1
+DEP SoftwareIsComposable.Bounds
+DEP SoftwareIsComposable.Bounds.mk
+DEP SoftwareIsComposable.Reason.behaviorDropped
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.mk
+DEP SoftwareIsComposable.Verdict
+DEP SoftwareIsComposable.Verdict.refused
+DEP SoftwareIsComposable.instDecidableEqVerdict
+DEP SoftwareIsComposable.symbolVerdict
+THEOREM SoftwareDoesntNeedReview.Controls.control_incomplete_passes
+DEP none
+THEOREM SoftwareDoesntNeedReview.Controls.safety_refused_by_name
+DEP SoftwareDoesntNeedReview.Chain.Safe.verdict
+THEOREM SoftwareDoesntNeedReview.Controls.safety_equiv
+DEP SoftwareDoesntNeedReview.Chain.Safe.verdict
+DEP SoftwareIsComposable.Bounds
+DEP SoftwareIsComposable.Bounds.mk
+DEP SoftwareIsComposable.Reason.behaviorDropped
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.mk
+DEP SoftwareIsComposable.Verdict
+DEP SoftwareIsComposable.Verdict.refused
+DEP SoftwareIsComposable.instDecidableEqVerdict
+DEP SoftwareIsComposable.symbolVerdict
+THEOREM SoftwareDoesntNeedReview.Chain.Quantifiable.coverage
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.PlatformPremise.mediated
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.coverage
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+THEOREM SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.mk
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witnessed
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.unrestricted_witness
+THEOREM SoftwareDoesntNeedReview.Chain.Quantifiable.missing_empty
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Execution.id
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.Witness.exec
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.missing
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.missing_empty
+DEP SoftwareDoesntNeedReview.Chain.Quantifiable.recorded
+THEOREM SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded_iff
+DEP SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded
+DEP SoftwareDoesntNeedReview.Chain.Optimality.acceptsGuarded_iff
+DEP SoftwareDoesntNeedReview.Chain.Optimality.noWorse
+THEOREM SoftwareDoesntNeedReview.Narrow.closureHyp_of_affected
+DEP HypergraphIncremental.Affected
+DEP SoftwareIsComposable.InClosure
+DEP SoftwareIsComposable.hyper
+DEP SoftwareIsComposable.inClosure_iff_affected
+THEOREM SoftwareDoesntNeedReview.Narrow.narrow_recheck_iff
+DEP HypergraphIncremental.Affected
+DEP SoftwareIsComposable.Bounds
+DEP SoftwareIsComposable.Bounds.hi
+DEP SoftwareIsComposable.Bounds.lo
+DEP SoftwareIsComposable.InClosure
+DEP SoftwareIsComposable.Release
+DEP SoftwareIsComposable.Release.symbols
+DEP SoftwareIsComposable.ReleaseAdmitted
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.costs
+DEP SoftwareIsComposable.SymbolProfile.id
+DEP SoftwareIsComposable.hyper
+DEP SoftwareIsComposable.incrementalRecheck_iff
+DEP SoftwareIsComposable.symbolChecked
+THEOREM SoftwareDoesntNeedReview.Narrow.narrow_rubber
+DEP HypergraphIncremental.Affected
+DEP SoftwareIsComposable.Bounds
+DEP SoftwareIsComposable.Bounds.hi
+DEP SoftwareIsComposable.Bounds.lo
+DEP SoftwareIsComposable.InClosure
+DEP SoftwareIsComposable.Release
+DEP SoftwareIsComposable.Release.symbols
+DEP SoftwareIsComposable.ReleaseAdmitted
+DEP SoftwareIsComposable.SymbolProfile
+DEP SoftwareIsComposable.SymbolProfile.costs
+DEP SoftwareIsComposable.SymbolProfile.id
+DEP SoftwareIsComposable.hyper
+DEP SoftwareIsComposable.incrementalRecheck_iff
+DEP SoftwareIsComposable.symbolChecked
+THEOREM SoftwareDoesntNeedReview.Narrow.sound_needs_premises
+DEP Qualification.Closed
+DEP Qualification.Derives
+DEP Qualification.soundness
+THEOREM SoftwareDoesntNeedReview.SpecBoundary.mco_boundary
+DEP none
+THEOREM SoftwareDoesntNeedReview.SpecBoundary.mco_rule_invalid
+DEP none
+THEOREM SoftwareDoesntNeedReview.SpecBoundary.mcas_boundary
+DEP none
+THEOREM SoftwareDoesntNeedReview.SpecBoundary.mcas_not_two
+DEP none
+THEOREM SoftwareDoesntNeedReview.SpecBoundary.mcas_rule_invalid
+DEP none
+dependency check clean
+admitted-proof control
+refused controls/Admitted.negative
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:8: error: declaration uses 'sorry'
+admit control
+refused controls/AdmitTactic.negative
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:8: error: declaration uses 'sorry'
+warning control
+refused controls/Unused.negative
+/tmp/tmp.q1HxQfwGpW/Negative.lean:1:12: error: unused variable `x`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+custom-axiom control
+'bogusAxiom' depends on axioms: [bogusAxiom]
+refused controls/CustomAxiom.negative
+source gate detects the planted controls
+legacy check clean
+TOOLCHAIN VERIFIED PATH: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+CONTROL passed: an unimported file is discovered and audited
+CONTROL rejected: unimported-compile-error
+CONTROL rejected: warning
+CONTROL rejected: sorry
+CONTROL rejected: admit
+CONTROL rejected: custom-axiom
+CONTROL rejected: native-decide
+CONTROL rejected: unsafe
+CONTROL rejected: diagnostic-weakening
+CONTROL rejected: extern
+CONTROL rejected: implemented-by
+CONTROL rejected: generated custom axiom at kernel audit
+TOOLCHAIN VERIFIED .: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+TOOLCHAIN VERIFIED statement: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release); Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+CHECKED SoftwareDoesntNeedReview/Audit.lean declarations=0 compiler_implementation_auxiliaries=0
+CHECKED SoftwareDoesntNeedReview/Boundary.lean declarations=60 compiler_implementation_auxiliaries=49
+CHECKED SoftwareDoesntNeedReview/Certifier.lean declarations=136 compiler_implementation_auxiliaries=160
+CHECKED SoftwareDoesntNeedReview/Chain.lean declarations=95 compiler_implementation_auxiliaries=77
+CHECKED SoftwareDoesntNeedReview/Controls.lean declarations=23 compiler_implementation_auxiliaries=47
+CHECKED SoftwareDoesntNeedReview/Mechanize.lean declarations=121 compiler_implementation_auxiliaries=57
+CHECKED SoftwareDoesntNeedReview/Narrow.lean declarations=24 compiler_implementation_auxiliaries=0
+CHECKED SoftwareDoesntNeedReview/Profile.lean declarations=153 compiler_implementation_auxiliaries=206
+CHECKED SoftwareDoesntNeedReview/Replacement.lean declarations=37 compiler_implementation_auxiliaries=18
+CHECKED SoftwareDoesntNeedReview/Reviewer.lean declarations=31 compiler_implementation_auxiliaries=59
+CHECKED SoftwareDoesntNeedReview/RubberStamp.lean declarations=13 compiler_implementation_auxiliaries=0
+CHECKED SoftwareDoesntNeedReview/SpecBoundary.lean declarations=80 compiler_implementation_auxiliaries=95
+CHECKED SoftwareDoesntNeedReview.lean declarations=0 compiler_implementation_auxiliaries=0
+CHECKED examples/MigrationReview.lean declarations=29 compiler_implementation_auxiliaries=53
+CHECKED examples/range-ledger/NullableAggregate.lean declarations=29 compiler_implementation_auxiliaries=24
+CHECKED scripts/AuditAll.lean declarations=6 compiler_implementation_auxiliaries=68
+CHECKED scripts/UpstreamDeps.lean declarations=12 compiler_implementation_auxiliaries=240
+CHECKED statement/ReviewControls.lean declarations=24 compiler_implementation_auxiliaries=39
+CHECKED statement/ReviewFinite.lean declarations=12 compiler_implementation_auxiliaries=5
+CHECKED statement/ReviewOmission.lean declarations=7 compiler_implementation_auxiliaries=0
+CHECKED statement/ReviewProofs.lean declarations=12 compiler_implementation_auxiliaries=0
+CHECKED statement/ReviewStatement.lean declarations=8 compiler_implementation_auxiliaries=0
+CHECKED statement/ReviewStrengtheningControls.lean declarations=40 compiler_implementation_auxiliaries=30
+ALL-FILE GATE PASSED: 23 Lean sources; 2 isolated packages
+IMPORT PIN VERIFIED clpi/software-is-quantifiable d88acbdc3ba78fff994067d2c73bcc01622b3f61 2 files
+IMPORT PIN VERIFIED clpi/software-optimality 0bbc1f3b8aa38afe17e02ccbd7ddd0e7722b3cb0 8 files
+LEGACY PINS VERIFIED; statement and legacy environments remain distinct
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+(6, 2, [some true, some false, none, some false, some true, none])
+'MigrationReview.triage_sound' depends on axioms: [propext]
+'MigrationReview.minimal_escalation' does not depend on any axioms
+'MigrationReview.before_after' does not depend on any axioms
+SQLite 3.53.1 | 6 -> 2 owner decisions | 12 database executions
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'RangeLedger.NullableAggregate.summary' depends on axioms: [propext, Quot.sound]
+'RangeLedger.NullableAggregate.one_bit_necessary' does not depend on any axioms
+'RangeLedger.NullableAggregate.merge' depends on axioms: [propext, Quot.sound]
+Rejected control: require every row to be non-NULL.
+SQLite 3.53.1: 7737 split/merge comparisons matched native SUM
+repository check clean

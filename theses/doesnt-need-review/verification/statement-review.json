@@ -1,0 +1,63 @@
+{
+  "schema": 2,
+  "review_kind": "independent_agent_counterexample_attempt",
+  "status": "no_remaining_material_counterexample_found_to_scoped_proved_claims",
+  "main_theorem_status": "PROVEN_CONDITIONALLY_APPLICATION_PREMISES_OPEN",
+  "statement_base_commit": "3552dfd7c1e63eeea15182bd827543dd44385b23",
+  "original_proposition_definitions_unchanged": true,
+  "original_proposition_sha256": "76d4fc9173ab04bfc3fd84a4d19b7a9b4ff0c5ccf5d8ae2d93e336b620595b9f",
+  "payloads": {
+    "CLAIM.md": "ad2734db3a516930a33997dfd8719c281d623a2a3dafc2666086bc420caa0711",
+    "README.md": "ad733508a2ec545688b814cfb8df70ea70745f3a8f1f85fd82579488160c7b3c",
+    "VERIFICATION.md": "5b62950598d7e42d5ed95641fb6df42113546ea0cdf86fd20ceab8058be7355a",
+    "PROPOSAL.md": "fe45c88dc0d2f15e54c73a7f884d60647ea24a8605816888e377a9bcbc21b48f",
+    "imports.lock.json": "5cbc6ee0ff68f4b77d51e74e69747ceb32465d3a489934e55855d2969bb62e99",
+    "statement/ReviewStatement.lean": "76d4fc9173ab04bfc3fd84a4d19b7a9b4ff0c5ccf5d8ae2d93e336b620595b9f",
+    "statement/ReviewProofs.lean": "62fceb29349d8774de8a8d76a842d08253e5ebcd1607470e804c259eabb9c9c4",
+    "statement/ReviewOmission.lean": "149b9858e922d9c7ae94fb59470e3418fdd24fb815a57683b948fb76205612b6",
+    "statement/ReviewFinite.lean": "99e7b2703973eff8abe3ea861485dd6ad4e9b37256ff1225df4601b6c99d428f",
+    "statement/ReviewStrengtheningControls.lean": "bd79177941bc9f87170cdeb83e960445cb4e1ff598187221ae0bdfd8ec7da00f",
+    "statement/COUNTEREXAMPLES.md": "5c0cb4a4e20857d40e46b1765a3336de508556e86f57e98b642256bd4257db79",
+    "statement/lakefile.toml": "4481dc631e1b4da23ecc7a955e2884afa0c6b036fb1554033284a0e7a09dd3a0",
+    "scripts/check_all.py": "b6ac9a610bb0a17be1eafa67a7881ad200280e92d965a3e84134c68016e09c5c"
+  },
+  "proved_original_claims": {
+    "ReviewStatement.FullClosureClaim": "ReviewStatement.full_closure_claim",
+    "ReviewStatement.RelevantClaim": "ReviewStatement.relevant_claim",
+    "ReviewStatement.OmissionClaim": "ReviewStatement.omission_claim"
+  },
+  "stronger_principal_theorems": [
+    "ReviewStatement.prospective_omission",
+    "ReviewStatement.review_omission"
+  ],
+  "findings_applied": [
+    "reject necessity of target rule closure for arbitrary one-direction closure inclusion",
+    "weaken full input equality to sufficient decision noninterference and prove strictness",
+    "keep relevant qualification separate from admission and frontier preservation",
+    "retain application nonvacuity while removing it from the general algebraic core",
+    "prove truth for relevant post-review derivations without global outcome-rule soundness",
+    "distinguish checked agreement, checked disagreement, and malformed encoded bases",
+    "require independent complete outcome and relevant-input coverage",
+    "bind actual running Lean/Lake versions to both declared toolchain files",
+    "state decision noninterference explicitly in the headline as well as the formal theorem"
+  ],
+  "publisher_check": {
+    "command": "sh check.sh",
+    "exit_code": 0,
+    "accepted_lean_sources": 23,
+    "isolated_packages": 2,
+    "semantic_controls": 18,
+    "gate_controls": 12,
+    "finite_checker_guards": 4,
+    "non_control_theorems_added": 23,
+    "log_sha256": "0fcf23aff8b6ac19b07a0dc2140ffe3e2ba2ec39af2ae5e0319e813594a51738"
+  },
+  "final_pin_recheck_policy": "Before landing, a separate non-author fetches the exact candidate commit, matches all tracked paths/modes/blobs, re-runs the full gate, and confirms the unchanged tree; semantic reviewer checks the same pin.",
+  "limits": [
+    "No production review-omission instance is certified.",
+    "Application premises P1-P10 remain open; P11 is required only for an additional economic claim.",
+    "This is independent agent verification, not third-party safety or tool qualification.",
+    "The finite comparator certifies only encoded relevant closure and does not establish real-world completeness.",
+    "The inherited finite reference closure enumerates subsets; no scalable runtime claim is made."
+  ]
+}

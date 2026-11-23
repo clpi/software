@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "claim_status": "PROVEN_CONDITIONALLY_APPLICATION_PREMISES_OPEN",
+  "audit_pin": "ae5f3918f7689267d07044a00e6a11b071510bba",
+  "target_base": "3552dfd7c1e63eeea15182bd827543dd44385b23",
+  "toolchain": "leanprover/lean4:v4.19.0",
+  "statement_package": "statement",
+  "imports": [
+    {
+      "repository": "clpi/software-is-quantifiable",
+      "pin": "d88acbdc3ba78fff994067d2c73bcc01622b3f61",
+      "files": [
+        {
+          "path": "SoftwareIsQuantifiable/Interface.lean",
+          "git_blob": "75d8cc2cd543b18870818850199ee27fd90d3eb4",
+          "sha256": "715f96ff792ead977c711f0bec2d80e20d98b6125c670bdefe7e3450e87205af",
+          "declarations": [
+            "SoftwareIsQuantifiable.Interface.Profile",
+            "SoftwareIsQuantifiable.Interface.aligned",
+            "SoftwareIsQuantifiable.Interface.noWorse",
+            "SoftwareIsQuantifiable.Interface.dominates",
+            "SoftwareIsQuantifiable.Interface.frontier"
+          ]
+        },
+        {
+          "path": "SoftwareIsQuantifiable/Coverage.lean",
+          "git_blob": "c6342b1311e4561b18414eada197957b887ead07",
+          "sha256": "5f2299f0ba10eb1477a7aaaf87b791de872a5eef3cff877ebe0543238c9892a6",
+          "declarations": [
+            "SoftwareIsQuantifiable.Coverage.recorded",
+            "SoftwareIsQuantifiable.Coverage.missing",
+            "SoftwareIsQuantifiable.Coverage.scopedMissing",
+            "SoftwareIsQuantifiable.Coverage.scoped_audit_complete",
+            "SoftwareIsQuantifiable.Coverage.PlatformPremise",
+            "SoftwareIsQuantifiable.Coverage.ScopedPlatformPremise"
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "clpi/software-optimality",
+      "pin": "0bbc1f3b8aa38afe17e02ccbd7ddd0e7722b3cb0",
+      "files": [
+        {
+          "path": "Qualification.lean",
+          "git_blob": "a63283d34211fe6c4e3fc21c201be10ce91bebfa",
+          "sha256": "a96ebcd998e1cd3703b9cc1fb6b3f2d73f6df8610bd0b34b3199afbb78f42f65",
+          "declarations": [
+            "Qualification.Derives",
+            "Qualification.Closed",
+            "Qualification.least",
+            "Qualification.closed",
+            "Qualification.monotone",
+            "Qualification.soundness"
+          ]
+        },
+        {
+          "path": "ExecutableClosure.lean",
+          "git_blob": "60366c4306c5ebfd0416769ed2e3145c21324b3a",
+          "sha256": "fe533a245b11156be673649c880e12f2e9edb623534d7757f4ff6673f2b6796f",
+          "declarations": [
+            "ExecutableClosure.boundedOK",
+            "ExecutableClosure.checkedClose",
+            "ExecutableClosure.checkedClose_admitted",
+            "ExecutableClosure.subsets_count"
+          ]
+        },
+        {
+          "path": "Admission.lean",
+          "git_blob": "dafedd58f2a0769a3241e2db53d9bde45a57cee4",
+          "sha256": "2a4bfc44f7e5343ff01b2d253300d0240893c4686c8607eeca611dc1ce9dfe51",
+          "declarations": [
+            "Admission.Key",
+            "Admission.Payload",
+            "Admission.Event",
+            "Admission.admitted",
+            "Admission.live",
+            "Admission.normalized"
+          ]
+        },
+        {
+          "path": "AdmissionHypergraph.lean",
+          "git_blob": "633424d7858ca7d628c7313917a757467746c933",
+          "sha256": "d3377acc9cbac053dc5f24c8f60b86cd977083372223d32179a95ac60815f2c0",
+          "declarations": [
+            "AdmissionHypergraph.Decoder",
+            "AdmissionHypergraph.graph",
+            "AdmissionHypergraph.ScopedAtom",
+            "AdmissionHypergraph.scopedGraph"
+          ]
+        },
+        {
+          "path": "HypergraphIncremental.lean",
+          "git_blob": "a47467cb5fa8c9124fca24405cb9aeaad064f080",
+          "sha256": "57d63384979e1fc78cf5ec0fb8fb7d58a60a1e04d3a74eed966b8d9e36d24ee1",
+          "declarations": [
+            "HypergraphIncremental.Hypergraph",
+            "HypergraphIncremental.derives"
+          ]
+        },
+        {
+          "path": "ScopedEvidence.lean",
+          "git_blob": "1ead45ccf2b04e8f4779ccfc06a743dd28b9eaed",
+          "sha256": "d948005f2d036dbe4ce591795565cb36f6fddeb8ad5a81becb404b58f0f0527d",
+          "declarations": [
+            "ScopedEvidence.Scope",
+            "ScopedEvidence.Requirement",
+            "ScopedEvidence.Receipt",
+            "ScopedEvidence.Policy",
+            "ScopedEvidence.qualify"
+          ]
+        },
+        {
+          "path": "ScopedFrontier.lean",
+          "git_blob": "ddd315c3608cb650f9bd7ef7dc76e228775bcdb7",
+          "sha256": "a6883fe38c7230e5283b03d35cda67fb816418da3a4da1cab1281388240d719f",
+          "declarations": [
+            "ScopedFrontier.Contract",
+            "ScopedFrontier.Subject",
+            "ScopedFrontier.Input",
+            "ScopedFrontier.admitted",
+            "ScopedFrontier.dominates",
+            "ScopedFrontier.select",
+            "ScopedFrontier.selected_exact",
+            "ScopedFrontier.selected_order_independent",
+            "ScopedFrontier.covers",
+            "ScopedFrontier.feasibleFrontier"
+          ]
+        },
+        {
+          "path": "FiniteFrontier.lean",
+          "git_blob": "371acc03fc051edca7fddf9d4e21c335679f8aa9",
+          "sha256": "eac31642af138ea2aa6c95abe256de3b16b5ae565c94e46ba94893692665696b",
+          "declarations": [
+            "FiniteFrontier.frontier"
+          ]
+        }
+      ]
+    }
+  ],
+  "legacy": {
+    "package": ".",
+    "composable": "033c12c01299a9b28983bee410c230641adc7d1e",
+    "quantifiable": "37917a4195efb1d0423a422ee954d767a9be1cd3",
+    "role": "Retained legacy lemmas only; not the statement definition authority."
+  },
+  "statement_pin": "3552dfd7c1e63eeea15182bd827543dd44385b23"
+}

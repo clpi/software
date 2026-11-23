@@ -1,0 +1,14 @@
+name = "«software-doesnt-need-review»"
+version = "0.1.0"
+defaultTargets = ["SoftwareDoesntNeedReview"]
+
+[leanOptions]
+warningAsError = true
+
+[[require]]
+name = "«software-is-composable»"
+git = "https://github.com/clpi/software-is-composable"
+rev = "033c12c01299a9b28983bee410c230641adc7d1e"
+
+[[lean_lib]]
+name = "SoftwareDoesntNeedReview"
