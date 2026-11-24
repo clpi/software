@@ -1,4 +1,49 @@
 Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+'Generalize.noDecider' depends on axioms: [propext]
+'Generalize.noExactKey' depends on axioms: [propext]
+'Generalize.spelling_sound' does not depend on any axioms
+'Generalize.run_mono' depends on axioms: [propext]
+'Generalize.run_mono_le' depends on axioms: [propext]
+'Generalize.outcome_unique' depends on axioms: [propext]
+'Generalize.decisive_persists' depends on axioms: [propext]
+'Generalize.decisive_sound' depends on axioms: [propext]
+'Generalize.decisive_complete' depends on axioms: [propext]
+'Generalize.loop_obs' does not depend on any axioms
+'Generalize.diverge_never_decisive' does not depend on any axioms
+'Generalize.late_none' depends on axioms: [propext, Quot.sound]
+'Generalize.late_halts' depends on axioms: [propext, Quot.sound]
+'Generalize.no_uniform_bound' depends on axioms: [propext, Quot.sound]
+'Generalize.qualified_sound' does not depend on any axioms
+'Generalize.leak_example' depends on axioms: [propext]
+'Generalize.qualified_example' depends on axioms: [propext]
+'Generalize.refine_join' does not depend on any axioms
+'Generalize.applied_inj' depends on axioms: [propext]
+'Generalize.tolerance_collapse' does not depend on any axioms
+'Generalize.solo_equal' depends on axioms: [propext]
+'Generalize.par_breaks' depends on axioms: [propext, Quot.sound]
+'Generalize.exhaustive_iff' depends on axioms: [Quot.sound]
+'Generalize.nonexhaustive_gap' depends on axioms: [propext]
+'Generalize.compile_correct' depends on axioms: [propext]
+'Generalize.compile_run' depends on axioms: [propext]
+'Generalize.foldBin_ev' does not depend on any axioms
+'Generalize.fold_sound' depends on axioms: [propext]
+'Generalize.rewrite_sound' depends on axioms: [propext]
+'Generalize.rewrite_needs_law' depends on axioms: [propext]
+'chainsound' does not depend on any axioms
+'soundiff' does not depend on any axioms
+'joinlog' depends on axioms: [propext]
+'joinsound' depends on axioms: [propext, Quot.sound]
+'joinssound' depends on axioms: [propext, Quot.sound]
+'emptysound' does not depend on any axioms
+'chainof' does not depend on any axioms
+'orderfree' does not depend on any axioms
+'qmeanapplied' does not depend on any axioms
+'appliedsound' depends on axioms: [propext]
+'lenle' depends on axioms: [propext, Quot.sound]
+'fuelbound' depends on axioms: [propext, Quot.sound]
+'sumperm' depends on axioms: [propext, Quot.sound]
+'boundedexact' depends on axioms: [propext]
+'saturationmax' does not depend on any axioms
 'witness' depends on axioms: [propext, Classical.choice, Quot.sound]
 'boundleast' depends on axioms: [propext, Quot.sound]
 'boundsat' depends on axioms: [propext, Quot.sound]

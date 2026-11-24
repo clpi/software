@@ -1,0 +1,268 @@
+{
+ "real_table": [
+  {
+   "engine": "witness",
+   "joins": 11,
+   "alloc": 103,
+   "match": 3064,
+   "wall_s": 0.0586,
+   "vmhwm_kb": 3172
+  },
+  {
+   "engine": "greedy",
+   "joins": 3,
+   "alloc": 8570,
+   "match": 2811280,
+   "wall_s": 5.0102,
+   "vmhwm_kb": 3736
+  },
+  {
+   "engine": "saturate",
+   "joins": 11,
+   "alloc": 162455,
+   "match": 3005760,
+   "wall_s": 2.5488,
+   "vmhwm_kb": 10200
+  },
+  {
+   "engine": "saturate_beh",
+   "joins": 11,
+   "alloc": 327,
+   "match": 956,
+   "wall_s": 0.04,
+   "vmhwm_kb": 3388
+  },
+  {
+   "engine": "sat_bound",
+   "joins": 11,
+   "alloc": 3097262,
+   "match": 317029203,
+   "wall_s": 106.7548,
+   "vmhwm_kb": 2598516
+  },
+  {
+   "engine": "eval",
+   "joins": 12,
+   "alloc": 0,
+   "match": 90560,
+   "wall_s": 0.0307,
+   "vmhwm_kb": 2992
+  }
+ ],
+ "real_rows": 1415,
+ "real_agree": 12,
+ "components": [
+  {
+   "component": "hard behavioral falsification",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 0,
+   "fuel_on": 3167,
+   "fuel_off": 3449385,
+   "verdict": "helps"
+  },
+  {
+   "component": "anti-unification focus",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 11,
+   "fuel_on": 3167,
+   "fuel_off": 4890,
+   "verdict": "helps"
+  },
+  {
+   "component": "AC multiset recognition",
+   "suite": "ac",
+   "joins_on": 8,
+   "joins_off": 4,
+   "fuel_on": 475,
+   "fuel_off": 16475,
+   "verdict": "helps"
+  },
+  {
+   "component": "linear-form recognition (added)",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 10,
+   "fuel_on": 3167,
+   "fuel_off": 8679,
+   "verdict": "helps"
+  },
+  {
+   "component": "bidirectional cones",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 3,
+   "fuel_on": 3167,
+   "fuel_off": 10493,
+   "verdict": "helps"
+  },
+  {
+   "component": "bridge quota (80/20 beam)",
+   "suite": "valley",
+   "joins_on": 6,
+   "joins_off": 1,
+   "fuel_on": 5970,
+   "fuel_off": 20203,
+   "verdict": "helps"
+  },
+  {
+   "component": "provenance credit + UCB1",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 29,
+   "fuel_on": 21390,
+   "fuel_off": 25165,
+   "verdict": "helps"
+  },
+  {
+   "component": "merge dividend",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 30,
+   "fuel_on": 21390,
+   "fuel_off": 21204,
+   "verdict": "hurts"
+  },
+  {
+   "component": "depth fuel",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 30,
+   "fuel_on": 21390,
+   "fuel_off": 21390,
+   "verdict": "no effect"
+  },
+  {
+   "component": "entropy tiebreak",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 31,
+   "fuel_on": 21390,
+   "fuel_off": 18237,
+   "verdict": "hurts"
+  }
+ ],
+ "join": {
+  "witness": [
+   5,
+   13373
+  ],
+  "saturate_bound": [
+   8,
+   76668
+  ]
+ },
+ "prov_bytes_max": 1976,
+ "overhead": {
+  "prov_engine_us_median": 25486,
+  "noprov_engine_us_median": 24978
+ },
+ "gates": [
+  {
+   "gate": "every proof re-verified on 64 fresh points",
+   "pass": true,
+   "detail": "0 unverified"
+  },
+  {
+   "gate": "real: witness search finds every rule-derivable join saturation to the bound finds",
+   "pass": true,
+   "detail": "witness 11, saturation to the bound 11"
+  },
+  {
+   "gate": "component: hard behavioral falsification",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 0 / 3449385"
+  },
+  {
+   "gate": "component: anti-unification focus",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 11 / 4890"
+  },
+  {
+   "gate": "component: AC multiset recognition",
+   "pass": true,
+   "detail": "on 8 joins / 475 fuel, off 4 / 16475"
+  },
+  {
+   "gate": "component: linear-form recognition (added)",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 10 / 8679"
+  },
+  {
+   "gate": "component: bidirectional cones",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 3 / 10493"
+  },
+  {
+   "gate": "component: bridge quota (80/20 beam)",
+   "pass": true,
+   "detail": "on 6 joins / 5970 fuel, off 1 / 20203"
+  },
+  {
+   "gate": "component: provenance credit + UCB1",
+   "pass": true,
+   "detail": "on 30 joins / 21390 fuel, off 29 / 25165"
+  },
+  {
+   "gate": "generative rule: saturation stops reaching a fixpoint",
+   "pass": true,
+   "detail": "fixpoints without the rule 5/5, with it 0/5; nodes 142 vs 39435"
+  },
+  {
+   "gate": "generative rule: witness search stays inside budget plus cap on every row",
+   "pass": true,
+   "detail": "max alloc 90 <= 2400"
+  },
+  {
+   "gate": "AC blowup: saturation without AC recognition exhausts on large sums; witness search proves all",
+   "pass": true,
+   "detail": "witness 8/8 with 434 nodes; saturation 6/8 with 64139 nodes; witness without recognition 2"
+  },
+  {
+   "gate": "cycles: provenance stays acyclic with first-parent-min-depth; the naive arena does not",
+   "pass": true,
+   "detail": "design acyclic on 14/14; naive on 6"
+  },
+  {
+   "gate": "no double credit with dedupe; the naive walk double-counts",
+   "pass": true,
+   "detail": "0 vs 3999958; walk steps 135 vs 4000064"
+  },
+  {
+   "gate": "congruence credit reaches an inner bridge rule",
+   "pass": true,
+   "detail": "credit 171.856 reached bridge rules through congruence"
+  },
+  {
+   "gate": "per-epoch provenance at most one 16-byte node per e-node touched",
+   "pass": true,
+   "detail": "0 rows over"
+  },
+  {
+   "gate": "overhead run 1: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 2: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 3: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 4: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 5: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

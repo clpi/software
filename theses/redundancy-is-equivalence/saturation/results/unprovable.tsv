@@ -1,0 +1,5 @@
+near0	refuted	(+ (* a b) 1)	(+ (* a b) (// a a))
+near1	refuted	(* x 2)	(<< x 2)
+near2	refuted	(- x y)	(- y x)
+near3	refuted	(* (+ a b) (+ a b))	(+ (* a a) (* b b))
+near4	refuted	(+ (* 4 a) (* 3 b))	(+ (* 3 a) (* 4 b))
