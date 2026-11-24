@@ -46,7 +46,7 @@ the originals). Results: `consolidation/gates-results-reconciled.tsv`.
 | `consolidation/` | the merge tooling, commit maps from old to new hashes, inventory of every file, theorem, gate and receipt |
 
 Branches and pull-request heads of the old repos are kept as `archive/<name>/...`; old tags as
-`<name>/<tag>`. The pre-reconcile snapshot is tagged `import`, and
+`<name>/<tag>`. The pre-reconcile snapshot is the branch `import`, and
 `consolidation/verify.py SRC REPO MAPS --ref import` proves every old commit, ref, file and
 theorem is here, by git object hash.
 

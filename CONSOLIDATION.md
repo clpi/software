@@ -41,11 +41,11 @@ CONCEPTS.md           concept index: canonical definition, every variant, its br
 lean-toolchain        v4.19.0, same as every thesis
 ```
 
-Stage 1 (the commit tagged `import`) moves nothing between theses and edits no file under `theses/`.
+Stage 1 (the commit on branch `import`) moves nothing between theses and edits no file under `theses/`.
 Each old repo maps to exactly one directory, so every old path `repo:path` is
 `theses/<name>/path`.
 
-Stage 2, reconciliation (done on this branch, after the import commit tagged `import`):
+Stage 2, reconciliation (done on this branch, after the import commit (branch `import`)):
 
 1. Identical copies: 12 files stored once under `shared/` (plus the root `lean-toolchain`);
    107 old paths are symlinks to them and still read the same bytes. Three Lean copy groups
