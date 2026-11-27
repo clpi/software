@@ -1,0 +1,37 @@
+diff --git a/grh/src/Lib/DiscreteSeries/CuspKernel.lean b/grh/src/Lib/DiscreteSeries/CuspKernel.lean
+index f6b69cc..11b06fc 100644
+--- a/grh/src/Lib/DiscreteSeries/CuspKernel.lean
++++ b/grh/src/Lib/DiscreteSeries/CuspKernel.lean
+@@ -383,10 +383,28 @@ theorem New.DiscreteSeries.exists_conj_mem_dilationGroup {n m : Type} [Fintype n
+       simp [q, isStarProjection_iff', star, hJ_herm, mul_assoc, hJ_cancel, hp_herm,
+         hp.isIdempotentElem.mul_self_mul]
+     have h_norm : ‖p - (1 + c)⁻¹ • q‖ ≤ 1 := by
+-      grw [hp.isSelfAdjoint.norm_sub_eq_max, norm_smul, hq.norm_le, hp.norm_le]
+-      · simp [abs_of_pos, inv_le_one₀, add_pos, hc, hc.le]
+-      · exact (IsSelfAdjoint.all (1 + c)⁻¹).smul hq.isSelfAdjoint
+-      · simp [q, mul_assoc, h_isotropic_mul]
++      have hpq : p * q = 0 := by simp [q, mul_assoc, h_isotropic_mul]
++      have hqp : q * p = 0 := by
++        simpa [hp.isSelfAdjoint.star_eq, hq.isSelfAdjoint.star_eq] using congrArg star hpq
++      have hP : IsStarProjection (p + q) :=
++        ⟨by simp [IsIdempotentElem, add_mul, mul_add, hpq, hqp, hp.isIdempotentElem.eq,
++          hq.isIdempotentElem.eq], hp.isSelfAdjoint.add hq.isSelfAdjoint⟩
++      have h_diff : ‖p - q‖ ≤ 1 := by
++        have h_sq : star (p - q) * (p - q) = p + q := by
++          simp only [star_sub, hp.isSelfAdjoint.star_eq, hq.isSelfAdjoint.star_eq, sub_mul,
++            mul_sub, hpq, hqp, hp.isIdempotentElem.eq, hq.isIdempotentElem.eq]
++          abel
++        have h_id := CStarRing.norm_star_mul_self (x := p - q)
++        rw [h_sq] at h_id
++        nlinarith [hP.norm_le, norm_nonneg (p - q)]
++      have hs0 : 0 < (1 + c)⁻¹ := by positivity
++      have hs1 : (1 + c)⁻¹ ≤ 1 := inv_le_one_of_one_le₀ (by linarith)
++      calc ‖p - (1 + c)⁻¹ • q‖ = ‖(1 + c)⁻¹ • (p - q) + (1 - (1 + c)⁻¹) • p‖ := by
++            congr 1; module
++        _ ≤ (1 + c)⁻¹ * ‖p - q‖ + (1 - (1 + c)⁻¹) * ‖p‖ := by
++            grw [norm_add_le, norm_smul, norm_smul, Real.norm_of_nonneg hs0.le,
++              Real.norm_of_nonneg (sub_nonneg.2 hs1)]
++        _ ≤ 1 := by nlinarith [hp.norm_le, norm_nonneg p]
+     simpa [y, norm_smul, hc, abs_of_pos] using h_norm
+   · -- On `x⁻¹ * A` the projection `p` is the identity and `q` vanishes.
+     simp [y, q, X, Matrix.mul_assoc, Matrix.add_mul, Matrix.sub_mul, Matrix.mul_add, h_fix,
