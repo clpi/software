@@ -1,0 +1,1 @@
+New.eq_zero_of_forall_sum_Iic_eq_zero

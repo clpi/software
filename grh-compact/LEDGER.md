@@ -25,3 +25,7 @@
 ## 2026-11-27 cut 7, and the measured build for cuts 6-7
 - `New.GaloisRep.exists_weak_baseChange` (Lib/GaloisRep/Main/OddRank.lean) built `Unique (Unit ⧸ ⊤)` with `.mk' _`, and instance search found the `Subsingleton` through `IsZGroup`, nilpotent and perfect groups. Now the subsingleton is `QuotientGroup.subsingleton_quotient_top`. Found by tracing which subterm used `IsZGroup` (probe in tools/). Patch `cut-7.patch`.
 - Build of cuts 1-7: exit 0, 3,540 s. Axioms unchanged (`receipts/cuts-6-7_axioms.out`). Closure 217,511 -> 216,834 (-677): 682 removed (190 `SchwartzMap*`, 19 `IsZGroup`/`IsPerfect`), 5 added. Lists `receipts/cuts-6-7_removed.txt`, `receipts/cuts-6-7_added.txt`.
+
+## 2026-11-27 cut 8
+- `New.Variety.cancels_moebius_of_factorsThrough_sup` (Lib/Shimura/IntegralModel/TowerExistence.lean) used incidence-algebra Möbius inversion (`IncidenceAlgebra.moebius_inversion_bot`) only to get `F = 0` from vanishing lower sums. Replaced by `New.eq_zero_of_forall_sum_Iic_eq_zero`, well-founded induction. Patch `cut-8.patch`, standalone `standalone/MoebiusFree.lean`.
+- Build of cuts 1-8: exit 0, 359 s. Axioms unchanged. Closure 216,834 -> 216,723 (-111): 112 removed (prediction 112), 1 added.
