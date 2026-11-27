@@ -1,0 +1,13 @@
+diff --git a/grh/src/Lib/CM/ConjugateCurve.lean b/grh/src/Lib/CM/ConjugateCurve.lean
+index 57cdc87..e969d49 100644
+--- a/grh/src/Lib/CM/ConjugateCurve.lean
++++ b/grh/src/Lib/CM/ConjugateCurve.lean
+@@ -463,6 +463,8 @@ lemma one_lt_norm_quadGen : 1 < ‖quadGen d‖ := by
+ 
+ namespace CMLattice
+ 
++attribute [-instance]
++  PowerSeries.instUniqueFactorizationMonoidOfIsPrincipalIdealRingOfIsDomain in
+ /-- Let `d` be a prime `≡ 7 (mod 8)` and `σ` an automorphism of `ℂ` over `ℚ(√-d)`. Let `C`, `D` be
+ CM lattices, each a lattice stable under `𝓞_K` with a point `t` of order two scaled so that
+ `℘''(t) = 2`, a square root `a₁` of `12 ℘(t)`, and a theta function. If `D.a₁ = σ C.a₁`, the Taylor

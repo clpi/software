@@ -1,0 +1,12 @@
+diff --git a/grh/src/Lib/Cohomology/PointClass/LinearIndependence.lean b/grh/src/Lib/Cohomology/PointClass/LinearIndependence.lean
+index 4e0084d..d15602d 100644
+--- a/grh/src/Lib/Cohomology/PointClass/LinearIndependence.lean
++++ b/grh/src/Lib/Cohomology/PointClass/LinearIndependence.lean
+@@ -400,6 +400,7 @@ lemma New.Variety.isChartCovered_graph_projection {k : Type} [Field k] [CharZero
+       ((a.mem_locus_away g ζ).mpr ?_)⟩
+   simpa [u.smul_def] using hi
+ 
++attribute [-instance] instIsSimpleOrderIdeal in
+ /-- Let `u` and `u'` be maps to a separated `X` and `V` an open subfunctor of `W`. The points `x` of
+ `W` whose values in fields lie in `V` wherever `u` and `u'` agree (the `fieldLocus` of this
+ condition: points all of whose images in fields satisfy it) form an open subfunctor. -/

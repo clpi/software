@@ -1,0 +1,29 @@
+diff --git a/grh/src/New/UpperBound/Kernels/JetConjugatesAndBounds.lean b/grh/src/New/UpperBound/Kernels/JetConjugatesAndBounds.lean
+index 561bb8c..f0290ee 100644
+--- a/grh/src/New/UpperBound/Kernels/JetConjugatesAndBounds.lean
++++ b/grh/src/New/UpperBound/Kernels/JetConjugatesAndBounds.lean
+@@ -87,6 +87,7 @@ structure New.Parameters.IsJetConjugation {P : Parameters} {s : ℕ} {n : Type}
+   jets of `f` at scale `P.jetScale s`. -/
+   isJetConjugate : ∀ f ∈ V.finitePart, IsJetConjugate σ (placePerm s σ) (P.jetScale s) t f (L f)
+ 
++attribute [-instance] MvPowerSeries.instNoZeroDivisors in
+ /-- The Galois law of the additive character `selfDualAddChar` of the finite adeles, from the
+ standard space `V = stdSpace E Unit` of rank one. The translate of `F` by a finite adele `x` is
+ `V.ϱ (finVec x) F`.
+@@ -127,7 +128,15 @@ lemma New.Space.map_selfDualAddChar_of_isJetConjugate {E : Type} [Field E] [CMTy
+     -- By the Heisenberg relation both sides are scalars times jets at `x • 2 + N`, which cancel.
+     have h_sum := h_conj (x • 2 + (N : 𝔸f E) • 1)
+     rw [rho_finVec_rho_finVec, rho_finVec_rho_finVec, smul_comm _ b, ← smul_add] at h_jet
+-    simpa [V, IsJetConjugate, smul_eq_C_mul, -smul_add, ← h_sum, h_jet_ne] using h_jet
++    have h_eq := by simpa [V, IsJetConjugate, smul_eq_C_mul, -smul_add, ← h_sum] using h_jet
++    -- Compare one nonzero coefficient of the jet.
++    obtain ⟨m, hm⟩ : ∃ m, MvPowerSeries.coeff m
++        (V.jetSeries t (V.ϱ (finVec (x • 2 + (N : 𝔸f E) • 1)) F)) ≠ 0 := by
++      contrapose! h_jet_ne
++      exact MvPowerSeries.ext h_jet_ne
++    have h_coeff := congrArg (MvPowerSeries.coeff m) h_eq
++    simp only [MvPowerSeries.coeff_C_mul, MvPowerSeries.coeff_map] at h_coeff
++    exact mul_right_cancel₀ ((map_ne_zero σ).2 hm) h_coeff
+   have h_left : half * (x * ((N : 𝔸f E) * 2)) = (N : 𝔸f E) * x := by
+     linear_combination (N : 𝔸f E) * x * two_mul_half (E := E)
+   have h_right : half * (b * (x * (star b * ((N : 𝔸f E) * 2)))) =

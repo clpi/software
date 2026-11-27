@@ -1,0 +1,12 @@
+diff --git a/grh/src/Lib/General/NumberTheory/SUnitsAndClassNumber.lean b/grh/src/Lib/General/NumberTheory/SUnitsAndClassNumber.lean
+index d443a2d..ef11a9d 100644
+--- a/grh/src/Lib/General/NumberTheory/SUnitsAndClassNumber.lean
++++ b/grh/src/Lib/General/NumberTheory/SUnitsAndClassNumber.lean
+@@ -147,6 +147,7 @@ lemma exists_valuation_eq_exp_mul (hS : S.Finite) :
+   have hx_unit : x ∈ S.unit K := fun w hw ↦ by simp [h_val, e₀, Function.extend_apply', hw]
+   exact ⟨⟨x, hx_unit⟩, by simp [h_val, e₀]⟩
+ 
++attribute [-instance] AddMonoid.instIsAddFGForall in
+ /-- Dirichlet's `S`-unit theorem: for a finite set `S` of finite places (nonzero primes of `𝓞 K`),
+ the group of `S`-units is finitely generated, and its rank plus one is `#S` plus the number of
+ infinite places. -/
