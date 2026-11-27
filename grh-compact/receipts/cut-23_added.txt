@@ -1,0 +1,1 @@
+New.sq_le_norm_det_blockDiagPart._proof_1_10

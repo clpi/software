@@ -86,3 +86,7 @@
 ## 2026-11-27 cut 22
 - `New.Filling.tsum_le_relIndex_pow_mul` (New/Spanning/Unfolding/ReducedPoints.lean) counted the colourings `ι → K' ⧸ K` with `ENat.card_fun`, which goes through cardinal arithmetic. Now `Fintype.card_fun` after `ENat.card_eq_coe_fintype_card`. Patch `cut-22.patch`.
 - Measured with cut 23 below: 39 removed, 0 added. List `receipts/cut-22_removed.txt`.
+
+## 2026-11-27 cut 23, and the measured build for cuts 22-23
+- In `New.sq_le_norm_det_blockDiagPart` (Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean), `1 ≤ (t + t⁻¹) / 2` for `t > 0` came from `1 ≤ cosh (log t)`, whose proof uses monotonicity of `sinh` through derivatives. Now `t + t⁻¹ - 2 = (t - 1)² / t ≥ 0`. Patch `cut-23.patch`.
+- Build of cuts 1-14, 16-23: exit 0, 1,800 s. Axioms unchanged (`receipts/cuts-22-23_axioms.out`). Closure 215,590 -> 215,517 (-73): 74 removed (39 / 35), 1 added (an auxiliary proof term). The cut-23 constants sat under a private auxiliary proof of the lemma, so the split is the complement of cut 22's reachable set. List `receipts/cut-23_removed.txt`.

@@ -1,0 +1,20 @@
+diff --git a/grh/src/Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean b/grh/src/Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean
+index d6cc5f4..22efd66 100644
+--- a/grh/src/Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean
++++ b/grh/src/Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean
+@@ -157,7 +157,14 @@ theorem sq_le_norm_det_blockDiagPart (g : USign ε) [Nonempty n] :
+     rw [← h_spec, ← norm_inv z]
+     exact spectrum.inv₀_mem (norm_mem_spectrum_of_nonneg _ (CFC.inv_nonneg_of_nonneg _))
+   have h_factor (x : n) : 1 ≤ 2⁻¹ * |ev x + (ev x)⁻¹| := by
+-    grind [one_le_cosh (log (ev x)), cosh_log (hz.eigenvalues_pos x)]
++    -- `t + t⁻¹ - 2 = (t - 1)² / t ≥ 0` for `t > 0`
++    have ht : 0 < ev x := hz.eigenvalues_pos x
++    have h_sq : ev x + (ev x)⁻¹ - 2 = (ev x - 1) ^ 2 / ev x := by field_simp; ring
++    have h_two : 2 ≤ ev x + (ev x)⁻¹ := by
++      have : 0 ≤ (ev x - 1) ^ 2 / ev x := by positivity
++      linarith
++    rw [abs_of_pos (by positivity)]
++    linarith
+   rw [h_norm, h_det]
+   calc
+     (‖z.val.val‖ / 2) ^ 2 ≤ ((‖z.val.val‖ + ‖z.val.val‖⁻¹) / 2) ^ 2 := by bound
