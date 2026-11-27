@@ -1,0 +1,34 @@
+diff --git a/grh/src/Lib/General/NumberTheory/FrobeniusOrbits.lean b/grh/src/Lib/General/NumberTheory/FrobeniusOrbits.lean
+index 9d90fe5..7c06d34 100644
+--- a/grh/src/Lib/General/NumberTheory/FrobeniusOrbits.lean
++++ b/grh/src/Lib/General/NumberTheory/FrobeniusOrbits.lean
+@@ -81,13 +81,25 @@ lemma New.card_selfAdjoint {k : Type*} [Field k] [StarRing k] [Finite k] {i : k}
+     have h_conj : star ((x - i * y) / 2) = (x + i * y) / 2 := by simp [hx, hy, h_star]
+     simp only [Prod.mk.injEq, Subtype.ext_iff]
+     grind [star_mul']
+-  · -- `-1` is not a square in the field of fixed points: its square roots `±i` are moved.
+-    cases nonempty_fintype (selfAdjoint k)
+-    have h_not_square : ¬IsSquare (-1 : selfAdjoint k) := by
++  · -- `-1` is not a square in the subfield of fixed points: its square roots `±i` are moved.
++    let F : Subfield k :=
++      { carrier := {x | star x = x}
++        mul_mem' := fun {a b} (ha : star a = a) (hb : star b = b) ↦ by
++          simp [Set.mem_setOf_eq, star_mul', ha, hb]
++        one_mem' := star_one k
++        add_mem' := fun {a b} (ha : star a = a) (hb : star b = b) ↦ by
++          simp [Set.mem_setOf_eq, star_add, ha, hb]
++        zero_mem' := star_zero k
++        neg_mem' := fun {a} (ha : star a = a) ↦ by simp [Set.mem_setOf_eq, star_neg, ha]
++        inv_mem' := fun a (ha : star a = a) ↦ by simp [Set.mem_setOf_eq, star_inv₀, ha] }
++    have h_card : Nat.card (selfAdjoint k) = Nat.card F :=
++      Nat.card_congr (Equiv.subtypeEquivRight fun _ ↦ selfAdjoint.mem_iff)
++    have : Fintype F := Fintype.ofFinite F
++    have h_not_square : ¬IsSquare (-1 : F) := by
+       rintro ⟨⟨x, hx : star x = x⟩, hx_sq⟩
+       have hx_eq : x * x = i * i := by simpa [hi_sq, Subtype.ext_iff] using hx_sq.symm
+       grind [mul_self_eq_mul_self_iff, star_neg]
+-    rwa [isSquare_neg_one_iff, not_not, Fintype.card_eq_nat_card] at h_not_square
++    rwa [isSquare_neg_one_iff, not_not, Fintype.card_eq_nat_card, ← h_card] at h_not_square
+ 
+ section
+ 

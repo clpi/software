@@ -66,3 +66,7 @@
 ## 2026-11-27 cut 17
 - `New.exists_contDiff_eventuallyEq` (Lib/General/Analysis/MeanValueAndTaylor.lean) made a map that is analytic near `x` globally smooth by multiplying with a smooth bump function on the model manifold (`SmoothBumpFunction`, `contMDiff_of_tsupport`, structure groupoids). Now the bump is Mathlib's normed-space `ContDiffBump` on a ball where `f` is analytic: inside the closed ball the product is smooth, outside it vanishes on a neighbourhood. Same statement. Patch `cut-17.patch`.
 - Build of cuts 1-14, 16, 17: exit 0, 2,256 s. Axioms unchanged (`receipts/cut-17_axioms.out`). Closure 215,968 -> 215,747 (-221): 221 removed (prediction 221), 0 added. List `receipts/cut-17_removed.txt`.
+
+## 2026-11-27 cut 18
+- `New.card_selfAdjoint` (Lib/General/NumberTheory/FrobeniusOrbits.lean) used the field structure Mathlib puts on `selfAdjoint k` (`selfAdjoint.instField`) to say that `-1` is not a square among the fixed points. Now the fixed points are written as a `Subfield` of `k` (closure under `+`, `*`, `-`, `⁻¹` from `star`), and its cardinality is matched to `selfAdjoint k` by `Equiv.subtypeEquivRight`. Same statement. Patch `cut-18.patch`.
+- Measured with cut 19 below: 62 removed, 6 added (auxiliary proof terms of the subfield). Lists `receipts/cut-18_removed.txt`, `receipts/cut-18_added.txt`.
