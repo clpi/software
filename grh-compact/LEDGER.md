@@ -46,3 +46,7 @@
 ## 2026-11-27 cut 12
 - `New.IsChar.mul` (Lib/General/Groups/CharacterTheory.lean) got a representation with character `χ ψ` as the monoidal tensor product in the category `FDRep`, which pulls in the monoidal structure on `Action`. Now it is the tensor representation `Representation.tprod`, and the character identity is `LinearMap.trace_tensorProduct'` pointwise. Patch `cut-12.patch`.
 - Measured with cuts 13-14 below: 103 removed (dominator row `Action.instMonoidalCategory` was 54; the rest were monoidal-category lemmas reached only through it), 0 added. Lists `receipts/cut-12_removed.txt`, `receipts/cut-12_added.txt`.
+
+## 2026-11-27 cut 13
+- `New.Fock.norm_pairHom_le` (Lib/Weil/Fock/OscillatorPair.lean) built the two commuting star homomorphisms `x ↦ x ⊗ₖ 1` and `y ↦ 1 ⊗ₖ yᵀ` by composing the inclusions into `Mᵣ ⊗ M_c` with Mathlib's star algebra isomorphism `kroneckerStarAlgEquiv`. Now they are written down directly from the Kronecker product rules (`mul_kronecker_mul`, `conjTranspose_kronecker`, ...). Same statement. Patch `cut-13.patch`.
+- Measured with cut 14 below: 59 removed (prediction 52), 1 added (`Matrix.zero_kronecker`). Lists `receipts/cut-13_removed.txt`, `receipts/cut-13_added.txt`.

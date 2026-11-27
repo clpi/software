@@ -1,0 +1,35 @@
+diff --git a/grh/src/Lib/Weil/Fock/OscillatorPair.lean b/grh/src/Lib/Weil/Fock/OscillatorPair.lean
+index d53f5db..e8090df 100644
+--- a/grh/src/Lib/Weil/Fock/OscillatorPair.lean
++++ b/grh/src/Lib/Weil/Fock/OscillatorPair.lean
+@@ -331,12 +331,25 @@ lemma norm_pairHom_le (g : USign ε') (h : USign ε) :
+       ‖(g : Matrix C C ℂ)‖ * ‖(h : Matrix R R ℂ)‖ := by
+   -- The matrix is `(1 ⊗ₖ g⁻¹ᵀ) * (h ⊗ₖ 1)`. Both factors are values of star algebra homomorphisms
+   -- between C⋆-algebras, which do not increase the norm.
+-  let k : TensorProduct ℂ (Matrix R R ℂ) (Matrix C C ℂ) →⋆ₐ[ℂ] Matrix (R × C) (R × C) ℂ :=
+-    (kroneckerStarAlgEquiv R C ℂ).toStarAlgHom
+-  let left : Matrix R R ℂ →⋆ₐ[ℂ] Matrix (R × C) (R × C) ℂ := k.comp ⟨includeLeft, by simp⟩
++  let left : Matrix R R ℂ →⋆ₐ[ℂ] Matrix (R × C) (R × C) ℂ :=
++    { toFun x := x ⊗ₖ (1 : Matrix C C ℂ)
++      map_one' := one_kronecker_one
++      map_mul' x y := by rw [← mul_kronecker_mul, one_mul]
++      map_zero' := zero_kronecker _
++      map_add' x y := add_kronecker _ _ _
++      commutes' c := by simp [Algebra.algebraMap_eq_smul_one, smul_kronecker]
++      map_star' x := by simp [star_eq_conjTranspose, conjTranspose_kronecker] }
+   let right : (Matrix C C ℂ)ᵐᵒᵖ →⋆ₐ[ℂ] Matrix (R × C) (R × C) ℂ :=
+-    k.comp ⟨includeRight.comp (transposeAlgEquiv C ℂ ℂ).symm.toAlgHom, fun x ↦ by
+-      simp [star_eq_conjTranspose, conjTranspose, transpose_map]⟩
++    { toFun x := (1 : Matrix R R ℂ) ⊗ₖ x.unopᵀ
++      map_one' := by simp
++      map_mul' x y := by simp [← mul_kronecker_mul, transpose_mul]
++      map_zero' := by simp
++      map_add' x y := by simp [kronecker_add]
++      commutes' c := by simp [Algebra.algebraMap_eq_smul_one, kronecker_smul]
++      map_star' x := by
++        simp only [MulOpposite.unop_star, star_eq_conjTranspose, conjTranspose_kronecker,
++          conjTranspose_one]
++        rfl }
+   have h_prod : (pairHom ε ε' (g, h) : Matrix (R × C) (R × C) ℂ) =
+       right (.op (g⁻¹ : USign ε')) * left h := by
+     change _ = (1 ⊗ₖ ((g⁻¹ : USign ε') : Matrix C C ℂ)ᵀ) * ((h : Matrix R R ℂ) ⊗ₖ 1)
