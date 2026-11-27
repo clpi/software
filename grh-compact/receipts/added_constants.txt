@@ -16,3 +16,7 @@ PowerSeries.firstUnitCoeff._proof_1
 PowerSeries.hasUnitMulPowIrreducibleFactorization
 PowerSeries.instUniqueFactorizationMonoid
 PowerSeries.mul_invOfUnit
+New.summable_vonMangoldt_not_prime._proof_1_1
+New.summable_vonMangoldt_not_prime._proof_1_4
+New.summable_vonMangoldt_not_prime._proof_1_5
+New.summable_vonMangoldt_not_prime.match_1_2

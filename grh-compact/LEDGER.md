@@ -111,3 +111,8 @@
 
 ## 2026-11-27 measured build for cuts 26-29
 - Build of cuts 1-14, 16-29: `lake build Main` 9,850 jobs, exit 0, 2,599 s. Axioms for all five theorems unchanged (`receipts/cuts-26-29_axioms.out`). Closure 215,218 -> 215,140 (-78): 88 removed, 10 added (cut 28's factorization route). Instance subtrees left in the cut-25 graph: 28 / 20 / 23 / 14 (they overlap slightly). Lists `receipts/cuts-26-29_removed.txt`, `receipts/cuts-26-29_added.txt`.
+
+## 2026-11-27 cut 30
+- `New.summable_vonMangoldt_not_prime` (Lib/Analytic/Primes.lean): absolute convergence at `3/4` of the Dirichlet series of `Λ` on non-primes came from Chebyshev's bound `ψ - θ = O(√x)` and partial summation. Now the sum is reindexed by `(p, k) ↦ p ^ (k + 2)` (injective on primes), and each term is at most `log p · p^(-3/2) · (2^(-3/4))^k`: a product of a summable series over primes (`log n ≤ 4 n^(1/4)`, so `≤ 4 n^(-5/4)`) and a geometric series. Same statement. The source is longer (66 lines in, 8 out); the dependency closure is smaller. Patch `cut-30.patch`.
+- Checked before the full build: the closure of the new proof, elaborated against Mathlib alone, holds nothing outside the cut-29 closure except its own 4 auxiliary terms; predicted 57 removed, 4 added.
+- Build of cuts 1-14, 16-30: `lake build Main` 9,850 jobs, exit 0, 153 s incremental. Axioms for all five theorems unchanged (`receipts/cut-30_axioms.out`). Closure 215,140 -> 215,087 (-53): 57 removed, 4 added. Lists `receipts/cut-30_removed.txt`, `receipts/cut-30_added.txt`.
