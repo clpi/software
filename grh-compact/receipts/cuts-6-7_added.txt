@@ -1,0 +1,5 @@
+ContDiff.continuous_fderiv
+ContinuousLinearMap.neg_apply
+HasCompactSupport.fderiv
+contDiff_one_iff_fderiv
+contDiff_zero._simp_1

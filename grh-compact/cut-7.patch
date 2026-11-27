@@ -1,0 +1,15 @@
+diff --git a/grh/src/Lib/GaloisRep/Main/OddRank.lean b/grh/src/Lib/GaloisRep/Main/OddRank.lean
+index 7609558..b413d70 100644
+--- a/grh/src/Lib/GaloisRep/Main/OddRank.lean
++++ b/grh/src/Lib/GaloisRep/Main/OddRank.lean
+@@ -281,7 +281,9 @@ lemma New.GaloisRep.exists_weak_baseChange {E E' n : Type} [Field E] [CMType E]
+   let π : Representation ℂ Unit ((stdSpace E n).forms κ) :=
+     localFormTranslation κ (1 : Unit →* Gf E n)
+   have h_id : heckeFun π ⊤ 1 = 1 := by
+-    have : Unique (Unit ⧸ (⊤ : Subgroup Unit)) := .mk' _
++    have : Unique (Unit ⧸ (⊤ : Subgroup Unit)) := by
++      haveI := QuotientGroup.subsingleton_quotient_top (G := Unit)
++      exact .mk' _
+     simp [heckeFun, finsum_unique, π]
+   have h_trace : HasNonzeroTraceAround π (heckeFun π ⊤ 1)
+       (heckeGenEigenspace π ⊤ ((1 : Unit → Unit → ℂ) ∘ ![]) 0) ⟨f, hf⟩ := by

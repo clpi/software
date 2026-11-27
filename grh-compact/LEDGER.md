@@ -21,3 +21,7 @@
 
 ## 2026-11-27 cut 6
 - `New.exists_pow_mul_norm_fourier_le` (Lib/General/Analysis/FourierTransforms.lean) integrated by parts through Schwartz maps (`SchwartzMap.fourier_lineDerivOp_eq`). Now it uses Mathlib's `Real.fourier_fderiv` directly on the compactly supported smooth function, with integrability from compact support. Same statement. Patch `cut-6.patch`, standalone `standalone/FourierNoSchwartz.lean`.
+
+## 2026-11-27 cut 7, and the measured build for cuts 6-7
+- `New.GaloisRep.exists_weak_baseChange` (Lib/GaloisRep/Main/OddRank.lean) built `Unique (Unit ⧸ ⊤)` with `.mk' _`, and instance search found the `Subsingleton` through `IsZGroup`, nilpotent and perfect groups. Now the subsingleton is `QuotientGroup.subsingleton_quotient_top`. Found by tracing which subterm used `IsZGroup` (probe in tools/). Patch `cut-7.patch`.
+- Build of cuts 1-7: exit 0, 3,540 s. Axioms unchanged (`receipts/cuts-6-7_axioms.out`). Closure 217,511 -> 216,834 (-677): 682 removed (190 `SchwartzMap*`, 19 `IsZGroup`/`IsPerfect`), 5 added. Lists `receipts/cuts-6-7_removed.txt`, `receipts/cuts-6-7_added.txt`.
