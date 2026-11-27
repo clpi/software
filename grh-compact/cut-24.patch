@@ -1,0 +1,53 @@
+diff --git a/grh/src/Lib/Analytic/QuadraticTwist.lean b/grh/src/Lib/Analytic/QuadraticTwist.lean
+index 6c26399..3282b97 100644
+--- a/grh/src/Lib/Analytic/QuadraticTwist.lean
++++ b/grh/src/Lib/Analytic/QuadraticTwist.lean
+@@ -590,7 +590,7 @@ lemma sum_integral_norm_thetaSeries_div_le (j : Fin 2) {δ : ℝ} (hδ : 0 < δ)
+     have hu_pos : 0 < u := (inv_pos.2 hT).trans hu
+     calc ∑ v ∈ Ioc 0 ⌊T ^ 2⌋₊, ‖θ v u‖
+       _ ≤ √(T ^ 2 * (C * (T ^ 2 * u ^ (-2 * δ)))) := by
+-        grw [le_sqrt_of_sq_le sq_sum_le_card_mul_sum_sq, Nat.card_Ioc, Nat.sub_zero,
++        grw [le_sqrt_of_sq_le New.sq_sum_le_card_mul_sum_sq_real, Nat.card_Ioc, Nat.sub_zero,
+           floor_le (sq_nonneg T), hC T hT u hu.le α hα]
+       _ = √C * T ^ 2 * u ^ (-δ) := by
+         rw [mul_left_comm, sqrt_mul' _ (by positivity), mul_assoc]
+diff --git a/grh/src/Lib/Base.lean b/grh/src/Lib/Base.lean
+index 748625a..3e7877a 100644
+--- a/grh/src/Lib/Base.lean
++++ b/grh/src/Lib/Base.lean
+@@ -15,3 +15,9 @@ lemma star_mulVec_dotProduct {m n : Type*} [Fintype m] [Fintype n] [StarRing A]
+     (x : n → A) (y : m → A) :
+     star (B *ᵥ x) ⬝ᵥ y = star x ⬝ᵥ Bᴴ *ᵥ y := by
+   rw [star_mulVec, dotProduct_mulVec]
++
++/-- Cauchy–Schwarz for a finite sum of reals: `(∑ f)² ≤ #s * ∑ f²`. This is
++`Finset.sum_mul_sq_le_sq_mul_sq` with the constant function `1`. -/
++lemma New.sq_sum_le_card_mul_sum_sq_real {ι : Type*} {s : Finset ι} {f : ι → ℝ} :
++    (∑ i ∈ s, f i) ^ 2 ≤ s.card * ∑ i ∈ s, f i ^ 2 := by
++  simpa using Finset.sum_mul_sq_le_sq_mul_sq s (fun _ ↦ (1 : ℝ)) f
+diff --git a/grh/src/Lib/DiscreteSeries/Rigidity/HighestVectorsAndFiltration.lean b/grh/src/Lib/DiscreteSeries/Rigidity/HighestVectorsAndFiltration.lean
+index e9814b2..a3cda29 100644
+--- a/grh/src/Lib/DiscreteSeries/Rigidity/HighestVectorsAndFiltration.lean
++++ b/grh/src/Lib/DiscreteSeries/Rigidity/HighestVectorsAndFiltration.lean
+@@ -448,7 +448,7 @@ theorem HCParam.IsKHighest.norm_apply_le_mul_norm (hx : l.IsKHighest ρ ν x)
+   refine (sq_le_sq₀ (norm_nonneg _) (by positivity)).1 ?_
+   calc ‖ρ X y‖ ^ 2 ≤ ‖X‖ ^ 2 * (∑ p : n × n, ‖ρ.E p.1 p.2 y‖) ^ 2 := by grw [h_norm, mul_pow]
+     _ ≤ ‖X‖ ^ 2 * (#(univ : Finset (n × n)) * (C * ‖y‖ ^ 2)) := by
+-        grw [sq_sum_le_card_mul_sum_sq, sum_le]
++        grw [New.sq_sum_le_card_mul_sum_sq_real, sum_le]
+     _ ≤ ((card n + 1) ^ 4 * (L + 1 + s) * ‖X‖ * ‖y‖) ^ 2 := by
+         -- The difference of the two sides is a polynomial with nonnegative coefficients.
+         rw [← sub_nonneg, card_univ, card_prod, Nat.cast_mul]
+diff --git a/grh/src/Lib/General/Analysis/PackingAndSobolev.lean b/grh/src/Lib/General/Analysis/PackingAndSobolev.lean
+index e1190c8..14f1b64 100644
+--- a/grh/src/Lib/General/Analysis/PackingAndSobolev.lean
++++ b/grh/src/Lib/General/Analysis/PackingAndSobolev.lean
+@@ -172,7 +172,7 @@ lemma New.lintegral_sobolev_trace {Ω I L : Type*} [MeasurableSpace Ω] {σ : Me
+       lintegral_mono_ae (h_deriv.mono fun ω hω ↦ sobolev_trace hε hε_le hω)
+     _ ≤ ∫⁻ t in Icc 0 ε, (∫⁻ ω,
+         .ofReal (2 / ε * (‖g t ω‖ ^ 2 + card L * ∑ l, (Λ * ‖h l t ω‖) ^ 2)) ∂σ) := by
+-      grw [lintegral_lintegral_swap (by fun_prop), sq_sum_le_card_mul_sum_sq, Finset.card_univ]
++      grw [lintegral_lintegral_swap (by fun_prop), New.sq_sum_le_card_mul_sum_sq_real, Finset.card_univ]
+     _ = _ := by
+       -- Distribute the integral over `ω` over the sums.
+       simp (disch := intros; first | positivity | fun_prop) [mul_pow, lintegral_finsetSum,

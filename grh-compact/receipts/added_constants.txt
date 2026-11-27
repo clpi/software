@@ -5,3 +5,4 @@ New.exists_eigenvector_of_le_iInf_maxGenEigenspace._proof_1_2
 New.exists_eigenvector_of_le_iInf_maxGenEigenspace._simp_1_1
 New.exists_eigenvector_of_le_iInf_maxGenEigenspace._simp_1_3
 iInf_plift_up
+New.sq_sum_le_card_mul_sum_sq_real
