@@ -14,3 +14,7 @@
 - `New.tendsto_pow_pow_of_norm_sub_one_lt` (Lib/General/NumberTheory/PadicLimitsValuation.lean) used continuous additive characters of `ℤ_p` (Mahler series). Replaced by an ultrametric estimate: `‖w^p - 1‖ ≤ max ‖p‖ ‖w-1‖^(p-1) · ‖w-1‖`, iterated. New helpers `New.padic_norm_pow_sub_one_le`, `New.padic_norm_pow_prime_sub_one_le`. Patch `cut-4.patch`, standalone `standalone/PadicPowLimit.lean`.
 - Build of cuts 1-4 together: `lake build Main` 9,850 jobs, exit 0, 1,263 s. Axioms for all five theorems unchanged (`receipts/cuts-3-4_axioms.out`).
 - Closure 217,911 -> 217,742 (-169): 175 removed, exactly the dominator-tree prediction (98 + 77), 6 added. Lists: `receipts/cuts-3-4_removed.txt`, `receipts/cuts-3-4_added.txt`.
+
+## 2026-11-27 cut 5
+- `index_stabilizer_line` (Lib/Weil/Unramified/HeckeGL.lean) got transitivity of `GL n F` on projective space from Mathlib's primitivity instance for `SL` (`Projectivization.prePrimitive_SL`). Replaced by `New.isPretransitive_GL_projectivization`: extend the linear map between the two lines (`Submodule.exists_linearEquiv_restrict_eq`) and take its matrix. Patch `cut-5.patch`, standalone `standalone/GLTransitive.lean`.
+- Build of cuts 1-5: exit 0, 2,462 s. Axioms unchanged (`receipts/cut-5_axioms.out`). Closure 217,742 -> 217,511 (-231): 232 removed (prediction 240), 1 added. Lists `receipts/cut-5_removed.txt`, `receipts/cut-5_added.txt`.

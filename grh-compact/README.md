@@ -20,6 +20,7 @@ Upstream: [lsernau/grh-lean](https://github.com/lsernau/grh-lean) at commit `72f
 | 3 | pairs `a < b` in `Fin r` counted row by row, not with `Fintype.card_product_filter_lt` | | |
 | 4 | p-adic limit `u^(q^n) → 1` from an ultrametric estimate, not Mahler series | | |
 | 1-4 | all four, built together | 217,742 | 175 more removed (as predicted), 6 added |
+| 5 | `GL n F` transitive on projective space by extending a linear map, not via `SL` primitivity | 217,511 | 232 removed, 1 added |
 
 Build: `lake build Main` 9,850 jobs, exit 0, 3,630 s. Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
 
@@ -33,7 +34,7 @@ Build: `lake build Main` 9,850 jobs, exit 0, 3,630 s. Axioms: `receipts/axioms_c
 
 ```
 git clone https://github.com/lsernau/grh-lean && cd grh-lean && git checkout 72fead102f663d5c
-git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch
+git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch
 cd grh && lake build Main
 lake env lean ../../software/grh-compact/tools/Axioms.lean
 lake env lean ../../software/grh-compact/tools/MainEdgesFull.lean   # writes edges_full.tsv, prints the closure size
