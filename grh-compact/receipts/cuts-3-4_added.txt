@@ -1,0 +1,6 @@
+New.padic_norm_pow_prime_sub_one_le
+New.padic_norm_pow_prime_sub_one_le._proof_1_1
+New.padic_norm_pow_sub_one_le
+New.sum_sum_ite_lt_fin
+New.sum_sum_ite_lt_fin._proof_1_1
+New.tendsto_pow_pow_of_norm_sub_one_lt._proof_1_1
