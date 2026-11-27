@@ -1,0 +1,34 @@
+diff --git a/grh/src/Lib/General/Analysis/MeanValueAndTaylor.lean b/grh/src/Lib/General/Analysis/MeanValueAndTaylor.lean
+index d362919..01bb307 100644
+--- a/grh/src/Lib/General/Analysis/MeanValueAndTaylor.lean
++++ b/grh/src/Lib/General/Analysis/MeanValueAndTaylor.lean
+@@ -220,14 +220,21 @@ variable {X l m o : Type*}
+ lemma exists_contDiff_eventuallyEq {Y : Type*} [FiniteDimensional ℝ X] [NormedAddCommGroup Y]
+     [NormedSpace ℝ Y] {f : X → Y} {x : X} (hf : ContDiffAt ℝ ω f x) :
+     ∃ g : X → Y, ContDiff ℝ ∞ g ∧ g =ᶠ[nhds x] f := by
+-  -- Multiply `f` by a bump function supported in the neighbourhood of `x` where `f` is analytic.
+-  have h_near : {y : X | ContDiffAt ℝ ω f y} ∈ nhds x := hf.eventually (by simp)
+-  obtain ⟨b, -, (h_supp : tsupport b ⊆ {y : X | ContDiffAt ℝ ω f y})⟩ :=
+-    (SmoothBumpFunction.nhds_basis_tsupport (I := modelWithCornersSelf ℝ X) x).mem_iff.1 h_near
+-  refine ⟨fun y ↦ b y • f y, ?_, b.eventuallyEq_one.mono fun y (hy : b y = 1) ↦ by simp [hy]⟩
+-  refine (contMDiff_of_tsupport fun y hy ↦ ?_).contDiff
+-  have hf_y : ContDiffAt ℝ ω f y := h_supp (tsupport_smul_subset_left _ _ hy)
+-  exact b.contMDiffAt.smul (hf_y.contMDiffAt.of_le le_top)
++  -- Multiply `f` by a bump function `b` on a ball where `f` is analytic: `b • f` is smooth inside
++  -- the closed ball of radius `rOut` and vanishes on a neighbourhood of every point outside it.
++  obtain ⟨ε, hε, h_ball⟩ := Metric.mem_nhds_iff.1 (hf.eventually (by simp))
++  let b : ContDiffBump x := ⟨ε / 4, ε / 2, by positivity, by linarith⟩
++  refine ⟨fun y ↦ b y • f y, contDiff_iff_contDiffAt.2 fun y ↦ ?_,
++    b.eventuallyEq_one.mono fun y (hy : b y = 1) ↦ by simp [hy]⟩
++  by_cases hy : y ∈ Metric.closedBall x (ε / 2)
++  · have hf_y : ContDiffAt ℝ ω f y :=
++      h_ball (Metric.closedBall_subset_ball (by linarith) hy)
++    exact b.contDiff.contDiffAt.smul (hf_y.of_le le_top)
++  · refine (contDiffAt_const (c := (0 : Y))).congr_of_eventuallyEq ?_
++    filter_upwards [Metric.isClosed_closedBall.isOpen_compl.mem_nhds hy] with z hz
++    have hz' : ε / 2 < dist z x := by simpa [Metric.mem_closedBall, not_le] using hz
++    have : b z = 0 := b.zero_of_le_dist hz'.le
++    simp [this]
+ 
+ /-- Complex conjugation is smooth over `ℝ`, of every order `N`. -/
+ @[fun_prop]

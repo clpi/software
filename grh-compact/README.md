@@ -35,8 +35,9 @@ Upstream: [lsernau/grh-lean](https://github.com/lsernau/grh-lean) at commit `72f
 | 12-14 | all three, built together | 216,233 | 199 removed (103 / 59 / 37), 1 added |
 | 15 | tried: char-zero smoothness without matroids; removed nothing (perfect-field case still needed), not landed | | |
 | 16 | smooth extension from a neighbourhood of a closed set by the cutoff `a / (a + b)`, not partitions of unity on manifolds | 215,968 | 266 removed, 1 added |
+| 17 | local-to-global smooth map with a normed-space bump `ContDiffBump`, not manifold bump functions | 215,747 | 221 removed, 0 added |
 
-Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-14 and 16: 1,954 s). Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
+Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-14, 16, 17: 2,256 s). Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
 
 ## Where the proof's weight is
 
@@ -48,7 +49,7 @@ Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-14 and 16: 1,954 s). Axioms:
 
 ```
 git clone https://github.com/lsernau/grh-lean && cd grh-lean && git checkout 72fead102f663d5c
-git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch ../software/grh-compact/cut-12.patch ../software/grh-compact/cut-13.patch ../software/grh-compact/cut-14.patch ../software/grh-compact/cut-16.patch
+git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch ../software/grh-compact/cut-12.patch ../software/grh-compact/cut-13.patch ../software/grh-compact/cut-14.patch ../software/grh-compact/cut-16.patch ../software/grh-compact/cut-17.patch
 cd grh && lake build Main
 lake env lean ../../software/grh-compact/tools/Axioms.lean
 lake env lean ../../software/grh-compact/tools/MainEdgesFull.lean   # writes edges_full.tsv, prints the closure size
