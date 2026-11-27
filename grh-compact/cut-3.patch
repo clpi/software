@@ -1,0 +1,35 @@
+diff --git a/grh/src/New/Spanning/Unfolding/ReducedGroups.lean b/grh/src/New/Spanning/Unfolding/ReducedGroups.lean
+index 902faa8..1cb9f44 100644
+--- a/grh/src/New/Spanning/Unfolding/ReducedGroups.lean
++++ b/grh/src/New/Spanning/Unfolding/ReducedGroups.lean
+@@ -108,6 +108,21 @@ lemma exists_unitriangular_map_eq {ι : Type*} {F : ι → Type*} [∀ p : ι, C
+   · rw [unitriangularEquiv_symm_apply_of_lt lev lift h_free, h_lift]
+   · rw [u.2 i j h_fixed, hs p i j h_fixed, map_matrix_one_apply]
+ 
++/-- The number of pairs `a < b` in `Fin r` is `r.choose 2`, counted row by row. -/
++lemma _root_.New.sum_sum_ite_lt_fin (r : ℕ) :
++    ∑ a : Fin r, ∑ b : Fin r, (if a < b then 1 else 0) = r.choose 2 := by
++  have h_row (a : Fin r) : ∑ b : Fin r, (if a < b then 1 else 0) = r - 1 - a := by
++    rw [Finset.sum_boole, Nat.cast_id, ← Fin.card_Ioi]
++    congr 1
++    ext b
++    simp
++  simp only [h_row]
++  rw [Fin.sum_univ_eq_sum_range (fun i ↦ r - 1 - i) r, ← Finset.sum_range_reflect, Nat.choose_two_right,
++    ← Finset.sum_range_id]
++  refine Finset.sum_congr rfl fun i hi ↦ ?_
++  have := Finset.mem_range.1 hi
++  omega
++
+ /-- The level function `BesselIndex.level` has the block sizes `1, …, 1, m, 1, …, 1`, with `ϱ` ones
+ on each side and `m` the cardinality of `μ`. It has `(2ϱ choose 2) + 2ϱ m` free entries. -/
+ lemma card_freeEntry_level (ϱ : ℕ) (μ : Type) [Fintype μ] :
+@@ -127,7 +142,7 @@ lemma card_freeEntry_level (ϱ : ℕ) (μ : Type) [Fintype μ] :
+     have h_high_iff (b : Fin ϱ) : 2 * ϱ - a < 2 * ϱ - b ↔ b < a := by omega
+     simp [row, BesselIndex.level, h_lt_high, lt_asymm, h_high_iff, -sum_boole]
+   have h_pairs_lt : ∑ a : Fin ϱ, ∑ b : Fin ϱ, (if a < b then 1 else 0) = ϱ.choose 2 := by
+-    rw [← Fintype.sum_prod_type', ← card_filter, Fintype.card_product_filter_lt, Fintype.card_fin]
++    exact _root_.New.sum_sum_ite_lt_fin ϱ
+   have h_pairs_gt : ∑ a : Fin ϱ, ∑ b : Fin ϱ, (if b < a then 1 else 0) = ϱ.choose 2 :=
+     sum_comm.trans h_pairs_lt
+   have h_choose : (2 * ϱ).choose 2 = ϱ.choose 2 + ϱ * ϱ + ϱ.choose 2 := by
