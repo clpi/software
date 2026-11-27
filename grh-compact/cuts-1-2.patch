@@ -1,0 +1,195 @@
+diff --git a/grh/src/Lib/ClassField/GaloisCohomology/TateIndexFormula.lean b/grh/src/Lib/ClassField/GaloisCohomology/TateIndexFormula.lean
+index 75c666d..d186508 100644
+--- a/grh/src/Lib/ClassField/GaloisCohomology/TateIndexFormula.lean
++++ b/grh/src/Lib/ClassField/GaloisCohomology/TateIndexFormula.lean
+@@ -376,6 +376,65 @@ end TateIndex
+ 
+ /-! ## Tate's index formula for the norm in an extension of prime degree -/
+ 
++open Finset in
++/-- Hilbert 90 for a finite cyclic Galois extension, by Dedekind's independence of characters and
++no group cohomology: if `g` generates `Gal(L/K)` and `N_{L/K}(x) = 1` then `x = y / g y`. -/
++theorem New.exists_div_of_norm_eq_one_elem {K L : Type*} [Field K] [Field L] [Algebra K L]
++    [FiniteDimensional K L] [IsGalois K L] {g : Gal(L/K)} (hg : ∀ σ, σ ∈ Subgroup.zpowers g)
++    {x : L} (hx : Algebra.norm K x = 1) : ∃ y : Lˣ, y / g y = x := by
++  classical
++  set n := orderOf g with hn_def
++  have hn_card : n = Fintype.card Gal(L/K) := by
++    rw [hn_def, orderOf_eq_card_of_forall_mem_zpowers hg, Nat.card_eq_fintype_card]
++  have hn_pos : 0 < n := orderOf_pos g
++  -- the powers `g ^ i`, `i < n`, enumerate the Galois group
++  let e : Fin n → Gal(L/K) := fun i ↦ g ^ (i : ℕ)
++  have he_inj : Function.Injective e := fun i j h ↦
++    Fin.ext (pow_injOn_Iio_orderOf (Set.mem_Iio.2 i.2) (Set.mem_Iio.2 j.2) h)
++  have he_bij : Function.Bijective e :=
++    (Fintype.bijective_iff_injective_and_card e).2 ⟨he_inj, by simp [hn_card]⟩
++  -- partial norms `p i = x · g x ⋯ g^(i-1) x`
++  let p : ℕ → L := fun i ↦ ∏ j ∈ range i, (g ^ j) x
++  have hp_n : p n = 1 := by
++    have h := Algebra.norm_eq_prod_automorphisms K x
++    rw [hx, map_one, ← Fintype.prod_bijective e he_bij (fun i ↦ (g ^ (i : ℕ)) x) (fun σ ↦ σ x)
++      (fun _ ↦ rfl), Fin.prod_univ_eq_prod_range (fun i ↦ (g ^ i) x)] at h
++    exact h.symm
++  have hp_succ (i : ℕ) : x * g (p i) = p (i + 1) := by
++    simp only [p, map_prod, prod_range_succ', pow_zero, AlgEquiv.one_apply]
++    rw [mul_comm]
++    congr 1
++    refine prod_congr rfl fun j _ ↦ ?_
++    rw [pow_succ', AlgEquiv.mul_apply]
++  -- Dedekind: the combination `∑ p i · g^i` of distinct automorphisms is not zero
++  obtain ⟨c, hc⟩ : ∃ c : L, ∑ i ∈ range n, p i * (g ^ i) c ≠ 0 := by
++    by_contra! h
++    let v : Fin n → (L →* L) := fun i ↦ ((e i : L ≃ₐ[K] L) : L →* L)
++    have hv_inj : Function.Injective v := fun i j hij ↦ he_inj (AlgEquiv.ext fun y ↦
++      DFunLike.congr_fun hij y)
++    have h_li := (linearIndependent_monoidHom L L).comp v hv_inj
++    have h0 := Fintype.linearIndependent_iff.1 h_li (fun i ↦ p i) (funext fun c ↦ by
++      simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Function.comp_apply, v, e,
++        Pi.zero_apply]
++      exact (Fin.sum_univ_eq_sum_range (fun i ↦ p i * (g ^ i) c) n).trans (h c)) ⟨0, hn_pos⟩
++    simp [p] at h0
++  set b := ∑ i ∈ range n, p i * (g ^ i) c
++  have hgb : x * g b = b := by
++    have hshift : ∑ i ∈ range n, p (i + 1) * (g ^ (i + 1)) c = ∑ i ∈ range n, p i * (g ^ i) c := by
++      have h1 := sum_range_succ (fun i ↦ p i * (g ^ i) c) n
++      have h2 := sum_range_succ' (fun i ↦ p i * (g ^ i) c) n
++      rw [hp_n, pow_orderOf_eq_one, one_mul, AlgEquiv.one_apply] at h1
++      simp only [p, range_zero, prod_empty, pow_zero, AlgEquiv.one_apply, one_mul] at h2
++      linear_combination h2.symm.trans h1
++    simp only [b, map_sum, map_mul, mul_sum]
++    rw [← hshift]
++    refine sum_congr rfl fun i _ ↦ ?_
++    rw [← mul_assoc, hp_succ, pow_succ', AlgEquiv.mul_apply]
++  have hgb0 : g b ≠ 0 := (map_ne_zero g).2 hc
++  refine ⟨Units.mk0 b hc, ?_⟩
++  rw [Units.val_mk0, div_eq_iff hgb0]
++  exact hgb.symm
++
+ section TateNormIndex
+ 
+ open Module Algebra MonoidHom Units Set IsGalois groupCohomology
+@@ -440,7 +499,7 @@ lemma New.tate_index_formula_norm {K L : Type} [Field K] [Field L] [Algebra K L]
+       have h_norm_one : Algebra.norm K (val y) = 1 :=
+         congrArg (fun v : Additive V ↦ (((Additive.toMul v : V) : Kˣ) : K)) hy
+       obtain ⟨z, hz⟩ : ∃ z : Lˣ, (z : L) / g z = val y :=
+-        exists_div_of_norm_eq_one hg (x := ((Additive.toMul y : U) : Lˣ)) h_norm_one
++        New.exists_div_of_norm_eq_one_elem hg (x := ((Additive.toMul y : U) : Lˣ)) h_norm_one
+       let ρq : Representation ℤ Gal(L/K) (DiscreteUnits L ⧸ U.toAddSubgroup.toIntSubmodule) :=
+         (unitsRep (Γ := Gal(L/K))).quotient U.toAddSubgroup.toIntSubmodule hU
+       have fixed_g : ρq g ⟦.ofMul z⟧ = ⟦.ofMul z⟧ := by
+diff --git a/grh/src/Lib/General/LinearAlgebra/Eigenvalues.lean b/grh/src/Lib/General/LinearAlgebra/Eigenvalues.lean
+index 6003f3e..91e4298 100644
+--- a/grh/src/Lib/General/LinearAlgebra/Eigenvalues.lean
++++ b/grh/src/Lib/General/LinearAlgebra/Eigenvalues.lean
+@@ -152,6 +152,67 @@ open Finsupp LieModule LieSubalgebra Module Submodule LinearMap
+ variable {k W : Type*} {ι : Sort*} [Field k] [IsAlgClosed k] [AddCommGroup W] [Module k W]
+   (φ : ι → End k W) {S : Submodule k W} [Module.Finite k S]
+ 
++omit [IsAlgClosed k] in
++/-- Common eigenvector in a joint generalised eigenspace of commuting endomorphisms, without Lie
++algebras: a nonzero invariant subspace of least dimension inside it is killed by every `f m - χ m`. -/
++lemma New.exists_eigenvector_of_le_iInf_maxGenEigenspace {V : Type*} [AddCommGroup V] [Module k V]
++    [FiniteDimensional k V] {ι : Sort*} (f : ι → End k V) (h_comm : ∀ m n, Commute (f m) (f n))
++    (χ : ι → k) (h_ne : (⨅ m, (f m).maxGenEigenspace (χ m)) ≠ ⊥) :
++    ∃ x ∈ ⨅ m, (f m).maxGenEigenspace (χ m), x ≠ 0 ∧ ∀ m, f m x = χ m • x := by
++  set E := ⨅ m, (f m).maxGenEigenspace (χ m)
++  let P : Submodule k V → Prop := fun K ↦ K ≤ E ∧ K ≠ ⊥ ∧ ∀ m, ∀ y ∈ K, f m y ∈ K
++  have hE_inv : ∀ m, ∀ y ∈ E, f m y ∈ E := fun m y hy ↦ by
++    simp only [E, mem_iInf] at hy ⊢
++    exact fun n ↦ Module.End.mapsTo_maxGenEigenspace_of_comm (h_comm n m) (χ n) (hy n)
++  have hex : ∃ d, ∃ K, P K ∧ finrank k K = d := ⟨_, E, ⟨le_rfl, h_ne, hE_inv⟩, rfl⟩
++  classical
++  obtain ⟨K, ⟨hKE, hK_ne, hK_inv⟩, hK_dim⟩ := Nat.find_spec hex
++  -- every `f m - χ m` vanishes on `K`
++  have h_kill : ∀ m, ∀ y ∈ K, f m y = χ m • y := by
++    intro m
++    let g : End k V := f m - χ m • 1
++    let K' : Submodule k V := K ⊓ LinearMap.ker g
++    have hg_comm : ∀ n, Commute g (f n) := fun n ↦
++      ((h_comm m n).sub_left (Commute.smul_left (Commute.one_left _) _))
++    have hK'_inv : ∀ n, ∀ y ∈ K', f n y ∈ K' := fun n y hy ↦ by
++      refine ⟨hK_inv n y hy.1, LinearMap.mem_ker.2 ?_⟩
++      have h2 : g y = 0 := LinearMap.mem_ker.1 hy.2
++      rw [← Module.End.mul_apply, (hg_comm n).eq, Module.End.mul_apply, h2, map_zero]
++    have hK'_ne : K' ≠ ⊥ := by
++      obtain ⟨y, hyK, hy0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hK_ne
++      have hy_gen : ∃ j : ℕ, (g ^ j) y = 0 :=
++        (Module.End.mem_maxGenEigenspace _ _ _).1 ((mem_iInf _).1 (hKE hyK) m)
++      have hpow_mem : ∀ j : ℕ, (g ^ j) y ∈ K := by
++        intro j
++        induction j with
++        | zero => simpa using hyK
++        | succ j ih =>
++          rw [pow_succ', Module.End.mul_apply]
++          exact K.sub_mem (hK_inv m _ ih) (K.smul_mem _ (by simpa using ih))
++      let j := Nat.find hy_gen
++      have hj0 : j ≠ 0 := fun h ↦ by
++        have := Nat.find_spec hy_gen
++        rw [show Nat.find hy_gen = 0 from h, pow_zero, Module.End.one_apply] at this
++        exact hy0 this
++      obtain ⟨i, hi⟩ := Nat.exists_eq_succ_of_ne_zero hj0
++      have hz0 : (g ^ i) y ≠ 0 := Nat.find_min hy_gen (by omega)
++      refine fun h ↦ hz0 ?_
++      have hz : (g ^ i) y ∈ K' := by
++        refine ⟨hpow_mem i, LinearMap.mem_ker.2 ?_⟩
++        rw [← Module.End.mul_apply, ← pow_succ']
++        have := Nat.find_spec hy_gen
++        rwa [show Nat.find hy_gen = i + 1 from hi] at this
++      simpa [h] using hz
++    have hle : K' ≤ K := inf_le_left
++    have hdim : finrank k K ≤ finrank k K' := by
++      rw [hK_dim]; exact Nat.find_min' hex ⟨K', ⟨hle.trans hKE, hK'_ne, hK'_inv⟩, rfl⟩
++    have hEq : K' = K := Submodule.eq_of_le_of_finrank_le hle hdim
++    intro y hy
++    have : y ∈ LinearMap.ker g := (hEq ▸ hy : y ∈ K').2
++    simpa [g, sub_eq_zero] using this
++  obtain ⟨x, hxK, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hK_ne
++  exact ⟨x, hKE hxK, hx0, fun m ↦ h_kill m x hxK⟩
++
+ /-- Let the endomorphisms `φ m` preserve the finite-dimensional subspace `S` and commute on it,
+ over an algebraically closed field, and let `U : Submodule k S` be proper. Then there are scalars
+ `χ m` whose joint generalised eigenspace in `S` is not contained in `U` and which are the
+@@ -163,29 +224,20 @@ lemma New.exists_eigenvector_of_commute (hS : ∀ m : ι, ∀ x ∈ S, φ m x 
+       ¬(⨅ m : ι, End.maxGenEigenspace (restrict (φ m) (hS m)) (χ m) ≤ U) ∧
+       -- (b) there is a common eigenvector with eigenvalues `χ`
+       ∃ x ∈ S, x ≠ 0 ∧ ∀ m : ι, φ m x = χ m • x := by
+-  -- The restrictions of the `φ m` to `S` span an abelian Lie algebra `L` of endomorphisms, and `S`
+-  -- is the sum of its generalised weight spaces. One of them is not in `U`; take its weight.
+-  let : LieRing (End k S) := LieRing.ofAssociativeRing
+-  let L : LieSubalgebra k (End k S) := lieSpan k _ (Set.range fun m ↦ (φ m).restrict (hS m))
+-  -- `L` is abelian because its generators commute.
+-  have : IsLieAbelian L := isLieAbelian_lieSpan_iff.2 <| by
+-    rintro - ⟨m, rfl⟩ - ⟨n, rfl⟩
+-    exact sub_eq_zero.2 (LinearMap.ext fun x ↦ Subtype.ext (h_comm m n x x.property))
+-  obtain ⟨χ, hχ⟩ :
+-      ∃ χ : Weight k L S, ¬⨅ a : L, (genWeightSpaceOf S (χ a) a : Submodule k S) ≤ U := by
+-    by_contra! h_le
+-    refine hU_ne (eq_top_iff.2 ?_)
+-    rw [← LieSubmodule.top_toSubmodule (R := k) (L := L) (M := S),
+-      ← iSup_genWeightSpace_eq_top' k L S, LieSubmodule.iSup_toSubmodule]
+-    exact iSup_le fun χ ↦ by simpa [genWeightSpace] using h_le χ
+-  -- A weight of `L` has a weight vector `x`; evaluate the weight on the generators `f m` of `L`.
+-  let f (m : ι) : L := ⟨(φ m).restrict (hS m), subset_lieSpan ⟨m, rfl⟩⟩
+-  obtain ⟨x, hx, h_eigen⟩ := exists_forall_lie_eq_smul k L S χ
+-  refine ⟨fun m ↦ χ (f m), ?_, x, x.2, by simpa using hx, fun m ↦ ?_⟩
+-  · -- The generalised eigenspace of `f m` for `χ (f m)` is its generalised weight space.
+-    exact fun h_le ↦ hχ ((le_iInf_comp _ f).trans h_le)
+-  · -- The bracket of `f m` with `x` is the value of `φ m` at `x`.
+-    exact congrArg Subtype.val (h_eigen (f m))
++  let f : PLift ι → End k S := fun m ↦ restrict (φ m.down) (hS m.down)
++  have hf : ∀ m n, Commute (f m) (f n) := fun m n ↦
++    LinearMap.ext fun x ↦ Subtype.ext (h_comm m.down n.down x x.2)
++  have h_top := Module.End.iSup_iInf_maxGenEigenspace_eq_top_of_iSup_maxGenEigenspace_eq_top_of_commute
++    f (fun m n _ ↦ hf m n) fun m ↦ Module.End.iSup_maxGenEigenspace_eq_top _
++  obtain ⟨χ, hχ⟩ : ∃ χ : PLift ι → k, ¬(⨅ m, (f m).maxGenEigenspace (χ m)) ≤ U := by
++    by_contra! h
++    exact hU_ne (eq_top_iff.2 (h_top ▸ iSup_le h))
++  have hχ' : ¬(⨅ m : ι, End.maxGenEigenspace (restrict (φ m) (hS m)) (χ ⟨m⟩)) ≤ U := by
++    intro h; apply hχ; rw [← iInf_plift_up]; exact h
++  obtain ⟨x, -, hx0, hx⟩ := New.exists_eigenvector_of_le_iInf_maxGenEigenspace f hf χ
++    (fun h ↦ hχ (h ▸ bot_le))
++  exact ⟨fun m ↦ χ ⟨m⟩, hχ', x, x.2, by simpa using hx0,
++    fun m ↦ congrArg Subtype.val (hx ⟨m⟩)⟩
+ 
+ /-- Let the `φ m` preserve the finite-dimensional subspace `S` and commute on it, over an
+ algebraically closed field. If a linear form `l`, non-zero on `S`, satisfies `l ∘ φ m = η m • l`,
