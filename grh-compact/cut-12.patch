@@ -1,0 +1,14 @@
+diff --git a/grh/src/Lib/General/Groups/CharacterTheory.lean b/grh/src/Lib/General/Groups/CharacterTheory.lean
+index 36bd051..46c9264 100644
+--- a/grh/src/Lib/General/Groups/CharacterTheory.lean
++++ b/grh/src/Lib/General/Groups/CharacterTheory.lean
+@@ -180,7 +180,8 @@ variable {S : Type*} [CommSemiring S] [Algebra S ℂ]
+ lemma IsChar.mul (hχ : IsChar χ) (hψ : IsChar ψ) : IsChar (χ * ψ) := by
+   obtain ⟨V, rfl⟩ := hχ
+   obtain ⟨W, rfl⟩ := hψ
+-  exact ⟨CategoryTheory.MonoidalCategory.tensorObj V W, FDRep.char_tensor V W⟩
++  exact ⟨.of (Representation.tprod V.ρ W.ρ),
++    funext fun g ↦ LinearMap.trace_tensorProduct' (V.ρ g) (W.ρ g)⟩
+ 
+ lemma isChar_monoidHom (l : G →* ℂ) : IsChar l :=
+   -- the one-dimensional representation in which `g` acts as multiplication by `l g`

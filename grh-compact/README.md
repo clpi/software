@@ -29,6 +29,7 @@ Upstream: [lsernau/grh-lean](https://github.com/lsernau/grh-lean) at commit `72f
 | 10 | `‖p - s • q‖ ≤ 1` for orthogonal projections from the C*-identity, not the commutative C*-algebra of the pair | | |
 | 11 | idempotent generator of `(a)` from a pseudo-inverse `a g a = a`, not semisimple-ring structure theory | | |
 | 9-11 | all three, built together | 216,431 | 295 removed (95 / 106 / 94), 3 added |
+| 12 | representation with character `χ ψ` as `Representation.tprod`, not the monoidal category of representations | | |
 
 Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-11: 4,235 s). Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
 
@@ -42,7 +43,7 @@ Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-11: 4,235 s). Axioms: `recei
 
 ```
 git clone https://github.com/lsernau/grh-lean && cd grh-lean && git checkout 72fead102f663d5c
-git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch
+git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch ../software/grh-compact/cut-12.patch
 cd grh && lake build Main
 lake env lean ../../software/grh-compact/tools/Axioms.lean
 lake env lean ../../software/grh-compact/tools/MainEdgesFull.lean   # writes edges_full.tsv, prints the closure size
