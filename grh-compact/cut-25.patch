@@ -1,0 +1,24 @@
+diff --git a/grh/src/Lib/DiscreteSeries/Character/MultiplicityOrbitalIntegral.lean b/grh/src/Lib/DiscreteSeries/Character/MultiplicityOrbitalIntegral.lean
+index 2b51e09..091e8ed 100644
+--- a/grh/src/Lib/DiscreteSeries/Character/MultiplicityOrbitalIntegral.lean
++++ b/grh/src/Lib/DiscreteSeries/Character/MultiplicityOrbitalIntegral.lean
+@@ -513,6 +513,7 @@ lemma torusEval_rootProd_mul (hXY : IsWeylFamily l X Y) (p : ℂ[n → ℤ]) (x
+       rw [sum_comm]
+       simp [torusEval, lift_apply', Finsupp.sum, mul_sum, mul_left_comm]
+ 
++attribute [-instance] AffineAddMonoid.to_twoUniqueSums in
+ /-- Let `X`, `Y` satisfy Weyl's formula and let `l` be injective. If the antisymmetrisation of
+ `p` over the Weyl group of K is the Weyl denominator times `q` on the torus, then the combination
+ of the `X γ` with the coefficients of `p` is `q` on the torus. -/
+diff --git a/grh/src/Lib/GaloisRep/KillingPolynomials.lean b/grh/src/Lib/GaloisRep/KillingPolynomials.lean
+index 45bcbe2..45ebac2 100644
+--- a/grh/src/Lib/GaloisRep/KillingPolynomials.lean
++++ b/grh/src/Lib/GaloisRep/KillingPolynomials.lean
+@@ -308,6 +308,7 @@ private lemma HasNoSmallRelations.injective (he : HasNoSmallRelations e) : e.Inj
+     (he 1 (Nat.one_le_pow 2 (n + 1) n.succ_pos) (h_deg i) (h_deg j)
+       (by simpa [Finsupp.weight_single] using h_eq))
+ 
++attribute [-instance] AffineAddMonoid.to_twoUniqueSums in
+ /-- Let `e : Fin n → ℤ` be injective, `κ : N → ℤ` and `l : Fin n → N` with `κ (l i) = e i`. If all
+ minors of order `n + 1` of the first `n + 1` powers of the diagonal matrix with entries `T (κ j)`
+ vanish, then every `κ j` is one of the `e i`: otherwise the minor at the diagonal places
