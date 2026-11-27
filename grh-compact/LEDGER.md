@@ -82,3 +82,7 @@
 ## 2026-11-27 cut 21, and the measured build for cuts 20-21
 - `New.Uniformisation.linear_ext` (Lib/Shimura/Uniformisation/HolomorphicFamilies.lean) showed a continuous map from a connected space into the lattice is constant with `TotallyDisconnectedSpace`, found through zero-dimensional spaces (countable and completely regular). Now `PreconnectedSpace.constant` with the lattice's discrete topology. Patch `cut-21.patch`.
 - Build of cuts 1-14, 16-21: exit 0, 1,867 s. Axioms unchanged (`receipts/cuts-20-21_axioms.out`). Closure 215,653 -> 215,590 (-63): 63 removed (38 / 25), 0 added. List `receipts/cut-21_removed.txt`.
+
+## 2026-11-27 cut 22
+- `New.Filling.tsum_le_relIndex_pow_mul` (New/Spanning/Unfolding/ReducedPoints.lean) counted the colourings `ι → K' ⧸ K` with `ENat.card_fun`, which goes through cardinal arithmetic. Now `Fintype.card_fun` after `ENat.card_eq_coe_fintype_card`. Patch `cut-22.patch`.
+- Measured with cut 23 below: 39 removed, 0 added. List `receipts/cut-22_removed.txt`.

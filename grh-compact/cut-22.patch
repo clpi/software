@@ -1,0 +1,16 @@
+diff --git a/grh/src/New/Spanning/Unfolding/ReducedPoints.lean b/grh/src/New/Spanning/Unfolding/ReducedPoints.lean
+index 6ea7eaa..a535f34 100644
+--- a/grh/src/New/Spanning/Unfolding/ReducedPoints.lean
++++ b/grh/src/New/Spanning/Unfolding/ReducedPoints.lean
+@@ -422,8 +422,9 @@ lemma tsum_le_relIndex_pow_mul {A : Set α} [AddCommGroup β] (f : α → ι →
+   have : Fintype (K' ⧸ K.addSubgroupOf K') := fintypeOfIndexNeZero h_index
+   let colour (a : A) (i : ι) : K' ⧸ K.addSubgroupOf K' := mk' _ ⟨f a i, hf a a.2 i⟩
+   refine tsum_le_of_encard_range_le colour ?_ (fun a b hab i ↦ ?_) h_class
+-  · grw [encard_le_card]
+-    simp [relIndex, index]
++  · classical
++    grw [encard_le_card, ENat.card_eq_coe_fintype_card, Fintype.card_fun]
++    simp [relIndex, index, Nat.card_eq_fintype_card]
+   · simpa [colour, eq_iff_sub_mem, mem_addSubgroupOf] using congrFun hab i
+ 
+ variable [Field E] [NumberField E] [IsCMField E] [HasPrimitiveRoot5040 E] {c : (𝔸f E)ˣ}
