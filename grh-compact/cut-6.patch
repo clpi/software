@@ -1,0 +1,105 @@
+diff --git a/grh/src/Lib/General/Analysis/FourierTransforms.lean b/grh/src/Lib/General/Analysis/FourierTransforms.lean
+index 14c98f0..d4ea2f1 100644
+--- a/grh/src/Lib/General/Analysis/FourierTransforms.lean
++++ b/grh/src/Lib/General/Analysis/FourierTransforms.lean
+@@ -249,7 +249,7 @@ by which the integration by parts multiplies the Fourier transform, and the prod
+ 
+ section NonstationaryPhase
+ 
+-open Complex Real SchwartzMap FourierTransform ContDiff MeasureTheory LineDeriv
++open Complex Real FourierTransform ContDiff MeasureTheory
+ 
+ /-- For a vector `b` of a real inner product space and `v = ‖b‖⁻¹ • b` (which is `0` if `b = 0`),
+ the number `i + 2 π i ⟪b, v⟫` has norm at least `1 + ‖b‖`: its imaginary part is `1 + 2 π ‖b‖`. -/
+@@ -300,7 +300,7 @@ lemma New.exists_pow_mul_norm_fourier_le {n T : Type} [Fintype n] [NormedAddComm
+       fun x hx ↦ by simp [h_zero s x hx]]
+     simpa [mul_right_comm] using norm_setIntegral_le_of_norm_le_const hK.measure_lt_top h_bound
+   | succ M ih =>
+-    -- With `F = c · exp (q / a)` one has `a • (I • F + ∂_{v} F) = c' · exp (q / a)`; the new
++    -- With `F = c · exp (q / a)` one has `a (I F + F' v) = c' · exp (q / a)`; the new
+     -- amplitude `c'` is smooth in `x` and in the parameters `(s, v, a)`, and vanishes off `K`.
+     let c' : (T × EuclideanSpace ℂ n × ℂ) × EuclideanSpace ℂ n → ℂ := fun ((s, v, a), x) ↦
+       a * (I * c (s, x) + fderiv ℝ (fun y ↦ c (s, y)) x v) +
+@@ -314,33 +314,69 @@ lemma New.exists_pow_mul_norm_fourier_le {n T : Type} [Fintype n] [NormedAddComm
+       ih (c := c') (q := fun ((s, _), x) ↦ q (s, x)) (by fun_prop) (by fun_prop) h_supp
+     refine ⟨C, fun b s a D hs ha_le ha_ne hD ↦ ?_⟩
+     let v : EuclideanSpace ℂ n := ‖b‖⁻¹ • b
+-    let F : 𝓢(EuclideanSpace ℂ n, ℂ) := HasCompactSupport.toSchwartzMap
+-      (f := fun x ↦ c (s, x) * (q (s, x) / a).exp)
+-      (.intro hK fun x hx ↦ by simp [h_zero s x hx]) (by fun_prop)
++    -- `G = c · exp (q / a)` is smooth with compact support, so its Fourier transform turns the
++    -- derivative in the direction `v` into multiplication by `2 π i ⟪b, v⟫`.
++    let G : EuclideanSpace ℂ n → ℂ := fun x ↦ c (s, x) * (q (s, x) / a).exp
++    have hG_smooth : ContDiff ℝ ∞ G := by fun_prop
++    have hG_supp : HasCompactSupport G := .intro hK fun x hx ↦ by simp [G, h_zero s x hx]
++    have hG_int : Integrable G := hG_smooth.continuous.integrable_of_hasCompactSupport hG_supp
++    have hG_diff : Differentiable ℝ G := hG_smooth.differentiable (by simp)
++    have hG'_cont : Continuous (fderiv ℝ G) := ContDiff.continuous_fderiv (𝕜 := ℝ) hG_smooth (by simp)
++    have hG'_int : Integrable (fderiv ℝ G) :=
++      hG'_cont.integrable_of_hasCompactSupport (hG_supp.fderiv (𝕜 := ℝ))
++    have hGv_int : Integrable fun x ↦ fderiv ℝ G x v :=
++      (hG'_cont.clm_apply continuous_const).integrable_of_hasCompactSupport
++        ((hG_supp.fderiv (𝕜 := ℝ)).mono fun x hx h0 ↦ hx (by simp [h0]))
++    have h_der : 𝓕 (fun x ↦ fderiv ℝ G x v) b = 2 * π * I * inner ℝ b v * 𝓕 G b := by
++      have h := congrArg (fun T : EuclideanSpace ℂ n →L[ℝ] ℂ ↦ T v)
++        (congrFun (Real.fourier_fderiv hG_int hG_diff hG'_int) b)
++      have hint : Integrable fun x : EuclideanSpace ℂ n ↦ 𝐞 (-inner ℝ x b) • fderiv ℝ G x :=
++        (Real.fourierIntegral_convergent_iff b).2 hG'_int
++      rw [Real.fourier_eq, ContinuousLinearMap.integral_apply hint v] at h
++      have h_eval (x : EuclideanSpace ℂ n) :
++          (𝐞 (-inner ℝ x b) • fderiv ℝ G x) v = 𝐞 (-inner ℝ x b) • fderiv ℝ G x v := rfl
++      simp only [h_eval] at h
++      rw [Real.fourier_eq, h]
++      simp only [VectorFourier.fourierSMulRight_apply, ContinuousLinearMap.smul_apply,
++        ContinuousLinearMap.smulRight_apply, ContinuousLinearMap.neg_apply, innerSL_apply_apply,
++        neg_smul, smul_neg, neg_neg, Complex.real_smul, smul_eq_mul, Real.fourier_eq]
++      rw [innerSL_apply_apply]
++      ring
+     have h_parts (x : EuclideanSpace ℂ n) :
+-        c' ((s, v, a), x) * (q (s, x) / a).exp = (a • (I • F + ∂_{v} F)) x := by
++        c' ((s, v, a), x) * (q (s, x) / a).exp = a * (I * G x + fderiv ℝ G x v) := by
+       have hc_diff : Differentiable ℝ c := hc.differentiable (by simp)
+       have hq_diff : Differentiable ℝ q := hq.differentiable (by simp)
+-      have h_leibniz : ∂_{v} F x = fderiv ℝ (fun y ↦ c (s, y)) x v * (q (s, x) / a).exp +
++      have h_leibniz : fderiv ℝ G x v = fderiv ℝ (fun y ↦ c (s, y)) x v * (q (s, x) / a).exp +
+           c (s, x) * ((q (s, x) / a).exp * (fderiv ℝ (fun y ↦ q (s, y)) x v / a)) :=
+         fderiv_mul_exp_div_apply (by fun_prop) (by fun_prop) a v
+-      change _ = a * (I * (c (s, x) * (q (s, x) / a).exp) + ∂_{v} F x)
+-      simp only [h_leibniz, c']
++      simp only [h_leibniz, c', G]
+       field
+     -- On the Fourier side the operator is multiplication by `a * (I + 2 π I ⟪b, v⟫)`.
+     have h_fourier :
+-        𝓕 (a • (I • F + ∂_{v} F)) b = a * (I + 2 * π * I * inner ℝ b v) * 𝓕 F b := by
+-      simp (disch := fun_prop) [fourier_lineDerivOp_eq, add_mul, mul_add, mul_assoc]
++        𝓕 (fun x ↦ a * (I * G x + fderiv ℝ G x v)) b = a * (I + 2 * π * I * inner ℝ b v) * 𝓕 G b := by
++      have h_lin : 𝓕 (fun x ↦ a * (I * G x + fderiv ℝ G x v)) b =
++          a * (I * 𝓕 G b + 𝓕 (fun x ↦ fderiv ℝ G x v) b) := by
++        have i1 := (Real.fourierIntegral_convergent_iff b).2 hG_int
++        have i2 := (Real.fourierIntegral_convergent_iff b).2 hGv_int
++        simp only [Real.fourier_eq]
++        calc ∫ x, 𝐞 (-inner ℝ x b) • (a * (I * G x + fderiv ℝ G x v))
++            = ∫ x, a * (I * (𝐞 (-inner ℝ x b) • G x)) + a * (𝐞 (-inner ℝ x b) • fderiv ℝ G x v) := by
++              congr 1; ext x; simp only [Circle.smul_def, smul_eq_mul]; ring
++          _ = a * (I * ∫ x, 𝐞 (-inner ℝ x b) • G x) + a * ∫ x, 𝐞 (-inner ℝ x b) • fderiv ℝ G x v := by
++              rw [integral_add ((i1.const_mul I).const_mul a) (i2.const_mul a), integral_const_mul,
++                integral_const_mul, integral_const_mul]
++          _ = _ := by ring
++      rw [h_lin, h_der]; ring
+     have h_factor : 1 + ‖b‖ ≤ ‖(I + 2 * π * I * inner ℝ b v : ℂ)‖ :=
+-      one_add_norm_le_norm_I_add_inner b
++      New.one_add_norm_le_norm_I_add_inner b
+     -- So one factor `‖a‖ * (1 + ‖b‖)` is absorbed, and the induction hypothesis applies to `c'`.
+-    calc (‖a‖ * (1 + ‖b‖)) ^ (M + 1) * ‖𝓕 F b‖
+-      _ ≤ (‖a‖ * (1 + ‖b‖)) ^ M * ‖𝓕 (a • (I • F + ∂_{v} F)) b‖ := by
++    calc (‖a‖ * (1 + ‖b‖)) ^ (M + 1) * ‖𝓕 G b‖
++      _ ≤ (‖a‖ * (1 + ‖b‖)) ^ M * ‖𝓕 (fun x ↦ a * (I * G x + fderiv ℝ G x v)) b‖ := by
+         grw [h_fourier, norm_mul, norm_mul, ← h_factor, pow_succ, mul_assoc]
+       _ ≤ C * D := by
+         have h_param : ‖(s, v, a)‖ ≤ 1 := by
+           simp [Prod.norm_def, hs, ha_le, v, norm_smul, inv_mul_le_one]
+-        rw [fourier_coe, ← funext h_parts]
++        rw [← funext h_parts]
+         exact hC b (s, v, a) a D h_param ha_le ha_ne hD
+ 
+ end NonstationaryPhase

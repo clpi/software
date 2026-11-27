@@ -18,3 +18,6 @@
 ## 2026-11-27 cut 5
 - `index_stabilizer_line` (Lib/Weil/Unramified/HeckeGL.lean) got transitivity of `GL n F` on projective space from Mathlib's primitivity instance for `SL` (`Projectivization.prePrimitive_SL`). Replaced by `New.isPretransitive_GL_projectivization`: extend the linear map between the two lines (`Submodule.exists_linearEquiv_restrict_eq`) and take its matrix. Patch `cut-5.patch`, standalone `standalone/GLTransitive.lean`.
 - Build of cuts 1-5: exit 0, 2,462 s. Axioms unchanged (`receipts/cut-5_axioms.out`). Closure 217,742 -> 217,511 (-231): 232 removed (prediction 240), 1 added. Lists `receipts/cut-5_removed.txt`, `receipts/cut-5_added.txt`.
+
+## 2026-11-27 cut 6
+- `New.exists_pow_mul_norm_fourier_le` (Lib/General/Analysis/FourierTransforms.lean) integrated by parts through Schwartz maps (`SchwartzMap.fourier_lineDerivOp_eq`). Now it uses Mathlib's `Real.fourier_fderiv` directly on the compactly supported smooth function, with integrability from compact support. Same statement. Patch `cut-6.patch`, standalone `standalone/FourierNoSchwartz.lean`.
