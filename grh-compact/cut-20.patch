@@ -1,0 +1,21 @@
+diff --git a/grh/src/Lib/General/Geometry/GaloisCovers.lean b/grh/src/Lib/General/Geometry/GaloisCovers.lean
+index b38d376..5721559 100644
+--- a/grh/src/Lib/General/Geometry/GaloisCovers.lean
++++ b/grh/src/Lib/General/Geometry/GaloisCovers.lean
+@@ -270,9 +270,13 @@ lemma exists_mem_eventually_specializes {P : Type} [FinComplexSpace P] {U : Set
+   -- A connected open neighbourhood `N ⊆ U` of `c` that `φ` maps into the affine open `W`.
+   obtain ⟨N, ⟨hN_open, hcN, hN_conn⟩, hN⟩ : ∃ N : Set P,
+       (IsOpen N ∧ c ∈ N ∧ _root_.IsConnected N) ∧ ∀ e ∈ N, e ∈ U ∧ LandsIn (φ e) W :=
+-    -- holomorphy, applied to any section over `W`, says that `φ e` lands in `W` for `e` near `c`
+-    (LocallyConnectedSpace.open_connected_basis c).mem_iff.1
+-      ((hU.eventually_mem hcU).and (hφ c hcU (isRegularOn_ofSection 0) hcW).1)
++    -- holomorphy, applied to any section over `W`, says that `φ e` lands in `W` for `e` near `c`;
++    -- a small ball around `c` is open, connected (convex) and inside that set
++    by
++      obtain ⟨ε, hε, h_ball⟩ := Metric.mem_nhds_iff.1
++        ((hU.eventually_mem hcU).and (hφ c hcU (isRegularOn_ofSection 0) hcW).1)
++      exact ⟨Metric.ball c ε, ⟨Metric.isOpen_ball, Metric.mem_ball_self hε,
++        (convex_ball c ε).isConnected ⟨c, Metric.mem_ball_self hε⟩⟩, fun e he ↦ h_ball he⟩
+   have h_an (f : Γ(X, W)) : AnalyticOnNhd ℂ (val f) N := fun e he ↦ by
+     obtain ⟨heU, heW⟩ := hN e he
+     exact (hφ e heU (isRegularOn_ofSection f) heW).2

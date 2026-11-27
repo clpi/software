@@ -74,3 +74,7 @@
 ## 2026-11-27 cut 19, and the measured build for cuts 18-19
 - In `New.Patching.transfer_firstEntry_diagGL` (New/Congruences/FirstOrder/OnePrime.lean), instance search proved the orbit quotient `Ω` finite with `MulAction.finite_quotient_of_finite_quotient_of_finite_quotient`. Now `Quotient.finite` is passed directly. An instance-search detour, not an argument. Patch `cut-19.patch`.
 - Build of cuts 1-14, 16-19: exit 0, 2,850 s. Axioms unchanged (`receipts/cuts-18-19_axioms.out`). Closure 215,747 -> 215,653 (-94): 100 removed (62 / 38), 6 added. Each removed constant is reachable in the cut-17 graph from exactly one of the two changed lemmas. Lists `receipts/cut-19_removed.txt`, `receipts/cut-19_added.txt`.
+
+## 2026-11-27 cut 20
+- `New.Variety.exists_mem_eventually_specializes` (Lib/General/Geometry/GaloisCovers.lean) took a connected open neighbourhood from the basis of a locally connected space, an instance that comes from local path-connectedness of normed spaces. Now it takes a ball inside the given neighbourhood; a ball is open and convex, hence connected. Patch `cut-20.patch`.
+- Measured with cut 21 below: 38 removed, 0 added. List `receipts/cut-20_removed.txt`.
