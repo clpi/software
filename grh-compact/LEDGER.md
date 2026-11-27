@@ -78,3 +78,7 @@
 ## 2026-11-27 cut 20
 - `New.Variety.exists_mem_eventually_specializes` (Lib/General/Geometry/GaloisCovers.lean) took a connected open neighbourhood from the basis of a locally connected space, an instance that comes from local path-connectedness of normed spaces. Now it takes a ball inside the given neighbourhood; a ball is open and convex, hence connected. Patch `cut-20.patch`.
 - Measured with cut 21 below: 38 removed, 0 added. List `receipts/cut-20_removed.txt`.
+
+## 2026-11-27 cut 21, and the measured build for cuts 20-21
+- `New.Uniformisation.linear_ext` (Lib/Shimura/Uniformisation/HolomorphicFamilies.lean) showed a continuous map from a connected space into the lattice is constant with `TotallyDisconnectedSpace`, found through zero-dimensional spaces (countable and completely regular). Now `PreconnectedSpace.constant` with the lattice's discrete topology. Patch `cut-21.patch`.
+- Build of cuts 1-14, 16-21: exit 0, 1,867 s. Axioms unchanged (`receipts/cuts-20-21_axioms.out`). Closure 215,653 -> 215,590 (-63): 63 removed (38 / 25), 0 added. List `receipts/cut-21_removed.txt`.

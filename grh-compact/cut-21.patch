@@ -1,0 +1,13 @@
+diff --git a/grh/src/Lib/Shimura/Uniformisation/HolomorphicFamilies.lean b/grh/src/Lib/Shimura/Uniformisation/HolomorphicFamilies.lean
+index 39c7bf5..b592e20 100644
+--- a/grh/src/Lib/Shimura/Uniformisation/HolomorphicFamilies.lean
++++ b/grh/src/Lib/Shimura/Uniformisation/HolomorphicFamilies.lean
+@@ -706,7 +706,7 @@ lemma Uniformisation.linear_ext {F G : V' →L[ℂ] V} (h : ∀ z : V', u.expMap
+   have h_mem (z : V') : (F - G) z ∈ u.lattice := by simp [h]
+   ext z
+   have h_const : (⟨(F - G) z, h_mem z⟩ : u.lattice) = ⟨(F - G) 0, h_mem 0⟩ :=
+-    TotallyDisconnectedSpace.eq_of_continuous _ ((F - G).continuous.subtype_mk h_mem) z 0
++    PreconnectedSpace.constant inferInstance ((F - G).continuous.subtype_mk h_mem)
+   simpa [sub_eq_zero] using h_const
+ 
+ /-- Let L be a lattice in a finite-dimensional complex space V and F an injective ℂ-linear
