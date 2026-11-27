@@ -1,0 +1,13 @@
+diff --git a/grh/src/New/Congruences/FirstOrder/OnePrime.lean b/grh/src/New/Congruences/FirstOrder/OnePrime.lean
+index 65b13c1..f7fca4d 100644
+--- a/grh/src/New/Congruences/FirstOrder/OnePrime.lean
++++ b/grh/src/New/Congruences/FirstOrder/OnePrime.lean
+@@ -447,7 +447,7 @@ lemma transfer_firstEntry_diagGL (x : Fˣ) :
+   let H : Subgroup (GL (Fin N) F) := residueLineStabilizer F N
+   set g : GL (Fin N) F := diagGL (Pi.mulSingle 0 x) with hg
+   let Ω : Type := Quotient (MulAction.orbitRel (Subgroup.zpowers g) (GL (Fin N) F ⧸ H))
+-  have : Fintype Ω := Fintype.ofFinite Ω
++  have : Fintype Ω := @Fintype.ofFinite Ω (Quotient.finite _)
+   have g_pow (f : ℕ) : g ^ f = diagGL (Pi.mulSingle 0 (x ^ f)) := by simp [hg, Pi.mulSingle_pow]
+   have g_mem : g ∈ H := mem_residueLineStabilizer.2 fun i hi ↦ by simp [g, hi]
+   let η₀ : GL (Fin N) F ⧸ H := ↑(1 : GL (Fin N) F)

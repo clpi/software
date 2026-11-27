@@ -70,3 +70,7 @@
 ## 2026-11-27 cut 18
 - `New.card_selfAdjoint` (Lib/General/NumberTheory/FrobeniusOrbits.lean) used the field structure Mathlib puts on `selfAdjoint k` (`selfAdjoint.instField`) to say that `-1` is not a square among the fixed points. Now the fixed points are written as a `Subfield` of `k` (closure under `+`, `*`, `-`, `⁻¹` from `star`), and its cardinality is matched to `selfAdjoint k` by `Equiv.subtypeEquivRight`. Same statement. Patch `cut-18.patch`.
 - Measured with cut 19 below: 62 removed, 6 added (auxiliary proof terms of the subfield). Lists `receipts/cut-18_removed.txt`, `receipts/cut-18_added.txt`.
+
+## 2026-11-27 cut 19, and the measured build for cuts 18-19
+- In `New.Patching.transfer_firstEntry_diagGL` (New/Congruences/FirstOrder/OnePrime.lean), instance search proved the orbit quotient `Ω` finite with `MulAction.finite_quotient_of_finite_quotient_of_finite_quotient`. Now `Quotient.finite` is passed directly. An instance-search detour, not an argument. Patch `cut-19.patch`.
+- Build of cuts 1-14, 16-19: exit 0, 2,850 s. Axioms unchanged (`receipts/cuts-18-19_axioms.out`). Closure 215,747 -> 215,653 (-94): 100 removed (62 / 38), 6 added. Each removed constant is reachable in the cut-17 graph from exactly one of the two changed lemmas. Lists `receipts/cut-19_removed.txt`, `receipts/cut-19_added.txt`.
