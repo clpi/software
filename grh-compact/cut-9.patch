@@ -1,0 +1,16 @@
+diff --git a/grh/src/Lib/Adelic/Unitary/Defs.lean b/grh/src/Lib/Adelic/Unitary/Defs.lean
+index a1ae203..2b2a649 100644
+--- a/grh/src/Lib/Adelic/Unitary/Defs.lean
++++ b/grh/src/Lib/Adelic/Unitary/Defs.lean
+@@ -189,7 +189,10 @@ def Gf : Type _ := ↥(U (1 : Matrix n n (𝔸f E)))
+ instance : ContinuousSMul (Gf E n) (n → 𝔸f E) := ⟨.matrix_mulVec (by fun_prop) continuous_snd⟩
+ 
+ variable [IsEmpty n] in
+-deriving instance Subsingleton for Gf E n
++instance : Subsingleton (Gf E n) :=
++  haveI : Subsingleton (Matrix n n (𝔸f E)) := Matrix.subsingleton_of_empty_right
++  haveI : Subsingleton (GL n (𝔸f E)) := ⟨fun _ _ ↦ Units.ext (Subsingleton.elim _ _)⟩
++  ⟨fun _ _ ↦ Subtype.ext (Subsingleton.elim _ _)⟩
+ 
+ @[simp]
+ lemma Gf.coe_mul (g k : Gf E n) : (g * k).val = g.val * k.val := rfl

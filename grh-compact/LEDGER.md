@@ -29,3 +29,7 @@
 ## 2026-11-27 cut 8
 - `New.Variety.cancels_moebius_of_factorsThrough_sup` (Lib/Shimura/IntegralModel/TowerExistence.lean) used incidence-algebra Möbius inversion (`IncidenceAlgebra.moebius_inversion_bot`) only to get `F = 0` from vanishing lower sums. Replaced by `New.eq_zero_of_forall_sum_Iic_eq_zero`, well-founded induction. Patch `cut-8.patch`, standalone `standalone/MoebiusFree.lean`.
 - Build of cuts 1-8: exit 0, 359 s. Axioms unchanged. Closure 216,834 -> 216,723 (-111): 112 removed (prediction 112), 1 added.
+
+## 2026-11-27 cut 9
+- `Subsingleton (Gf E n)` for empty `n` (Lib/Adelic/Unitary/Defs.lean) came from `deriving instance`, whose proof went through perfect, solvable and nilpotent groups (`Group.IsPerfect`). Now three lines: matrices over an empty index are a subsingleton, so are their units, so is the subtype. Patch `cut-9.patch`.
+- Measured with cuts 10-11 below: 95 removed (dominator-tree prediction 93), 1 added (the instance's new auto-generated name). Lists `receipts/cut-9_removed.txt`, `receipts/cut-9_added.txt`.
