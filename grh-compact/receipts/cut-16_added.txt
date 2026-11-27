@@ -1,0 +1,1 @@
+New.exists_contDiff_eqOn_of_contDiffAt

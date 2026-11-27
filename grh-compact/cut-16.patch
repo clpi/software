@@ -1,0 +1,66 @@
+diff --git a/grh/src/Lib/DiscreteSeries/FlenstedJensen/CasimirEigenfunction.lean b/grh/src/Lib/DiscreteSeries/FlenstedJensen/CasimirEigenfunction.lean
+index a4212a5..34067de 100644
+--- a/grh/src/Lib/DiscreteSeries/FlenstedJensen/CasimirEigenfunction.lean
++++ b/grh/src/Lib/DiscreteSeries/FlenstedJensen/CasimirEigenfunction.lean
+@@ -657,22 +657,50 @@ open Set Matrix.Norms.L2Operator
+ 
+ variable {n : Type} [Fintype n] [DecidableEq n] {ε : n → ℤˣ} (l : New.HCParam (n := n) ε)
+ 
++open scoped ContDiff Topology in
++/-- In a finite-dimensional real space, a function smooth on an open neighbourhood `V` of a closed
++set `C` agrees on `C` with a globally smooth function: multiply it by the cutoff `a / (a + b)`, where
++`a` has support an open `W` with `C ⊆ W ⊆ closure W ⊆ V` and `b` has support the complement of `C`.
++-/
++theorem _root_.New.exists_contDiff_eqOn_of_contDiffAt {E F : Type*} [NormedAddCommGroup E]
++    [NormedSpace ℝ E] [FiniteDimensional ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F]
++    {C V : Set E} (hC : IsClosed C) (hV : IsOpen V) (hCV : C ⊆ V) {g : E → F}
++    (hg : ∀ x ∈ V, ContDiffAt ℝ ∞ g x) : ∃ G : E → F, ContDiff ℝ ∞ G ∧ EqOn G g C := by
++  obtain ⟨W, hWo, hCW, hWV⟩ := normal_exists_closure_subset hC hV hCV
++  obtain ⟨a, ha_supp, ha, ha01⟩ := hWo.exists_contDiff_support_eq (n := ⊤)
++  obtain ⟨b, hb_supp, hb, hb01⟩ := hC.isOpen_compl.exists_contDiff_support_eq (n := ⊤)
++  have ha0 : ∀ x, 0 ≤ a x := fun x ↦ (ha01 (mem_range_self x)).1
++  have hb0 : ∀ x, 0 ≤ b x := fun x ↦ (hb01 (mem_range_self x)).1
++  have hpos : ∀ x, a x + b x ≠ 0 := by
++    intro x
++    by_cases hx : x ∈ C
++    · have : a x ≠ 0 := by rw [← Function.mem_support, ha_supp]; exact hCW hx
++      exact (add_pos_of_pos_of_nonneg ((ha0 x).lt_of_ne' this) (hb0 x)).ne'
++    · have : b x ≠ 0 := by rw [← Function.mem_support, hb_supp]; exact hx
++      exact (add_pos_of_nonneg_of_pos (ha0 x) ((hb0 x).lt_of_ne' this)).ne'
++  refine ⟨fun x ↦ (a x / (a x + b x)) • g x, contDiff_iff_contDiffAt.2 fun x ↦ ?_, fun x hx ↦ ?_⟩
++  · by_cases hx : x ∈ closure W
++    · exact ((ha.div (ha.add hb) hpos).contDiffAt).smul (hg x (hWV hx))
++    · refine (contDiffAt_const (c := (0 : F))).congr_of_eventuallyEq ?_
++      filter_upwards [isClosed_closure.isOpen_compl.mem_nhds hx] with y hy
++      have : a y = 0 := by
++        rw [← Function.notMem_support, ha_supp]; exact fun h ↦ hy (subset_closure h)
++      simp [this]
++  · have hb : b x = 0 := by rw [← Function.notMem_support, hb_supp]; simpa using hx
++    have ha : a x ≠ 0 := by rw [← Function.mem_support, ha_supp]; exact hCW hx
++    simp [hb, ha]
++
+ /-- The function c_λ, l = 2λ, regarded as an element of the space of smooth complex functions on
+ U(diag ε). -/
+ @[simps]
+ noncomputable def New.HCParam.dsCoeffSmooth : SmoothU ε ℂ :=
+   ⟨(l.dsCoeff ·),
+-    -- Multiply `dsCoeff` by a smooth cutoff that is `1` on the closed image of the group and is
+-    -- supported where `dsCoeff` is analytic.
+-    have ⟨f, hf⟩ : ∃ f : SmoothPartitionOfUnity Unit (modelWithCornersSelf ℝ (Matrix n n ℂ))
+-          (Matrix n n ℂ) (range fun x : U (signMatrix ε) ↦ x),
+-        f.IsSubordinate fun _ : Unit ↦ {x : Matrix n n ℂ | AnalyticAt ℂ l.dsCoeff x} :=
+-      SmoothPartitionOfUnity.exists_isSubordinate (modelWithCornersSelf ℝ (Matrix n n ℂ))
+-        isClosedEmbedding_U.isClosed_range _ (fun _ ↦ isOpen_analyticAt ℂ l.dsCoeff)
+-        (subset_iUnion_of_subset () (range_subset_iff.mpr analyticAt_dsCoeff))
+-    ⟨⟨_, (f.contMDiff_finsum_smul fun i _ hx ↦
+-        (hf i hx).restrictScalars.contDiffAt.contMDiffAt).contDiff⟩,
+-      funext (by simp [↓← finsum_smul, f.sum_eq_one])⟩⟩
++    -- `dsCoeff` is analytic, hence smooth, near the closed image of the group, so it agrees there
++    -- with a globally smooth function.
++    have ⟨G, hG, hGC⟩ := New.exists_contDiff_eqOn_of_contDiffAt
++      isClosedEmbedding_U.isClosed_range (isOpen_analyticAt ℂ l.dsCoeff)
++      (range_subset_iff.mpr analyticAt_dsCoeff) fun _ hx ↦ hx.restrictScalars.contDiffAt
++    ⟨⟨G, hG⟩, funext fun x ↦ hGC (mem_range_self x)⟩⟩
+ 
+ /-- The function c_λ = `HCParam.dsCoeff l` is continuous on U(diag ε): its composite with any
+ continuous map `f : X → U(diag ε)` is continuous. Here c_λ(g) = Ξ(a, a⁻¹g), with `a` the block
