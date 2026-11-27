@@ -1,0 +1,12 @@
+diff --git a/grh/src/Lib/DiscreteSeries/CuspKernel.lean b/grh/src/Lib/DiscreteSeries/CuspKernel.lean
+index 11b06fc..ae916aa 100644
+--- a/grh/src/Lib/DiscreteSeries/CuspKernel.lean
++++ b/grh/src/Lib/DiscreteSeries/CuspKernel.lean
+@@ -192,6 +192,7 @@ lemma eq_zero_of_map_phase_mul_eq_zero {G : Type*} [Group G] [TopologicalSpace G
+   by_contra hφ
+   exact (mul_lt_of_lt_one_left (norm_pos_iff.2 hφ) hθ).not_ge h_norm
+ 
++attribute [-instance] BoundedContinuousFunction.instCommCStarAlgebra in
+ /-- Let `G` be a second countable topological group with a left-invariant Borel measure. Let `e` be
+ integrable and `T` the operator on bounded continuous functions with `T φ y = ∫ e g * φ (y * g)`,
+ and let `D` be a subgroup of `G × ℂˣ`. Let `V` be the functions fixed by `T` and invariant under

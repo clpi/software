@@ -50,3 +50,8 @@
 ## 2026-11-27 cut 13
 - `New.Fock.norm_pairHom_le` (Lib/Weil/Fock/OscillatorPair.lean) built the two commuting star homomorphisms `x ↦ x ⊗ₖ 1` and `y ↦ 1 ⊗ₖ yᵀ` by composing the inclusions into `Mᵣ ⊗ M_c` with Mathlib's star algebra isomorphism `kroneckerStarAlgEquiv`. Now they are written down directly from the Kronecker product rules (`mul_kronecker_mul`, `conjTranspose_kronecker`, ...). Same statement. Patch `cut-13.patch`.
 - Measured with cut 14 below: 59 removed (prediction 52), 1 added (`Matrix.zero_kronecker`). Lists `receipts/cut-13_removed.txt`, `receipts/cut-13_added.txt`.
+
+## 2026-11-27 cut 14, and the measured build for cuts 12-14
+- In `New.DiscreteSeries.eq_zero_of_mem_fixed_invariant` (Lib/DiscreteSeries/CuspKernel.lean), instance search reached the normed structure of bounded continuous functions through the commutative C*-algebra instance. Switching that instance off for this one lemma (`attribute [-instance] BoundedContinuousFunction.instCommCStarAlgebra in`) lets search take the direct normed-ring route. This removes an instance-search detour, not an argument. Patch `cut-14.patch` (against the tree after cut 10).
+- Build of cuts 1-14: `lake build Main` 9,850 jobs, exit 0, 1,933 s. Axioms for all five theorems unchanged (`receipts/cuts-12-14_axioms.out`).
+- Closure 216,431 -> 216,233 (-198): 199 removed (103 / 59 / 37), 1 added. Each removed constant is reachable in the cut-11 graph from exactly one of the three changed declarations. Lists `receipts/cut-14_removed.txt`, `receipts/cut-14_added.txt`.

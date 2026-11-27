@@ -31,8 +31,10 @@ Upstream: [lsernau/grh-lean](https://github.com/lsernau/grh-lean) at commit `72f
 | 9-11 | all three, built together | 216,431 | 295 removed (95 / 106 / 94), 3 added |
 | 12 | representation with character `χ ψ` as `Representation.tprod`, not the monoidal category of representations | | |
 | 13 | Kronecker star homomorphisms written down directly, not through `Mᵣ ⊗ M_c ≃ M_(r×c)` | | |
+| 14 | one lemma stops instance search going through the commutative C*-algebra of bounded functions (a detour, not an argument) | | |
+| 12-14 | all three, built together | 216,233 | 199 removed (103 / 59 / 37), 1 added |
 
-Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-11: 4,235 s). Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
+Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-14: 1,933 s). Axioms: `receipts/axioms_compact.out`. Exact constant lists: `receipts/removed_constants.txt`, `receipts/added_constants.txt`.
 
 ## Where the proof's weight is
 
@@ -44,7 +46,7 @@ Build: `lake build Main` 9,850 jobs, exit 0 (cuts 1-11: 4,235 s). Axioms: `recei
 
 ```
 git clone https://github.com/lsernau/grh-lean && cd grh-lean && git checkout 72fead102f663d5c
-git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch ../software/grh-compact/cut-12.patch ../software/grh-compact/cut-13.patch
+git apply ../software/grh-compact/cuts-1-2.patch ../software/grh-compact/cut-3.patch ../software/grh-compact/cut-4.patch ../software/grh-compact/cut-5.patch ../software/grh-compact/cut-6.patch ../software/grh-compact/cut-7.patch ../software/grh-compact/cut-8.patch ../software/grh-compact/cut-9.patch ../software/grh-compact/cut-10.patch ../software/grh-compact/cut-11.patch ../software/grh-compact/cut-12.patch ../software/grh-compact/cut-13.patch ../software/grh-compact/cut-14.patch
 cd grh && lake build Main
 lake env lean ../../software/grh-compact/tools/Axioms.lean
 lake env lean ../../software/grh-compact/tools/MainEdgesFull.lean   # writes edges_full.tsv, prints the closure size
