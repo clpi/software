@@ -1,0 +1,41 @@
+diff --git a/grh/src/Lib/GaloisRep/Pseudocharacter/SemisimpleRepresentations.lean b/grh/src/Lib/GaloisRep/Pseudocharacter/SemisimpleRepresentations.lean
+index 2749475..e744de9 100644
+--- a/grh/src/Lib/GaloisRep/Pseudocharacter/SemisimpleRepresentations.lean
++++ b/grh/src/Lib/GaloisRep/Pseudocharacter/SemisimpleRepresentations.lean
+@@ -134,6 +134,24 @@ lemma isIdempotentElem_map_piMatrixUnit (f : PiMatrix k d →ₐ[k] B) (i : Fin
+     IsIdempotentElem (f (piMatrixUnit i)) :=
+   IsIdempotentElem.map (by simp [IsIdempotentElem, ← Pi.single_mul]) f
+ 
++/-- Every square matrix over a field has a pseudo-inverse: there is `g` with `a * g * a = a`.
++Take a right inverse of the corestriction of `a` to its range, after a left inverse of the
++inclusion of the range. -/
++lemma _root_.New.exists_mul_mul_eq_self_matrix {K ι : Type*} [Field K] [Fintype ι] [DecidableEq ι]
++    (a : Matrix ι ι K) : ∃ g : Matrix ι ι K, a * g * a = a := by
++  set f := Matrix.toLin' a
++  obtain ⟨h, hh⟩ := f.rangeRestrict.exists_rightInverse_of_surjective f.range_rangeRestrict
++  obtain ⟨π, hπ⟩ := f.range.subtype.exists_leftInverse_of_injective f.range.ker_subtype
++  refine ⟨LinearMap.toMatrix' (h ∘ₗ π), Matrix.toLin'.injective ?_⟩
++  rw [Matrix.toLin'_mul, Matrix.toLin'_mul, Matrix.toLin'_toMatrix']
++  refine LinearMap.ext fun x ↦ ?_
++  have h1 : π (f x) = f.rangeRestrict x := by
++    simpa using LinearMap.congr_fun hπ (f.rangeRestrict x)
++  have h2 : f (h (f.rangeRestrict x)) = f x := by
++    simpa using congrArg Subtype.val (LinearMap.congr_fun hh (f.rangeRestrict x))
++  change f (h (π (f x))) = f x
++  rw [h1, h2]
++
+ omit [∀ i, NeZero (d i)] in
+ /-- Let `k` be algebraically closed of characteristic zero. If `r = f' ∘ s`, where the image of
+ `s` spans a finite product of matrix algebras and `f'` is an algebra map to `M_n(k)`, then the
+@@ -148,8 +166,9 @@ lemma IsTraceNondeg.of_span_piMatrix [CharZero k] [IsAlgClosed k]
+     mem_span.1 hx f'.range.toSubmodule (range_subset_iff.2 fun g ↦ ⟨s g, hr g⟩)
+   obtain ⟨c, idem, b, hb⟩ :
+       ∃ c : PiMatrix k d, IsIdempotentElem (c * a) ∧ ∃ b : PiMatrix k d, b * (c * a) = a := by
+-    simpa [le_antisymm_iff, mem_span_singleton] using
+-      IsSemisimpleRing.ideal_eq_span_idempotent (PiMatrix k d ∙ a)
++    choose g hg using fun i ↦ New.exists_mul_mul_eq_self_matrix (a i)
++    have hga : a * g * a = a := funext hg
++    exact ⟨g, by rw [IsIdempotentElem, mul_assoc, ← mul_assoc a, hga], a, by rw [← mul_assoc, hga]⟩
+   -- The trace of `f' (y * a)` is linear in `y` and vanishes on the spanning family `s`.
+   have trace_zero (y : PiMatrix k d) : (f' (y * a)).trace = 0 := by
+     have h_lin : traceLinearMap n k k ∘ₗ f'.toLinearMap ∘ₗ .mulRight k a = 0 :=
