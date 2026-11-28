@@ -1,0 +1,402 @@
+{
+ "corpora": {
+  "real": {
+   "rows": 1415,
+   "equal": 12,
+   "engines": {
+    "composed exact": {
+     "joins": 12,
+     "false_joins": 0,
+     "decided_exactly": 1415,
+     "undecided": 0,
+     "wall_s": 0.1044,
+     "vmhwm_kb": 66768
+    },
+    "z3 alone": {
+     "joins": 12,
+     "false_joins": 0,
+     "decided_exactly": 1408,
+     "undecided": 7,
+     "wall_s": 126.3564,
+     "vmhwm_kb": 277092
+    },
+    "egg": {
+     "joins": 10,
+     "false_joins": 0,
+     "decided_exactly": 10,
+     "undecided": 1405,
+     "wall_s": 2.5829,
+     "vmhwm_kb": 20168
+    },
+    "decide": {
+     "joins": 12,
+     "false_joins": 0,
+     "decided_exactly": 1415,
+     "undecided": 0,
+     "wall_s": 0.0416,
+     "vmhwm_kb": 2924
+    },
+    "witness": {
+     "joins": 11,
+     "false_joins": 0,
+     "decided_exactly": 1414,
+     "undecided": 1,
+     "wall_s": 0.0664,
+     "vmhwm_kb": 3248
+    },
+    "saturate_beh": {
+     "joins": 11,
+     "false_joins": 0,
+     "decided_exactly": 1414,
+     "undecided": 1,
+     "wall_s": 0.0463,
+     "vmhwm_kb": 3408
+    },
+    "greedy": {
+     "joins": 3,
+     "false_joins": 0,
+     "decided_exactly": 3,
+     "undecided": 1412,
+     "wall_s": 5.6723,
+     "vmhwm_kb": 3712
+    },
+    "saturate": {
+     "joins": 11,
+     "false_joins": 0,
+     "decided_exactly": 11,
+     "undecided": 1404,
+     "wall_s": 2.7974,
+     "vmhwm_kb": 10220
+    },
+    "sat_bound": {
+     "joins": 11,
+     "false_joins": 0,
+     "decided_exactly": 11,
+     "undecided": 1404,
+     "wall_s": 128.2212,
+     "vmhwm_kb": 2597636
+    }
+   }
+  },
+  "suites": {
+   "rows": 41,
+   "equal": 33,
+   "engines": {
+    "composed exact": {
+     "joins": 33,
+     "false_joins": 0,
+     "decided_exactly": 41,
+     "undecided": 0,
+     "wall_s": 2.4661,
+     "vmhwm_kb": 147872
+    },
+    "z3 alone": {
+     "joins": 33,
+     "false_joins": 0,
+     "decided_exactly": 41,
+     "undecided": 0,
+     "wall_s": 11.7591,
+     "vmhwm_kb": 169372
+    },
+    "egg": {
+     "joins": 32,
+     "false_joins": 0,
+     "decided_exactly": 32,
+     "undecided": 9,
+     "wall_s": 0.1861,
+     "vmhwm_kb": 40480
+    },
+    "decide": {
+     "joins": 36,
+     "false_joins": 3,
+     "decided_exactly": 38,
+     "undecided": 0,
+     "wall_s": 0.0054,
+     "vmhwm_kb": 2892
+    },
+    "witness": {
+     "joins": 30,
+     "false_joins": 0,
+     "decided_exactly": 35,
+     "undecided": 6,
+     "wall_s": 0.2073,
+     "vmhwm_kb": 3400
+    },
+    "greedy": {
+     "joins": 19,
+     "false_joins": 0,
+     "decided_exactly": 19,
+     "undecided": 22,
+     "wall_s": 0.2441,
+     "vmhwm_kb": 3548
+    },
+    "saturate": {
+     "joins": 31,
+     "false_joins": 0,
+     "decided_exactly": 31,
+     "undecided": 10,
+     "wall_s": 0.0626,
+     "vmhwm_kb": 7908
+    },
+    "sat_bound": {
+     "joins": 33,
+     "false_joins": 0,
+     "decided_exactly": 33,
+     "undecided": 8,
+     "wall_s": 0.0544,
+     "vmhwm_kb": 8772
+    }
+   }
+  },
+  "cross": {
+   "rows": 2575,
+   "equal": 9,
+   "engines": {
+    "composed exact": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 2575,
+     "undecided": 0,
+     "wall_s": 0.1243,
+     "vmhwm_kb": 58880
+    },
+    "z3 alone": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 2570,
+     "undecided": 5,
+     "wall_s": 151.7226,
+     "vmhwm_kb": 367708
+    },
+    "egg": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 9,
+     "undecided": 2566,
+     "wall_s": 4.9415,
+     "vmhwm_kb": 19412
+    },
+    "decide": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 2575,
+     "undecided": 0,
+     "wall_s": 0.0854,
+     "vmhwm_kb": 3012
+    },
+    "witness": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 2575,
+     "undecided": 0,
+     "wall_s": 0.0879,
+     "vmhwm_kb": 3160
+    },
+    "saturate_beh": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 2575,
+     "undecided": 0,
+     "wall_s": 0.0745,
+     "vmhwm_kb": 3056
+    },
+    "greedy": {
+     "joins": 6,
+     "false_joins": 0,
+     "decided_exactly": 6,
+     "undecided": 2569,
+     "wall_s": 10.5451,
+     "vmhwm_kb": 4016
+    },
+    "saturate": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 9,
+     "undecided": 2566,
+     "wall_s": 4.6083,
+     "vmhwm_kb": 13236
+    },
+    "sat_bound": {
+     "joins": 9,
+     "false_joins": 0,
+     "decided_exactly": 9,
+     "undecided": 2566,
+     "wall_s": 125.5313,
+     "vmhwm_kb": 1516900
+    }
+   }
+  }
+ },
+ "losses": [
+  "real: egg faster or smaller (2.5829 s, 20168 KB vs 0.1044 s, 66768 KB)",
+  "real: decide faster or smaller (0.0416 s, 2924 KB vs 0.1044 s, 66768 KB)",
+  "real: witness faster or smaller (0.0664 s, 3248 KB vs 0.1044 s, 66768 KB)",
+  "real: saturate_beh faster or smaller (0.0463 s, 3408 KB vs 0.1044 s, 66768 KB)",
+  "real: greedy faster or smaller (5.6723 s, 3712 KB vs 0.1044 s, 66768 KB)",
+  "real: saturate faster or smaller (2.7974 s, 10220 KB vs 0.1044 s, 66768 KB)",
+  "suites: egg faster or smaller (0.1861 s, 40480 KB vs 2.4661 s, 147872 KB)",
+  "suites: decide faster or smaller (0.0054 s, 2892 KB vs 2.4661 s, 147872 KB)",
+  "suites: witness faster or smaller (0.2073 s, 3400 KB vs 2.4661 s, 147872 KB)",
+  "suites: greedy faster or smaller (0.2441 s, 3548 KB vs 2.4661 s, 147872 KB)",
+  "suites: saturate faster or smaller (0.0626 s, 7908 KB vs 2.4661 s, 147872 KB)",
+  "suites: sat_bound faster or smaller (0.0544 s, 8772 KB vs 2.4661 s, 147872 KB)",
+  "cross: egg faster or smaller (4.9415 s, 19412 KB vs 0.1243 s, 58880 KB)",
+  "cross: decide faster or smaller (0.0854 s, 3012 KB vs 0.1243 s, 58880 KB)",
+  "cross: witness faster or smaller (0.0879 s, 3160 KB vs 0.1243 s, 58880 KB)",
+  "cross: saturate_beh faster or smaller (0.0745 s, 3056 KB vs 0.1243 s, 58880 KB)",
+  "cross: greedy faster or smaller (10.5451 s, 4016 KB vs 0.1243 s, 58880 KB)",
+  "cross: saturate faster or smaller (4.6083 s, 13236 KB vs 0.1243 s, 58880 KB)"
+ ],
+ "gates": [
+  {
+   "gate": "real: composed decider and Z3 alone never disagree",
+   "pass": true,
+   "detail": "0 disagreements"
+  },
+  {
+   "gate": "real: composed decider decides every row",
+   "pass": true,
+   "detail": "0 unknown"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as z3 alone",
+   "pass": true,
+   "detail": "1415 vs 1408 decided; z3 alone false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as egg",
+   "pass": true,
+   "detail": "1415 vs 10 decided; egg false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as decide",
+   "pass": true,
+   "detail": "1415 vs 1415 decided; decide false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as witness",
+   "pass": true,
+   "detail": "1415 vs 1414 decided; witness false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as saturate_beh",
+   "pass": true,
+   "detail": "1415 vs 1414 decided; saturate_beh false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as greedy",
+   "pass": true,
+   "detail": "1415 vs 3 decided; greedy false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as saturate",
+   "pass": true,
+   "detail": "1415 vs 11 decided; saturate false joins 0"
+  },
+  {
+   "gate": "real: composed exact makes no false join and decides at least as many rows as sat_bound",
+   "pass": true,
+   "detail": "1415 vs 11 decided; sat_bound false joins 0"
+  },
+  {
+   "gate": "suites: composed decider and Z3 alone never disagree",
+   "pass": true,
+   "detail": "0 disagreements"
+  },
+  {
+   "gate": "suites: composed decider decides every row",
+   "pass": true,
+   "detail": "0 unknown"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as z3 alone",
+   "pass": true,
+   "detail": "41 vs 41 decided; z3 alone false joins 0"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as egg",
+   "pass": true,
+   "detail": "41 vs 32 decided; egg false joins 0"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as decide",
+   "pass": true,
+   "detail": "41 vs 38 decided; decide false joins 3"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as witness",
+   "pass": true,
+   "detail": "41 vs 35 decided; witness false joins 0"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as greedy",
+   "pass": true,
+   "detail": "41 vs 19 decided; greedy false joins 0"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as saturate",
+   "pass": true,
+   "detail": "41 vs 31 decided; saturate false joins 0"
+  },
+  {
+   "gate": "suites: composed exact makes no false join and decides at least as many rows as sat_bound",
+   "pass": true,
+   "detail": "41 vs 33 decided; sat_bound false joins 0"
+  },
+  {
+   "gate": "cross: composed decider and Z3 alone never disagree",
+   "pass": true,
+   "detail": "0 disagreements"
+  },
+  {
+   "gate": "cross: composed decider decides every row",
+   "pass": true,
+   "detail": "0 unknown"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as z3 alone",
+   "pass": true,
+   "detail": "2575 vs 2570 decided; z3 alone false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as egg",
+   "pass": true,
+   "detail": "2575 vs 9 decided; egg false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as decide",
+   "pass": true,
+   "detail": "2575 vs 2575 decided; decide false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as witness",
+   "pass": true,
+   "detail": "2575 vs 2575 decided; witness false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as saturate_beh",
+   "pass": true,
+   "detail": "2575 vs 2575 decided; saturate_beh false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as greedy",
+   "pass": true,
+   "detail": "2575 vs 6 decided; greedy false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as saturate",
+   "pass": true,
+   "detail": "2575 vs 9 decided; saturate false joins 0"
+  },
+  {
+   "gate": "cross: composed exact makes no false join and decides at least as many rows as sat_bound",
+   "pass": true,
+   "detail": "2575 vs 9 decided; sat_bound false joins 0"
+  },
+  {
+   "gate": "rare differences: refuted at the finest grain",
+   "pass": true,
+   "detail": "3 rows"
+  }
+ ]
+}

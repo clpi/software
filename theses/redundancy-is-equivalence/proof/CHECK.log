@@ -84,5 +84,8 @@ Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
 'saturationmax' does not depend on any axioms
 'decidermax' depends on axioms: [propext]
 'decidercovers' depends on axioms: [propext]
+'refutesound' does not depend on any axioms
+'ledgermono' does not depend on any axioms
+'refutedne' does not depend on any axioms
 Axiom subset check passed: printed axioms are a subset of {propext, Classical.choice, Quot.sound}
 Axioms printed: Classical.choice Quot.sound propext 

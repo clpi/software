@@ -98,7 +98,7 @@ def main(d):
              f"{sum(1 for r in dd['rows'] if r['status'] == 'agree' and not r['verified'])} fail the fresh audit")
     out["decider"] = dom
     losses = [x for x in dom if not x["beats_all_axes"]]
-    gate("decider at least as good as every engine on joins, ops, time and memory, every suite", not losses,
+    gate("64-point grain: decider at least as good as every engine on joins, ops, time and memory, every suite", not losses,
          "; ".join(f"{x['suite']}/{x['engine']}: joins {x['joins']} ops {x['ops']} wall {x['wall_s']} mem {x['vmhwm_kb']}"
                    for x in losses) or f"{len(dom)} comparisons")
     # truth: the near-miss rows differ somewhere; the decider must refute all of them

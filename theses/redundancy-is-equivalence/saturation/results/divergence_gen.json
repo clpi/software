@@ -1,9 +1,9 @@
 {
 "sat_nogen": {
-"vmhwm_kb": 3128,
+"vmhwm_kb": 3100,
 "flags": "--engine saturate --alloc 20000 --match 400000 --rounds 200",
-"wall_s": 0.0043,
-"cpu_s": 0.004,
+"wall_s": 0.004,
+"cpu_s": 0.0038,
 "rows": [
 {
 "id": "near0",
@@ -23,7 +23,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 110,
+"micros": 81,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -49,7 +49,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 48,
+"micros": 49,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -76,7 +76,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 113,
+"micros": 102,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -104,7 +104,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 1804,
+"micros": 1811,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -139,7 +139,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 75,
+"micros": 74,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -150,10 +150,10 @@
 ]
 },
 "sat_gen": {
-"vmhwm_kb": 69240,
+"vmhwm_kb": 69252,
 "flags": "--engine saturate --gen --alloc 20000 --match 400000 --rounds 200",
-"wall_s": 0.9455,
-"cpu_s": 0.9229,
+"wall_s": 0.9061,
+"cpu_s": 0.89,
 "rows": [
 {
 "id": "near0",
@@ -173,7 +173,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 179890,
+"micros": 174646,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -214,7 +214,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 86554,
+"micros": 72617,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -256,7 +256,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 188828,
+"micros": 210301,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -297,7 +297,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 153167,
+"micros": 131893,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -338,7 +338,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 324147,
+"micros": 306662,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -364,10 +364,10 @@
 ]
 },
 "witness_gen": {
-"vmhwm_kb": 3132,
+"vmhwm_kb": 3180,
 "flags": "--gen --no-beh",
-"wall_s": 0.0285,
-"cpu_s": 0.0277,
+"wall_s": 0.0333,
+"cpu_s": 0.0329,
 "rows": [
 {
 "id": "near0",
@@ -387,7 +387,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 5989,
+"micros": 7014,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -425,7 +425,7 @@
 "walk_steps": 6,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 6852,
+"micros": 8003,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -464,7 +464,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 4532,
+"micros": 5456,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -502,7 +502,7 @@
 "walk_steps": 10,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 5096,
+"micros": 5981,
 "verified": true,
 "evals": 0,
 "rules": [
@@ -541,7 +541,7 @@
 "walk_steps": 0,
 "double_credit": 0,
 "cong_bridge_credit": 0.0,
-"micros": 4006,
+"micros": 4669,
 "verified": true,
 "evals": 0,
 "rules": [

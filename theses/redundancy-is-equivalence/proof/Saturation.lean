@@ -349,3 +349,40 @@ theorem decidercovers (kinds : Kinds Sym) (g h : Graph Sym) (vg : Valid kinds g)
 
 #print axioms decidermax
 #print axioms decidercovers
+
+/-! ## Refutation and the witness ledger
+
+A counterexample is a point where the two sides differ. Refuting on
+it is sound, and the ledger of counterexamples only grows: a pair
+refuted by the ledger stays refuted when more points are appended. -/
+
+/-- No sound engine joins two observed terms whose keys differ. -/
+theorem refutesound (h : Graph Sym) {K M : Type} (key : Sym → Term Sym → K)
+    (m : Term Sym → M) (hsound : GraphSound h m)
+    (hreads : ∀ o a b, m (applied o a) = m (applied o b) → key o a = key o b)
+    (o : Sym) (a b : Term Sym) (hk : key o a ≠ key o b) :
+    ¬ same h (applied o a) (applied o b) :=
+  fun hs => hk (hreads o a b (hsound _ _ hs))
+
+/-- A pair of meanings is refuted by a list of points when some point
+    tells them apart. -/
+def refutedby {P V : Type} (pts : List P) (f g : P → V) : Prop :=
+  ∃ p ∈ pts, f p ≠ g p
+
+/-- Appending to the ledger never takes a refutation back. -/
+theorem ledgermono {P V : Type} (pts more : List P) (f g : P → V)
+    (h : refutedby pts f g) : refutedby (pts ++ more) f g := by
+  obtain ⟨p, hp, hne⟩ := h
+  exact ⟨p, List.mem_append_left more hp, hne⟩
+
+/-- A refutation on any point is a refutation on all inputs: two
+    meanings refuted by some points are not equal. -/
+theorem refutedne {P V : Type} (pts : List P) (f g : P → V)
+    (h : refutedby pts f g) : f ≠ g := by
+  obtain ⟨p, _, hne⟩ := h
+  intro hfg
+  exact hne (congrFun hfg p)
+
+#print axioms refutesound
+#print axioms ledgermono
+#print axioms refutedne
