@@ -11,7 +11,11 @@ Only the arithmetic subset is read: identifiers, integers, + - * // %
 & | ^ << >>, unary minus, indexing a[e] and calls f(e, ...). A line
 outside it ends the block. Nothing here runs Idol.
 
-Usage: python3 harvest.py IDOL_LIB OUT.tsv
+Usage: python3 harvest.py IDOL_LIB OUT.tsv [--cross]
+
+With --cross, units are also paired across files and across homes
+(components), for every variable both assign: obligations that cross
+component boundaries. Within-file pairs are left out in that mode.
 """
 
 import os
@@ -229,9 +233,10 @@ def defs_of(text):
     return out
 
 
-def main(root, out_path):
+def main(root, out_path, cross=False):
     obligations = []
     files = 0
+    allunits = []
     for home in sorted(os.listdir(root)):
         d = os.path.join(root, home)
         if not os.path.isdir(d) or home in ("graphs", "space", "kernel", "tools", "port", "redundant"):
@@ -249,6 +254,9 @@ def main(root, out_path):
                 for li, l in enumerate(loops):
                     for k in (1, 2, 4):
                         units.append((f"{dname}.l{li}x{k}", run_block(l, k)))
+            allunits.extend((home, fn, na, ea) for na, ea in units)
+            if cross:
+                continue
             seen = set()
             for i in range(len(units)):
                 for j in range(i + 1, len(units)):
@@ -263,6 +271,28 @@ def main(root, out_path):
                         seen.add(key)
                         oid = f"{home}/{fn}:{na}~{nb}:{v}"
                         obligations.append((oid, f"real:{home}", sexpr(a), sexpr(b)))
+    if cross:
+        seen = set()
+        byvar = {}
+        for u in allunits:
+            for v in u[3]:
+                byvar.setdefault(v, []).append(u)
+        for v in sorted(byvar):
+            us = byvar[v]
+            for i in range(len(us)):
+                for j in range(i + 1, len(us)):
+                    (ha, fa, na, ea), (hb, fb, nb, eb) = us[i], us[j]
+                    if (ha, fa) == (hb, fb):
+                        continue
+                    a, b = ea[v], eb[v]
+                    if a == b or tsize(a) > 120 or tsize(b) > 120:
+                        continue
+                    key = (sexpr(a), sexpr(b))
+                    if key in seen or (key[1], key[0]) in seen:
+                        continue
+                    seen.add(key)
+                    kind = "cross-file" if ha == hb else "cross-home"
+                    obligations.append((f"{ha}/{fa}:{na}~{hb}/{fb}:{nb}:{v}", f"{kind}:{ha}+{hb}", sexpr(a), sexpr(b)))
     with open(out_path, "w") as f:
         for o in obligations:
             f.write("\t".join(o) + "\n")
@@ -270,4 +300,4 @@ def main(root, out_path):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], "--cross" in sys.argv[3:])

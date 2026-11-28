@@ -5,10 +5,65 @@ set of terms, a finite rule set, finite witness points, finite fuel.
 
 ## The answer
 
+At the finest grain the bound allows, every 64-bit input to every
+variable and every possible callee for every index read and call, the
+composed exact decider (`exact/xdecide.py`) is the only engine here
+that decides every row exactly with no false join, on all three
+corpora: real code within files, real code across files and
+components, and the mechanism suites.
+
+It runs four stages, cheapest first, each sound: hash-consed
+identity, refutation on 64 resolved points, refutation on a ledger of
+every counterexample learned so far (append only), then an exact
+decision by Z3 over bit-vectors with uninterpreted functions on the
+rows that survive. A counterexample from the solver goes on the
+ledger.
+
+| Corpus | Rows | Composed exact | Z3 alone | egg | 64-point decider | Witness search |
+|---|---|---|---|---|---|---|
+| Real, within files | 1,415 | 1,415 decided, 0.10 s, 65 MB | 1,408, 126 s, 271 MB | 10, 2.6 s, 20 MB | 1,415, 0.04 s, 2.9 MB | 1,414, 0.07 s, 3.2 MB |
+| Real, across components | 2,575 | 2,575, 0.12 s, 58 MB | 2,570, 152 s, 359 MB | 9, 4.9 s, 19 MB | 2,575, 0.09 s, 2.9 MB | 2,575, 0.09 s, 3.1 MB |
+| Mechanism suites | 41 | 41, 2.5 s, 144 MB | 41, 11.8 s, 165 MB | 32, 0.19 s, 40 MB | 38, 3 false joins | 35, 0.21 s, 3.3 MB |
+
+"Decided" counts rows whose verdict matches the finest-grain truth.
+The truth is the composed decider's verdict, and Z3 alone never
+disagrees with it where both decide (gate). egg and the rewriting
+engines can only prove equalities, so they leave every unequal row
+undecided.
+
+Where it stands against the state of the art:
+
+- **Against Z3 alone:** better on every axis. It decides the rows Z3
+  times out on (7 real, 5 cross), about 1,000 times faster, in a
+  quarter of the memory.
+- **Against egg:** decides every row where egg decides 9 to 32, and is
+  faster on real code. It loses on memory (Z3's library is about
+  55 MB resident) and on the suites' time (the solver spends about a
+  second on each planted rare row).
+- **Against the 64-point decider and the in-process Rust engines:**
+  slower and larger, because of the solver. But the 64-point decider
+  joins all 3 planted rare-difference rows, which are unequal at the
+  finest grain, and the rest leave rows undecided.
+
+So it is on the frontier with the best correctness of any engine and
+the best time and memory of any exact engine, and it does not
+dominate on time and memory. The open directions for that are in
+`/mnt/project-files/equivalence-generalization/vectors.md`: an exact
+normal form for ring and bit operators to drop the solver on most
+rows, and learning rewrite rules from exact equalities.
+
+The earlier section, inside the 64-point bound, follows unchanged
+below; at that grain the 64-point decider beat every engine, and the
+planted rare rows show why that grain is too coarse.
+
+### Inside the 64-point bound (previous answer)
+
 Inside the bound, the bounded decider (`--engine decide`) beats every
 other engine here: on every suite it finds every join any engine finds,
-and it uses no more operations, time or memory than any of them (38 of
-38 comparisons, gate `decider at least as good as every engine`).
+and it uses no more operations, time or memory than any of them (37 of
+37 comparisons in the latest run, gate `decider at least as good as
+every engine`; at this grain its 3 false joins on the planted rare
+rows count as joins).
 
 It is the simplest possible procedure for this job. Both terms go into
 one hash-consed DAG, identical roots join with no work, and otherwise
@@ -62,8 +117,13 @@ partition does not depend on the order witnesses arrive (`soundiff`,
 | `fuelbound` | Steps costing at least one unit, paid from a budget plus capped refunds, number at most budget plus cap: the dividend cannot make a search run forever |
 | `sumperm` | Reordering operands never changes a sum: AC sorting is a sound witness |
 | `decidermax`, `decidercovers` | Whatever a sound engine joins, of observed or raw terms, the bounded decider joins at every observer that reads the meaning |
+| `refutesound`, `refutedne` | A point that tells two sides apart rules out any sound join of them |
+| `ledgermono` | Appending counterexamples to the ledger never takes a refutation back |
 
-All 17 use only propext and Quot.sound; the thesis gate passes.
+All 20 use only propext and Quot.sound; the thesis gate passes. The
+key in `boundedexact` and `decidermax` is any observer, so they hold
+for the finest-grain key (every input, every callee) as well as for
+64 points.
 
 ## Measured
 
@@ -101,7 +161,7 @@ The 12th real join (leb128: `v // 128` against an expression with
 rewriting engine finds it; the decider joins it because the two sides
 agree on every resolved point.
 
-### Mechanism suites (38 rows)
+### Mechanism suites (38 rows; the 3 rare rows are in the finest-grain table)
 
 | Suite | decider | witness | greedy | saturate (budget) | saturate (bound) |
 |---|---|---|---|---|---|
@@ -181,6 +241,8 @@ in the first), so the overhead is within run-to-run noise.
 ## Reproduce
 
 ```
-IDOL_LIB=/path/to/idol-lib sh run.sh   # builds wsat (std only), harvests, runs everything, gates
-python3 gate.py results                # gates over the committed results
+IDOL_LIB=/path/to/idol-lib sh run.sh         # builds wsat (std only), harvests, runs everything, gates
+IDOL_LIB=/path/to/idol-lib sh exact/run_exact.sh  # finest grain: needs z3-solver for python3 and egg 0.9.5 from crates.io
+python3 gate.py results                      # gates over the committed results
+python3 exact/gate_exact.py results          # finest-grain gates
 ```

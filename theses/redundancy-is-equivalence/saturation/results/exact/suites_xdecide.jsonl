@@ -1,0 +1,42 @@
+{"id": "ac6+", "suite": "ac", "evals": 1024, "solver_s": 0.0091, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac6*", "suite": "ac", "evals": 1024, "solver_s": 0.0009, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac10+", "suite": "ac", "evals": 1792, "solver_s": 0.0009, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac10*", "suite": "ac", "evals": 1792, "solver_s": 0.0009, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac14+", "suite": "ac", "evals": 2560, "solver_s": 0.001, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac14*", "suite": "ac", "evals": 2560, "solver_s": 0.0009, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac20+", "suite": "ac", "evals": 3712, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "ac20*", "suite": "ac", "evals": 3712, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join3", "suite": "join", "evals": 768, "solver_s": 0.0012, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join3c", "suite": "join", "evals": 768, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join5", "suite": "join", "evals": 1280, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join5c", "suite": "join", "evals": 1280, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join7", "suite": "join", "evals": 1792, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join7c", "suite": "join", "evals": 1792, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join9", "suite": "join", "evals": 2304, "solver_s": 0.0012, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "join9c", "suite": "join", "evals": 2304, "solver_s": 0.0013, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "gen0", "suite": "gen", "evals": 448, "solver_s": 0.0007, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "gen1", "suite": "gen", "evals": 448, "solver_s": 0.0007, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "gen2", "suite": "gen", "evals": 448, "solver_s": 0.0007, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "gen3", "suite": "gen", "evals": 320, "solver_s": 0.0018, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "cycle0", "suite": "cycle", "evals": 192, "solver_s": 0.0006, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "cycle1", "suite": "cycle", "evals": 512, "solver_s": 0.0007, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "cycle2", "suite": "cycle", "evals": 576, "solver_s": 0.0006, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "cycle3", "suite": "cycle", "evals": 576, "solver_s": 0.0007, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley0", "suite": "valley", "evals": 512, "solver_s": 0.001, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley1", "suite": "valley", "evals": 512, "solver_s": 0.001, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley2", "suite": "valley", "evals": 704, "solver_s": 0.001, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley3", "suite": "valley", "evals": 512, "solver_s": 0.0016, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley4", "suite": "valley", "evals": 448, "solver_s": 0.0013, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "valley5", "suite": "valley", "evals": 576, "solver_s": 0.0013, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "mid1", "suite": "mid", "evals": 704, "solver_s": 0.001, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "mid2", "suite": "mid", "evals": 1280, "solver_s": 0.0011, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "mid3", "suite": "mid", "evals": 1856, "solver_s": 0.0012, "ledger_evals": 0, "verdict": "equal", "stage": "solver"}
+{"id": "near0", "suite": "refuted", "evals": 203, "solver_s": 0.0, "ledger_evals": 0, "verdict": "differ", "stage": "points"}
+{"id": "near1", "suite": "refuted", "evals": 4, "solver_s": 0.0, "ledger_evals": 0, "verdict": "differ", "stage": "points"}
+{"id": "near2", "suite": "refuted", "evals": 4, "solver_s": 0.0, "ledger_evals": 0, "verdict": "differ", "stage": "points"}
+{"id": "near3", "suite": "refuted", "evals": 7, "solver_s": 0.0, "ledger_evals": 0, "verdict": "differ", "stage": "points"}
+{"id": "near4", "suite": "refuted", "evals": 10, "solver_s": 0.0, "ledger_evals": 0, "verdict": "differ", "stage": "points"}
+{"id": "rare0", "suite": "rare", "evals": 512, "solver_s": 1.0683, "ledger_evals": 0, "verdict": "differ", "stage": "solver", "learned": true}
+{"id": "rare1", "suite": "rare", "evals": 512, "solver_s": 0.4201, "ledger_evals": 10, "verdict": "differ", "stage": "solver", "learned": true}
+{"id": "rare2", "suite": "rare", "evals": 768, "solver_s": 0.9295, "ledger_evals": 6, "verdict": "differ", "stage": "solver", "learned": true}
+{"summary": true, "wall_s": 2.4661, "vmhwm_kb": 147872, "ledger": 3}

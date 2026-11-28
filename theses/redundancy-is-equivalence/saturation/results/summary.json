@@ -7,8 +7,8 @@
    "match": 0,
    "evals": 24585,
    "ops": 24585,
-   "wall_s": 0.0365,
-   "vmhwm_kb": 2976
+   "wall_s": 0.0416,
+   "vmhwm_kb": 2924
   },
   {
    "engine": "witness",
@@ -17,8 +17,8 @@
    "match": 3064,
    "evals": 52828,
    "ops": 55995,
-   "wall_s": 0.0765,
-   "vmhwm_kb": 3232
+   "wall_s": 0.0664,
+   "vmhwm_kb": 3248
   },
   {
    "engine": "greedy",
@@ -27,8 +27,8 @@
    "match": 2811280,
    "evals": 0,
    "ops": 2819850,
-   "wall_s": 5.4604,
-   "vmhwm_kb": 3724
+   "wall_s": 5.6723,
+   "vmhwm_kb": 3712
   },
   {
    "engine": "saturate",
@@ -37,8 +37,8 @@
    "match": 3005760,
    "evals": 0,
    "ops": 3168215,
-   "wall_s": 2.9128,
-   "vmhwm_kb": 10040
+   "wall_s": 2.7974,
+   "vmhwm_kb": 10220
   },
   {
    "engine": "saturate_beh",
@@ -47,7 +47,7 @@
    "match": 956,
    "evals": 42606,
    "ops": 43889,
-   "wall_s": 0.0502,
+   "wall_s": 0.0463,
    "vmhwm_kb": 3408
   },
   {
@@ -57,8 +57,8 @@
    "match": 317029203,
    "evals": 0,
    "ops": 320126465,
-   "wall_s": 127.8469,
-   "vmhwm_kb": 2597648
+   "wall_s": 128.2212,
+   "vmhwm_kb": 2597636
   },
   {
    "engine": "eval",
@@ -67,8 +67,8 @@
    "match": 0,
    "evals": 42606,
    "ops": 42606,
-   "wall_s": 0.0373,
-   "vmhwm_kb": 3028
+   "wall_s": 0.0415,
+   "vmhwm_kb": 2968
   }
  ],
  "real_rows": 1415,
@@ -86,12 +86,12 @@
     55995
    ],
    "wall_s": [
-    0.0365,
-    0.0765
+    0.0416,
+    0.0664
    ],
    "vmhwm_kb": [
-    2976,
-    3232
+    2924,
+    3248
    ],
    "covers": true,
    "beats_all_axes": true
@@ -108,12 +108,12 @@
     2819850
    ],
    "wall_s": [
-    0.0365,
-    5.4604
+    0.0416,
+    5.6723
    ],
    "vmhwm_kb": [
-    2976,
-    3724
+    2924,
+    3712
    ],
    "covers": true,
    "beats_all_axes": true
@@ -130,12 +130,12 @@
     3168215
    ],
    "wall_s": [
-    0.0365,
-    2.9128
+    0.0416,
+    2.7974
    ],
    "vmhwm_kb": [
-    2976,
-    10040
+    2924,
+    10220
    ],
    "covers": true,
    "beats_all_axes": true
@@ -152,11 +152,11 @@
     43889
    ],
    "wall_s": [
-    0.0365,
-    0.0502
+    0.0416,
+    0.0463
    ],
    "vmhwm_kb": [
-    2976,
+    2924,
     3408
    ],
    "covers": true,
@@ -174,12 +174,12 @@
     320126465
    ],
    "wall_s": [
-    0.0365,
-    127.8469
+    0.0416,
+    128.2212
    ],
    "vmhwm_kb": [
-    2976,
-    2597648
+    2924,
+    2597636
    ],
    "covers": true,
    "beats_all_axes": true
@@ -196,12 +196,12 @@
     3449385
    ],
    "wall_s": [
-    0.0365,
-    15.9256
+    0.0416,
+    15.7489
    ],
    "vmhwm_kb": [
-    2976,
-    3732
+    2924,
+    3772
    ],
    "covers": true,
    "beats_all_axes": true
@@ -218,12 +218,12 @@
     47496
    ],
    "wall_s": [
-    0.0365,
-    0.0754
+    0.0416,
+    0.0763
    ],
    "vmhwm_kb": [
-    2976,
-    3376
+    2924,
+    3428
    ],
    "covers": true,
    "beats_all_axes": true
@@ -240,12 +240,12 @@
     108583
    ],
    "wall_s": [
-    0.0365,
-    0.0966
+    0.0416,
+    0.0964
    ],
    "vmhwm_kb": [
-    2976,
-    3348
+    2924,
+    3384
    ],
    "covers": true,
    "beats_all_axes": true
@@ -262,12 +262,12 @@
     76184
    ],
    "wall_s": [
-    0.0365,
-    0.1055
+    0.0416,
+    0.1048
    ],
    "vmhwm_kb": [
-    2976,
-    3444
+    2924,
+    3488
    ],
    "covers": true,
    "beats_all_axes": true
@@ -284,11 +284,11 @@
     55995
    ],
    "wall_s": [
-    0.0365,
-    0.0735
+    0.0416,
+    0.0683
    ],
    "vmhwm_kb": [
-    2976,
+    2924,
     3232
    ],
    "covers": true,
@@ -306,12 +306,12 @@
     526322
    ],
    "wall_s": [
-    0.0365,
-    0.1705
+    0.0416,
+    0.1754
    ],
    "vmhwm_kb": [
-    2976,
-    3304
+    2924,
+    3312
    ],
    "covers": true,
    "beats_all_axes": true
@@ -328,12 +328,12 @@
     56203
    ],
    "wall_s": [
-    0.0365,
-    0.0561
+    0.0416,
+    0.0669
    ],
    "vmhwm_kb": [
-    2976,
-    3180
+    2924,
+    3240
    ],
    "covers": true,
    "beats_all_axes": true
@@ -350,12 +350,12 @@
     55995
    ],
    "wall_s": [
-    0.0365,
-    0.0569
+    0.0416,
+    0.0667
    ],
    "vmhwm_kb": [
-    2976,
-    3224
+    2924,
+    3216
    ],
    "covers": true,
    "beats_all_axes": true
@@ -372,12 +372,12 @@
     55995
    ],
    "wall_s": [
-    0.0365,
-    0.0577
+    0.0416,
+    0.0685
    ],
    "vmhwm_kb": [
-    2976,
-    3152
+    2924,
+    3236
    ],
    "covers": true,
    "beats_all_axes": true
@@ -394,12 +394,12 @@
     55995
    ],
    "wall_s": [
-    0.0365,
-    0.0535
+    0.0416,
+    0.0744
    ],
    "vmhwm_kb": [
-    2976,
-    3236
+    2924,
+    3232
    ],
    "covers": true,
    "beats_all_axes": true
@@ -408,20 +408,20 @@
    "suite": "suites",
    "engine": "witness",
    "joins": [
-    33,
+    36,
     30
    ],
    "ops": [
-    41316,
-    92475
+    43108,
+    102128
    ],
    "wall_s": [
     0.0054,
-    0.1833
+    0.2073
    ],
    "vmhwm_kb": [
-    2884,
-    3324
+    2892,
+    3400
    ],
    "covers": true,
    "beats_all_axes": true
@@ -430,20 +430,20 @@
    "suite": "suites",
    "engine": "greedy",
    "joins": [
-    33,
+    36,
     19
    ],
    "ops": [
-    41316,
-    90735
+    43108,
+    99754
    ],
    "wall_s": [
     0.0054,
-    0.2321
+    0.2441
    ],
    "vmhwm_kb": [
-    2884,
-    3576
+    2892,
+    3548
    ],
    "covers": true,
    "beats_all_axes": true
@@ -452,20 +452,20 @@
    "suite": "suites",
    "engine": "saturate",
    "joins": [
-    33,
+    36,
     31
    ],
    "ops": [
-    41316,
-    169832
+    43108,
+    170206
    ],
    "wall_s": [
     0.0054,
-    0.0762
+    0.0626
    ],
    "vmhwm_kb": [
-    2884,
-    7872
+    2892,
+    7908
    ],
    "covers": true,
    "beats_all_axes": true
@@ -474,20 +474,20 @@
    "suite": "suites",
    "engine": "sat_bound",
    "joins": [
-    33,
+    36,
     33
    ],
    "ops": [
-    41316,
-    200780
+    43108,
+    201154
    ],
    "wall_s": [
     0.0054,
-    0.0703
+    0.0544
    ],
    "vmhwm_kb": [
-    2884,
-    8792
+    2892,
+    8772
    ],
    "covers": true,
    "beats_all_axes": true
@@ -496,20 +496,20 @@
    "suite": "suites",
    "engine": "w_nobeh",
    "joins": [
-    33,
+    36,
     13
    ],
    "ops": [
-    41316,
-    84139
+    43108,
+    91359
    ],
    "wall_s": [
     0.0054,
-    0.3376
+    0.321
    ],
    "vmhwm_kb": [
-    2884,
-    3356
+    2892,
+    3304
    ],
    "covers": true,
    "beats_all_axes": true
@@ -518,20 +518,20 @@
    "suite": "suites",
    "engine": "w_noau",
    "joins": [
-    33,
+    36,
     24
    ],
    "ops": [
-    41316,
-    103637
+    43108,
+    113283
    ],
    "wall_s": [
     0.0054,
-    0.3815
+    0.3359
    ],
    "vmhwm_kb": [
-    2884,
-    3876
+    2892,
+    3840
    ],
    "covers": true,
    "beats_all_axes": true
@@ -540,20 +540,20 @@
    "suite": "suites",
    "engine": "w_nobag",
    "joins": [
-    33,
+    36,
     23
    ],
    "ops": [
-    41316,
-    166935
+    43108,
+    176588
    ],
    "wall_s": [
     0.0054,
-    0.3381
+    0.3817
    ],
    "vmhwm_kb": [
-    2884,
-    3596
+    2892,
+    3592
    ],
    "covers": true,
    "beats_all_axes": true
@@ -562,20 +562,20 @@
    "suite": "suites",
    "engine": "w_nolin",
    "joins": [
-    33,
+    36,
     29
    ],
    "ops": [
-    41316,
-    97289
+    43108,
+    106942
    ],
    "wall_s": [
     0.0054,
-    0.1245
+    0.1364
    ],
    "vmhwm_kb": [
-    2884,
-    3296
+    2892,
+    3260
    ],
    "covers": true,
    "beats_all_axes": true
@@ -584,20 +584,20 @@
    "suite": "suites",
    "engine": "w_noent",
    "joins": [
-    33,
+    36,
     31
    ],
    "ops": [
-    41316,
-    88146
+    43108,
+    97799
    ],
    "wall_s": [
     0.0054,
-    0.1682
+    0.1855
    ],
    "vmhwm_kb": [
-    2884,
-    3300
+    2892,
+    3360
    ],
    "covers": true,
    "beats_all_axes": true
@@ -606,20 +606,20 @@
    "suite": "suites",
    "engine": "w_uni",
    "joins": [
-    33,
+    36,
     26
    ],
    "ops": [
-    41316,
-    199248
+    43108,
+    208894
    ],
    "wall_s": [
     0.0054,
-    0.2937
+    0.3932
    ],
    "vmhwm_kb": [
-    2884,
-    3600
+    2892,
+    3692
    ],
    "covers": true,
    "beats_all_axes": true
@@ -628,20 +628,20 @@
    "suite": "suites",
    "engine": "w_nobridge",
    "joins": [
-    33,
+    36,
     20
    ],
    "ops": [
-    41316,
-    258584
+    43108,
+    268237
    ],
    "wall_s": [
     0.0054,
-    0.4405
+    0.5279
    ],
    "vmhwm_kb": [
-    2884,
-    3568
+    2892,
+    3492
    ],
    "covers": true,
    "beats_all_axes": true
@@ -650,20 +650,20 @@
    "suite": "suites",
    "engine": "w_nocredit",
    "joins": [
-    33,
+    36,
     29
    ],
    "ops": [
-    41316,
-    91884
+    43108,
+    101537
    ],
    "wall_s": [
     0.0054,
-    0.2041
+    0.2211
    ],
    "vmhwm_kb": [
-    2884,
-    3392
+    2892,
+    3388
    ],
    "covers": true,
    "beats_all_axes": true
@@ -672,20 +672,20 @@
    "suite": "suites",
    "engine": "w_nodiv",
    "joins": [
-    33,
+    36,
     30
    ],
    "ops": [
-    41316,
-    92233
+    43108,
+    101886
    ],
    "wall_s": [
     0.0054,
-    0.2
+    0.1842
    ],
    "vmhwm_kb": [
-    2884,
-    3332
+    2892,
+    3372
    ],
    "covers": true,
    "beats_all_axes": true
@@ -694,20 +694,20 @@
    "suite": "suites",
    "engine": "w_nodepth",
    "joins": [
-    33,
+    36,
     30
    ],
    "ops": [
-    41316,
-    92475
+    43108,
+    102128
    ],
    "wall_s": [
     0.0054,
-    0.1468
+    0.19
    ],
    "vmhwm_kb": [
-    2884,
-    3384
+    2892,
+    3348
    ],
    "covers": true,
    "beats_all_axes": true
@@ -724,12 +724,12 @@
     29775
    ],
    "wall_s": [
-    0.0021,
-    0.054
+    0.0032,
+    0.0615
    ],
    "vmhwm_kb": [
-    2724,
-    3184
+    2812,
+    3188
    ],
    "covers": true,
    "beats_all_axes": true
@@ -746,12 +746,12 @@
     7571
    ],
    "wall_s": [
-    0.0021,
-    0.0102
+    0.0032,
+    0.0131
    ],
    "vmhwm_kb": [
-    2724,
-    2932
+    2812,
+    2920
    ],
    "covers": true,
    "beats_all_axes": true
@@ -768,12 +768,12 @@
     58627
    ],
    "wall_s": [
-    0.0021,
-    0.0156
+    0.0032,
+    0.0149
    ],
    "vmhwm_kb": [
-    2724,
-    4024
+    2812,
+    4068
    ],
    "covers": true,
    "beats_all_axes": true
@@ -790,12 +790,12 @@
     26305
    ],
    "wall_s": [
-    0.0021,
-    1.2002
+    0.0032,
+    1.2414
    ],
    "vmhwm_kb": [
-    2724,
-    158320
+    2812,
+    158308
    ],
    "covers": true,
    "beats_all_axes": true
@@ -812,12 +812,12 @@
     29843
    ],
    "wall_s": [
-    0.0021,
-    0.0421
+    0.0032,
+    0.0518
    ],
    "vmhwm_kb": [
-    2724,
-    3212
+    2812,
+    3192
    ],
    "covers": true,
    "beats_all_axes": true
@@ -834,12 +834,12 @@
     2278514
    ],
    "wall_s": [
-    0.0067,
-    1.4479
+    0.0033,
+    1.8583
    ],
    "vmhwm_kb": [
-    2912,
-    500376
+    2884,
+    500272
    ],
    "covers": true,
    "beats_all_axes": true
@@ -856,12 +856,12 @@
     25603
    ],
    "wall_s": [
-    0.0067,
-    0.0082
+    0.0033,
+    0.0086
    ],
    "vmhwm_kb": [
-    2912,
-    3200
+    2884,
+    3212
    ],
    "covers": true,
    "beats_all_axes": true
@@ -878,11 +878,11 @@
     94460
    ],
    "wall_s": [
-    0.0067,
-    0.1491
+    0.0033,
+    0.1466
    ],
    "vmhwm_kb": [
-    2912,
+    2884,
     3476
    ],
    "covers": true,
@@ -949,8 +949,8 @@
    "suite": "all suites",
    "joins_on": 30,
    "joins_off": 29,
-   "fuel_on": 21390,
-   "fuel_off": 25165,
+   "fuel_on": 28611,
+   "fuel_off": 32386,
    "verdict": "helps"
   },
   {
@@ -958,8 +958,8 @@
    "suite": "all suites",
    "joins_on": 30,
    "joins_off": 30,
-   "fuel_on": 21390,
-   "fuel_off": 21204,
+   "fuel_on": 28611,
+   "fuel_off": 28425,
    "verdict": "hurts"
   },
   {
@@ -967,8 +967,8 @@
    "suite": "all suites",
    "joins_on": 30,
    "joins_off": 30,
-   "fuel_on": 21390,
-   "fuel_off": 21390,
+   "fuel_on": 28611,
+   "fuel_off": 28611,
    "verdict": "no effect"
   },
   {
@@ -976,8 +976,8 @@
    "suite": "all suites",
    "joins_on": 30,
    "joins_off": 31,
-   "fuel_on": 21390,
-   "fuel_off": 18237,
+   "fuel_on": 28611,
+   "fuel_off": 25458,
    "verdict": "hurts"
   }
  ],
@@ -993,8 +993,8 @@
  },
  "prov_bytes_max": 1976,
  "overhead": {
-  "prov_engine_us_median": 32010,
-  "noprov_engine_us_median": 32271
+  "prov_engine_us_median": 29038,
+  "noprov_engine_us_median": 30786
  },
  "gates": [
   {
@@ -1020,7 +1020,7 @@
   {
    "gate": "suites: decider holds every join any engine found",
    "pass": true,
-   "detail": "decider 33 joins"
+   "detail": "decider 36 joins"
   },
   {
    "gate": "suites: every decider join also holds on 64 fresh points",
@@ -1048,7 +1048,7 @@
    "detail": "0 fail the fresh audit"
   },
   {
-   "gate": "decider at least as good as every engine on joins, ops, time and memory, every suite",
+   "gate": "64-point grain: decider at least as good as every engine on joins, ops, time and memory, every suite",
    "pass": true,
    "detail": "37 comparisons"
   },
@@ -1090,7 +1090,7 @@
   {
    "gate": "component: provenance credit + UCB1",
    "pass": true,
-   "detail": "on 30 joins / 21390 fuel, off 29 / 25165"
+   "detail": "on 30 joins / 28611 fuel, off 29 / 32386"
   },
   {
    "gate": "generative rule: saturation stops reaching a fixpoint",

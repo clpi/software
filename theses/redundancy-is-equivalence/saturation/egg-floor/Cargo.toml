@@ -1,0 +1,13 @@
+[package]
+name = "egg-floor"
+version = "0.1.0"
+edition = "2021"
+
+# State-of-the-art floor: the egg e-graph library with its default
+# backoff scheduler, the same rewrite rules wsat uses where egg can
+# express them, and egg's standard constant-folding analysis.
+[dependencies]
+egg = "=0.9.5"
+
+[profile.release]
+opt-level = 3
