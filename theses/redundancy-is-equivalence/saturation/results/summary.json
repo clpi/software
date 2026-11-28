@@ -1,0 +1,1156 @@
+{
+ "real_table": [
+  {
+   "engine": "decide",
+   "joins": 12,
+   "alloc": 0,
+   "match": 0,
+   "evals": 24585,
+   "ops": 24585,
+   "wall_s": 0.0365,
+   "vmhwm_kb": 2976
+  },
+  {
+   "engine": "witness",
+   "joins": 11,
+   "alloc": 103,
+   "match": 3064,
+   "evals": 52828,
+   "ops": 55995,
+   "wall_s": 0.0765,
+   "vmhwm_kb": 3232
+  },
+  {
+   "engine": "greedy",
+   "joins": 3,
+   "alloc": 8570,
+   "match": 2811280,
+   "evals": 0,
+   "ops": 2819850,
+   "wall_s": 5.4604,
+   "vmhwm_kb": 3724
+  },
+  {
+   "engine": "saturate",
+   "joins": 11,
+   "alloc": 162455,
+   "match": 3005760,
+   "evals": 0,
+   "ops": 3168215,
+   "wall_s": 2.9128,
+   "vmhwm_kb": 10040
+  },
+  {
+   "engine": "saturate_beh",
+   "joins": 11,
+   "alloc": 327,
+   "match": 956,
+   "evals": 42606,
+   "ops": 43889,
+   "wall_s": 0.0502,
+   "vmhwm_kb": 3408
+  },
+  {
+   "engine": "sat_bound",
+   "joins": 11,
+   "alloc": 3097262,
+   "match": 317029203,
+   "evals": 0,
+   "ops": 320126465,
+   "wall_s": 127.8469,
+   "vmhwm_kb": 2597648
+  },
+  {
+   "engine": "eval",
+   "joins": 12,
+   "alloc": 0,
+   "match": 0,
+   "evals": 42606,
+   "ops": 42606,
+   "wall_s": 0.0373,
+   "vmhwm_kb": 3028
+  }
+ ],
+ "real_rows": 1415,
+ "real_agree": 12,
+ "decider": [
+  {
+   "suite": "real",
+   "engine": "witness",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    55995
+   ],
+   "wall_s": [
+    0.0365,
+    0.0765
+   ],
+   "vmhwm_kb": [
+    2976,
+    3232
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "greedy",
+   "joins": [
+    12,
+    3
+   ],
+   "ops": [
+    24585,
+    2819850
+   ],
+   "wall_s": [
+    0.0365,
+    5.4604
+   ],
+   "vmhwm_kb": [
+    2976,
+    3724
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "saturate",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    3168215
+   ],
+   "wall_s": [
+    0.0365,
+    2.9128
+   ],
+   "vmhwm_kb": [
+    2976,
+    10040
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "saturate_beh",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    43889
+   ],
+   "wall_s": [
+    0.0365,
+    0.0502
+   ],
+   "vmhwm_kb": [
+    2976,
+    3408
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "sat_bound",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    320126465
+   ],
+   "wall_s": [
+    0.0365,
+    127.8469
+   ],
+   "vmhwm_kb": [
+    2976,
+    2597648
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nobeh",
+   "joins": [
+    12,
+    0
+   ],
+   "ops": [
+    24585,
+    3449385
+   ],
+   "wall_s": [
+    0.0365,
+    15.9256
+   ],
+   "vmhwm_kb": [
+    2976,
+    3732
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_noau",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    47496
+   ],
+   "wall_s": [
+    0.0365,
+    0.0754
+   ],
+   "vmhwm_kb": [
+    2976,
+    3376
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nobag",
+   "joins": [
+    12,
+    10
+   ],
+   "ops": [
+    24585,
+    108583
+   ],
+   "wall_s": [
+    0.0365,
+    0.0966
+   ],
+   "vmhwm_kb": [
+    2976,
+    3348
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nolin",
+   "joins": [
+    12,
+    10
+   ],
+   "ops": [
+    24585,
+    76184
+   ],
+   "wall_s": [
+    0.0365,
+    0.1055
+   ],
+   "vmhwm_kb": [
+    2976,
+    3444
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_noent",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    55995
+   ],
+   "wall_s": [
+    0.0365,
+    0.0735
+   ],
+   "vmhwm_kb": [
+    2976,
+    3232
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_uni",
+   "joins": [
+    12,
+    3
+   ],
+   "ops": [
+    24585,
+    526322
+   ],
+   "wall_s": [
+    0.0365,
+    0.1705
+   ],
+   "vmhwm_kb": [
+    2976,
+    3304
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nobridge",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    56203
+   ],
+   "wall_s": [
+    0.0365,
+    0.0561
+   ],
+   "vmhwm_kb": [
+    2976,
+    3180
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nocredit",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    55995
+   ],
+   "wall_s": [
+    0.0365,
+    0.0569
+   ],
+   "vmhwm_kb": [
+    2976,
+    3224
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nodiv",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    55995
+   ],
+   "wall_s": [
+    0.0365,
+    0.0577
+   ],
+   "vmhwm_kb": [
+    2976,
+    3152
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "real",
+   "engine": "w_nodepth",
+   "joins": [
+    12,
+    11
+   ],
+   "ops": [
+    24585,
+    55995
+   ],
+   "wall_s": [
+    0.0365,
+    0.0535
+   ],
+   "vmhwm_kb": [
+    2976,
+    3236
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "witness",
+   "joins": [
+    33,
+    30
+   ],
+   "ops": [
+    41316,
+    92475
+   ],
+   "wall_s": [
+    0.0054,
+    0.1833
+   ],
+   "vmhwm_kb": [
+    2884,
+    3324
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "greedy",
+   "joins": [
+    33,
+    19
+   ],
+   "ops": [
+    41316,
+    90735
+   ],
+   "wall_s": [
+    0.0054,
+    0.2321
+   ],
+   "vmhwm_kb": [
+    2884,
+    3576
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "saturate",
+   "joins": [
+    33,
+    31
+   ],
+   "ops": [
+    41316,
+    169832
+   ],
+   "wall_s": [
+    0.0054,
+    0.0762
+   ],
+   "vmhwm_kb": [
+    2884,
+    7872
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "sat_bound",
+   "joins": [
+    33,
+    33
+   ],
+   "ops": [
+    41316,
+    200780
+   ],
+   "wall_s": [
+    0.0054,
+    0.0703
+   ],
+   "vmhwm_kb": [
+    2884,
+    8792
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nobeh",
+   "joins": [
+    33,
+    13
+   ],
+   "ops": [
+    41316,
+    84139
+   ],
+   "wall_s": [
+    0.0054,
+    0.3376
+   ],
+   "vmhwm_kb": [
+    2884,
+    3356
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_noau",
+   "joins": [
+    33,
+    24
+   ],
+   "ops": [
+    41316,
+    103637
+   ],
+   "wall_s": [
+    0.0054,
+    0.3815
+   ],
+   "vmhwm_kb": [
+    2884,
+    3876
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nobag",
+   "joins": [
+    33,
+    23
+   ],
+   "ops": [
+    41316,
+    166935
+   ],
+   "wall_s": [
+    0.0054,
+    0.3381
+   ],
+   "vmhwm_kb": [
+    2884,
+    3596
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nolin",
+   "joins": [
+    33,
+    29
+   ],
+   "ops": [
+    41316,
+    97289
+   ],
+   "wall_s": [
+    0.0054,
+    0.1245
+   ],
+   "vmhwm_kb": [
+    2884,
+    3296
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_noent",
+   "joins": [
+    33,
+    31
+   ],
+   "ops": [
+    41316,
+    88146
+   ],
+   "wall_s": [
+    0.0054,
+    0.1682
+   ],
+   "vmhwm_kb": [
+    2884,
+    3300
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_uni",
+   "joins": [
+    33,
+    26
+   ],
+   "ops": [
+    41316,
+    199248
+   ],
+   "wall_s": [
+    0.0054,
+    0.2937
+   ],
+   "vmhwm_kb": [
+    2884,
+    3600
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nobridge",
+   "joins": [
+    33,
+    20
+   ],
+   "ops": [
+    41316,
+    258584
+   ],
+   "wall_s": [
+    0.0054,
+    0.4405
+   ],
+   "vmhwm_kb": [
+    2884,
+    3568
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nocredit",
+   "joins": [
+    33,
+    29
+   ],
+   "ops": [
+    41316,
+    91884
+   ],
+   "wall_s": [
+    0.0054,
+    0.2041
+   ],
+   "vmhwm_kb": [
+    2884,
+    3392
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nodiv",
+   "joins": [
+    33,
+    30
+   ],
+   "ops": [
+    41316,
+    92233
+   ],
+   "wall_s": [
+    0.0054,
+    0.2
+   ],
+   "vmhwm_kb": [
+    2884,
+    3332
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "suites",
+   "engine": "w_nodepth",
+   "joins": [
+    33,
+    30
+   ],
+   "ops": [
+    41316,
+    92475
+   ],
+   "wall_s": [
+    0.0054,
+    0.1468
+   ],
+   "vmhwm_kb": [
+    2884,
+    3384
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "gen",
+   "engine": "witness",
+   "joins": [
+    14,
+    10
+   ],
+   "ops": [
+    6784,
+    29775
+   ],
+   "wall_s": [
+    0.0021,
+    0.054
+   ],
+   "vmhwm_kb": [
+    2724,
+    3184
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "gen",
+   "engine": "greedy",
+   "joins": [
+    14,
+    13
+   ],
+   "ops": [
+    6784,
+    7571
+   ],
+   "wall_s": [
+    0.0021,
+    0.0102
+   ],
+   "vmhwm_kb": [
+    2724,
+    2932
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "gen",
+   "engine": "saturate",
+   "joins": [
+    14,
+    11
+   ],
+   "ops": [
+    6784,
+    58627
+   ],
+   "wall_s": [
+    0.0021,
+    0.0156
+   ],
+   "vmhwm_kb": [
+    2724,
+    4024
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "gen",
+   "engine": "w_naiveprov",
+   "joins": [
+    14,
+    11
+   ],
+   "ops": [
+    6784,
+    26305
+   ],
+   "wall_s": [
+    0.0021,
+    1.2002
+   ],
+   "vmhwm_kb": [
+    2724,
+    158320
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "gen",
+   "engine": "w_nodepth_nocredit",
+   "joins": [
+    14,
+    10
+   ],
+   "ops": [
+    6784,
+    29843
+   ],
+   "wall_s": [
+    0.0021,
+    0.0421
+   ],
+   "vmhwm_kb": [
+    2724,
+    3212
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "ac",
+   "engine": "sat_nomacro",
+   "joins": [
+    8,
+    6
+   ],
+   "ops": [
+    18176,
+    2278514
+   ],
+   "wall_s": [
+    0.0067,
+    1.4479
+   ],
+   "vmhwm_kb": [
+    2912,
+    500376
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "ac",
+   "engine": "witness",
+   "joins": [
+    8,
+    8
+   ],
+   "ops": [
+    18176,
+    25603
+   ],
+   "wall_s": [
+    0.0067,
+    0.0082
+   ],
+   "vmhwm_kb": [
+    2912,
+    3200
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  },
+  {
+   "suite": "ac",
+   "engine": "witness_nomacro",
+   "joins": [
+    8,
+    2
+   ],
+   "ops": [
+    18176,
+    94460
+   ],
+   "wall_s": [
+    0.0067,
+    0.1491
+   ],
+   "vmhwm_kb": [
+    2912,
+    3476
+   ],
+   "covers": true,
+   "beats_all_axes": true
+  }
+ ],
+ "components": [
+  {
+   "component": "hard behavioral falsification",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 0,
+   "fuel_on": 3167,
+   "fuel_off": 3449385,
+   "verdict": "helps"
+  },
+  {
+   "component": "anti-unification focus",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 11,
+   "fuel_on": 3167,
+   "fuel_off": 4890,
+   "verdict": "helps"
+  },
+  {
+   "component": "AC multiset recognition",
+   "suite": "ac",
+   "joins_on": 8,
+   "joins_off": 4,
+   "fuel_on": 475,
+   "fuel_off": 16475,
+   "verdict": "helps"
+  },
+  {
+   "component": "linear-form recognition (added)",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 10,
+   "fuel_on": 3167,
+   "fuel_off": 8679,
+   "verdict": "helps"
+  },
+  {
+   "component": "bidirectional cones",
+   "suite": "real",
+   "joins_on": 11,
+   "joins_off": 3,
+   "fuel_on": 3167,
+   "fuel_off": 10493,
+   "verdict": "helps"
+  },
+  {
+   "component": "bridge quota (80/20 beam)",
+   "suite": "valley",
+   "joins_on": 6,
+   "joins_off": 1,
+   "fuel_on": 5970,
+   "fuel_off": 20203,
+   "verdict": "helps"
+  },
+  {
+   "component": "provenance credit + UCB1",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 29,
+   "fuel_on": 21390,
+   "fuel_off": 25165,
+   "verdict": "helps"
+  },
+  {
+   "component": "merge dividend",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 30,
+   "fuel_on": 21390,
+   "fuel_off": 21204,
+   "verdict": "hurts"
+  },
+  {
+   "component": "depth fuel",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 30,
+   "fuel_on": 21390,
+   "fuel_off": 21390,
+   "verdict": "no effect"
+  },
+  {
+   "component": "entropy tiebreak",
+   "suite": "all suites",
+   "joins_on": 30,
+   "joins_off": 31,
+   "fuel_on": 21390,
+   "fuel_off": 18237,
+   "verdict": "hurts"
+  }
+ ],
+ "join": {
+  "witness": [
+   5,
+   13373
+  ],
+  "saturate_bound": [
+   8,
+   76668
+  ]
+ },
+ "prov_bytes_max": 1976,
+ "overhead": {
+  "prov_engine_us_median": 32010,
+  "noprov_engine_us_median": 32271
+ },
+ "gates": [
+  {
+   "gate": "every proof re-verified on 64 fresh points",
+   "pass": true,
+   "detail": "0 unverified"
+  },
+  {
+   "gate": "real: witness search finds every rule-derivable join saturation to the bound finds",
+   "pass": true,
+   "detail": "witness 11, saturation to the bound 11"
+  },
+  {
+   "gate": "real: decider holds every join any engine found",
+   "pass": true,
+   "detail": "decider 12 joins"
+  },
+  {
+   "gate": "real: every decider join also holds on 64 fresh points",
+   "pass": true,
+   "detail": "0 fail the fresh audit"
+  },
+  {
+   "gate": "suites: decider holds every join any engine found",
+   "pass": true,
+   "detail": "decider 33 joins"
+  },
+  {
+   "gate": "suites: every decider join also holds on 64 fresh points",
+   "pass": true,
+   "detail": "0 fail the fresh audit"
+  },
+  {
+   "gate": "gen: decider holds every join any engine found",
+   "pass": true,
+   "detail": "decider 14 joins"
+  },
+  {
+   "gate": "gen: every decider join also holds on 64 fresh points",
+   "pass": true,
+   "detail": "0 fail the fresh audit"
+  },
+  {
+   "gate": "ac: decider holds every join any engine found",
+   "pass": true,
+   "detail": "decider 8 joins"
+  },
+  {
+   "gate": "ac: every decider join also holds on 64 fresh points",
+   "pass": true,
+   "detail": "0 fail the fresh audit"
+  },
+  {
+   "gate": "decider at least as good as every engine on joins, ops, time and memory, every suite",
+   "pass": true,
+   "detail": "37 comparisons"
+  },
+  {
+   "gate": "decider refutes every near-miss",
+   "pass": true,
+   "detail": "5 rows"
+  },
+  {
+   "gate": "component: hard behavioral falsification",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 0 / 3449385"
+  },
+  {
+   "gate": "component: anti-unification focus",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 11 / 4890"
+  },
+  {
+   "gate": "component: AC multiset recognition",
+   "pass": true,
+   "detail": "on 8 joins / 475 fuel, off 4 / 16475"
+  },
+  {
+   "gate": "component: linear-form recognition (added)",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 10 / 8679"
+  },
+  {
+   "gate": "component: bidirectional cones",
+   "pass": true,
+   "detail": "on 11 joins / 3167 fuel, off 3 / 10493"
+  },
+  {
+   "gate": "component: bridge quota (80/20 beam)",
+   "pass": true,
+   "detail": "on 6 joins / 5970 fuel, off 1 / 20203"
+  },
+  {
+   "gate": "component: provenance credit + UCB1",
+   "pass": true,
+   "detail": "on 30 joins / 21390 fuel, off 29 / 25165"
+  },
+  {
+   "gate": "generative rule: saturation stops reaching a fixpoint",
+   "pass": true,
+   "detail": "fixpoints without the rule 5/5, with it 0/5; nodes 142 vs 39435"
+  },
+  {
+   "gate": "generative rule: witness search stays inside budget plus cap on every row",
+   "pass": true,
+   "detail": "max alloc 90 <= 2400"
+  },
+  {
+   "gate": "AC blowup: saturation without AC recognition exhausts on large sums; witness search proves all",
+   "pass": true,
+   "detail": "witness 8/8 with 434 nodes; saturation 6/8 with 64139 nodes; witness without recognition 2"
+  },
+  {
+   "gate": "cycles: provenance stays acyclic with first-parent-min-depth; the naive arena does not",
+   "pass": true,
+   "detail": "design acyclic on 14/14; naive on 6"
+  },
+  {
+   "gate": "no double credit with dedupe; the naive walk double-counts",
+   "pass": true,
+   "detail": "0 vs 3999958; walk steps 135 vs 4000064"
+  },
+  {
+   "gate": "congruence credit reaches an inner bridge rule",
+   "pass": true,
+   "detail": "credit 171.856 reached bridge rules through congruence"
+  },
+  {
+   "gate": "per-epoch provenance at most one 16-byte node per e-node touched",
+   "pass": true,
+   "detail": "0 rows over"
+  },
+  {
+   "gate": "overhead run 1: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 2: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 3: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 4: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "overhead run 5: identical decisions with and without provenance",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}
