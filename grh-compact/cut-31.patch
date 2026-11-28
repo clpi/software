@@ -1,0 +1,115 @@
+diff --git a/grh/src/Lib/Cohomology/Etale/Basic.lean b/grh/src/Lib/Cohomology/Etale/Basic.lean
+index edfcf4b..20f20e8 100644
+--- a/grh/src/Lib/Cohomology/Etale/Basic.lean
++++ b/grh/src/Lib/Cohomology/Etale/Basic.lean
+@@ -701,10 +701,67 @@ variable (R)
+   {Φ Ψ : (C ⥤ Ab) ⥤ AbFunctor C'} [IsExactFunctor (D := C) (C' := C') Φ] [IsExactFunctor Ψ]
+   {Θ : (C' ⥤ Ab) ⥤ AbFunctor C''} [IsExactFunctor (D := C') (C' := C'') Θ] (η : Φ ⟶ Ψ) (x : H N F n)
+ 
+-/-- Functors from `C` to abelian groups form a Grothendieck abelian category. -/
+-instance : IsGrothendieckAbelian.{1} (AbFunctor C) :=
+-  { ab5OfSize := { ofShape := fun _ ↦ inferInstance }
+-    hasSeparator := .of_equivalence (opOpEquivalence C).congrLeft }
++/-- An explicit injective functor containing `F`: at `c` it is the group of functions to `ℚ/ℤ`
++on the triples `(d, g : c ⟶ d, χ)` with `χ` a character of `F d`. It is the product over `d` and
++`χ` of the functors `c ↦ (ℚ/ℤ) ^ (c ⟶ d)`, each right adjoint to evaluation at `d`. -/
++def injEnv (F : AbFunctor C) : AbFunctor C where
++  obj c := AddCommGrpCat.of ((Σ d : C, (c ⟶ d) × CharacterModule (F.obj d)) → AddCircle (1 : ℚ))
++  map g := AddCommGrpCat.ofHom
++    { toFun := fun φ x ↦ φ ⟨x.1, g ≫ x.2.1, x.2.2⟩
++      map_zero' := rfl
++      map_add' := fun _ _ ↦ rfl }
++  map_id _ := by ext; simp
++  map_comp _ _ := by ext; simp
++
++/-- The inclusion of `F` in `injEnv F`: `x ∈ F c` goes to `(d, g, χ) ↦ χ (F g x)`. -/
++def injEnv.ι (F : AbFunctor C) : F ⟶ injEnv F where
++  app c := AddCommGrpCat.ofHom
++    { toFun := fun x y ↦ y.2.2 (F.map y.2.1 x)
++      map_zero' := funext fun _ ↦ by simp
++      map_add' := fun _ _ ↦ funext fun _ ↦ by simp }
++  naturality _ _ g := AddCommGrpCat.ext fun x ↦ funext fun y ↦ by
++    show y.2.2 (F.map y.2.1 (F.map g x)) = y.2.2 (F.map (g ≫ y.2.1) x)
++    rw [Functor.map_comp, ConcreteCategory.comp_apply]
++
++instance (F : AbFunctor C) : Mono (injEnv.ι F) := by
++  have (c : C) : Mono ((injEnv.ι F).app c) := (AddCommGrpCat.mono_iff_injective _).2 <|
++    (injective_iff_map_eq_zero _).2 fun x hx ↦ CharacterModule.eq_zero_of_character_apply
++      fun χ ↦ by
++        have h : χ (F.map (𝟙 c) x) = 0 := congrFun hx ⟨c, 𝟙 c, χ⟩
++        simpa using h
++  exact NatTrans.mono_of_mono_app _
++
++/-- `injEnv F` is injective: a map `f : G ⟶ injEnv F` is determined by the characters
++`y ↦ f_d y (d, 𝟙, χ)` of the `G d`; extend each along the injective `m_d : G d → G' d`
++(`ℚ/ℤ` is divisible, Baer) and spread the extensions back out along the maps `c ⟶ d`. -/
++instance (F : AbFunctor C) : CategoryTheory.Injective (injEnv F) where
++  factors {G G'} f m _ := by
++    have hm (d : C) : Function.Injective (m.app d) :=
++      (AddCommGrpCat.mono_iff_injective _).1 (NatTrans.mono_iff_mono_app m |>.1 inferInstance d)
++    choose ψ hψ using fun (d : C) (χ : CharacterModule (F.obj d)) ↦
++      (Module.Baer.of_divisible (AddCircle (1 : ℚ))).extension_property_addMonoidHom
++        (m.app d).hom (hm d)
++        { toFun := fun y ↦ (f.app d y) ⟨d, 𝟙 d, χ⟩
++          map_zero' := by rw [map_zero]; rfl
++          map_add' := fun _ _ ↦ by rw [_root_.map_add]; rfl }
++    refine ⟨{ app c := AddCommGrpCat.ofHom
++                { toFun := fun y x ↦ ψ x.1 x.2.2 (G'.map x.2.1 y)
++                  map_zero' := funext fun _ ↦ by simp
++                  map_add' := fun _ _ ↦ funext fun _ ↦ by simp }
++              naturality _ _ g := AddCommGrpCat.ext fun y ↦ funext fun x ↦ by
++                show ψ x.1 x.2.2 (G'.map x.2.1 (G'.map g y)) = ψ x.1 x.2.2 (G'.map (g ≫ x.2.1) y)
++                rw [Functor.map_comp, ConcreteCategory.comp_apply] }, ?_⟩
++    refine NatTrans.ext <| funext fun c ↦ AddCommGrpCat.ext fun y ↦ funext fun ⟨d, g, χ⟩ ↦ ?_
++    have h_m : G'.map g (m.app c y) = m.app d (G.map g y) := by
++      rw [← ConcreteCategory.comp_apply, ← m.naturality, ConcreteCategory.comp_apply]
++    have h_ext : ψ d χ (m.app d (G.map g y)) = f.app d (G.map g y) ⟨d, 𝟙 d, χ⟩ :=
++      DFunLike.congr_fun (hψ d χ) (G.map g y)
++    have h_nat : f.app d (G.map g y) = (injEnv F).map g (f.app c y) := by
++      rw [← ConcreteCategory.comp_apply, f.naturality, ConcreteCategory.comp_apply]
++    show ψ d χ (G'.map g (m.app c y)) = f.app c y ⟨d, g, χ⟩
++    rw [h_m, h_ext, h_nat]
++    show f.app c y ⟨d, g ≫ 𝟙 d, χ⟩ = _
++    rw [Category.comp_id]
+ 
+ /-- Induction on Ext classes out of `N`: a property `P` holds for every class `x` in `Ext^n(N,F)` if
+ it holds for the classes `mk₀ f` of morphisms `f : N ⟶ F` (`h₀`) and, for each short exact
+@@ -725,8 +782,8 @@ lemma H.dimension_shift_induction {P : ∀ {F : AbFunctor C} {n : ℕ}, H N F n
+     -- Embed `F` in an injective object `I`; `x` dies in `Ext^{n+1}(N,I)`, so it is the image of a
+     -- class on the cokernel `I/F` under the connecting map.
+     let S : ShortComplex (AbFunctor C) :=
+-      ShortComplex.mk (Injective.ι F) (cokernel.π (Injective.ι F)) (cokernel.condition _)
+-    have hS : ShortExact S := ⟨exact_cokernel (Injective.ι F)⟩
++      ShortComplex.mk (injEnv.ι F) (cokernel.π (injEnv.ι F)) (cokernel.condition _)
++    have hS : ShortExact S := ⟨exact_cokernel (injEnv.ι F)⟩
+     obtain ⟨y, rfl⟩ : ∃ y : H N S.X₃ n, y.comp hS.extClass rfl = x :=
+       x.covariant_sequence_exact₁ N hS (eq_zero_of_injective _) rfl
+     exact h S hS n y (ih y)
+diff --git a/grh/src/Lib/General/Algebra/LongExactSequences.lean b/grh/src/Lib/General/Algebra/LongExactSequences.lean
+index 7e9ad5a..278473c 100644
+--- a/grh/src/Lib/General/Algebra/LongExactSequences.lean
++++ b/grh/src/Lib/General/Algebra/LongExactSequences.lean
+@@ -454,18 +454,18 @@ lemma New.Variety.H.sigma_bijective {C : Type 1} [Category C] {ι : Type 1} (X :
+     show map F (freeAb.map (sigma.ι X i)) 0 (e (sigma X) f) = e (X i) (sigma.ι X i ≫ f)
+     simp +instances [e, Adjunction.homEquiv, map, freeAb]
+   | succ n ih =>
+-    -- Embed `F` in the injective `Injective.under F` and compare the long exact sequences of
+-    -- 0 → F → Injective.under F → cokernel → 0.
+-    have hS : (ShortComplex.mk _ _ (Limits.cokernel.condition (Injective.ι F))).ShortExact :=
++    -- Embed `F` in the injective `injEnv F` and compare the long exact sequences of
++    -- 0 → F → injEnv F → cokernel → 0.
++    have hS : (ShortComplex.mk _ _ (Limits.cokernel.condition (injEnv.ι F))).ShortExact :=
+       ⟨exact_cokernel _⟩
+-    -- The connecting maps are onto because `Injective.under F` has no cohomology in degree
++    -- The connecting maps are onto because `injEnv F` has no cohomology in degree
+     -- `n + 1`.
+     have δ_surj (N : AbFunctor C) : Surjective ((LongExactSeq.covariant hS N).δ n) :=
+       fun y ↦ (exact_delta_f _ n y).1 (eq_zero_of_injective _)
+     -- write the pull-backs as comparison maps `pull` along the identity comparison
+     simp only [← id_pull] at ih ⊢
+     -- Pull-back is a morphism of long exact sequences (`pull_hom_covariant`), so the claim in
+-    -- degree n for `Injective.under F` and for the cokernel gives it in degree n + 1 for F.
++    -- degree n for `injEnv F` and for the cokernel gives it in degree n + 1 for F.
+     exact Hom.bijective_succ_family (fun _ ↦ pull_hom_covariant (φ := 𝟭 C) hS hS (𝟙 _) _) (ih _)
+       (ih _) (δ_surj _) fun _ ↦ δ_surj _
+ 
