@@ -24,8 +24,20 @@ def load(d, name):
     return json.load(opener(os.path.join(d, name)))
 
 
+JOINED = ("proved", "agree")
+
+
 def proved(v, suite=None):
-    return sum(1 for r in v["rows"] if r["status"] == "proved" and (suite is None or r["suite"].startswith(suite)))
+    return sum(1 for r in v["rows"] if r["status"] in JOINED and (suite is None or r["suite"].startswith(suite)))
+
+
+def joinset(v):
+    return {r["id"] for r in v["rows"] if r["status"] in JOINED}
+
+
+def ops(v):
+    # one shared unit: node evaluations + rewrite match steps + allocations
+    return sum(r.get("evals", 0) + r["match"] + r["alloc"] for r in v["rows"])
 
 
 def tot(v, f, suite=None):
@@ -48,10 +60,11 @@ def main(d):
     # the comparison table, inside the bound
     agree = {r["id"] for r in real["eval"]["rows"] if r["status"] == "agree"}
     table = []
-    for e in ("witness", "greedy", "saturate", "saturate_beh", "sat_bound", "eval"):
+    for e in ("decide", "witness", "greedy", "saturate", "saturate_beh", "sat_bound", "eval"):
         v = real[e]
         joins = len(agree) if e == "eval" else proved(v)
         table.append({"engine": e, "joins": joins, "alloc": tot(v, "alloc"), "match": tot(v, "match"),
+                      "evals": sum(r.get("evals", 0) for r in v["rows"]), "ops": ops(v),
                       "wall_s": v["wall_s"], "vmhwm_kb": v["vmhwm_kb"]})
     out["real_table"] = table
     out["real_rows"] = len(real["witness"]["rows"])
@@ -62,6 +75,35 @@ def main(d):
     gate("real: witness search finds every rule-derivable join saturation to the bound finds",
          {r["id"] for r in sat_b["rows"] if r["status"] == "proved"} <= {r["id"] for r in w["rows"] if r["status"] == "proved"},
          f"witness {proved(w)}, saturation to the bound {proved(sat_b)}")
+
+    # the bounded decider against every other engine, same rows, same points
+    dom = []
+    for name, R in (("real", real), ("suites", suites), ("gen", gen), ("ac", dac)):
+        dd = R["decide"]
+        dj = joinset(dd)
+        for e, v in R.items():
+            if e == "decide" or e == "eval":
+                continue
+            row = {"suite": name, "engine": e, "joins": [len(dj), len(joinset(v))],
+                   "ops": [ops(dd), ops(v)], "wall_s": [dd["wall_s"], v["wall_s"]],
+                   "vmhwm_kb": [dd["vmhwm_kb"], v["vmhwm_kb"]],
+                   "covers": joinset(v) <= dj}
+            row["beats_all_axes"] = (row["covers"] and ops(dd) <= ops(v) and dd["wall_s"] <= v["wall_s"]
+                                     and dd["vmhwm_kb"] <= v["vmhwm_kb"])
+            dom.append(row)
+        gate(f"{name}: decider holds every join any engine found", all(x["covers"] for x in dom if x["suite"] == name),
+             f"decider {len(dj)} joins")
+        gate(f"{name}: every decider join also holds on 64 fresh points",
+             all(r["verified"] for r in dd["rows"] if r["status"] == "agree"),
+             f"{sum(1 for r in dd['rows'] if r['status'] == 'agree' and not r['verified'])} fail the fresh audit")
+    out["decider"] = dom
+    losses = [x for x in dom if not x["beats_all_axes"]]
+    gate("decider at least as good as every engine on joins, ops, time and memory, every suite", not losses,
+         "; ".join(f"{x['suite']}/{x['engine']}: joins {x['joins']} ops {x['ops']} wall {x['wall_s']} mem {x['vmhwm_kb']}"
+                   for x in losses) or f"{len(dom)} comparisons")
+    # truth: the near-miss rows differ somewhere; the decider must refute all of them
+    nr = [r for r in suites["decide"]["rows"] if r["suite"] == "refuted"]
+    gate("decider refutes every near-miss", all(r["status"] == "refuted" for r in nr), f"{len(nr)} rows")
 
     # components: real code and the suite that targets each
     comp = [

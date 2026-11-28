@@ -23,15 +23,17 @@ python3 bench.py $W results/real.tsv results/real.json \
   "witness=" "greedy=--engine greedy" "saturate=--engine saturate" \
   "saturate_beh=--engine saturate --with-beh" \
   "sat_bound=--engine saturate --alloc 100000 --match 2000000 --rounds 60" \
-  "eval=--engine eval" $ABL
+  "eval=--engine eval" "decide=--engine decide" $ABL
 # mechanism suites
 python3 bench.py $W results/suites.tsv results/suites.json \
   "witness=" "greedy=--engine greedy" "saturate=--engine saturate" \
-  "sat_bound=--engine saturate --alloc 100000 --match 2000000 --rounds 60" $ABL
+  "sat_bound=--engine saturate --alloc 100000 --match 2000000 --rounds 60" \
+  "decide=--engine decide" $ABL
 # generative rule on
 python3 bench.py $W results/gen.tsv results/gen.json \
   "witness=--gen" "greedy=--engine greedy --gen" "saturate=--engine saturate --gen" \
-  "w_naiveprov=--gen --prov-naive" "w_nodepth_nocredit=--gen --no-depth --no-credit"
+  "w_naiveprov=--gen --prov-naive" "w_nodepth_nocredit=--gen --no-depth --no-credit" \
+  "decide=--engine decide"
 # divergence: unprovable rows, nobody gets the witness points, run to the bound
 python3 bench.py $W results/unprovable.tsv results/divergence_gen.json \
   "sat_nogen=--engine saturate --alloc 20000 --match 400000 --rounds 200" \
@@ -40,7 +42,7 @@ python3 bench.py $W results/unprovable.tsv results/divergence_gen.json \
 # divergence: AC without the AC and linear macros
 python3 bench.py $W results/ac.tsv results/divergence_ac.json \
   "sat_nomacro=--engine saturate --no-acrule --no-linrule --alloc 20000 --match 400000 --rounds 200" \
-  "witness=" "witness_nomacro=--no-bag --no-lin"
+  "witness=" "witness_nomacro=--no-bag --no-lin" "decide=--engine decide"
 # provenance overhead, same decisions (fixed rule order), 5 repeats
 for i in 1 2 3 4 5; do
   python3 bench.py $W results/real.tsv results/overhead_$i.json \

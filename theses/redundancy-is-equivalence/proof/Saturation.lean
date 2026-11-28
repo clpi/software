@@ -307,3 +307,45 @@ theorem saturationmax (kinds : Kinds Sym) (g h : Graph Sym) (vg : Valid kinds g)
 
 #print axioms boundedexact
 #print axioms saturationmax
+
+/-! ## The bounded decider covers every sound engine
+
+The decider joins `o(a)` and `o(b)` exactly when the observer's key
+agrees (`boundedexact`). Any other engine whose graph is sound for a
+meaning that the key reads cannot state a join the decider lacks:
+neither a join of observed terms nor a join of raw terms. So inside
+the bound no sound procedure finds a join the decider misses. -/
+
+/-- Joins of observed terms: whatever a sound engine joins at an
+    observer, the decider joins too. -/
+theorem decidermax (kinds : Kinds Sym) (g h : Graph Sym) (vg : Valid kinds g)
+    {K M : Type} (key : Sym → Term Sym → K) (m : Term Sym → M)
+    (honly : ∀ entry ∈ g.log, entry.kind = kinds.join →
+      ∃ o a b, entry.terms = [applied o a, applied o b] ∧ key o a = key o b)
+    (hall : ∀ o a b, key o a = key o b →
+      ∃ entry ∈ g.log, entry.kind = kinds.join ∧
+        applied o a ∈ entry.terms ∧ applied o b ∈ entry.terms)
+    (hsound : GraphSound h m)
+    (hreads : ∀ o a b, m (applied o a) = m (applied o b) → key o a = key o b)
+    (o : Sym) (a b : Term Sym) (hs : same h (applied o a) (applied o b)) :
+    same g (applied o a) (applied o b) :=
+  (boundedexact kinds g vg key honly hall o a b).2 (hreads o a b (hsound _ _ hs))
+
+/-- Joins of raw terms: a rewriting engine that joins `a` and `b`
+    soundly gives a join the decider already holds at every
+    observer that reads the meaning. -/
+theorem decidercovers (kinds : Kinds Sym) (g h : Graph Sym) (vg : Valid kinds g)
+    {K M : Type} (key : Sym → Term Sym → K) (m : Term Sym → M)
+    (honly : ∀ entry ∈ g.log, entry.kind = kinds.join →
+      ∃ o a b, entry.terms = [applied o a, applied o b] ∧ key o a = key o b)
+    (hall : ∀ o a b, key o a = key o b →
+      ∃ entry ∈ g.log, entry.kind = kinds.join ∧
+        applied o a ∈ entry.terms ∧ applied o b ∈ entry.terms)
+    (hsound : GraphSound h m)
+    (hreads : ∀ o a b, m a = m b → key o a = key o b)
+    (a b : Term Sym) (hs : same h a b) (o : Sym) :
+    same g (applied o a) (applied o b) :=
+  (boundedexact kinds g vg key honly hall o a b).2 (hreads o a b (hsound _ _ hs))
+
+#print axioms decidermax
+#print axioms decidercovers

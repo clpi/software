@@ -5,30 +5,49 @@ set of terms, a finite rule set, finite witness points, finite fuel.
 
 ## The answer
 
-No single procedure is dominant. Inside the bound there are three
-provably different jobs, and each has a procedure that is on the
-Pareto frontier for it:
+Inside the bound, the bounded decider (`--engine decide`) beats every
+other engine here: on every suite it finds every join any engine finds,
+and it uses no more operations, time or memory than any of them (38 of
+38 comparisons, gate `decider at least as good as every engine`).
 
-- **Bounded behavioral joins** (two terms agree on every resolved
-  point). Exhaustive evaluation decides these exactly, sound and
-  complete, at the lowest cost measured: 12 of 12 real joins in 0.03 s
-  and 3.0 MB. Proved: `boundedexact`.
-- **Rule-derived joins, maximal set.** Saturation run to the bound
-  finds every join any search over the same rule instances can find.
-  Proved: `saturationmax`. Measured: it proves 8 of 8 on the factoring
-  suite where the witness search proves 5. It costs the most.
-- **Rule-derived joins, cheaply.** The witness-guided search (this
-  folder's `wsat`, built to the design in the thread) proves the same
-  11 of 11 rule-derivable real joins as saturation to the bound with
-  103 e-nodes against 3,097,262, and 3.2 MB against 2.6 GB. It is not
-  complete inside the bound: it misses joins saturation finds.
+It is the simplest possible procedure for this job. Both terms go into
+one hash-consed DAG, identical roots join with no work, and otherwise
+every resolved point is evaluated bottom-up, with the shared subterms
+evaluated once, stopping at the first point that differs.
+
+What holds by construction, and what is only measured:
+
+- **Joins, proved.** It joins `o(a)` and `o(b)` exactly when they agree
+  on every resolved point (`boundedexact`). Any engine sound for a
+  meaning the observer reads can only state joins it already holds,
+  whether of observed terms (`decidermax`) or of raw terms
+  (`decidercovers`). So no sound procedure finds a join it misses.
+- **Allocation, by construction.** It allocates no rewrite nodes.
+- **Operations against the witness search and saturation with
+  falsification, by construction.** Both start with the same
+  early-exit evaluation loop on the same points; the decider stops
+  there, and its shared DAG never evaluates more nodes than the tree.
+- **Operations against plain greedy and plain saturation, measured.**
+  These use no evaluations, so the margin is not structural. The
+  closest is greedy with the generative rule: 6,784 against 7,571
+  operations.
+- **Time and memory, measured.** Margins on the small suites are a few
+  milliseconds and mostly process startup.
+
+What it gives up: its joins are of observed terms at the resolved
+points. A join of raw terms that must survive widening the bound still
+needs a rewriting derivation, and those engines stay available for that.
+Its cost grows with points times DAG size, so a bound with far more
+points than the 64 here is unmeasured.
+
+The earlier comparison (no single procedure dominant) was among the
+rewriting engines and the plain evaluator; the decider replaces the
+plain evaluator and moves the frontier to one point.
 
 Every procedure here only appends joins on witnesses, so the graph
 stays sound and grows monotonically whatever the search does, and the
 partition does not depend on the order witnesses arrive (`soundiff`,
-`joinssound`, `orderfree`, with `Ops.joingrows`). That is the
-"monotonic improvement over time" guarantee, and it holds for all of
-them equally; it is not a property of one search strategy.
+`joinssound`, `orderfree`, with `Ops.joingrows`).
 
 ## Proved (`../proof/Saturation.lean`, on the canonical `Core` and `Ops`)
 
@@ -42,8 +61,9 @@ them equally; it is not a property of one search strategy.
 | `saturationmax` | Every equivalence a search states from rule instances the saturated graph holds stands in the saturated graph |
 | `fuelbound` | Steps costing at least one unit, paid from a budget plus capped refunds, number at most budget plus cap: the dividend cannot make a search run forever |
 | `sumperm` | Reordering operands never changes a sum: AC sorting is a sound witness |
+| `decidermax`, `decidercovers` | Whatever a sound engine joins, of observed or raw terms, the bounded decider joins at every observer that reads the meaning |
 
-All 15 use only propext and Quot.sound; the thesis gate passes.
+All 17 use only propext and Quot.sound; the thesis gate passes.
 
 ## Measured
 
@@ -62,36 +82,44 @@ baselines get the witness search's budget plus its dividend cap).
 
 ### Real code (1,415 rows)
 
-| Engine | joins | e-nodes | match steps | time | peak memory | frontier |
-|---|---|---|---|---|---|---|
-| Exhaustive evaluation (bounded joins) | 12 | 0 | 90,560 evals | 0.031 s | 3.0 MB | yes, for bounded joins |
-| Witness-guided search | 11 | 103 | 3,064 | 0.059 s | 3.2 MB | yes |
-| Saturation + witness falsification | 11 | 327 | 956 | 0.040 s | 3.4 MB | yes |
-| Saturation, same budget | 11 | 162,455 | 3,005,760 | 2.55 s | 10.2 MB | no |
-| Saturation to the bound (100k nodes) | 11 | 3,097,262 | 317,029,203 | 106.8 s | 2.6 GB | no |
-| Plain greedy + backoff | 3 | 8,570 | 2,811,280 | 5.01 s | 3.7 MB | no |
+One shared cost unit for every engine: node evaluations plus rewrite
+match steps plus rewrite allocations (the independent audit on fresh
+points is not counted).
+
+| Engine | joins | operations | time | peak memory |
+|---|---|---|---|---|
+| Bounded decider | 12 | 24,585 | 0.037 s | 2.9 MB |
+| Plain evaluation (no sharing) | 12 | 42,606 | 0.037 s | 3.0 MB |
+| Saturation + witness falsification | 11 | 43,889 | 0.050 s | 3.3 MB |
+| Witness-guided search | 11 | 55,995 | 0.077 s | 3.2 MB |
+| Plain greedy + backoff | 3 | 2,819,850 | 5.46 s | 3.6 MB |
+| Saturation, same budget | 11 | 3,168,215 | 2.91 s | 9.8 MB |
+| Saturation to the bound (100k nodes) | 11 | 320,126,465 | 127.8 s | 2.5 GB |
 
 The 12th real join (leb128: `v // 128` against an expression with
 `%` and `//`) needs division rules the rule set does not have, so no
-rewriting engine finds it. On real code the witness search and
-saturation-with-falsification split the axes: the search allocates a
-third as many nodes and uses less memory; saturation uses a third the
-match steps and less time.
+rewriting engine finds it; the decider joins it because the two sides
+agree on every resolved point.
 
 ### Mechanism suites (38 rows)
 
-| Suite | witness | greedy | saturate (budget) | saturate (bound) |
-|---|---|---|---|---|
-| AC sums and products, 6 to 20 operands | 8/8 | 0/8 | 8/8 | 8/8 |
-| Factoring join explosion | 5/8 | 5/8 | 6/8 | 8/8 |
-| Valleys (must pass a larger term) | 6/6 | 5/6 | 6/6 | 6/6 |
-| Meet in the middle | 3/3 | 1/3 | 3/3 | 3/3 |
-| Refuted near-misses pruned | 5/5 | 0/5 | 0/5 | 0/5 |
+| Suite | decider | witness | greedy | saturate (budget) | saturate (bound) |
+|---|---|---|---|---|---|
+| AC sums and products, 6 to 20 operands | 8/8 | 8/8 | 0/8 | 8/8 | 8/8 |
+| Factoring join explosion | 8/8 | 5/8 | 5/8 | 6/8 | 8/8 |
+| Valleys (must pass a larger term) | 6/6 | 6/6 | 5/6 | 6/6 | 6/6 |
+| Meet in the middle | 3/3 | 3/3 | 1/3 | 3/3 | 3/3 |
+| Refuted near-misses pruned | 5/5 | 5/5 | 0/5 | 0/5 | 0/5 |
+
+Operations over all 38 rows: decider 41,316, witness 92,475, greedy
+90,735, saturation to the bound 200,780.
 
 With the generative rule `a -> (a+1)-1` switched on, plain greedy
 proves 13 of 14 on the generative, cycle and valley rows against the
 witness search's 10: the search loses valleys when the generative
-rule competes for its beam.
+rule competes for its beam. The decider joins 14 of 14 with 6,784
+operations against greedy's 7,571; it uses no rules, so the generative
+rule cannot slow it.
 
 ### Divergence mechanisms
 
@@ -138,6 +166,8 @@ provenance against 25.0 ms without, about 2 percent.
   recorded executions or release diffs.
 - Real joins are straight-line arithmetic only: the harvester skips
   branches, stores, strings and calls with side effects.
+- The decider's wins on the small suites are a few milliseconds and
+  mostly process startup; each configuration was timed once.
 - The estate's existing equivalence witnesses are spelling-level (the
   registry joins byte-identical texts); on these obligations they find
   0 of 12 by construction. idol-lib's redundant campaign has no

@@ -180,7 +180,16 @@ fn mix(mut z: u64) -> u64 {
 
 /// Wrapping i64 semantics (Z / 2^64 for + - * and shifts); arrays and
 /// calls are fixed pseudo-random functions of their arguments.
+// node evaluations, counted for every engine (one shared cost unit);
+// the independent audit on fresh points is excluded
+static EVALS: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
+fn evals_now() -> u64 {
+    EVALS.load(std::sync::atomic::Ordering::Relaxed)
+}
+
 fn eval(t: &T, env: &HashMap<u32, i64>) -> i64 {
+    EVALS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
     let k = |i: usize| eval(&t.kids[i], env);
     match t.op {
         Op::Var(s) => *env.get(&s).unwrap_or(&((mix(s as u64) as i64) & 0xff)),
@@ -1127,6 +1136,7 @@ struct Outcome {
     micros: u128,
     verified: bool,
     rules_used: Vec<usize>,
+    evals: u64,
 }
 
 struct Ctx<'a> {
@@ -1198,7 +1208,7 @@ fn run_witness(src: &T, wit: &T, ctx: &mut Ctx, pts: &[HashMap<u32, i64>]) -> Ou
     let mut out = Outcome {
         status: "stuck", rounds: 0, alloc_used: 0, match_used: 0, refunded: 0, enodes: 0, classes: 0,
         prov_nodes: 0, prov_bytes: 0, prov_acyclic: true, walk_steps: 0, double_credit: 0,
-        cong_credit_to_bridge: 0.0, micros: 0, verified: true, rules_used: vec![],
+        cong_credit_to_bridge: 0.0, micros: 0, verified: true, rules_used: vec![], evals: 0,
     };
     // hard behavioral falsification against the witness row
     if cfg.beh {
@@ -1514,6 +1524,7 @@ fn run_witness(src: &T, wit: &T, ctx: &mut Ctx, pts: &[HashMap<u32, i64>]) -> Ou
     out.rules_used.sort();
     if out.status == "proved" {
         // independent check on fresh points: rules must be sound
+        let before = evals_now();
         let mut vs = vec![];
         vars(src, &mut vs);
         vars(wit, &mut vs);
@@ -1522,6 +1533,7 @@ fn run_witness(src: &T, wit: &T, ctx: &mut Ctx, pts: &[HashMap<u32, i64>]) -> Ou
                 out.verified = false;
             }
         }
+        EVALS.fetch_sub(evals_now() - before, std::sync::atomic::Ordering::Relaxed);
     }
     out.micros = t0.elapsed().as_micros();
     out
@@ -1542,16 +1554,124 @@ fn au_terms(a: &T, b: &T) -> i64 {
 fn run_eval(src: &T, wit: &T, pts: &[HashMap<u32, i64>]) -> Outcome {
     let t0 = Instant::now();
     let mut eq = true;
+    let mut used = 0;
     for p in pts {
+        used += 1;
         if eval(src, p) != eval(wit, p) {
             eq = false;
             break;
         }
     }
+    let _ = used;
+    // audit, not counted: does a bounded join also hold on 64 fresh points?
+    let mut verified = true;
+    if eq {
+        let before = evals_now();
+        let mut vs = vec![];
+        vars(src, &mut vs);
+        vars(wit, &mut vs);
+        for p in points(&vs, 64, 0xFEED) {
+            if eval(src, &p) != eval(wit, &p) {
+                verified = false;
+            }
+        }
+        EVALS.fetch_sub(evals_now() - before, std::sync::atomic::Ordering::Relaxed);
+    }
     Outcome {
-        status: if eq { "agree" } else { "refuted" }, rounds: 0, alloc_used: 0, match_used: pts.len() as i64,
+        status: if eq { "agree" } else { "refuted" }, rounds: 0, alloc_used: 0, match_used: 0,
         refunded: 0, enodes: 0, classes: 0, prov_nodes: 0, prov_bytes: 0, prov_acyclic: true, walk_steps: 0,
-        double_credit: 0, cong_credit_to_bridge: 0.0, micros: t0.elapsed().as_micros(), verified: true, rules_used: vec![],
+        double_credit: 0, cong_credit_to_bridge: 0.0, micros: t0.elapsed().as_micros(), verified, rules_used: vec![], evals: 0,
+    }
+}
+
+// one operator applied to its children's values: the same semantics
+// as eval, node by node
+fn apply(op: Op, k: &[i64], env: &HashMap<u32, i64>) -> i64 {
+    EVALS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+    match op {
+        Op::Var(s) => *env.get(&s).unwrap_or(&((mix(s as u64) as i64) & 0xff)),
+        Op::Const(c) => c,
+        Op::Add => k[0].wrapping_add(k[1]),
+        Op::Mul => k[0].wrapping_mul(k[1]),
+        Op::Sub => k[0].wrapping_sub(k[1]),
+        Op::Neg => k[0].wrapping_neg(),
+        Op::Shl => k[0].wrapping_shl((k[1] & 63) as u32),
+        Op::Shr => k[0].wrapping_shr((k[1] & 63) as u32),
+        Op::Div => if k[1] == 0 { 0 } else { k[0].wrapping_div_euclid(k[1]) },
+        Op::Mod => if k[1] == 0 { 0 } else { k[0].wrapping_rem_euclid(k[1]) },
+        Op::And => k[0] & k[1],
+        Op::Or => k[0] | k[1],
+        Op::Xor => k[0] ^ k[1],
+        Op::Idx(s) => (mix((s as u64) << 32 ^ (k[0] as u64)) & 0xffff) as i64,
+        Op::Call(s) => {
+            let mut h = mix(s as u64 ^ 0xC0FFEE);
+            for &v in k {
+                h = mix(h ^ (v as u64));
+            }
+            (h & 0xffff) as i64
+        }
+    }
+}
+
+// The bounded decider. Both terms go into one hash-consed DAG, so a
+// subterm the two sides share is evaluated once per point; identical
+// roots join with no evaluation at all. Then every resolved point is
+// evaluated bottom-up, stopping at the first point where the roots
+// differ. Joined exactly when the roots agree on every point, which is
+// the graph's equivalence inside the bound (boundedexact); no sound
+// engine joins a pair this refutes (decidermax, decidercovers).
+fn run_decide(src: &T, wit: &T, pts: &[HashMap<u32, i64>]) -> Outcome {
+    let t0 = Instant::now();
+    let mut ids: HashMap<(Op, Vec<u32>), u32> = HashMap::new();
+    let mut nodes: Vec<(Op, Vec<u32>)> = vec![];
+    fn intern(t: &T, ids: &mut HashMap<(Op, Vec<u32>), u32>, nodes: &mut Vec<(Op, Vec<u32>)>) -> u32 {
+        let ks: Vec<u32> = t.kids.iter().map(|k| intern(k, ids, nodes)).collect();
+        let key = (t.op, ks);
+        if let Some(&i) = ids.get(&key) {
+            return i;
+        }
+        let i = nodes.len() as u32;
+        nodes.push(key.clone());
+        ids.insert(key, i);
+        i
+    }
+    let ra = intern(src, &mut ids, &mut nodes);
+    let rb = intern(wit, &mut ids, &mut nodes);
+    let mut eq = true;
+    if ra != rb {
+        let mut val = vec![0i64; nodes.len()];
+        let mut kv: Vec<i64> = vec![];
+        'pts: for p in pts {
+            for i in 0..nodes.len() {
+                kv.clear();
+                for &c in &nodes[i].1 {
+                    kv.push(val[c as usize]);
+                }
+                val[i] = apply(nodes[i].0, &kv, p);
+            }
+            if val[ra as usize] != val[rb as usize] {
+                eq = false;
+                break 'pts;
+            }
+        }
+    }
+    let mut verified = true;
+    if eq {
+        let before = evals_now();
+        let mut vs = vec![];
+        vars(src, &mut vs);
+        vars(wit, &mut vs);
+        for p in points(&vs, 64, 0xFEED) {
+            if eval(src, &p) != eval(wit, &p) {
+                verified = false;
+            }
+        }
+        EVALS.fetch_sub(evals_now() - before, std::sync::atomic::Ordering::Relaxed);
+    }
+    Outcome {
+        status: if eq { "agree" } else { "refuted" }, rounds: 0, alloc_used: 0, match_used: 0,
+        refunded: 0, enodes: nodes.len(), classes: 0, prov_nodes: 0, prov_bytes: 0, prov_acyclic: true, walk_steps: 0,
+        double_credit: 0, cong_credit_to_bridge: 0.0, micros: t0.elapsed().as_micros(), verified, rules_used: vec![], evals: 0,
     }
 }
 
@@ -1638,18 +1758,22 @@ fn main() {
         vars(&src, &mut vs);
         vars(&wit, &mut vs);
         let pts = points(&vs, cfg.npoints, 0x5EED);
-        let o = if cfg.engine == "eval" {
+        let e0 = evals_now();
+        let mut o = if cfg.engine == "eval" {
             run_eval(&src, &wit, &pts)
+        } else if cfg.engine == "decide" {
+            run_decide(&src, &wit, &pts)
         } else {
             let mut ctx = Ctx { cfg: &cfg, stats: &mut stats };
             run_witness(&src, &wit, &mut ctx, &pts)
         };
+        o.evals = evals_now() - e0;
         let ru: Vec<String> = o.rules_used.iter().map(|&r| format!("\"{}\"", RULE_NAMES[r])).collect();
         println!(
-            "{{\"id\":\"{}\",\"suite\":\"{}\",\"engine\":\"{}\",\"label\":\"{}\",\"status\":\"{}\",\"rounds\":{},\"alloc\":{},\"match\":{},\"refunded\":{},\"enodes\":{},\"classes\":{},\"prov_nodes\":{},\"prov_bytes\":{},\"prov_acyclic\":{},\"walk_steps\":{},\"double_credit\":{},\"cong_bridge_credit\":{:.4},\"micros\":{},\"verified\":{},\"rules\":[{}]}}",
+            "{{\"id\":\"{}\",\"suite\":\"{}\",\"engine\":\"{}\",\"label\":\"{}\",\"status\":\"{}\",\"rounds\":{},\"alloc\":{},\"match\":{},\"refunded\":{},\"enodes\":{},\"classes\":{},\"prov_nodes\":{},\"prov_bytes\":{},\"prov_acyclic\":{},\"walk_steps\":{},\"double_credit\":{},\"cong_bridge_credit\":{:.4},\"micros\":{},\"verified\":{},\"evals\":{},\"rules\":[{}]}}",
             id, suite, cfg.engine, cfg.label, o.status, o.rounds, o.alloc_used, o.match_used, o.refunded, o.enodes, o.classes,
             o.prov_nodes, o.prov_bytes, o.prov_acyclic, o.walk_steps, o.double_credit, if o.cong_credit_to_bridge.is_finite() { o.cong_credit_to_bridge.min(1e12) } else { -1.0 }, o.micros,
-            o.verified, ru.join(",")
+            o.verified, o.evals, ru.join(",")
         );
     }
     // peak resident memory of this process (Linux)
