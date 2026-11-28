@@ -1,0 +1,59 @@
+diff --git a/grh/src/Lib/Analytic/PolyaVinogradov.lean b/grh/src/Lib/Analytic/PolyaVinogradov.lean
+index 5fdad58..e561412 100644
+--- a/grh/src/Lib/Analytic/PolyaVinogradov.lean
++++ b/grh/src/Lib/Analytic/PolyaVinogradov.lean
+@@ -115,7 +115,7 @@ lemma norm_sum_le_of_isPrimitive (hχ : χ.IsPrimitive) (hq : q ≠ 1) (X : ℕ)
+     _ = √q * harmonic q := by
+         rw [← mul_sum, sum_add_distrib, sum_flip fun n : ℕ ↦ (n : ℝ)⁻¹, h_harmonic]
+         field [NeZero.ne]
+-    _ ≤ √q * (1 + Real.log q) := by grw [harmonic_le_one_add_log]
++    _ ≤ √q * (1 + Real.log q) := by grw [harmonic_le_one_add_log' q]
+ 
+ /-- A natural number `r` has at most `2 √r` divisors. -/
+ lemma card_divisors_le_two_mul_sqrt (r : ℕ) : (#r.divisors : ℝ) ≤ 2 * √r := by
+diff --git a/grh/src/Lib/Analytic/ZeroSymmetry.lean b/grh/src/Lib/Analytic/ZeroSymmetry.lean
+index 30cedd0..d2260a1 100644
+--- a/grh/src/Lib/Analytic/ZeroSymmetry.lean
++++ b/grh/src/Lib/Analytic/ZeroSymmetry.lean
+@@ -80,3 +80,22 @@ lemma New.gammaFactor_eq_zero_or_LFunction_one_sub_eq_zero (s : ℂ) (h_re : s.r
+     rw [LFunction_eq_completed_div_gammaFactor ψ⁻¹ (1 - s) (.inl (sub_ne_zero.2 h_ne_one.symm)),
+       hΛ_inv, zero_div]
+   rw [← map_inv, LFunction_changeLevel hM ψ⁻¹ (.inr (by simpa using hs_ne_zero)), hL_inv, zero_mul]
++
++/-- The harmonic number `H_n` is at most `1 + log n`: each term `1 / (k + 1)` with `k ≥ 1` is at most
++`log (k + 1) - log k`, as `log x ≤ x - 1` at `x = k / (k + 1)`. -/
++lemma New.harmonic_le_one_add_log' (n : ℕ) : (harmonic n : ℝ) ≤ 1 + Real.log n := by
++  induction n with
++  | zero => simp
++  | succ n ih =>
++    rcases Nat.eq_zero_or_pos n with rfl | hn
++    · simp
++    have hn' : (0 : ℝ) < n := mod_cast hn
++    have h_log : ((n + 1 : ℕ) : ℝ)⁻¹ ≤ Real.log (n + 1 : ℕ) - Real.log n := by
++      have h := Real.log_le_sub_one_of_pos (x := (n : ℝ) / (n + 1)) (by positivity)
++      rw [Real.log_div hn'.ne' (by positivity)] at h
++      push_cast
++      have : (n : ℝ) / (n + 1) - 1 = -(n + 1 : ℝ)⁻¹ := by field_simp; ring
++      linarith
++    rw [harmonic_succ]
++    push_cast at ih h_log ⊢
++    linarith
+diff --git a/grh/src/New/UpperBound/Size/Estimates.lean b/grh/src/New/UpperBound/Size/Estimates.lean
+index bbfddcc..6df833e 100644
+--- a/grh/src/New/UpperBound/Size/Estimates.lean
++++ b/grh/src/New/UpperBound/Size/Estimates.lean
+@@ -383,7 +383,13 @@ lemma sum_allowedLoss_mul_log_le (U : Finset ℕ) :
+         _ ≤ _ := h_single (r := 0) le_rfl (le_floor (by simpa)) (by norm_num) hN.symm
+     · exact (zero_mul _).trans_le (by positivity)
+   have h_harmonic : ∑ c ∈ Icc 1 ⌊D.x₁⌋₊, (c : ℝ)⁻¹ ≤ 1 + D.logX₁ := by
+-    simpa [harmonic_eq_sum_Icc] using harmonic_floor_le_one_add_log D.x₁ D.le_of_hasLogBound
++    have h_one : (1 : ℝ) ≤ D.x₁ := D.le_of_hasLogBound
++    have h_floor : (harmonic ⌊D.x₁⌋₊ : ℝ) ≤ 1 + Real.log D.x₁ := by
++      refine (harmonic_le_one_add_log' _).trans ?_
++      gcongr
++      · exact_mod_cast Nat.floor_pos.mpr h_one
++      · exact Nat.floor_le (zero_le_one.trans h_one)
++    simpa [harmonic_eq_sum_Icc] using h_floor
+   calc ∑ p ∈ U, D.allowedLoss p * .log p
+     _ ≤ ∑ u ∈ J, T / u.1 := by grw [sum_le_sum fun p _ ↦ h_term p,
+       sum_fiberwise_eq_sum_filter, filter_subset]

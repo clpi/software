@@ -36,3 +36,4 @@ New.Variety.injEnv.ι._proof_3
 New.Variety.instInjectiveAbFunctorInjEnv
 New.Variety.instInjectiveAbFunctorInjEnv.match_1
 New.Variety.instMonoAbFunctorι
+New.harmonic_le_one_add_log'
