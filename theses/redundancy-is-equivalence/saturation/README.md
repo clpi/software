@@ -155,8 +155,9 @@ wins unless strictly shallower, deepest-first walk with decay 0.85,
 bridge bonus 1.5, collision bonus 2, flushed into the rule table at
 epoch end. Largest arena seen: 1,976 bytes. Credit reached inner bridge
 rules through congruence (171.9 units). Overhead with identical
-decisions, median of 5 runs over the real corpus: 25.5 ms with
-provenance against 25.0 ms without, about 2 percent.
+decisions, median of 5 runs over the real corpus: 32.0 ms with
+provenance against 32.3 ms without in the latest run (25.5 against 25.0
+in the first), so the overhead is within run-to-run noise.
 
 ## Not established
 
